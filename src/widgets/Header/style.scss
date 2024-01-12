@@ -1,0 +1,48 @@
+.header {
+  width: 100%;
+  padding: 16px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 82px;
+
+  &__logo {
+    width: 200px;
+    transition-duration: 0.5s;
+    display: flex;
+    justify-content: center;
+    div {
+      width: 100%;
+      display: flex;
+      overflow: hidden;
+      transition-duration: 0.3s;
+    }
+    a {
+      margin: 0 auto;
+      transition-duration: 0.4s;
+    }
+    &.active {
+      width: 85px;
+      div {
+        width: 32px;
+      }
+    }
+  }
+
+  &__flex {
+    display: flex;
+    align-items: center;
+    > div {
+      margin-right: 20px;
+      &:last-child {
+        margin-right: 0;
+      }
+      &.header__logo {
+        margin-right: 30px;
+      }
+    }
+  }
+  &__bread {
+    margin-left: 20px;
+  }
+}

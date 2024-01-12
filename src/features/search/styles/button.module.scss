@@ -1,0 +1,12 @@
+.body {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  span {
+    white-space: nowrap;
+    margin-left: 10px;
+  }
+  svg {
+    flex: 0 0 20px;
+  }
+}

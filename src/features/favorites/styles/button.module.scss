@@ -1,0 +1,17 @@
+.button {
+  display: flex;
+  align-items: center;
+  > span {
+    flex: 1 1 auto;
+    margin: 0px 10px;
+    font-size: 12px;
+  }
+
+  svg {
+    flex: 0 0 22px;
+  }
+}
+
+.total {
+  background-color: #656876 !important;
+}

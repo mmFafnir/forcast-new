@@ -1,0 +1,31 @@
+.body {
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  font-size: 14px;
+  font-weight: normal;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  transition-duration: 0.3s;
+  white-space: nowrap;
+  span {
+    padding: 0px 5px;
+  }
+  &::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin: 0 5px;
+  }
+
+  @media (min-width: 901px) {
+    &:hover {
+      color: #dac285;
+    }
+  }
+}

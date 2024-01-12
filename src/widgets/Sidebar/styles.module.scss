@@ -1,0 +1,73 @@
+.body {
+  margin-right: 30px;
+  width: 200px;
+  height: 100vh;
+  height: calc(100dvh - 82px);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+  overflow: hidden;
+  transition-duration: 0.5s;
+
+  button,
+  .link,
+  .telegram {
+    width: 100%;
+    > span {
+      transition-duration: 0.4s;
+      max-width: 100px;
+      flex: 0 1 200px;
+    }
+  }
+}
+
+.search {
+  margin-bottom: 20px;
+}
+.favorite {
+  margin-bottom: 20px;
+  button {
+    > span {
+      transition-delay: 0.3s;
+    }
+    > p {
+      margin-left: auto;
+    }
+  }
+}
+.link {
+  margin-bottom: 5px;
+  > span {
+    margin: 0px 10px;
+    font-size: 12px;
+    transition-delay: 0.3s;
+  }
+  > p {
+    margin-left: auto;
+  }
+}
+
+.telegram {
+  margin-top: auto;
+
+  > span {
+    white-space: nowrap;
+    margin-left: 10px;
+  }
+}
+
+.close {
+  width: 85px;
+
+  button,
+  .link,
+  .telegram {
+    > span {
+      max-width: 0px;
+      opacity: 0;
+      visibility: hidden;
+      margin: 0;
+      transition-delay: 0s;
+    }
+  }
+}

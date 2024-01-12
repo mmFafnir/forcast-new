@@ -1,0 +1,27 @@
+.body {
+  width: 100%;
+  margin-top: 10px;
+
+  .body {
+    margin-top: 0px;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.sport {
+  font-weight: 700;
+  img {
+    margin-right: 10px;
+  }
+}
