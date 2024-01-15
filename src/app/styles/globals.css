@@ -29,8 +29,14 @@ a {
   display: flex;
 }
 .jc-between {
-  display: flex;
   justify-content: space-between;
+}
+.item-center {
+  align-items: center;
+}
+
+.flex-1 {
+  flex: 1 1 auto;
 }
 
 .logo-icon {

@@ -1,6 +1,6 @@
 import React from "react";
 
-const IconFavorite = () => {
+export const IconFavorite = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -17,5 +17,3 @@ const IconFavorite = () => {
     </svg>
   );
 };
-
-export default IconFavorite;

@@ -1,0 +1,16 @@
+.body {
+  margin-right: 10px;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+
+  &:first-child {
+    margin-bottom: 10px;
+  }
+
+  img {
+    margin-right: 10px;
+  }
+}

@@ -1,0 +1,35 @@
+.item {
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.header {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #22252f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  svg {
+    transform: rotate(180deg);
+  }
+  span {
+    transition-duration: 0.3s;
+  }
+}
+
+.country {
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-right: 20px;
+  }
+}
+
+.body {
+  overflow: hidden;
+  transition-duration: 0.3s;
+}

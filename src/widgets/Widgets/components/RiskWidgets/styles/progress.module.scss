@@ -1,0 +1,25 @@
+.body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  height: 23px;
+  position: relative;
+  p {
+    font-weight: 700;
+  }
+}
+
+.bar {
+  border-top-right-radius: 42px;
+  border-bottom-right-radius: 42px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 20px;
+}

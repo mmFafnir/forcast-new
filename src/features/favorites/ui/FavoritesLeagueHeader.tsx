@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "../styles/leagueHeader.module.scss";
-import IconFavorite from "../icons/IconFavorite";
+import { IconFavorite } from "../icons/IconFavorite";
 import Image from "next/image";
 import IconPinFavorite from "../icons/IconPinFavorite";
+import { PinButton } from "..";
 export const FavoritesLeagueHeader = () => {
   return (
     <div className={styles.body}>
@@ -19,9 +20,7 @@ export const FavoritesLeagueHeader = () => {
         />
         <span>Англия : Вторая Лига</span>
       </div>
-      <button className={styles.pin}>
-        <IconPinFavorite />
-      </button>
+      <PinButton />
     </div>
   );
 };

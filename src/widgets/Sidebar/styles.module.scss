@@ -1,18 +1,14 @@
 .body {
   margin-right: 30px;
   width: 200px;
-  height: 100vh;
-  height: calc(100dvh - 82px);
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 30px;
-  overflow: hidden;
+
   transition-duration: 0.5s;
 
   button,
   .link,
   .telegram {
     width: 100%;
+    overflow: hidden;
     > span {
       transition-duration: 0.4s;
       max-width: 100px;
@@ -20,7 +16,18 @@
     }
   }
 }
-
+.wrapper {
+  height: 100%;
+}
+.content {
+  height: 100vh;
+  height: calc(100dvh - 82px);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: var(--sticky-top-sidebar);
+  padding-bottom: 30px;
+}
 .search {
   margin-bottom: 20px;
 }

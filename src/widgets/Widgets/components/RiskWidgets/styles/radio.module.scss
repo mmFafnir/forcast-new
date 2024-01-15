@@ -1,0 +1,44 @@
+.label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  padding: 0px 10px;
+  height: 30px;
+  border-radius: 50%;
+  background: #22252f;
+  transition: border-radius 0.3s 0.3s, background-color 0.3s;
+  @media (min-width: 901px) {
+    &:hover {
+      background-color: #656876;
+    }
+  }
+}
+.text {
+  max-width: 0;
+  overflow: hidden;
+  margin-left: 0px;
+  transition-duration: 0.3s;
+}
+.color {
+  flex: 0 0 10px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+}
+
+.body {
+  input {
+    display: none;
+  }
+
+  input:checked + label {
+    transition-delay: 0s;
+    border-radius: 5px;
+    .text {
+      max-width: 90px;
+      margin-left: 5px;
+      transition-delay: 0.3s;
+    }
+  }
+}

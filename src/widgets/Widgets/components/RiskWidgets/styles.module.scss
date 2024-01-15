@@ -1,0 +1,36 @@
+.body {
+  padding: 20px;
+  background: rgba(34, 37, 47, 0.5);
+  border-radius: 5px;
+}
+
+.header {
+  background: rgba(34, 37, 47, 0.5);
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.content {
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  > div {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}
+
+.odds {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 23px;
+}

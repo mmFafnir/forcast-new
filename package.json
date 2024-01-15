@@ -14,6 +14,7 @@
     "dayjs": "^1.11.10",
     "next": "14.0.4",
     "react": "^18",
+    "react-custom-scrollbars-2": "^4.5.0",
     "react-dom": "^18",
     "react-redux": "^9.0.4"
   },

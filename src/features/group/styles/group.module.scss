@@ -1,10 +1,20 @@
 .body {
   width: 100%;
   margin-top: 10px;
-
+  &:first-child {
+    margin-top: 0;
+  }
   .body {
     margin-top: 0px;
+    .header {
+      z-index: 1;
+    }
   }
+}
+
+.list {
+  overflow: clip;
+  transition-duration: 0.3s;
 }
 
 .header {
@@ -12,10 +22,20 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 10px;
+  position: sticky;
+  top: 0;
+  background-color: #31343f;
+  z-index: 2;
 
   > div {
     display: flex;
     align-items: center;
+  }
+}
+
+.right {
+  button {
+    margin-left: 20px;
   }
 }
 

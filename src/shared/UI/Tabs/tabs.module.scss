@@ -1,0 +1,32 @@
+.tabs {
+  padding: 20px;
+  border-radius: 5px;
+  background: rgba(34, 37, 47, 0.5);
+}
+
+.header {
+  display: flex;
+
+  button {
+    border-radius: 0;
+    font-size: 12px;
+    flex: 1 1 auto;
+
+    &:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    &:last-child {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+}
+
+.item {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}

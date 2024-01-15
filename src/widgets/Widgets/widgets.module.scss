@@ -1,0 +1,19 @@
+.body {
+  flex: 0 0 350px;
+  padding-left: 20px;
+}
+.content {
+  height: 100%;
+}
+
+.scroll {
+  height: 100vh;
+  padding-top: 45px;
+  height: calc(100dvh - 82px);
+  position: sticky;
+  top: var(--sticky-top-sidebar);
+}
+
+.item {
+  margin-bottom: 20px;
+}

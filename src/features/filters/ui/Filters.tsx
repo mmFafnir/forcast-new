@@ -6,7 +6,7 @@ import FilterCalendar from "./FilterCalendar";
 
 export const Filters = () => {
   return (
-    <div className="jc-between">
+    <div className="flex jc-between">
       <div className={`${styles.list} flex`}>
         {filters.map((filter) => (
           <Button
