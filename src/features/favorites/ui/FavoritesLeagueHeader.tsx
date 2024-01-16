@@ -4,7 +4,7 @@ import styles from "../styles/leagueHeader.module.scss";
 import { IconFavorite } from "../icons/IconFavorite";
 import Image from "next/image";
 import { PinButton } from "..";
-import { ILeagues } from "@/pages/main/types/TypeSportGroup";
+import { ILeagues } from "@/pagesComponent/main/types/TypeSportGroup";
 
 interface IProps {
   league: ILeagues;

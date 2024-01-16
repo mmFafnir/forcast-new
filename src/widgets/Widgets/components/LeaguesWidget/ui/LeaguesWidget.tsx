@@ -1,12 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import styles from "./styles.module.scss";
+import styles from "../styles.module.scss";
 import Image from "next/image";
-import { IFetchLeague } from "./types/TypeLeague";
-import { getLeagues } from "./api/getLeagues";
+import { IFetchLeague } from "../types/TypeLeague";
+import { getLeagues } from "../api/getLeagues";
 import { PinButton } from "@/features/favorites";
 
-const LeaguesWidget = () => {
+export const LeaguesWidget = () => {
   const [data, setData] = useState<IFetchLeague[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -51,5 +51,3 @@ const LeaguesWidget = () => {
     </>
   );
 };
-
-export default LeaguesWidget;

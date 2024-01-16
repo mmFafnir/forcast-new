@@ -5,11 +5,10 @@ import Tabs from "@/shared/UI/Tabs";
 import HeaderPage from "@/widgets/HeaderPage";
 import Widgets from "@/widgets/Widgets";
 import CountriesWidget from "@/widgets/Widgets/components/CountriesWidget";
-import LeaguesWidget from "@/widgets/Widgets/components/LeaguesWidget";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { NextPage } from "next";
-import { getMatchHome } from "./api/getMatchHome";
-import { group } from "console";
+import getMatchHome from "./api/getMatchHome";
+import { LeaguesWidget } from "@/widgets/Widgets/components/LeaguesWidget";
 
 const tabs = [
   {

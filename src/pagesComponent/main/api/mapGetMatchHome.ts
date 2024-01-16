@@ -1,6 +1,6 @@
-import { TypeSportGroup } from "../types/TypeSportGroup";
+import TypeSportGroup from "../types/TypeSportGroup";
 
-export const mapGetMatchHome = (data: TypeSportGroup[]): TypeSportGroup[] => {
+const mapGetMatchHome = (data: TypeSportGroup[]): TypeSportGroup[] => {
   const res: TypeSportGroup[] = [];
   data.forEach((item) => {
     if (
@@ -12,3 +12,5 @@ export const mapGetMatchHome = (data: TypeSportGroup[]): TypeSportGroup[] => {
   });
   return res;
 };
+
+export default mapGetMatchHome;
