@@ -17,15 +17,26 @@
   }
   span {
     transition-duration: 0.3s;
+    flex: 0 0 15px;
+    width: 15px;
+    line-height: 0;
   }
 }
 
 .country {
   display: flex;
   align-items: center;
-
+  flex: 0 1 auto;
+  overflow: hidden;
   img {
     margin-right: 20px;
+  }
+  p {
+    white-space: nowrap;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 10px;
   }
 }
 

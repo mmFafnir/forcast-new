@@ -5,15 +5,20 @@ import IconArrow from "@/shared/icons/IconArrow";
 import useAccordion, {
   IAccordionStylesIcon,
 } from "@/shared/hooks/useAccardion";
-import { useRef } from "react";
+import { FC, useRef } from "react";
 import { League } from "./League";
+import { TypeCountry } from "../types/TypeCountry";
 
 const iconStyles: IAccordionStylesIcon = {
   open: { transform: "scale(1, -1)" },
   close: {},
 };
 
-export const Country = () => {
+interface IProps {
+  item: TypeCountry;
+}
+
+export const Country: FC<IProps> = ({ item }) => {
   const listRef = useRef<HTMLDivElement>(null);
   const { iconStyle, onToggle, currentHeight } = useAccordion({
     iconStyles,
@@ -27,22 +32,26 @@ export const Country = () => {
       <div className={styles.header} onClick={onToggle}>
         <div className={styles.country}>
           <Image
-            src={"/country-icon.svg"}
+            src={`https://admin.aibetguru.com/uploads/${item.code}.svg`}
             width={16}
             height={16}
             className="logo-icon"
-            alt="Название страны"
+            alt={item.name}
           />
-          <p className={styles.itemName}>Название страны</p>
+          <p className={styles.itemName} title={item.translation}>
+            {item.translation}
+          </p>
         </div>
-        <span style={iconStyle}>
-          <IconArrow />
-        </span>
+        {item.league.length > 0 && (
+          <span style={iconStyle}>
+            <IconArrow />
+          </span>
+        )}
       </div>
       <div className={styles.body} style={{ height: currentHeight + "px" }}>
         <div ref={listRef}>
-          {new Array(4).fill(null).map((item, index) => (
-            <League key={index} />
+          {item.league.map((lig) => (
+            <League key={lig.id} item={lig} />
           ))}
         </div>
       </div>

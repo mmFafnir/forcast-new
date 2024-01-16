@@ -45,7 +45,6 @@ export const SportGroup: FC<IProps> = ({
     initialSticky(bodyRef.current);
   }, []);
 
-  useEffect(() => {}, [listRef]);
   return (
     <div ref={bodyRef} className={`${styles.body} group-list`}>
       <div className={`${styles.header} group-header`}>

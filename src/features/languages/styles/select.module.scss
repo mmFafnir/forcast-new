@@ -1,6 +1,7 @@
 .body {
   display: flex;
   align-items: center;
+  position: relative;
 
   > img {
   }
@@ -17,5 +18,44 @@
   p {
     font-size: 12px;
     font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
+.list {
+  position: absolute;
+  top: 30px;
+  width: 150px;
+  background-color: #292c36;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px 0px #000;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  opacity: 0;
+  visibility: hidden;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+    text-align: left;
+    transition-duration: 0.3s;
+
+    @media (min-width: 901px) {
+      &:hover {
+        background-color: rgba(101, 104, 118, 0.3);
+      }
+    }
+    &.active {
+      background-color: #735780;
+    }
   }
 }

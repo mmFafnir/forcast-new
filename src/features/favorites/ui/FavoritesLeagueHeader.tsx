@@ -1,10 +1,15 @@
-import React from "react";
+"use client";
+import React, { FC } from "react";
 import styles from "../styles/leagueHeader.module.scss";
 import { IconFavorite } from "../icons/IconFavorite";
 import Image from "next/image";
-import IconPinFavorite from "../icons/IconPinFavorite";
 import { PinButton } from "..";
-export const FavoritesLeagueHeader = () => {
+import { ILeagues } from "@/pages/main/types/TypeSportGroup";
+
+interface IProps {
+  league: ILeagues;
+}
+export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
   return (
     <div className={styles.body}>
       <button className={styles.button}>
@@ -12,13 +17,13 @@ export const FavoritesLeagueHeader = () => {
       </button>
       <div className={styles.league}>
         <Image
-          src={"/country-icon.svg"}
+          src={`https://admin.aibetguru.com/uploads/${league.league_id}.png`}
           className="logo-icon"
-          width={20}
-          height={20}
-          alt="Англия : Вторая Лига"
+          width={400}
+          height={400}
+          alt={league.league_name}
         />
-        <span>Англия : Вторая Лига</span>
+        <span>{league.league_name}</span>
       </div>
       <PinButton />
     </div>

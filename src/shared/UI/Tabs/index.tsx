@@ -4,12 +4,7 @@ import React, { FC, ReactNode, useState } from "react";
 import styles from "./tabs.module.scss";
 import Button from "../Button";
 import Scrollbars from "react-custom-scrollbars-2";
-
-type TypeTab = {
-  title: string;
-  id: number | string;
-  content: ReactNode;
-};
+import Tab, { TypeTab } from "./ui/Tab";
 
 interface IProps {
   tabs: TypeTab[];
@@ -35,18 +30,11 @@ const Tabs: FC<IProps> = ({ tabs, maxHeight = "auto", minHeight = "auto" }) => {
         ))}
       </div>
       <div className={styles.body} style={{ height: minHeight }}>
-        <Scrollbars universal={true}>
+        <div>
           {tabs.map((tab) => (
-            <div
-              key={tab.id}
-              className={`${styles.item} ${
-                activeId === tab.id ? styles.active : ""
-              }`}
-            >
-              {tab.content}
-            </div>
+            <Tab key={tab.id} tab={tab} activeId={activeId} />
           ))}
-        </Scrollbars>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,45 @@
+.item {
+  display: flex;
+  align-items: center;
+  padding: 7px 20px;
+  margin-top: 10px;
+  width: 100%;
+  transition-duration: 0.3s;
+  border-radius: 5px;
+  text-align: left;
+  img {
+    width: 16px;
+    height: 16px;
+    margin-right: 20px;
+  }
+
+  p {
+    flex: 1 1 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-right: 10px;
+  }
+  button {
+    margin-left: auto;
+    transition-duration: 0.3s;
+  }
+
+  @media (min-width: 901px) {
+    button {
+      opacity: 0;
+      visibility: hidden;
+    }
+    &:hover {
+      background: #656876;
+      button {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.title {
+  font-weight: 700;
+}

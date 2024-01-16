@@ -3,8 +3,16 @@ import React, { FC } from "react";
 import Image from "next/image";
 import soccer from "./images/soccer.png";
 
-const images = { soccer: soccer };
-export type TypeSportIcon = "soccer";
+const getImage = (key: string) => {
+  switch (key) {
+    case "soccer":
+      return soccer;
+    default:
+      return soccer;
+  }
+};
+
+export type TypeSportIcon = string;
 
 interface IProps {
   icon: TypeSportIcon;
@@ -12,7 +20,7 @@ interface IProps {
 
 const SportsIcon: FC<IProps> = ({ icon }) => {
   return (
-    <Image src={images[icon]} width={20} height={20} alt={icon + "icon"} />
+    <Image src={getImage(icon)} width={20} height={20} alt={icon + "icon"} />
   );
 };
 

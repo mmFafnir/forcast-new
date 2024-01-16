@@ -5,9 +5,11 @@ import Tabs from "@/shared/UI/Tabs";
 import HeaderPage from "@/widgets/HeaderPage";
 import Widgets from "@/widgets/Widgets";
 import CountriesWidget from "@/widgets/Widgets/components/CountriesWidget";
-import LeaguesWidget from "@/widgets/Widgets/components/LaguesWidget";
+import LeaguesWidget from "@/widgets/Widgets/components/LeaguesWidget";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { NextPage } from "next";
+import { getMatchHome } from "./api/getMatchHome";
+import { group } from "console";
 
 const tabs = [
   {
@@ -22,55 +24,33 @@ const tabs = [
   },
 ];
 
-const MainPage: NextPage = () => {
+const MainPage: NextPage = async () => {
+  const matches = await getMatchHome();
   return (
     <div className="flex">
       <div className="flex-1">
         <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />
         <div>
-          <SportGroup title="Футбол" icon="soccer" total={20}>
-            <SportGroup headerRender={<FavoritesLeagueHeader />} total={20}>
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
+          {matches.map((group) => (
+            <SportGroup
+              key={group.id}
+              title={group.name}
+              icon={group.url}
+              total={20}
+            >
+              {group.league.map((lig, index) => (
+                <SportGroup
+                  key={index}
+                  headerRender={<FavoritesLeagueHeader league={lig} />}
+                  total={20}
+                >
+                  <Match />
+                  <Match />
+                  <Match />
+                </SportGroup>
+              ))}
             </SportGroup>
-            <SportGroup headerRender={<FavoritesLeagueHeader />} total={20}>
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-            </SportGroup>
-          </SportGroup>
-          <SportGroup title="Волейбол" icon="soccer" total={20}>
-            <SportGroup headerRender={<FavoritesLeagueHeader />} total={20}>
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-              <Match />
-            </SportGroup>
-          </SportGroup>
+          ))}
         </div>
       </div>
       <Widgets
