@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import styles from "../../styles/calendar.module.scss";
-import { getArrayDate } from "../../scripts/gerArratDate";
+import { getArrayDate } from "../../scripts/gerArrayDate";
 import dayjs from "dayjs";
 
 const dates = getArrayDate();

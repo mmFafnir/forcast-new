@@ -21,7 +21,7 @@ const iconStyles: IAccordionStylesIcon = {
   open: {},
   close: {
     // backgroundColor: 'red',
-    transform: `rotate(180deg)`,
+    transform: `scale(1, -1)`,
   },
 };
 
@@ -58,7 +58,7 @@ export const SportGroup: FC<IProps> = ({
         )}
         <div className={styles.right}>
           <TotalMatches>{total}</TotalMatches>
-          <button onClick={onToggle} style={iconStyle}>
+          <button onClick={onToggle} className="acc-hover" style={iconStyle}>
             <IconArrow />
           </button>
         </div>

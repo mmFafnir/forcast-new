@@ -6,10 +6,13 @@ import Button from "./Button";
 import List from "./List";
 import dayjs from "dayjs";
 import { useSearchParams } from "next/navigation";
-import { revalidatePath } from "next/cache";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { setDate } from "../../slice/filterSlice";
 
 const today = dayjs().format("YYYY-MM-DD");
 const FilterCalendar = () => {
+  const dispatch = useTypeDispatch();
+
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [value, setValue] = useState<string>(today);
@@ -17,9 +20,16 @@ const FilterCalendar = () => {
   function updateSorting(sortOrder: string) {
     if (!searchParams) return;
     setValue(sortOrder);
+    if (value === dayjs().format("YYYY-MM-DD")) {
+      window.history.pushState(null, "", `/`);
+      dispatch(setDate(""));
+      return;
+    }
+
     const params = new URLSearchParams(searchParams.toString());
     params.set("date", sortOrder);
     window.history.pushState(null, "", `?${params.toString()}`);
+    dispatch(setDate(sortOrder));
   }
 
   useEffect(() => {

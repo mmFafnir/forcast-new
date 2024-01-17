@@ -1,8 +1,7 @@
 "use client";
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import styles from "../../styles/calendar.module.scss";
-import { getArrayDate } from "../../scripts/gerArratDate";
-import dayjs from "dayjs";
+import { getArrayDate } from "../../scripts/gerArrayDate";
 
 interface IPops {
   setIsOpen: Dispatch<SetStateAction<boolean>>;

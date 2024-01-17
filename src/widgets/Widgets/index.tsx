@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import styles from "./widgets.module.scss";
 import Scrollbars from "react-custom-scrollbars-2";
 interface IProps {

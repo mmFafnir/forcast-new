@@ -4,7 +4,7 @@ import styles from "../styles/leagueHeader.module.scss";
 import { IconFavorite } from "../icons/IconFavorite";
 import Image from "next/image";
 import { PinButton } from "..";
-import { ILeagues } from "@/pagesComponent/main/types/TypeSportGroup";
+import { ILeagues } from "@/pagesComponent/types/TypeSportGroup";
 
 interface IProps {
   league: ILeagues;
@@ -17,7 +17,7 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
       </button>
       <div className={styles.league}>
         <Image
-          src={`https://admin.aibetguru.com/uploads/${league.league_id}.png`}
+          src={`https://admin.aibetguru.com/uploads/${league.league_cc}.svg`}
           className="logo-icon"
           width={400}
           height={400}

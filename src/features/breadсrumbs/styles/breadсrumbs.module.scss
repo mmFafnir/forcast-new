@@ -22,7 +22,9 @@
     background-color: #fff;
     margin: 0 5px;
   }
-
+  &:last-child {
+    pointer-events: none;
+  }
   @media (min-width: 901px) {
     &:hover {
       color: #dac285;

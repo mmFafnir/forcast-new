@@ -10,8 +10,8 @@ import { League } from "./League";
 import { TypeCountry } from "../types/TypeCountry";
 
 const iconStyles: IAccordionStylesIcon = {
-  open: { transform: "scale(1, -1)" },
-  close: {},
+  open: {},
+  close: { transform: "scale(1, -1)" },
 };
 
 interface IProps {
@@ -29,7 +29,7 @@ export const Country: FC<IProps> = ({ item }) => {
 
   return (
     <div className={styles.item}>
-      <div className={styles.header} onClick={onToggle}>
+      <div className={`${styles.header} acc-hover`} onClick={onToggle}>
         <div className={styles.country}>
           <Image
             src={`https://admin.aibetguru.com/uploads/${item.code}.svg`}

@@ -29,7 +29,7 @@ const Sidebar = () => {
                 type="text"
               >
                 <SportsIcon icon="soccer" />
-                <span>Волейбол</span>
+                <span>Футбол</span>
                 <TotalMatches>20</TotalMatches>
               </Button>
             ))}

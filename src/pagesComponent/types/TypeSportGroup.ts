@@ -1,7 +1,7 @@
 import { TypeLeague } from "@/widgets/Widgets/components/LeaguesWidget";
 
 export interface ILeagues extends TypeLeague {
-  game: [];
+  games: [];
 }
 
 type TypeSportGroup = {

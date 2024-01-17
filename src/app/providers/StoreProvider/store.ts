@@ -2,10 +2,12 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import closeSidebarSlice from "@/features/closeSidebar/slice/closeSidebarSlice";
+import filterSlice from "@/features/filters/slice/filterSlice";
 
 export const store = configureStore({
   reducer: {
     closeSidebar: closeSidebarSlice,
+    filters: filterSlice,
   },
 });
 
