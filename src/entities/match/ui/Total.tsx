@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styles from "../styles/total.module.scss";
-import { IconCup } from "../icons/IconCup";
+import IconCup from "../../../shared/icons/IconCup";
 
 interface IProps {
   color?: string;

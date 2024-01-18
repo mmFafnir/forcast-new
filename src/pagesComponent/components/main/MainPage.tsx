@@ -1,7 +1,7 @@
 import HeaderPage from "@/widgets/HeaderPage";
 import { NextPage } from "next";
-import { getMatchHome } from "../api/getMatchHome";
-import { MatchesGroup } from "../module/MatchesGroup";
+import { getMatchHome } from "../../api/getMatchHome";
+import { MatchesGroup } from "../../module/MatchesGroup";
 
 export const MainPage: NextPage = async () => {
   const matches = await getMatchHome();

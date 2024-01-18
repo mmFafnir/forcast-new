@@ -1,6 +1,6 @@
 import React from "react";
 
-export const IconCup = () => {
+const IconCup = () => {
   return (
     <svg width="20" height="21" viewBox="0 0 20 21" fill="none">
       <path
@@ -29,3 +29,5 @@ export const IconCup = () => {
     </svg>
   );
 };
+
+export default IconCup;

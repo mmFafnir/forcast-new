@@ -1,4 +1,4 @@
-import MatchPage from "@/pagesComponent/components/MatchPage";
+import { MatchPage } from "@/pagesComponent";
 import React from "react";
 
 const Match = () => {

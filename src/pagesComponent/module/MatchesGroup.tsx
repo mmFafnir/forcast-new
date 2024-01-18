@@ -3,7 +3,7 @@ import { SportGroup } from "@/features/group";
 import { FC, useEffect, useState } from "react";
 import TypeSportGroup from "../types/TypeSportGroup";
 import { FavoritesLeagueHeader } from "@/features/favorites";
-import Match from "@/entities/match/components/Match";
+import { Match } from "@/entities/match";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { getMatchHome } from "../api/getMatchHome";
 

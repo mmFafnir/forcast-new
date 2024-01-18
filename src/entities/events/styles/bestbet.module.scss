@@ -1,0 +1,13 @@
+.body {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  svg {
+    height: 16px;
+    width: 16px;
+    margin-right: 10px;
+  }
+  span {
+    color: #ffd361;
+  }
+}

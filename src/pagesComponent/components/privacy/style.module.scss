@@ -1,0 +1,23 @@
+.page {
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  div,
+  h2 {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  h2 {
+    margin: 15px 0px;
+  }
+  a {
+    text-decoration: underline;
+
+    @media (min-width: 901px) {
+      &:hover {
+        color: #ffd361;
+      }
+    }
+  }
+}

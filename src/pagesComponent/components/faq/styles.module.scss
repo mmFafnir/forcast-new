@@ -1,0 +1,32 @@
+.page {
+  h1 {
+    margin-bottom: 20px;
+  }
+}
+.content {
+  > div {
+    margin-bottom: 20px;
+  }
+}
+.accHeader {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.acc {
+  font-size: 14px;
+  p {
+    line-height: 1.5;
+  }
+  span {
+    transition-duration: 0.3s;
+  }
+}
+
+.accBody {
+  transition-duration: 0.3s;
+  overflow: hidden;
+}

@@ -17,23 +17,28 @@ interface IProps {
   defaultOpen?: boolean;
   offResizeObserver?: boolean;
   ref: MutableRefObject<HTMLDivElement | null>;
+  defaultHeight?: number;
 }
 const useAccordion = ({
   iconStyles,
   ref,
   defaultOpen = true,
   offResizeObserver = false,
+  defaultHeight,
 }: IProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(defaultOpen);
   const [size, setSize] = useState<ISize>({ width: 0, height: 0 });
-  const [currentHeight, setCurrentHeight] = useState<number | string>("auto");
+  const [currentHeight, setCurrentHeight] = useState<number | string>(
+    defaultHeight || "auto"
+  );
   const [iconStyle, setIconStyle] = useState<CSSProperties>(iconStyles.open);
 
   const onToggle = () => setIsOpen((prev) => !prev);
   useEffect(() => {
     if (!ref.current) return;
+    const closeHeight = defaultHeight || 0;
     setIconStyle(isOpen ? iconStyles.open : iconStyles.close);
-    setCurrentHeight(isOpen ? ref.current.clientHeight : 0);
+    setCurrentHeight(isOpen ? ref.current.clientHeight : closeHeight);
   }, [isOpen]);
 
   useEffect(() => {
@@ -50,11 +55,11 @@ const useAccordion = ({
 
   useEffect(() => {
     if (!ref.current) return;
-
-    setCurrentHeight(isOpen ? ref.current.clientHeight : 0);
+    const closeHeight = defaultHeight || 0;
+    setCurrentHeight(isOpen ? ref.current.clientHeight : closeHeight);
   }, [size]);
 
-  return { iconStyle, onToggle, currentHeight };
+  return { iconStyle, onToggle, currentHeight, isOpen };
 };
 
 export default useAccordion;

@@ -7,7 +7,7 @@ import { Total } from "../ui/Total";
 import { Views } from "../ui/Views";
 import Link from "next/link";
 
-const Match = () => {
+export const Match = () => {
   return (
     <Link href={"/soccer/49192"} className={styles.body}>
       <div className="flex item-center">
@@ -27,5 +27,3 @@ const Match = () => {
     </Link>
   );
 };
-
-export default Match;

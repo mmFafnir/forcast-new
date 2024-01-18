@@ -1,5 +1,5 @@
 "use client";
-import { CSSProperties, FC, ReactNode, useEffect, useRef } from "react";
+import { FC, ReactNode, useEffect, useRef } from "react";
 import styles from "../styles/group.module.scss";
 import SportsIcon, { TypeSportIcon } from "@/shared/icons/sports";
 import TotalMatches from "@/shared/UI/TotalMatches";
@@ -12,7 +12,7 @@ import useAccordion, {
 interface IProps {
   children: ReactNode;
   title?: string;
-  total: string | number;
+  total?: string | number;
   icon?: TypeSportIcon;
   headerRender?: ReactNode;
 }
@@ -57,7 +57,7 @@ export const SportGroup: FC<IProps> = ({
           </div>
         )}
         <div className={styles.right}>
-          <TotalMatches>{total}</TotalMatches>
+          {total && <TotalMatches>{total}</TotalMatches>}
           <button onClick={onToggle} className="acc-hover" style={iconStyle}>
             <IconArrow />
           </button>

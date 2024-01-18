@@ -1,7 +1,7 @@
 import HeaderPage from "@/widgets/HeaderPage";
 import { NextPage } from "next";
-import { getMatchSoccer } from "../api/getMatchSoccer";
-import { mapGetMatchSoccer } from "../api/mapGetMatchSoccer";
+import { getMatchSoccer } from "../../api/getMatchSoccer";
+import { mapGetMatchSoccer } from "../../api/mapGetMatchSoccer";
 
 export const SoccerPage: NextPage = async () => {
   const data = await getMatchSoccer();

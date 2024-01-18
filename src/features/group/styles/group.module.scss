@@ -27,6 +27,10 @@
   background-color: #31343f;
   z-index: 2;
 
+  h2 {
+    font-size: inherit;
+  }
+
   > div {
     display: flex;
     align-items: center;
