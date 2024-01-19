@@ -1,0 +1,14 @@
+.body {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  border-radius: 5px;
+  background: rgba(34, 37, 47, 0.5);
+  padding: 10px;
+  z-index: 20;
+}
+
+.show {
+  visibility: visible;
+  opacity: 1;
+}

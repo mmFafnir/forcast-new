@@ -9,10 +9,11 @@ import Link from "next/link";
 
 export const Match = () => {
   return (
-    <Link href={"/soccer/49192"} className={styles.body}>
+    <div className={`${styles.body}`}>
+      <Link href={"/soccer/49192"} className={styles.href}></Link>
       <div className="flex item-center">
         <div className={`flex item-center js-between ${styles.first}`}>
-          <button>
+          <button className={styles.favorites}>
             <IconFavorite />
           </button>
           <Live />
@@ -24,6 +25,6 @@ export const Match = () => {
         <Total color="rgba(152, 193, 100, 1)" />
         <Views />
       </div>
-    </Link>
+    </div>
   );
 };

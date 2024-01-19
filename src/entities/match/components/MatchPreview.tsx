@@ -1,12 +1,9 @@
-import React, { FC } from "react";
-import styles from "../styles/preview.module.scss";
-import { Commands } from "../ui/Commands";
+import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { title } from "process";
-import Button from "@/shared/UI/Button";
-import { Live } from "../ui/Live";
 import { IconLive } from "../icons/IconLive";
+import styles from "../styles/preview.module.scss";
+import SportsIcon from "@/shared/icons/sports";
 
 interface ITeamProps {
   src: string;
@@ -65,6 +62,9 @@ const links = [
 export const MatchPreview = () => {
   return (
     <div className={styles.body}>
+      <div className={styles.ball}>
+        <SportsIcon icon="soccer" width={400} height={400} />
+      </div>
       <div className={styles.teams}>
         <Team
           src={"/country-icon.svg"}
@@ -86,7 +86,7 @@ export const MatchPreview = () => {
         </div>
         <div className={styles.footer}>
           <button className={styles.live}>
-            <IconLive />
+            <IconLive className={styles.iconLive} />
             <span>Live</span>
           </button>
         </div>

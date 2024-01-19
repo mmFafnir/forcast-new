@@ -43,6 +43,9 @@ a {
 .logo-icon {
   border-radius: 50%;
 }
+.logo-country {
+  border-radius: 2px;
+}
 
 h1 {
   font-size: 24px;
@@ -105,5 +108,5 @@ h2 {
     }
   }
 }
-
+@import "./templates";
 @import "./loader";

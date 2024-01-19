@@ -16,11 +16,18 @@ export type TypeSportIcon = string;
 
 interface IProps {
   icon: TypeSportIcon;
+  width?: number;
+  height?: number;
 }
 
-const SportsIcon: FC<IProps> = ({ icon }) => {
+const SportsIcon: FC<IProps> = ({ icon, width = 20, height = 20 }) => {
   return (
-    <Image src={getImage(icon)} width={20} height={20} alt={icon + "icon"} />
+    <Image
+      src={getImage(icon)}
+      width={width}
+      height={height}
+      alt={icon + "icon"}
+    />
   );
 };
 

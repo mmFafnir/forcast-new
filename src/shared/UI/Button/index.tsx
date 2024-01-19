@@ -16,6 +16,7 @@ interface IProps {
   href?: string;
   target?: "_blank";
   active?: boolean;
+  htmlType?: "button" | "submit";
 }
 const Button: FC<IProps> = ({
   className = "",
@@ -28,6 +29,7 @@ const Button: FC<IProps> = ({
   href,
   target,
   active = false,
+  htmlType = "button",
 }) => {
   const newStyles = { width, height, ...style };
 
@@ -48,6 +50,7 @@ const Button: FC<IProps> = ({
     );
   return (
     <button
+      type={htmlType}
       style={newStyles}
       onClick={handlerClick}
       className={`${styles.button} ${

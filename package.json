@@ -17,6 +17,7 @@
     "react": "^18",
     "react-custom-scrollbars-2": "^4.5.0",
     "react-dom": "^18",
+    "react-hook-form": "^7.49.3",
     "react-redux": "^9.0.4"
   },
   "devDependencies": {

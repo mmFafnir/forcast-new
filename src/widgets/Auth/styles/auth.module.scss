@@ -1,0 +1,84 @@
+.body {
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.inputDiv {
+  position: relative;
+  margin-bottom: 10px;
+  span {
+    color: #d95555;
+    font-size: 10px;
+    text-align: right;
+    display: block;
+    margin-top: 3px;
+  }
+}
+.input {
+  width: 100%;
+  border-radius: 5px;
+  background: rgba(101, 104, 118, 0.3);
+  font-size: 14px;
+  padding: 0px 20px;
+  height: 37px;
+  text-align: center;
+}
+.inputDashed {
+  width: 100%;
+  font-size: 14px;
+  padding: 0px 20px;
+  height: 37px;
+  text-align: center;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px dashed rgba(255, 255, 255, 0.5);
+}
+.restore {
+  font-size: 10px;
+  text-align: left;
+  margin-right: auto;
+  display: block;
+  transition-duration: 0.3s;
+  @media (min-width: 901px) {
+    &:hover {
+      color: #ffd361;
+    }
+  }
+}
+.submit {
+  width: 100%;
+  height: 42px;
+  font-weight: 400;
+  margin: 10px 0;
+}
+.or {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  margin: 0 auto;
+  margin-top: 10px;
+  display: block;
+  font-size: 16px;
+  text-decoration: underline;
+  transition-duration: 0.3s;
+
+  @media (min-width: 901px) {
+    &:hover {
+      color: #ffd361;
+    }
+  }
+}

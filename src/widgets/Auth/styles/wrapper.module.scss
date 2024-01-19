@@ -1,0 +1,30 @@
+.wrapper {
+  border-radius: 10px;
+  background: #22252f;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.content {
+  flex: 0 1 300px;
+  z-index: 2;
+}
+.bg1,
+.bg2 {
+  position: absolute;
+  z-index: 0;
+  object-fit: contain;
+}
+
+.bg1 {
+  left: 0px;
+  top: 0;
+}
+
+.bg2 {
+  top: 0;
+  right: 0;
+}

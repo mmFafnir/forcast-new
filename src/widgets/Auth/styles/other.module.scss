@@ -1,0 +1,28 @@
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 49px;
+  height: 38px;
+  border-radius: 5px;
+  background: rgba(101, 104, 118, 0.3);
+  margin-right: 10px;
+  transition-duration: 0.3s;
+  &:last-child {
+    margin-right: 0;
+  }
+
+  @media (min-width: 901px) {
+    &:hover {
+      background: rgba(101, 104, 118, 0.8);
+    }
+  }
+}

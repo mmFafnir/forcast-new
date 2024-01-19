@@ -13,9 +13,9 @@ const links = [
 export const BreadCrumbs = () => {
   return (
     <div className={styles.body}>
-      <Link href={"/"}>
+      <div>
         <Button style={{ marginRight: 5 }}>Прогнозы на спорт</Button>
-      </Link>
+      </div>
       {links.map((link) => (
         <Link className={styles.link} key={link.href} href={link.href}>
           <span>{link.title}</span>

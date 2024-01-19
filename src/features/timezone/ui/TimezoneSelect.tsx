@@ -37,7 +37,6 @@ export const TimezoneSelect = () => {
 
     return () => document.removeEventListener("click", closeList);
   }, []);
-
   return (
     <div className={styles.timezone}>
       {currentData && (
@@ -58,10 +57,11 @@ export const TimezoneSelect = () => {
         <Scrollbars universal={true}>
           {data.map((item) => (
             <button
+              title={`${item.utc} ${item.zone}`}
               className={item.id == currentData?.id ? styles.active : ""}
               key={item.id}
               onClick={() => setCurrentData(item)}
-            >{`${item.utc} (${item.zone})`}</button>
+            >{`${item.utc}`}</button>
           ))}
         </Scrollbars>
       </div>

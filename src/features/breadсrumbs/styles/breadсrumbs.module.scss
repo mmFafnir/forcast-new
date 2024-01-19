@@ -24,6 +24,7 @@
   }
   &:last-child {
     pointer-events: none;
+    color: #838383;
   }
   @media (min-width: 901px) {
     &:hover {

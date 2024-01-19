@@ -40,11 +40,11 @@ export const Event: FC<IProps> = ({
           </div>
           <div className={styles.item}>
             <p>Риск: </p>
-            <h4 style={{ color: "#D84545" }}>{risk}</h4>
+            <h4 style={{ color: "#FF5A5A" }}>{risk}</h4>
           </div>
         </div>
         <div className={styles.text}>
-          <MyScrollbar universal={true}>
+          <MyScrollbar universal={true} scrollSize={"big"}>
             <p>{text}</p>
           </MyScrollbar>
         </div>

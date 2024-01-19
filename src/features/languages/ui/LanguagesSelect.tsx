@@ -1,6 +1,6 @@
 "use client";
 
-import React, { PointerEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/select.module.scss";
 import svg from "../assets/translate.svg";
 import Image from "next/image";
@@ -54,12 +54,13 @@ export const LanguagesSelect = () => {
           {data.map((item) => (
             <button
               className={item.id == currentData?.id ? styles.active : ""}
+              title={item.name}
               onClick={() => {
                 setCurrentData(item);
               }}
               key={item.id}
             >
-              {item.name}
+              {item.url}
             </button>
           ))}
         </div>

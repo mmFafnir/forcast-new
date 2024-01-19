@@ -9,6 +9,7 @@ import Tabs from "@/shared/UI/Tabs";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { LeaguesWidget } from "@/widgets/Widgets/components/LeaguesWidget";
 import CountriesWidget from "@/widgets/Widgets/components/CountriesWidget";
+import { Toolkit } from "@/features/Toolkit";
 
 interface IProps {
   children: ReactNode;
@@ -53,6 +54,7 @@ const MainLayout: FC<IProps> = ({ children }) => {
           </div>
         </div>
       </div>
+      <Toolkit />
     </div>
   );
 };

@@ -9,6 +9,10 @@
   font-size: 14px;
   transition-duration: 0.3s;
   text-align: left;
+
+  &:active {
+    box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.35) inset;
+  }
 }
 
 .gradient {

@@ -18,7 +18,7 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
       <div className={styles.league}>
         <Image
           src={`https://admin.aibetguru.com/uploads/${league.league_cc}.svg`}
-          className="logo-icon"
+          className="logo-country"
           width={400}
           height={400}
           alt={league.league_name}

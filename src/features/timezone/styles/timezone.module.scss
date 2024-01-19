@@ -11,17 +11,15 @@
   p {
     margin-left: 10px;
     font-weight: 700;
-    // margin-top: 1px;
   }
 }
 
 .list {
   position: absolute;
   top: 30px;
-  width: 250px;
-  background-color: #292c36;
+  width: 85px;
+  background-color: #22252f;
   border-radius: 5px;
-  box-shadow: 0px 0px 2px 0px #000;
   overflow: hidden;
   transition-duration: 0.3s;
   opacity: 0;
@@ -40,9 +38,9 @@
     overflow: hidden;
     width: 100%;
     text-overflow: ellipsis;
-    text-align: left;
+    text-align: center;
     transition-duration: 0.3s;
-
+    font-weight: 700;
     @media (min-width: 901px) {
       &:hover {
         background-color: rgba(101, 104, 118, 0.3);
