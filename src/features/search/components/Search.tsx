@@ -18,13 +18,13 @@ export const Search: FC = () => {
         <span>Поиск по сайту</span>
       </Button>
 
-      <Modal
+      {/* <Modal
         stylesWrapper={{ flex: "0 1 854px" }}
         open={open}
         setOpen={setOpen}
       >
         <SearchBlock />
-      </Modal>
+      </Modal> */}
     </>
   );
 };
