@@ -11,6 +11,7 @@ interface IProps {
   maxHeight?: string;
   renderHeader?: ReactNode;
   currentTab?: string | number;
+  classNameBody?: string;
 }
 
 const Tabs: FC<IProps> = ({
@@ -19,6 +20,7 @@ const Tabs: FC<IProps> = ({
   minHeight = "auto",
   renderHeader,
   currentTab,
+  classNameBody = "",
 }) => {
   const [activeId, setActiveId] = useState<string | number>(tabs[0].id);
 
@@ -43,7 +45,10 @@ const Tabs: FC<IProps> = ({
           ))}
         </div>
       )}
-      <div className={styles.body} style={{ height: minHeight }}>
+      <div
+        className={`${styles.body} ${classNameBody}`}
+        style={{ height: minHeight }}
+      >
         <div>
           {tabs.map((tab) => (
             <Tab key={tab.id} tab={tab} activeId={activeId} />

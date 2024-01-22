@@ -47,6 +47,7 @@ const MainLayout: FC<IProps> = ({ children }) => {
                   minHeight="350px"
                   maxHeight="350px"
                   tabs={tabs}
+                  classNameBody="adaptive-mac"
                 />,
                 <RiskWidgets key={2} />,
               ]}

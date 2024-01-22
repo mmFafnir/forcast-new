@@ -1,8 +1,9 @@
 .body {
   border-radius: 5px;
   background: rgba(34, 37, 47, 0.5);
-
+  position: relative;
   padding: 30px;
+  overflow: hidden;
 
   > p {
     max-width: 752px;
@@ -24,6 +25,11 @@
 .content {
   display: flex;
   justify-content: space-between;
+}
+
+.left {
+  margin-top: 15px;
+  flex: 0 0 185px;
 }
 
 .title {
@@ -52,11 +58,20 @@
 }
 
 .text {
+  min-height: 160px;
   margin-left: 20px;
   flex: 0 1 582px;
   line-height: 1.5;
   font-size: 11px;
   p {
-    padding-right: 15px;
+    padding-right: 10px;
   }
+}
+
+.riskLine {
+  position: absolute;
+  left: 0px;
+  top: 0%;
+  height: 100%;
+  width: 7px;
 }

@@ -65,7 +65,7 @@ export const Registration: FC = () => {
             )}
           />
           <Button className={styles.submit} htmlType="submit" type="gradient">
-            Зарегестрироваться
+            Зарегистрироваться
           </Button>
         </form>
         <p className={styles.or}>или</p>

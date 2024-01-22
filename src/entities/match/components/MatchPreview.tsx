@@ -4,6 +4,8 @@ import Link from "next/link";
 import { IconLive } from "../icons/IconLive";
 import styles from "../styles/preview.module.scss";
 import SportsIcon from "@/shared/icons/sports";
+import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
+import { getTimeStatusMatch } from "../scripts/getTimeStatusMatch";
 
 interface ITeamProps {
   src: string;
@@ -18,8 +20,8 @@ const Team: FC<ITeamProps> = ({ src, name, translate }) => {
           className="logo-icon"
           src={src}
           alt={name}
-          width={400}
-          height={400}
+          width={1000}
+          height={1000}
         />
       </div>
       <div>
@@ -59,7 +61,13 @@ const links = [
   },
 ];
 
-export const MatchPreview = () => {
+interface IProps {
+  match: IFetchFullMatch;
+}
+
+export const MatchPreview: FC<IProps> = ({ match }) => {
+  const time = getTimeStatusMatch(match.real_date);
+
   return (
     <div className={styles.body}>
       <div className={styles.ball}>
@@ -67,13 +75,13 @@ export const MatchPreview = () => {
       </div>
       <div className={styles.teams}>
         <Team
-          src={"/country-icon.svg"}
-          name="Barcelona"
-          translate="Барселона"
+          src={`https://admin.aibetguru.com/uploads/${match.home_team.team_id}.png`}
+          name={match.home_team.team_name}
+          translate={"Барселона"}
         />
         <Team
-          src={"/country-icon.svg"}
-          name="Barcelona"
+          src={`https://admin.aibetguru.com/uploads/${match.away_team.team_id}.png`}
+          name={match.away_team.team_name}
           translate="Барселона"
         />
       </div>
@@ -81,14 +89,22 @@ export const MatchPreview = () => {
       <div className={styles.desc}>
         <BreadCrumbs links={links} />
         <div className={styles.times}>
-          <p>20 сентября 2023</p>
-          <p>19:45</p>
+          <p>{match.real_date}</p>
+          <p>{match.real_time}</p>
         </div>
         <div className={styles.footer}>
-          <button className={styles.live}>
-            <IconLive className={styles.iconLive} />
-            <span>Live</span>
-          </button>
+          {time === "live" ? (
+            <button className={styles.live}>
+              <IconLive className={styles.iconLive} />
+              <span>Live</span>
+            </button>
+          ) : time === "finish" ? (
+            <button className={styles.live}>
+              <p style={{ color: "#E98080" }}>Завершен</p>
+            </button>
+          ) : (
+            <button className={styles.live}>{time}</button>
+          )}
         </div>
       </div>
     </div>

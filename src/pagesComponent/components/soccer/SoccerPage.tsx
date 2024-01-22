@@ -1,18 +1,18 @@
 import HeaderPage from "@/widgets/HeaderPage";
 import { NextPage } from "next";
-import { getMatchSoccer } from "../../api/getMatchSoccer";
-import { mapGetMatchSoccer } from "../../api/mapGetMatchSoccer";
+import { getMatchSoccer } from "../../api/soccer/getMatchSoccer";
+import { mapGetMatchSoccer } from "../../api/soccer/mapGetMatchSoccer";
+import { MatchesGroup } from "@/pagesComponent/module/group/MatchGroup";
 
 export const SoccerPage: NextPage = async () => {
   const data = await getMatchSoccer();
   const matches = mapGetMatchSoccer(data.data);
-  console.log(matches);
 
   return (
     <>
-      <div className="flex-1 ">
+      <div className="flex-1 flex-col">
         <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />
-        {/* <MatchesGroup matches={matches} /> */}
+        <MatchesGroup matches={matches} />
       </div>
       <div className="page-text-block">
         <h3>Прогнозы ставок на футбольные матчи от ИИ</h3>

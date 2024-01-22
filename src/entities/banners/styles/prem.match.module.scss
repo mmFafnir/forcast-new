@@ -1,0 +1,20 @@
+.body {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px;
+  border-radius: 8.432px;
+  background: linear-gradient(267deg, #ab44dc 4.77%, #9b4459 101.78%);
+  backdrop-filter: blur(8.432093620300293px);
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.text {
+  margin-bottom: 1px;
+  span {
+    font-size: 20px;
+    color: #ffd748;
+  }
+}

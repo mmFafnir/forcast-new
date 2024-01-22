@@ -24,7 +24,7 @@ export const ButtonLogin: FC = () => {
       <Modal
         open={open}
         setOpen={setOpen}
-        stylesWrapper={{ flex: "0 1 588px" }}
+        stylesWrapper={{ flex: "0 1 319px" }}
       >
         <Wrapper>
           <button

@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 const format = "YYYY-MM-DD";
 export const getArrayDate = (): string[] => {
   const res: string[] = [];
-  const today = dayjs();
+  const today = dayjs("2023-11-03");
   for (let i = 0; i < 4; i++) {
     const date = dayjs(today).subtract(4 - i, "day");
     res.push(date.format(format));

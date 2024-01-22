@@ -11,9 +11,9 @@ interface IProps {
 export const Wrapper: FC<IProps> = ({ children }) => {
   return (
     <div className={styles.wrapper}>
-      <Image className={styles.bg1} src={bg1} width={129} alt="bg" />
+      {/* <Image className={styles.bg1} src={bg1} width={129} alt="bg" /> */}
       <div className={styles.content}>{children}</div>
-      <Image className={styles.bg2} src={bg2} width={159} alt="bg" />
+      {/* <Image className={styles.bg2} src={bg2} width={159} alt="bg" /> */}
     </div>
   );
 };

@@ -26,11 +26,11 @@ export const LeaguesWidget = () => {
   }, []);
   return (
     <>
-      {data.length === 0 && (
+      {/* {data.length === 0 && (
         <div className="loader-body">
           <span className="loader-spin"></span>
         </div>
-      )}
+      )} */}
       {data.map((item) => (
         <div
           key={item.id}
@@ -46,6 +46,19 @@ export const LeaguesWidget = () => {
           />
           <p className={styles.title}>{item.league.league_name}</p>
           <PinButton active={item.status === "1"} />
+        </div>
+      ))}
+      {new Array(10).fill(null).map((item, index) => (
+        <div key={index} className={styles.item} title={"sadsadasd"}>
+          <Image
+            className="logo-icon"
+            src={`/country-icon`}
+            width={400}
+            height={400}
+            alt={"asdsadsad"}
+          />
+          <p className={styles.title}>{"asdsadasd"}</p>
+          <PinButton active={true} />
         </div>
       ))}
     </>

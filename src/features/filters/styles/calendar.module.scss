@@ -11,6 +11,7 @@
     transition-duration: 0.3s;
   }
 }
+
 .value {
   display: flex;
   flex: 1 1 auto;
@@ -34,9 +35,11 @@
     }
   }
 }
+
 .open .value {
   background-color: rgba(101, 104, 118, 0.3);
 }
+
 .next,
 .prev {
   height: 100%;
@@ -61,16 +64,19 @@
     }
   }
 }
+
 .prev {
   border-radius: 5px 0px 0px 5px;
 }
 
 .list {
-  width: 100%;
+  width: 138px;
   background: #292c36;
   border-radius: 5px;
   position: absolute;
-  top: 35;
+  top: 41px;
+  left: 50%;
+  transform: translateX(-50%);
   transition-duration: 0.3s;
   opacity: 0;
   visibility: hidden;

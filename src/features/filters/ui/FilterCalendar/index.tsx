@@ -8,10 +8,12 @@ import dayjs from "dayjs";
 import { useSearchParams } from "next/navigation";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setDate } from "../../slice/filterSlice";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
-const today = dayjs().format("YYYY-MM-DD");
+const today = dayjs("2023-11-03").format("YYYY-MM-DD");
 const FilterCalendar = () => {
   const dispatch = useTypeDispatch();
+  const { timeStatus } = useTypeSelector((state) => state.filters);
 
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -20,15 +22,15 @@ const FilterCalendar = () => {
   function updateSorting(sortOrder: string) {
     if (!searchParams) return;
     setValue(sortOrder);
-    if (value === dayjs().format("YYYY-MM-DD")) {
-      window.history.pushState(null, "", `/`);
+    if (sortOrder === dayjs("2023-11-03").format("YYYY-MM-DD")) {
+      // window.history.pushState(null, "", `/`);
       dispatch(setDate(""));
       return;
     }
 
     const params = new URLSearchParams(searchParams.toString());
     params.set("date", sortOrder);
-    window.history.pushState(null, "", `?${params.toString()}`);
+    // window.history.pushState(null, "", `?${params.toString()}`);
     dispatch(setDate(sortOrder));
   }
 
@@ -42,10 +44,16 @@ const FilterCalendar = () => {
     return () => document.removeEventListener("click", closeList);
   }, []);
 
+  useEffect(() => {
+    if (timeStatus !== 1) return;
+    updateSorting("2023-11-03");
+  }, [timeStatus]);
+
+  if (timeStatus === 1) return <></>;
   return (
     <div className={`${styles.body} ${isOpen ? styles.open : ""}`}>
       <Button setIsOpen={setIsOpen} day={value} setDay={updateSorting} />
-      <List setValue={setValue} value={value} />
+      <List setValue={updateSorting} value={value} />
     </div>
   );
 };

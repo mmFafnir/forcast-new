@@ -1,7 +1,11 @@
 import { SoccerPage } from "@/pagesComponent";
-import React from "react";
+import { NextPage } from "next";
 
-const Soccer = () => {
+interface IProps {
+  params: {};
+}
+
+const Soccer: NextPage<IProps> = ({ params }) => {
   return <SoccerPage />;
 };
 

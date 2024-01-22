@@ -9,11 +9,11 @@ export const Recommend: FC = () => {
       <h2 className={styles.title}>Другие матчи</h2>
       <Filter />
       <div className={styles.content}>
+        {/* <Match />
         <Match />
         <Match />
         <Match />
-        <Match />
-        <Match />
+        <Match /> */}
       </div>
     </div>
   );

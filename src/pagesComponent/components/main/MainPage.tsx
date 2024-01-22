@@ -1,15 +1,15 @@
 import HeaderPage from "@/widgets/HeaderPage";
 import { NextPage } from "next";
-import { getMatchHome } from "../../api/getMatchHome";
-import { MatchesGroup } from "../../module/MatchesGroup";
+import { getMatchHome } from "../../api/main/getMatchHome";
+import { MatchesGroupHome } from "../../module/group/MatchesGroupHome";
 
 export const MainPage: NextPage = async () => {
   const matches = await getMatchHome();
   return (
     <>
-      <div className="flex-1 ">
+      <div className="flex-1 flex-col">
         <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />
-        <MatchesGroup matches={matches} />
+        <MatchesGroupHome matches={matches} />
       </div>
       <div className="page-text-block">
         <h3>Прогнозы ставок на футбольные матчи от ИИ</h3>

@@ -18,3 +18,55 @@
     }
   }
 }
+
+.flex {
+  display: flex;
+}
+.jc-between {
+  justify-content: space-between;
+}
+.item-center {
+  align-items: center;
+}
+.flex-1 {
+  flex: 1 1 auto;
+}
+.jc-center {
+  justify-content: center;
+}
+.h-full {
+  height: 100%;
+}
+.h-vh {
+  height: 100vh;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-data {
+  padding: 30px 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  p {
+    margin-bottom: 5%;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+@media (max-height: 841px) {
+  .adaptive-mac {
+    height: 275px !important;
+  }
+}
+
+@media (max-height: 750px) {
+  .adaptive-mac {
+    height: 200px !important;
+  }
+}

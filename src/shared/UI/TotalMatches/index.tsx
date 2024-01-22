@@ -7,7 +7,7 @@ interface IProps {
 }
 const TotalMatches: FC<IProps> = ({ children, className = "" }) => {
   return (
-    <p className={`${styles.total} ${className}`}>
+    <p className={`${styles.total} ${className}`} title={String(children)}>
       <span>{children}</span>
     </p>
   );

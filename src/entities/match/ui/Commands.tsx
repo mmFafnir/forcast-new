@@ -1,28 +1,35 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "../styles/commands.module.scss";
 import Image from "next/image";
-export const Commands = () => {
+import { TypeTeam } from "..";
+
+interface IProps {
+  away: TypeTeam;
+  home: TypeTeam;
+}
+
+export const Commands: FC<IProps> = ({ away, home }) => {
   return (
     <div className={styles.body}>
       <div className={styles.team}>
         <Image
-          src={"/country-icon.svg"}
-          width={16}
-          height={16}
-          alt="Команда 1"
+          src={`https://admin.aibetguru.com/uploads/${home.team_id}.png`}
+          width={400}
+          height={400}
+          alt={home.team_name}
           className="logo-icon"
         />
-        <p className={styles.name}>Команда 1</p>
+        <p className={styles.name}>{home.team_name}</p>
       </div>
       <div className={styles.team}>
         <Image
-          src={"/country-icon.svg"}
-          width={16}
-          height={16}
-          alt="Команда 1"
+          src={`https://admin.aibetguru.com/uploads/${away.team_id}.png`}
+          width={400}
+          height={400}
+          alt={away.team_name}
           className="logo-icon"
         />
-        <p className={styles.name}>Команда 1</p>
+        <p className={styles.name}>{away.team_name}</p>
       </div>
     </div>
   );

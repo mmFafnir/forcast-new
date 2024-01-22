@@ -4,7 +4,7 @@ import { getArrayDate } from "../../scripts/gerArrayDate";
 import dayjs from "dayjs";
 
 const dates = getArrayDate();
-const todayDate = dayjs().format("YYYY-MM-DD");
+const todayDate = dayjs("2023-11-03").format("YYYY-MM-DD");
 
 interface IProps {
   value: string;
