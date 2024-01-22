@@ -7,9 +7,19 @@ import TotalMatches from "@/shared/UI/TotalMatches";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import Image from "next/image";
 import { FavoritesButton } from "@/features/favorites";
+import { usePathname } from "next/navigation";
+
+// const links = [
+//   {
+//     title: 'Футбол',
+
+//   }
+// ]
 
 const Sidebar = () => {
   const { active } = useTypeSelector((state) => state.closeSidebar);
+  const pathname = usePathname();
+  console.log(pathname);
   return (
     <div className={`${styles.body} ${active ? styles.close : ""}`}>
       <div className={styles.wrapper}>
@@ -21,12 +31,13 @@ const Sidebar = () => {
             <FavoritesButton />
           </div>
           <div className={styles.list}>
-            {new Array(6).fill(null).map((link, index) => (
+            {new Array(1).fill(null).map((link, index) => (
               <Button
                 key={index}
                 className={styles.link}
                 href="/soccer"
                 type="text"
+                active={pathname.includes("/soccer")}
               >
                 <SportsIcon icon="soccer" />
                 <span>Футбол</span>
