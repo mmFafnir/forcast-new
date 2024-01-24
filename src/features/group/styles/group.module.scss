@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 10px;
+  padding: 10px 20px;
   position: sticky;
   top: 0;
   background: #232630;
@@ -51,5 +51,18 @@
   font-weight: 700;
   img {
     margin-right: 10px;
+  }
+}
+
+@media (max-width: 440px) {
+  .body {
+    font-size: 10px;
+  }
+  .header {
+    padding: 5px 10px;
+  }
+  .sport img {
+    width: 17px;
+    height: 17px;
   }
 }

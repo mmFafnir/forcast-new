@@ -23,3 +23,32 @@
     flex: 0 0 305px;
   }
 }
+
+@media (max-width: 1350px) {
+  .body {
+    flex: 0 0 300px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .body {
+    position: fixed;
+    left: -350px;
+    top: 0;
+    width: 340px;
+    background-color: #31343f;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 20;
+    margin: 0;
+    padding: 20px;
+    box-shadow: 0px 0px 5px #000;
+    transition-duration: 0.3s;
+  }
+  .active {
+    left: 0;
+  }
+  .scroll {
+    padding-top: 0;
+  }
+}

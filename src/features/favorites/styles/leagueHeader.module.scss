@@ -9,6 +9,9 @@
   }
 }
 
+.name {
+  font-weight: 700;
+}
 .pin {
   svg,
   svg path {
@@ -20,5 +23,27 @@
         stroke: #fff;
       }
     }
+  }
+}
+
+.button {
+  line-height: 0;
+}
+
+@media (max-width: 500px) {
+  .body {
+    flex: 1 1 auto;
+  }
+  .league {
+    font-size: 10px;
+    margin: 0px 10px;
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .name {
+    white-space: nowrap;
+    overflow: hidden;
   }
 }

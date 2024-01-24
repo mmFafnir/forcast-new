@@ -6,6 +6,12 @@
   display: flex;
   align-items: center;
 
+  p {
+    max-width: 156px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
   &:first-child {
     margin-bottom: 10px;
   }
@@ -15,4 +21,7 @@
     width: 16px;
     height: 16px;
   }
+}
+
+@media (max-width) {
 }

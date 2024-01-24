@@ -10,9 +10,14 @@ interface IParams {
 export const getMatchHome = async (
   params?: IParams
 ): Promise<TypeSportGroup[]> => {
-  const { date, timeStatus } = params || { date: "", timeStatus: "" };
-  const { data } = await axios.get(
-    `/get_home_page_matches?date=${date}&time_status=${timeStatus}`
-  );
-  return mapGetMatchHome(data.data);
+  try {
+    const { date, timeStatus } = params || { date: "", timeStatus: "" };
+    const { data } = await axios.get(
+      `/get_home_page_matches?date=${date}&time_status=${timeStatus}`
+    );
+    return mapGetMatchHome(data.data);
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
 };

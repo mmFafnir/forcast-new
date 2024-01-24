@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IState {
-  active: boolean;
+  activeSidebar: boolean;
+  activeWidgets: boolean;
 }
 
 const initialState: IState = {
-  active: false,
+  activeSidebar: false,
+  activeWidgets: false,
 };
 
 const closeSidebarSlice = createSlice({
@@ -13,13 +15,34 @@ const closeSidebarSlice = createSlice({
   initialState,
   reducers: {
     openSidebar: (state) => {
-      state.active = true;
+      state.activeSidebar = false;
     },
     closeSidebar: (state) => {
-      state.active = false;
+      state.activeSidebar = true;
+    },
+    toggleSidebar: (state) => {
+      state.activeWidgets = false;
+      state.activeSidebar = !state.activeSidebar;
+    },
+    openWidgets: (state) => {
+      state.activeWidgets = true;
+    },
+    closeWidgets: (state) => {
+      state.activeWidgets = false;
+    },
+    toggleWidgets: (state) => {
+      state.activeSidebar = true;
+      state.activeWidgets = !state.activeWidgets;
     },
   },
 });
 
-export const { openSidebar, closeSidebar } = closeSidebarSlice.actions;
+export const {
+  openSidebar,
+  closeSidebar,
+  toggleSidebar,
+  openWidgets,
+  closeWidgets,
+  toggleWidgets,
+} = closeSidebarSlice.actions;
 export default closeSidebarSlice.reducer;

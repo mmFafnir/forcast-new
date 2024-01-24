@@ -16,3 +16,10 @@
   align-items: center;
   margin-right: 20px;
 }
+
+@media (max-width: 900px) {
+  .body {
+    margin-right: 15px;
+    font-size: 14px;
+  }
+}

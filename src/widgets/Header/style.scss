@@ -46,6 +46,22 @@
     }
   }
   &__bread {
+    flex: 1 1 auto;
+    height: 100%;
     margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1200px) {
+  .header {
+    > div {
+      display: none;
+    }
+    &__bread {
+      margin: 0;
+      display: flex !important;
+    }
   }
 }

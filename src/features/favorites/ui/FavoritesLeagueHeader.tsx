@@ -23,7 +23,7 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
           height={400}
           alt={league.league_name}
         />
-        <span>{league.league_name}</span>
+        <span className={styles.name}>{league.league_name}</span>
       </div>
       <PinButton />
     </div>

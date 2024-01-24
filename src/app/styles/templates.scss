@@ -59,6 +59,23 @@
   }
 }
 
+.bg-hover {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+  background-color: #0000003a;
+  transition-duration: 0.3s;
+
+  &.close {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 @media (max-height: 841px) {
   .adaptive-mac {
     height: 275px !important;
@@ -68,5 +85,11 @@
 @media (max-height: 750px) {
   .adaptive-mac {
     height: 200px !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .bg-hover {
+    display: block;
   }
 }

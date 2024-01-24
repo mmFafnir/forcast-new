@@ -5,51 +5,44 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { TypeTimeStatus, setTimeStatus } from "../slice/filterSlice";
 import styles from "../styles/filters.module.scss";
-
-interface TypeFilter {
-  label: string;
-  value: TypeTimeStatus;
-}
+import { useEffect, useState } from "react";
+import { filters } from "../consts/filtes";
+import { FilterMobile } from "./FilterMobile";
 
 export const Filters = () => {
   const dispatch = useTypeDispatch();
   const { timeStatus } = useTypeSelector((state) => state.filters);
 
+  const [isMob, setIsMob] = useState<boolean>(false);
+
   const onChangeStatus = (status: TypeTimeStatus) =>
     dispatch(setTimeStatus(status));
 
-  const filters: TypeFilter[] = [
-    {
-      label: "ВСЕ",
-      value: "",
-    },
-    {
-      label: "ПРЕДСТОЯЩИЕ",
-      value: 0,
-    },
-    {
-      label: "LIVE",
-      value: 1,
-    },
-    {
-      label: "ЗАВЕРШЕННЫЕ",
-      value: 3,
-    },
-  ];
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 750) return setIsMob(true);
+      setIsMob(false);
+    });
+    if (window.innerWidth <= 750) setIsMob(true);
+  }, []);
+
+  console.log(isMob);
 
   return (
-    <div className="flex jc-between">
+    <div className={`flex jc-between ${styles.body}`}>
+      {isMob && <FilterMobile />}
       <div className={`${styles.list} flex`}>
-        {filters.map((filter) => (
-          <Button
-            key={filter.label}
-            type="text"
-            active={filter.value === timeStatus}
-            onClick={() => onChangeStatus(filter.value)}
-          >
-            {filter.label}
-          </Button>
-        ))}
+        {!isMob &&
+          filters.map((filter) => (
+            <Button
+              key={filter.label}
+              type="text"
+              active={filter.value === timeStatus}
+              onClick={() => onChangeStatus(filter.value)}
+            >
+              {filter.label}
+            </Button>
+          ))}
       </div>
       <FilterCalendar />
     </div>

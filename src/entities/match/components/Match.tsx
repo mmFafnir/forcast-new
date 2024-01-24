@@ -20,7 +20,7 @@ export const Match: FC<IProps> = ({ match }) => {
   return (
     <div className={`${styles.body}`}>
       <Link href={match.url} className={styles.href}></Link>
-      <div className="flex item-center">
+      <div className={styles.left}>
         <div className={`flex item-center js-between ${styles.first}`}>
           <button className={styles.favorites}>
             <IconFavorite />
@@ -36,7 +36,7 @@ export const Match: FC<IProps> = ({ match }) => {
 
         <Commands away={match.away_team} home={match.home_team} />
       </div>
-      <div className={styles.last}>
+      <div className={styles.right}>
         {match.best_bet_card.length > 0 && (
           <Total bet={match.best_bet_card[0]} />
         )}

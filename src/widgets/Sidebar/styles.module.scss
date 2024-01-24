@@ -31,6 +31,7 @@
 .search {
   margin-bottom: 20px;
 }
+
 .favorite {
   margin-bottom: 20px;
   button {
@@ -42,6 +43,7 @@
     }
   }
 }
+
 .link {
   margin-bottom: 5px;
   > span {
@@ -63,18 +65,64 @@
   }
 }
 
-.close {
-  flex: 0 0 85px;
+.bg {
+  display: none;
+}
 
-  button,
-  .link,
-  .telegram {
-    > span {
-      max-width: 0px;
-      opacity: 0;
-      visibility: hidden;
-      margin: 0;
-      transition-delay: 0s;
+@media (min-width: 1201px) {
+  .close {
+    flex: 0 0 85px;
+
+    button,
+    .link,
+    .telegram {
+      > span {
+        max-width: 0px;
+        opacity: 0;
+        visibility: hidden;
+        margin: 0;
+        transition-delay: 0s;
+      }
     }
+  }
+}
+
+@media (max-width: 1350px) {
+  .body {
+    position: absolute;
+    width: 220px;
+    padding-right: 20px;
+    background-color: #31343f;
+    z-index: 30;
+  }
+  @media (min-width: 1201px) {
+    .close {
+      width: 95px;
+      padding-right: 0;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .body {
+    position: fixed;
+    height: 100vh;
+    height: 100dvh;
+    transition-duration: 0.3s;
+    top: 0;
+    left: 0;
+    padding-left: 20px;
+    width: 250px;
+    box-shadow: 0px 0px 5px #000;
+    padding-top: 30px;
+  }
+
+  .close {
+    left: -300px;
+  }
+
+  .content {
+    position: static;
+    height: 100%;
   }
 }

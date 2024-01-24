@@ -34,6 +34,7 @@ const useAccordion = ({
   const [iconStyle, setIconStyle] = useState<CSSProperties>(iconStyles.open);
 
   const onToggle = () => setIsOpen((prev) => !prev);
+  const onClose = () => setIsOpen(false);
   useEffect(() => {
     if (!ref.current) return;
     const closeHeight = defaultHeight || 0;
@@ -59,7 +60,7 @@ const useAccordion = ({
     setCurrentHeight(isOpen ? ref.current.clientHeight : closeHeight);
   }, [size]);
 
-  return { iconStyle, onToggle, currentHeight, isOpen };
+  return { iconStyle, onToggle, onClose, currentHeight, isOpen };
 };
 
 export default useAccordion;

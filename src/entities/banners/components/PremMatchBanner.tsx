@@ -6,7 +6,7 @@ export const PremMatchBanner = () => {
     <div className={styles.body}>
       <Premium />
       <p className={styles.text}>
-        ПО РЕФЕРАЛЬНОЙ ССЫЛКЕ со СКИДКОЙ <span>25%</span>
+        <i>ПО РЕФЕРАЛЬНОЙ ССЫЛКЕ</i> со СКИДКОЙ <span>25%</span>
       </p>
     </div>
   );

@@ -1,31 +1,31 @@
 "use client";
-import React from "react";
-import Logo from "@/shared/UI/Logo";
+import { FC } from "react";
 import { LanguagesSelect } from "@/features/languages";
-import Button from "@/shared/UI/Button";
 import { TimezoneSelect } from "@/features/timezone";
 import { BreadCrumbs } from "@/features/breadсrumbs";
 import { CloseSidebarButton } from "@/features/closeSidebar";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import "./style.scss";
 import { ButtonLogin } from "../Auth";
+import Logo from "@/shared/UI/Logo";
+import "./style.scss";
+import MobileHeader from "./components/MobileHeader";
 
-const Header = () => {
-  const { active } = useTypeSelector((state) => state.closeSidebar);
+const Header: FC = () => {
+  const { activeSidebar } = useTypeSelector((state) => state.closeSidebar);
 
   return (
     <>
       <div className="header">
         <div className="header__flex">
-          <div className={`header__logo ${active ? "active" : ""}`}>
+          <div className={`header__logo ${activeSidebar ? "active" : ""}`}>
             <div>
               <Logo style={{ flex: "0 0 160px" }} />
             </div>
           </div>
           <CloseSidebarButton />
-          <div className="header__bread">
-            <BreadCrumbs />
-          </div>
+        </div>
+        <div className="header__bread">
+          <BreadCrumbs />
         </div>
         <div className="header__flex">
           <LanguagesSelect />
@@ -33,6 +33,7 @@ const Header = () => {
           <ButtonLogin />
         </div>
       </div>
+      <MobileHeader />
     </>
   );
 };

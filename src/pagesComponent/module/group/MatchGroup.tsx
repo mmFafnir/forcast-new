@@ -47,13 +47,13 @@ export const MatchesGroup: FC<IProps> = ({ matches }) => {
       {!loading &&
         data.map((lig) => (
           <SportGroup
-            key={lig.id}
+            key={lig.league_id}
             title={lig.league_name}
             headerRender={<FavoritesLeagueHeader league={lig} />}
             total={lig.games.length}
           >
             {lig.games.map((game) => (
-              <Match key={lig.id} match={game} />
+              <Match key={game.id} match={game} />
             ))}
           </SportGroup>
         ))}

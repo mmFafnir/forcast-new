@@ -52,7 +52,7 @@ export const LeaguesWidget = () => {
         <div key={index} className={styles.item} title={"sadsadasd"}>
           <Image
             className="logo-icon"
-            src={`/country-icon`}
+            src={`/country-icon.svg`}
             width={400}
             height={400}
             alt={"asdsadsad"}

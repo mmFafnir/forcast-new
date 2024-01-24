@@ -4,21 +4,25 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 import styles from "../styles/style.module.scss";
-import { closeSidebar, openSidebar } from "../slice/closeSidebarSlice";
+import {
+  closeSidebar,
+  openSidebar,
+  toggleSidebar,
+} from "../slice/closeSidebarSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 export const CloseSidebarButton = () => {
-  const { active } = useTypeSelector((state) => state.closeSidebar);
+  const { activeSidebar } = useTypeSelector((state) => state.closeSidebar);
   const dispatch = useDispatch();
 
   const onOpen = () => dispatch(openSidebar());
   const onClose = () => dispatch(closeSidebar());
-
+  const onToggleSidebar = () => dispatch(toggleSidebar());
   return (
-    <Button className={styles.button} onClick={active ? onClose : onOpen}>
+    <Button className={styles.button} onClick={onToggleSidebar}>
       <svg
-        className={active ? styles.close : ""}
+        className={activeSidebar ? styles.close : ""}
         width="10"
         height="12"
         viewBox="0 0 10 12"

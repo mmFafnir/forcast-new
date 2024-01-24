@@ -1,3 +1,4 @@
+"use client";
 import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +7,8 @@ import styles from "../styles/preview.module.scss";
 import SportsIcon from "@/shared/icons/sports";
 import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
 import { getTimeStatusMatch } from "../scripts/getTimeStatusMatch";
+import { FavoriteAdd } from "@/features/favorites";
+import { SharedButton } from "@/features/shared";
 
 interface ITeamProps {
   src: string;
@@ -79,6 +82,7 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
           name={match.home_team.team_name}
           translate={"Барселона"}
         />
+        <SportsIcon icon="soccer" width={400} height={400} />
         <Team
           src={`https://admin.aibetguru.com/uploads/${match.away_team.team_id}.png`}
           name={match.away_team.team_name}

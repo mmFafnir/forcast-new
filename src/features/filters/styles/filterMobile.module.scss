@@ -1,0 +1,57 @@
+.body {
+  flex: 0 1 180px;
+  position: relative;
+  margin-right: 10px;
+
+  button {
+    font-size: 12px;
+    justify-content: space-between;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  > span {
+    transition-duration: 0.3s;
+  }
+  > span:first-child {
+    margin-right: 10px;
+  }
+}
+
+.list {
+  position: absolute;
+  width: 100%;
+  top: 40px;
+  background-color: #22252f;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 0;
+  transition-duration: 0.3s;
+  button {
+    width: 100%;
+    border-radius: 0px;
+    padding: 0px 10px;
+  }
+}
+
+.active {
+  background-color: #735780;
+  pointer-events: none;
+}
+
+@media (max-width: 380px) {
+  .body {
+    flex: 0 1 129px;
+    button {
+      font-size: 10px;
+    }
+  }
+  .title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

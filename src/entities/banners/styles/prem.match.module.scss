@@ -18,3 +18,24 @@
     color: #ffd748;
   }
 }
+
+@media (max-width: 900px) {
+  .body {
+    font-size: 12px;
+    padding: 13px 10px;
+  }
+  .text {
+    span {
+      font-size: 16px;
+    }
+    i {
+      font-style: normal;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .text i {
+    display: none;
+  }
+}

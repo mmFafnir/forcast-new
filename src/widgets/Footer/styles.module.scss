@@ -20,3 +20,24 @@
     margin-top: 20px;
   }
 }
+
+@media (max-width: 1200px) {
+  .footer {
+    padding-bottom: 80px;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer {
+    text-align: center;
+    div {
+      flex-direction: column;
+      a {
+        margin-bottom: 20px;
+      }
+    }
+    p {
+      margin-top: 0;
+    }
+  }
+}

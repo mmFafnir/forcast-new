@@ -9,3 +9,9 @@
   color: #9c9c9c;
   font-weight: 700;
 }
+
+@media (max-width: 600px) {
+  .body {
+    display: none;
+  }
+}
