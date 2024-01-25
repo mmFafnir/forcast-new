@@ -10,6 +10,8 @@ import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { LeaguesWidget } from "@/widgets/Widgets/components/LeaguesWidget";
 import CountriesWidget from "@/widgets/Widgets/components/CountriesWidget";
 import { Toolkit } from "@/features/Toolkit";
+import { ModalAuth } from "@/widgets/Auth";
+import { ModalSearch } from "@/features/search";
 
 interface IProps {
   children: ReactNode;
@@ -56,6 +58,8 @@ const MainLayout: FC<IProps> = ({ children }) => {
         </div>
       </div>
       <Toolkit />
+      <ModalAuth />
+      <ModalSearch />
     </div>
   );
 };

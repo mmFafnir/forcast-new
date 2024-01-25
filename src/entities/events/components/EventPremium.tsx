@@ -6,7 +6,7 @@ import Link from "next/link";
 const EventPremium = () => {
   return (
     <div className={styles.premium}>
-      <div className="flex jc-between item-center">
+      <div className={styles.header}>
         <h3>Индивидуальный тотал голов</h3>
         <BestBet />
       </div>

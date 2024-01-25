@@ -80,13 +80,13 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
         <Team
           src={`https://admin.aibetguru.com/uploads/${match.home_team.team_id}.png`}
           name={match.home_team.team_name}
-          translate={"Барселона"}
+          translate={""}
         />
         <SportsIcon icon="soccer" width={400} height={400} />
         <Team
           src={`https://admin.aibetguru.com/uploads/${match.away_team.team_id}.png`}
           name={match.away_team.team_name}
-          translate="Барселона"
+          translate=""
         />
       </div>
       <p className={styles.line}></p>
@@ -109,6 +109,10 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
           ) : (
             <button className={styles.live}>{time}</button>
           )}
+          <div className={`flex item-center mob ${styles.buttons}`}>
+            <FavoriteAdd />
+            <SharedButton />
+          </div>
         </div>
       </div>
     </div>

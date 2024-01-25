@@ -60,7 +60,7 @@
 
   @media (min-width: 901px) {
     &:hover {
-      background-color: #735780;
+      background-color: var(--btn-active-color);
     }
   }
 }
@@ -94,11 +94,11 @@
     }
   }
   .active {
-    background-color: #735780;
+    background-color: var(--btn-active-color);
 
     @media (min-width: 901px) {
       &:hover {
-        background-color: #735780;
+        background-color: var(--btn-active-color);
       }
     }
   }

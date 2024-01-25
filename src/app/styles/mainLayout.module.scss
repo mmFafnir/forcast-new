@@ -3,6 +3,7 @@
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  padding-top: 30px;
 }
 
 .flex {
@@ -15,11 +16,11 @@
   flex-direction: column;
 }
 
-@media (max-width: 1350px) {
-  .page {
-    padding-left: 120px;
-  }
-}
+// @media (max-width: 1350px) {
+//   .page {
+//     padding-left: 120px;
+//   }
+// }
 
 @media (max-width: 1200px) {
   .page {

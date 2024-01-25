@@ -1,11 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./styles.module.scss";
 import { RadioInput } from "./ui/RadioInput";
 import { Progress } from "./ui/Progress";
 
-const RiskWidgets = () => {
+interface IProps {
+  isMob?: boolean;
+}
+
+const RiskWidgets: FC<IProps> = ({ isMob }) => {
   return (
-    <div className={styles.body}>
+    <div className={`${styles.body} ${isMob ? styles.mob : ""}`}>
       <div className={styles.header}>
         <p>Статистика S Æ A-XI по Германии</p>
       </div>

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/timezone.module.scss";
 import { getTimezone } from "../api/getTimezone";
 import { TypeTimezone } from "../types/TypeTimezone";
-import Scrollbars from "react-custom-scrollbars-2";
+import MyScrollbar from "@/shared/UI/MyScrollbar";
 
 export const TimezoneSelect = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -54,7 +54,7 @@ export const TimezoneSelect = () => {
         </button>
       )}
       <div className={`${styles.list} ${open ? styles.show : ""}`}>
-        <Scrollbars universal={true}>
+        <MyScrollbar universal={true}>
           {data.map((item) => (
             <button
               title={`${item.utc} ${item.zone}`}
@@ -63,7 +63,7 @@ export const TimezoneSelect = () => {
               onClick={() => setCurrentData(item)}
             >{`${item.utc}`}</button>
           ))}
-        </Scrollbars>
+        </MyScrollbar>
       </div>
     </div>
   );

@@ -28,6 +28,9 @@
 .item-center {
   align-items: center;
 }
+.flex-wrap {
+  flex-wrap: wrap;
+}
 .flex-1 {
   flex: 1 1 auto;
 }
@@ -76,6 +79,12 @@
   }
 }
 
+@media (min-width: 501px) {
+  .mob {
+    display: none;
+  }
+}
+
 @media (max-height: 841px) {
   .adaptive-mac {
     height: 275px !important;
@@ -91,5 +100,11 @@
 @media (max-width: 1200px) {
   .bg-hover {
     display: block;
+  }
+}
+
+@media (max-width: 500px) {
+  .desk {
+    display: none;
   }
 }

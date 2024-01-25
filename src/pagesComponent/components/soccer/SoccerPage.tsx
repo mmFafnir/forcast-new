@@ -3,6 +3,8 @@ import { NextPage } from "next";
 import { getMatchSoccer } from "../../api/soccer/getMatchSoccer";
 import { mapGetMatchSoccer } from "../../api/soccer/mapGetMatchSoccer";
 import { MatchesGroup } from "@/pagesComponent/module/group/MatchGroup";
+import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
+import { TelegramButton } from "@/features/shared";
 
 export const SoccerPage: NextPage = async () => {
   const data = await getMatchSoccer();
@@ -14,6 +16,8 @@ export const SoccerPage: NextPage = async () => {
         <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />
         <MatchesGroup matches={matches} />
       </div>
+      <RiskWidgets isMob />
+      <TelegramButton isMob />
       <div className="page-text-block">
         <h3>Прогнозы ставок на футбольные матчи от ИИ</h3>
         <p>

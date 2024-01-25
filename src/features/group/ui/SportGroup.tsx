@@ -20,7 +20,6 @@ interface IProps {
 const iconStyles: IAccordionStylesIcon = {
   open: {},
   close: {
-    // backgroundColor: 'red',
     transform: `scale(1, -1)`,
   },
 };

@@ -30,16 +30,16 @@
 }
 
 .default {
-  background: #22252f;
+  background: var(--btn-color);
 
   @media (min-width: 901px) {
     &:hover {
-      background-color: #656876;
+      background: var(--btn-hover-color);
     }
   }
 
   &.active {
-    background-color: #735780;
+    background: var(--btn-active-color);
   }
 }
 
@@ -54,13 +54,14 @@
 }
 
 .text {
+  background: var(--btn-text-color);
   @media (min-width: 901px) {
     &:hover {
-      background-color: #656876;
+      background: var(--btn-hover-color);
     }
   }
 
   &.active {
-    background-color: #735780;
+    background-color: var(--btn-active-color);
   }
 }

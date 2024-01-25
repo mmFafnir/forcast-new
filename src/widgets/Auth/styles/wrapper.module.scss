@@ -1,16 +1,14 @@
 .wrapper {
   border-radius: 10px;
-  background: #22252f;
   display: flex;
   justify-content: center;
-  padding: 20px;
   overflow: hidden;
   position: relative;
 }
 
 .content {
-  flex: 0 1 300px;
   z-index: 2;
+  flex: 1 1 auto;
 }
 .bg1,
 .bg2 {

@@ -7,7 +7,7 @@ body {
 }
 
 body {
-  background: #31343f;
+  background: var(--bg-main);
   color: #fff;
 }
 
@@ -121,4 +121,7 @@ h2 {
 }
 
 @media (max-width: 500px) {
+  .page-text-block {
+    margin-top: 20px;
+  }
 }

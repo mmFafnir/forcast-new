@@ -35,13 +35,14 @@
     position: fixed;
     left: -350px;
     top: 0;
-    width: 340px;
-    background-color: #31343f;
+    width: 300px;
+    background: rgba(34, 37, 47, 0.9);
     height: 100vh;
     height: 100dvh;
     z-index: 20;
     margin: 0;
-    padding: 20px;
+    padding: 20px 10px;
+    padding-bottom: 75px;
     box-shadow: 0px 0px 5px #000;
     transition-duration: 0.3s;
   }
@@ -50,5 +51,17 @@
   }
   .scroll {
     padding-top: 0;
+  }
+
+  .item {
+    > div {
+      padding: 0;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .body {
+    width: 274px;
   }
 }

@@ -15,6 +15,7 @@ export const LeaguesWidget = () => {
     setLoading(true);
     getLeagues()
       .then((res) => {
+        console.log(res);
         setData(res);
       })
       .catch(() => {
@@ -26,11 +27,16 @@ export const LeaguesWidget = () => {
   }, []);
   return (
     <>
-      {/* {data.length === 0 && (
+      {loading && (
         <div className="loader-body">
           <span className="loader-spin"></span>
         </div>
-      )} */}
+      )}
+      {data.length === 0 && (
+        <div className={styles.empty}>
+          <p>У вас нет избранных лиг, вы можете их закрепить</p>
+        </div>
+      )}
       {data.map((item) => (
         <div
           key={item.id}
@@ -46,19 +52,6 @@ export const LeaguesWidget = () => {
           />
           <p className={styles.title}>{item.league.league_name}</p>
           <PinButton active={item.status === "1"} />
-        </div>
-      ))}
-      {new Array(10).fill(null).map((item, index) => (
-        <div key={index} className={styles.item} title={"sadsadasd"}>
-          <Image
-            className="logo-icon"
-            src={`/country-icon.svg`}
-            width={400}
-            height={400}
-            alt={"asdsadsad"}
-          />
-          <p className={styles.title}>{"asdsadasd"}</p>
-          <PinButton active={true} />
         </div>
       ))}
     </>

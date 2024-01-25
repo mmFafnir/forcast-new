@@ -1,0 +1,27 @@
+.telegram {
+  background: #6064c2 !important;
+  > span {
+    white-space: nowrap;
+    margin-left: 10px;
+  }
+
+  @media (min-width: 901px) {
+    &:hover {
+      background: #424580 !important;
+    }
+  }
+}
+
+.mob {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .telegram {
+    display: none;
+  }
+  .mob {
+    margin-top: 20px;
+    display: flex;
+  }
+}

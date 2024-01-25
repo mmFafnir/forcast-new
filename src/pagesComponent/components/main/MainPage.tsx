@@ -2,6 +2,8 @@ import HeaderPage from "@/widgets/HeaderPage";
 import { NextPage } from "next";
 import { getMatchHome } from "../../api/main/getMatchHome";
 import { MatchesGroupHome } from "../../module/group/MatchesGroupHome";
+import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
+import { TelegramButton } from "@/features/shared";
 
 export const MainPage: NextPage = async () => {
   const matches = await getMatchHome();
@@ -11,6 +13,8 @@ export const MainPage: NextPage = async () => {
         <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />
         <MatchesGroupHome matches={matches} />
       </div>
+      <RiskWidgets isMob />
+      <TelegramButton isMob />
       <div className="page-text-block">
         <h3>Прогнозы ставок на футбольные матчи от ИИ</h3>
         <p>

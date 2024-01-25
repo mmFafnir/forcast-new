@@ -1,25 +1,26 @@
 .track {
-  background-color: rgba(71, 75, 86, 0.87);
+  background-color: #242b36;
   height: 100%;
+  border-radius: 5px;
   right: 0;
-  width: 2px !important;
+  width: 4px !important;
   display: flex;
   justify-content: center;
 }
 
 .trumb {
-  background-color: #d9d9d9;
   border-radius: 5px;
   cursor: pointer;
   width: 2px !important;
+  background-color: rgba(217, 217, 217, 0.7);
 }
 
-.big {
-  .track {
-    right: 3px;
-  }
-  .trumb {
-    width: 4px !important;
-    flex: 0 0 4px;
-  }
-}
+// .big {
+//   .track {
+//     right: 3px;
+//   }
+//   .trumb {
+//     width: 4px !important;
+//     flex: 0 0 4px;
+//   }
+// }

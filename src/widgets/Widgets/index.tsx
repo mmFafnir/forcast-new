@@ -6,6 +6,7 @@ import Scrollbars from "react-custom-scrollbars-2";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { closeWidgets } from "@/features/closeSidebar/slice/closeSidebarSlice";
+import MyScrollbar from "@/shared/UI/MyScrollbar";
 interface IProps {
   widgets: ReactNode[];
 }
@@ -25,13 +26,13 @@ const Widgets: FC<IProps> = ({ widgets }) => {
       <div className={`${styles.body} ${activeWidgets ? styles.active : ""}`}>
         <div className={styles.content}>
           <div className={styles.scroll}>
-            <Scrollbars universal={true} autoHide>
+            <MyScrollbar universal={true} autoHide>
               {widgets.map((wid, index) => (
                 <div className={styles.item} key={index}>
                   {wid}
                 </div>
               ))}
-            </Scrollbars>
+            </MyScrollbar>
           </div>
         </div>
       </div>

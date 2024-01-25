@@ -1,22 +1,19 @@
 "use client";
-import React, { FC } from "react";
+import React, { FC, useRef } from "react";
 import styles from "../styles/event.module.scss";
-import MyScrollbar from "@/shared/UI/MyScrollbar";
 import BestBet from "../ui/BestBet";
 import { Wrapper } from "../ui/Wrapper";
 import { TypeBet } from "@/entities/match";
+import { Status } from "../ui/Status";
+import useAccordion, {
+  IAccordionStylesIcon,
+} from "@/shared/hooks/useAccardion";
+import IconArrow from "@/shared/icons/IconArrow";
+import Button from "@/shared/UI/Button";
 
 interface IProps {
   bet: TypeBet;
 }
-
-const getColorLine = (id: number): string => {
-  if (id === 4)
-    return "linear-gradient(270deg, #CD7171 2.02%, #AC4444 101.92%)";
-  if (id === 1)
-    return "linear-gradient(270deg, #60A667 2.02%, #77C17F 101.92%)";
-  return "transparent";
-};
 
 const getColorText = (id: number): string => {
   if (id === 4) return "#AC4444";
@@ -25,16 +22,30 @@ const getColorText = (id: number): string => {
   return "#fff";
 };
 
-export const Event: FC<IProps> = ({ bet }) => {
-  console.log(bet);
+const iconStyles: IAccordionStylesIcon = {
+  open: {},
+  close: {
+    transform: `scale(1, -1)`,
+  },
+};
 
+const defaultHeight = 160;
+
+export const Event: FC<IProps> = ({ bet }) => {
+  const listRef = useRef<HTMLDivElement | null>(null);
+
+  const { iconStyle, onToggle, currentHeight } = useAccordion({
+    iconStyles,
+    ref: listRef,
+    defaultHeight,
+    defaultOpen: false,
+  });
   return (
     <Wrapper best={bet.best_bet === "Yes"}>
-      <div
-        style={{ background: getColorLine(bet.risk_id) }}
-        className={styles.riskLine}
-      ></div>
       <div className={styles.header}>
+        <span className={styles.status}>
+          <Status played />
+        </span>
         <h3 className={styles.title}>Коэффициент {bet.odds}</h3>
         {bet.best_bet === "Yes" && <BestBet />}
       </div>
@@ -55,10 +66,20 @@ export const Event: FC<IProps> = ({ bet }) => {
             </h4>
           </div>
         </div>
-        <div className={styles.text}>
-          <MyScrollbar universal={true} autoHide scrollSize={"big"}>
-            <p>{bet.why_best || bet.why}</p>
-          </MyScrollbar>
+        <div className={styles.right}>
+          <div className={styles.text} style={{ height: currentHeight + "px" }}>
+            <p ref={listRef}>
+              {bet.why_best || bet.why} {bet.why_best || bet.why}{" "}
+              {bet.why_best || bet.why}{" "}
+            </p>
+          </div>
+          {listRef.current && listRef.current.clientHeight >= defaultHeight && (
+            <Button type="text" className={styles.accorBtn} onClick={onToggle}>
+              <span style={iconStyle}>
+                <IconArrow />
+              </span>
+            </Button>
+          )}
         </div>
       </div>
     </Wrapper>

@@ -10,6 +10,7 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { closeSidebar } from "@/features/closeSidebar/slice/closeSidebarSlice";
+import { TelegramButton } from "@/features/shared";
 
 const Sidebar = () => {
   const dispatch = useTypeDispatch();
@@ -48,20 +49,7 @@ const Sidebar = () => {
                 </Button>
               ))}
             </div>
-            <Button
-              type="gray"
-              target="_blank"
-              className={styles.telegram}
-              href="https://telegram.org/me/@groupname"
-            >
-              <Image
-                src={"/telegram.svg"}
-                width={20}
-                height={16}
-                alt="telegram logo"
-              />
-              <span>Наш Telegram</span>
-            </Button>
+            <TelegramButton className={styles.telegram} />
           </div>
         </div>
       </div>

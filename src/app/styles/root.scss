@@ -1,7 +1,20 @@
 :root {
-  --bg-main: #31343f;
+  --bg-main: radial-gradient(
+      260.1% 120.1% at 50% 105.03%,
+      rgba(26, 201, 239, 0.2) 0%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    #31343f;
 
   --sticky-top-header: 0px;
   --sticky-top-sidebar: 82px;
   --sticky-top-page-header: 82px;
+
+  --btn-color: #22252f;
+  --btn-hover-color: #656876;
+  --btn-active-color: #6064c2;
+
+  --btn-text-color: transparent;
+
+  --btn-tg-hover: #424580;
 }

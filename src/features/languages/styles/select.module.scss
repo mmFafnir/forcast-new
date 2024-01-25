@@ -52,7 +52,7 @@
       }
     }
     &.active {
-      background-color: #414450;
+      background-color: var(--btn-active-color);
     }
   }
 }

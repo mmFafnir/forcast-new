@@ -11,20 +11,25 @@
   overflow: hidden;
   position: relative;
   transition-duration: 0.3s;
+
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   &::before {
-    content: "";
+    // content: "";
     transition-duration: 0.3s;
     display: block;
     position: absolute;
     width: 100%;
-    height: 50px;
+    height: 100%;
     bottom: 0;
     left: 0;
-    background: linear-gradient(180deg, rgba(49, 52, 63, 0) 0%, #31343f 100%);
   }
 }
 
 .show {
+  -webkit-text-fill-color: #fff;
+
   &::before {
     opacity: 0;
     visibility: hidden;

@@ -6,8 +6,8 @@ const Footer: FC = () => {
   return (
     <footer className={styles.footer}>
       <div className="flex item-center">
-        <Link href={"/faq"}>Пользовательское соглашение</Link>
         <Link href={"/privacy-policy"}>Политика конфиданциальности</Link>
+        <Link href={"/faq"}>FAQ</Link>
       </div>
       <p>Copyright ©2023 Домен®. All Rights Reserved</p>
     </footer>

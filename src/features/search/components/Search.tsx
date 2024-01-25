@@ -1,15 +1,16 @@
 "use client";
 
 import Button from "@/shared/UI/Button";
-import { FC, useState } from "react";
+import { FC } from "react";
 import styles from "../styles/button.module.scss";
 import { IconSearch } from "../icons/IconSearch";
-import Modal from "@/shared/UI/Modal";
-import { SearchBlock } from "./SearchBlock";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { setModal } from "@/shared/UI/Modal/modalSlice";
+import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 
 export const Search: FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
-  const onOpenModal = () => setOpen(true);
+  const dispatch = useTypeDispatch();
+  const onOpenModal = () => dispatch(setModal(EnumModals.SEARCH));
 
   return (
     <>
@@ -17,14 +18,6 @@ export const Search: FC = () => {
         <IconSearch />
         <span>Поиск по сайту</span>
       </Button>
-
-      {/* <Modal
-        stylesWrapper={{ flex: "0 1 854px" }}
-        open={open}
-        setOpen={setOpen}
-      >
-        <SearchBlock />
-      </Modal> */}
     </>
   );
 };
