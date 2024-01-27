@@ -13,6 +13,7 @@ import { getCountries } from "./api/getCountries";
 import { positionValues } from "react-custom-scrollbars-2";
 import { TypeCountry } from "./types/TypeCountry";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
+import Loader from "@/shared/UI/Loader";
 const CountriesWidget = () => {
   const [data, setData] = useState<TypeCountry[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -81,7 +82,7 @@ const CountriesWidget = () => {
       <div className={styles.list}>
         {loading && (
           <div className="loader-body">
-            <span className="loader-spin"></span>
+            <Loader />
           </div>
         )}
         {data.length == 0 && <p className={styles.empty}>Не найдено</p>}

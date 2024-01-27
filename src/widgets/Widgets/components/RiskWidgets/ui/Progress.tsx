@@ -15,7 +15,7 @@ export const Progress: FC<IProps> = ({ color, title, available, total }) => {
       <div
         className={styles.bar}
         style={{
-          background: `linear-gradient(270deg, ${color} 0%, rgba(101, 104, 118, 0) 100%)`,
+          background: ` linear-gradient(270deg, ${color} 0%, rgba(101, 104, 118, 0.00) 100%)`,
         }}
       >
         <p>{Math.floor((available / total) * 100)}%</p>

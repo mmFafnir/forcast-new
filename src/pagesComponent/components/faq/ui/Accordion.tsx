@@ -23,6 +23,7 @@ export const Accordion: FC<IProps> = ({ title, children }) => {
 
   const { iconStyle, onToggle, currentHeight } = useAccordion({
     iconStyles,
+    defaultOpen: false,
     ref: listRef,
   });
 

@@ -30,27 +30,32 @@ const Modal: FC<IProps> = ({
       className={`${styles.body} ${name === modal ? styles.show : ""}`}
     >
       <div className={styles.bg} onClick={onClose}></div>
-      <div className={styles.wrapper} style={stylesWrapper}>
-        {title && (
-          <div className={styles.header}>
-            <p className={styles.title}>{title}</p>
-            <button>
-              <svg
-                width="11"
-                height="11"
-                viewBox="0 0 11 11"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M2.71777 0.472656L5.59277 4.5612L8.46777 0.472656H10.5928L6.71777 5.47266L10.5928 10.4727H8.46777L5.59277 6.59245L2.71777 10.4727H0.592773L4.40527 5.47266L0.592773 0.472656H2.71777Z"
-                  fill="white"
-                />
-              </svg>
-            </button>
-          </div>
-        )}
-        {children}
+      <div
+        className={`${styles.wrapper} ${title ? styles.wrapperTitle : ""}`}
+        style={stylesWrapper}
+      >
+        <div style={stylesWrapper}>
+          {title && (
+            <div className={styles.header}>
+              <p className={styles.title}>{title}</p>
+              <button onClick={onClose}>
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 11 11"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2.71777 0.472656L5.59277 4.5612L8.46777 0.472656H10.5928L6.71777 5.47266L10.5928 10.4727H8.46777L5.59277 6.59245L2.71777 10.4727H0.592773L4.40527 5.47266L0.592773 0.472656H2.71777Z"
+                    fill="white"
+                  />
+                </svg>
+              </button>
+            </div>
+          )}
+          <div className={styles.content}>{children}</div>
+        </div>
       </div>
     </div>
   );

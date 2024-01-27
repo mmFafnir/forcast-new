@@ -5,6 +5,7 @@ import IconArrow from "@/shared/icons/IconArrow";
 import useAccordion, {
   IAccordionStylesIcon,
 } from "@/shared/hooks/useAccardion";
+import Button from "@/shared/UI/Button";
 
 type TypeSelect = {
   label: string;
@@ -36,19 +37,18 @@ export const Select: FC<IProps> = ({ data }) => {
   });
 
   useEffect(() => {
-    // const onCloseEvent = (e: MouseEvent) => {
-    //   const target = e.target as HTMLElement;
-    //   console.log(!target.closest(`.${id}`));
-    //   if (!target.closest(`.${id}`)) {
-    //     onClose();
-    //   }
-    // };
-    // document.addEventListener("click", onCloseEvent);
-    // return () => document.removeEventListener("click", onCloseEvent);
+    const onCloseEvent = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const closest = target.closest(`.${styles.body}`);
+      if (closest && closest.id === id) return;
+      onClose();
+    };
+    document.addEventListener("click", onCloseEvent);
+    return () => document.removeEventListener("click", onCloseEvent);
   }, []);
 
   return (
-    <div className={`${styles.body} ${id}`}>
+    <div className={`${styles.body}`} id={id}>
       <button className={styles.title} onClick={onToggle}>
         <span>{currentValue.label}</span>
         <i style={iconStyle}>
@@ -58,13 +58,22 @@ export const Select: FC<IProps> = ({ data }) => {
       <div className={styles.list} style={{ height: currentHeight + "px" }}>
         <div ref={listRef}>
           {data.map((item) => (
-            <button
+            <Button
               onClick={() => setCurrentValue(item)}
               key={item.value}
               title={item.label}
+              type="text"
+              active={item.value === currentValue.value}
             >
               {item.label}
-            </button>
+            </Button>
+            // <button
+            //   onClick={() => setCurrentValue(item)}
+            //   key={item.value}
+            //   title={item.label}
+            // >
+            //   {item.label}
+            // </button>
           ))}
         </div>
       </div>

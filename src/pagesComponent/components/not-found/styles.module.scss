@@ -1,0 +1,50 @@
+.page {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh;
+  color: #fff;
+  background: radial-gradient(
+      260.1% 120.1% at 50% 105.03%,
+      rgba(26, 201, 239, 0.2) 0%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    var(--Blocks-Primary, #31343f);
+}
+
+.body {
+  max-width: 556px;
+  margin: 0 auto;
+  padding-top: 5%;
+}
+
+.logo {
+  display: block;
+  margin-bottom: 9%;
+  a {
+    width: 360px;
+    height: 67px;
+    margin: 0 auto;
+    img {
+      object-fit: contain;
+    }
+  }
+}
+.title {
+}
+
+.text {
+  font-weight: 700;
+  font-size: 42px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.link {
+  color: #fff;
+  font-size: 29px !important;
+  font-weight: 700;
+  border-radius: 10.402px !important;
+
+  text-decoration: none;
+  height: 75px !important;
+}

@@ -22,7 +22,7 @@ export const Match: FC<IProps> = ({ match }) => {
       <Link href={match.url} className={styles.href}></Link>
       <div className={styles.left}>
         <div className={`flex item-center js-between ${styles.first}`}>
-          <button className={styles.favorites}>
+          <button className={`${styles.favorites} favorite-icon`}>
             <IconFavorite />
           </button>
           {time === "finish" ? (

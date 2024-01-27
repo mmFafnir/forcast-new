@@ -12,7 +12,7 @@ interface IProps {
 export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
   return (
     <div className={styles.body}>
-      <button className={styles.button}>
+      <button className={`${styles.button} favorite-icon`}>
         <IconFavorite />
       </button>
       <div className={styles.league}>

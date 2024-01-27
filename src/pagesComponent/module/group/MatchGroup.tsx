@@ -7,6 +7,7 @@ import { Match } from "@/entities/match";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import IconEmpty from "@/shared/icons/IconEmpty";
 import { getMatchSoccer } from "@/pagesComponent/api/soccer/getMatchSoccer";
+import Loader from "@/shared/UI/Loader";
 
 interface IProps {
   matches: ILeagues[];
@@ -35,7 +36,7 @@ export const MatchesGroup: FC<IProps> = ({ matches }) => {
     <div className="flex-1">
       {loading && (
         <div className="loader-body">
-          <span className="loader-spin"></span>
+          <Loader />
         </div>
       )}
       {!loading && data.length === 0 && (

@@ -8,6 +8,7 @@ import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { getMatchHome } from "../../api/main/getMatchHome";
 import IconEmpty from "@/shared/icons/IconEmpty";
 import { PremMatchBanner } from "@/entities/banners";
+import Loader from "@/shared/UI/Loader";
 
 interface IProps {
   matches: TypeSportGroup[];
@@ -37,7 +38,7 @@ export const MatchesGroupHome: FC<IProps> = ({ matches }) => {
     <div className="flex-1">
       {loading && (
         <div className="loader-body">
-          <span className="loader-spin"></span>
+          <Loader />
         </div>
       )}
       {!loading && data.length === 0 && (

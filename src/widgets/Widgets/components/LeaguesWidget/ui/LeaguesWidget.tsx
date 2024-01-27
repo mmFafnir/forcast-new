@@ -5,6 +5,7 @@ import Image from "next/image";
 import { IFetchLeague } from "../types/TypeLeague";
 import { getLeagues } from "../api/getLeagues";
 import { PinButton } from "@/features/favorites";
+import Loader from "@/shared/UI/Loader";
 
 export const LeaguesWidget = () => {
   const [data, setData] = useState<IFetchLeague[]>([]);
@@ -29,7 +30,7 @@ export const LeaguesWidget = () => {
     <>
       {loading && (
         <div className="loader-body">
-          <span className="loader-spin"></span>
+          <Loader />
         </div>
       )}
       {data.length === 0 && (

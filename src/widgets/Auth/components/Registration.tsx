@@ -1,9 +1,11 @@
 "use client";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import styles from "../styles/auth.module.scss";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Button from "@/shared/UI/Button";
 import { OtherRegister } from "./OtherRegister";
+import { register } from "../api/register";
+import { ErrorValid } from "@/shared/types/ErrorType";
 
 interface IFormInputs {
   email: string;
@@ -12,8 +14,23 @@ interface IFormInputs {
 }
 
 export const Registration: FC = () => {
-  const { handleSubmit, control, reset } = useForm<IFormInputs>();
-  const onSubmit: SubmitHandler<IFormInputs> = (data) => console.log(data);
+  const { handleSubmit, control, reset, setError } = useForm<IFormInputs>();
+  const onSubmit: SubmitHandler<IFormInputs> = (data) => {
+    register(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((errs: ErrorValid[]) => {
+        errs.forEach((item) => {
+          console.log(item);
+          if (item.key === "default") return;
+          // @ts-ignore
+          setError(item.key, {
+            message: item.message,
+          });
+        });
+      });
+  };
 
   return (
     <div className={styles.body}>
@@ -23,6 +40,7 @@ export const Registration: FC = () => {
           <Controller
             name="email"
             control={control}
+            defaultValue=""
             rules={{ required: "Обязательно поле" }}
             render={({ field, fieldState: { error } }) => (
               <div className={styles.inputDiv}>
@@ -38,6 +56,7 @@ export const Registration: FC = () => {
           <Controller
             name="password"
             control={control}
+            defaultValue=""
             rules={{ required: "Обязательно поле" }}
             render={({ field, fieldState: { error } }) => (
               <div className={styles.inputDiv}>
@@ -54,6 +73,7 @@ export const Registration: FC = () => {
           <Controller
             name="promo_code"
             control={control}
+            defaultValue=""
             render={({ field }) => (
               <div className={styles.inputDiv}>
                 <input
