@@ -34,6 +34,8 @@ export const MatchesGroupHome: FC<IProps> = ({ matches }) => {
       .finally(() => setLoading(false));
   }, [date, timeStatus]);
 
+  console.log(data);
+
   return (
     <div className="flex-1">
       {loading && (
@@ -53,13 +55,13 @@ export const MatchesGroupHome: FC<IProps> = ({ matches }) => {
             key={group.id}
             title={group.name}
             icon={group.url}
-            total={20}
+            total={group.games_count}
           >
             {group.league.map((lig, index) => (
               <SportGroup
                 key={index}
                 headerRender={<FavoritesLeagueHeader league={lig} />}
-                total={20}
+                total={lig.games.length}
               >
                 {lig.games.map((game, indexGame) => (
                   <Match key={game.id} match={game} />

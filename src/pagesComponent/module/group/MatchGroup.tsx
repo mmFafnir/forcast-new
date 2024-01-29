@@ -16,7 +16,7 @@ interface IProps {
 export const MatchesGroup: FC<IProps> = ({ matches }) => {
   const [data, setData] = useState<ILeagues[]>(matches);
   const [loading, setLoading] = useState<boolean | null>(null);
-  const { date } = useTypeSelector((state) => state.filters);
+  const { date, timeStatus } = useTypeSelector((state) => state.filters);
 
   useEffect(() => {
     if (loading === null) {
@@ -24,13 +24,15 @@ export const MatchesGroup: FC<IProps> = ({ matches }) => {
       return;
     }
     setLoading(true);
-    getMatchSoccer({ date })
+    getMatchSoccer({ date, timeStatus })
       .then((res) => {
         console.log(res);
         setData(res.data);
       })
       .finally(() => setLoading(false));
-  }, [date]);
+  }, [date, timeStatus]);
+
+  console.log(data);
 
   return (
     <div className="flex-1">

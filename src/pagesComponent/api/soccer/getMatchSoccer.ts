@@ -1,8 +1,10 @@
 import axios from "@/shared/core/axios";
 import { IFetchMatch } from "../../types/IFetchMatch";
+import { TypeTimeStatus } from "@/features/filters";
 
 interface IParams {
   date: string;
+  timeStatus: TypeTimeStatus;
 }
 
 const defaultRes = {
@@ -21,9 +23,9 @@ export const getMatchSoccer = async (
   params?: IParams
 ): Promise<IFetchMatch> => {
   try {
-    const { date } = params || { date: "" };
+    const { date, timeStatus } = params || { date: "", timeStatus: "" };
     const { data } = await axios.get(
-      `/get_matches?start_date=${date}&end_date=${date}`
+      `/get_matches?start_date=${date}&time_status=${timeStatus}`
     );
     console.log(data);
     return { data: data.data };
