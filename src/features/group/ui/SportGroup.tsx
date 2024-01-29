@@ -39,9 +39,16 @@ export const SportGroup: FC<IProps> = ({
     ref: listRef,
   });
 
-  useEffect(() => {
+  const startInitialSticky = () => {
     if (!bodyRef.current) return;
     initialSticky(bodyRef.current);
+  };
+
+  useEffect(() => {
+    startInitialSticky();
+    document.addEventListener("resize", startInitialSticky);
+
+    return () => document.removeEventListener("resize", startInitialSticky);
   }, []);
 
   return (

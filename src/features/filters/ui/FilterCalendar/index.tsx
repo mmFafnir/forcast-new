@@ -10,7 +10,7 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setDate } from "../../slice/filterSlice";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
-const today = dayjs("2023-11-03").format("YYYY-MM-DD");
+const today = dayjs("2023-11-02").format("YYYY-MM-DD");
 const FilterCalendar = () => {
   const dispatch = useTypeDispatch();
   const { timeStatus } = useTypeSelector((state) => state.filters);
@@ -22,7 +22,7 @@ const FilterCalendar = () => {
   function updateSorting(sortOrder: string) {
     if (!searchParams) return;
     setValue(sortOrder);
-    if (sortOrder === dayjs("2023-11-03").format("YYYY-MM-DD")) {
+    if (sortOrder === dayjs("2023-11-02").format("YYYY-MM-DD")) {
       // window.history.pushState(null, "", `/`);
       dispatch(setDate(""));
       return;
@@ -46,7 +46,7 @@ const FilterCalendar = () => {
 
   useEffect(() => {
     if (timeStatus !== 1) return;
-    updateSorting("2023-11-03");
+    updateSorting("2023-11-02");
   }, [timeStatus]);
 
   if (timeStatus === 1) return <></>;
