@@ -16,7 +16,6 @@ interface IProps {
 
 export const Match: FC<IProps> = ({ match }) => {
   const time = getTimeStatusMatch(match.real_date);
-  console.log(match);
   return (
     <div className={`${styles.body}`}>
       <Link href={match.url} className={styles.href}></Link>

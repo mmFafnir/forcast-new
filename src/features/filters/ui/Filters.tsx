@@ -26,8 +26,6 @@ export const Filters = () => {
     if (window.innerWidth <= 750) setIsMob(true);
   }, []);
 
-  console.log(isMob);
-
   return (
     <div className={`flex jc-between ${styles.body}`}>
       {isMob && <FilterMobile />}

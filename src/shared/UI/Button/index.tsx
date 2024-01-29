@@ -19,6 +19,7 @@ interface IProps {
   htmlType?: "button" | "submit";
   title?: string;
   loading?: boolean;
+  iconButton?: boolean;
 }
 const Button: FC<IProps> = ({
   className = "",
@@ -34,6 +35,7 @@ const Button: FC<IProps> = ({
   htmlType = "button",
   title,
   loading = false,
+  iconButton = false,
 }) => {
   const newStyles = { width, height, ...style };
 
@@ -45,9 +47,12 @@ const Button: FC<IProps> = ({
         style={newStyles}
         href={href}
         title={title}
-        className={`${styles.button} ${
-          active ? styles.active : ""
-        } ${className} ${styles[type]}`}
+        className={`
+          ${styles.button} 
+          ${active ? styles.active : ""} 
+          ${className} 
+          ${iconButton ? styles.iconBtn : ""} 
+          ${styles[type]}`}
         target={target}
       >
         {children}
@@ -59,9 +64,13 @@ const Button: FC<IProps> = ({
       title={title}
       style={newStyles}
       onClick={handlerClick}
-      className={`${styles.button} ${
-        active ? styles.active : ""
-      } ${className} ${styles[type]} ${loading ? styles.disable : ""}`}
+      className={`
+        ${styles.button} 
+        ${active ? styles.active : ""} 
+        ${className} 
+        ${styles[type]} 
+        ${iconButton ? styles.iconBtn : ""} 
+        ${loading ? styles.disable : ""}`}
     >
       {!loading && children}
       {loading && (

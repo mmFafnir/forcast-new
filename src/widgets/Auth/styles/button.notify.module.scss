@@ -1,0 +1,31 @@
+.body {
+  position: relative;
+  p {
+    position: absolute;
+    left: -37px;
+    background: green;
+    max-width: 54px;
+    height: 23px;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    border-radius: 5px;
+    background: #ff5e5e;
+    padding: 4px 10px;
+    span {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      right: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 7px solid transparent;
+      border-left: 9px solid #ff5e5e;
+    }
+  }
+}

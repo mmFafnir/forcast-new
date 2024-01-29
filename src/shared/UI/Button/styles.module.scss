@@ -88,6 +88,11 @@
   pointer-events: none;
 }
 
+.iconBtn {
+  border-radius: 50%;
+  padding: 5px;
+}
+
 @keyframes loader {
   0% {
     transform: rotate(0deg);

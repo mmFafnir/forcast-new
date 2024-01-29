@@ -54,7 +54,7 @@ export const TimezoneSelect = () => {
         </button>
       )}
       <div className={`${styles.list} ${open ? styles.show : ""}`}>
-        <MyScrollbar universal={true}>
+        <MyScrollbar>
           {data.map((item) => (
             <button
               title={`${item.utc} ${item.zone}`}

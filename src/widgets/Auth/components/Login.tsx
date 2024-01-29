@@ -35,7 +35,6 @@ export const Login: FC = () => {
   };
 
   useEffect(() => {
-    console.log(errorsValid);
     errorsValid.forEach((err) => {
       // @ts-ignore
       setError(err.key, { message: err.message });

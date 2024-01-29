@@ -27,7 +27,6 @@ export const getMatchSoccer = async (
     const { data } = await axios.get(
       `/get_matches?start_date=${date}&time_status=${timeStatus}`
     );
-    console.log(data);
     return { data: data.data };
   } catch (error) {
     console.log(error);

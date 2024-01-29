@@ -11,7 +11,6 @@ export interface IRegisterParams {
 export const register = async (params: IRegisterParams) => {
   try {
     const { data } = await axios.post("/register", params);
-    console.log(data);
   } catch (error) {
     const err = error as AxiosError<{ message: { [ket: string]: string[] } }>;
     if (err.response && err.response.data.message) {

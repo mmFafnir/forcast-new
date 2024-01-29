@@ -16,7 +16,6 @@ export const LeaguesWidget = () => {
     setLoading(true);
     getLeagues()
       .then((res) => {
-        console.log(res);
         setData(res);
       })
       .catch(() => {

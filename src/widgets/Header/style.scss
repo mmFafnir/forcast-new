@@ -9,6 +9,7 @@
   background-color: var(--bg-main);
   top: 0px;
   z-index: 12;
+
   &__logo {
     width: 200px;
     transition-duration: 0.5s;
@@ -41,13 +42,16 @@
         margin-right: 0;
       }
       &.header__logo {
-        margin-right: 30px;
+        margin-right: 21px;
       }
     }
   }
+
   &__bread {
     flex: 1 1 auto;
     height: 100%;
+    width: 100%;
+    overflow: hidden;
     margin-left: 20px;
     display: flex;
     flex-direction: column;

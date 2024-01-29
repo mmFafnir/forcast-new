@@ -14,6 +14,7 @@ import { positionValues } from "react-custom-scrollbars-2";
 import { TypeCountry } from "./types/TypeCountry";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
 import Loader from "@/shared/UI/Loader";
+import { Scrollbar } from "react-scrollbars-custom";
 const CountriesWidget = () => {
   const [data, setData] = useState<TypeCountry[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -79,19 +80,14 @@ const CountriesWidget = () => {
           onChange={handleChange}
         />
       </div>
-      <div className={styles.list}>
+      <div className={`${styles.list} scrollbar`}>
         {loading && (
           <div className="loader-body">
             <Loader />
           </div>
         )}
         {data.length == 0 && <p className={styles.empty}>Не найдено</p>}
-        <MyScrollbar
-          universal={true}
-          renderTrackHorizontal={() => <div></div>}
-          autoHide
-          onUpdate={scrollBottom}
-        >
+        <MyScrollbar className="scrollbar-track-0">
           {data.map((item) => (
             <Country key={item.id} item={item} />
           ))}

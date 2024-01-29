@@ -1,30 +1,33 @@
-import React, { FC, ReactNode } from "react";
-import Scrollbars, { ScrollbarProps } from "react-custom-scrollbars-2";
+"use client";
+import React, { CSSProperties, FC, ReactNode } from "react";
+import SimpleBar from "simplebar-react";
+import "simplebar-react/dist/simplebar.min.css";
 import styles from "./styles.module.scss";
 
-interface IProps extends ScrollbarProps {
+interface IProps {
   children: ReactNode;
+  className?: string;
   scrollSize?: "big" | "small";
+  style?: CSSProperties;
+  autoHide?: boolean;
 }
 
 const MyScrollbar: FC<IProps> = ({
   children,
+  className = "",
   scrollSize = "small",
-  ...rest
+  autoHide = true,
+  style = {},
 }) => {
   return (
-    <Scrollbars
-      className={styles[scrollSize]}
-      {...rest}
-      renderTrackVertical={(opt) => (
-        <div className={styles.track} style={opt.style}></div>
-      )}
-      renderThumbVertical={(opt) => (
-        <div className={styles.trumb} style={opt.style}></div>
-      )}
+    <SimpleBar
+      style={style}
+      autoHide={false}
+      onScroll={(e) => console.log(e)}
+      className={`${styles.body} ${autoHide ? "scroll-hide" : ""} ${className}`}
     >
       {children}
-    </Scrollbars>
+    </SimpleBar>
   );
 };
 

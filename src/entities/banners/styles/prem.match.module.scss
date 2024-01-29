@@ -13,6 +13,9 @@
 }
 .text {
   margin-bottom: 1px;
+  i {
+    font-style: normal;
+  }
   span {
     font-size: 20px;
     color: #ffd748;
@@ -23,6 +26,7 @@
   .body {
     font-size: 12px;
     padding: 13px 10px;
+    margin-bottom: 10px;
   }
   .text {
     span {

@@ -22,7 +22,7 @@ export const Registration: FC = () => {
       })
       .catch((errs: ErrorValid[]) => {
         errs.forEach((item) => {
-          console.log(item);
+          item;
           if (item.key === "default") return;
           // @ts-ignore
           setError(item.key, {

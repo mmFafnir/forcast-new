@@ -28,13 +28,10 @@ export const MatchesGroupHome: FC<IProps> = ({ matches }) => {
     setLoading(true);
     getMatchHome({ date, timeStatus })
       .then((res) => {
-        console.log(res);
         setData(res);
       })
       .finally(() => setLoading(false));
   }, [date, timeStatus]);
-
-  console.log(data);
 
   return (
     <div className="flex-1">

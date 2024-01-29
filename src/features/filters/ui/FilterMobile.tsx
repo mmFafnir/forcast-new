@@ -36,7 +36,6 @@ export const FilterMobile: FC = () => {
   useEffect(() => {
     const onCloseOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      console.log("click");
       if (target.closest(`.${styles.body}`)) return;
       onClose();
     };

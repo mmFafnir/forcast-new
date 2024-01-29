@@ -39,17 +39,17 @@ export const SportGroup: FC<IProps> = ({
     ref: listRef,
   });
 
-  const startInitialSticky = () => {
-    if (!bodyRef.current) return;
-    initialSticky(bodyRef.current);
-  };
+  // const startInitialSticky = () => {
+  //   if (!bodyRef.current) return;
+  //   initialSticky(bodyRef.current);
+  // };
 
-  useEffect(() => {
-    startInitialSticky();
-    document.addEventListener("resize", startInitialSticky);
+  // useEffect(() => {
+  //   startInitialSticky();
+  //   document.addEventListener("resize", startInitialSticky);
 
-    return () => document.removeEventListener("resize", startInitialSticky);
-  }, []);
+  //   return () => document.removeEventListener("resize", startInitialSticky);
+  // }, []);
 
   return (
     <div ref={bodyRef} className={`${styles.body} group-list`}>

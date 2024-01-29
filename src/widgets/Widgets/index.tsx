@@ -2,7 +2,6 @@
 
 import { FC, ReactNode } from "react";
 import styles from "./widgets.module.scss";
-import Scrollbars from "react-custom-scrollbars-2";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { closeWidgets } from "@/features/closeSidebar/slice/closeSidebarSlice";
@@ -26,7 +25,7 @@ const Widgets: FC<IProps> = ({ widgets }) => {
       <div className={`${styles.body} ${activeWidgets ? styles.active : ""}`}>
         <div className={styles.content}>
           <div className={styles.scroll}>
-            <MyScrollbar universal={true} autoHide>
+            <MyScrollbar>
               {widgets.map((wid, index) => (
                 <div className={styles.item} key={index}>
                   {wid}

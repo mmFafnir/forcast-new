@@ -9,7 +9,6 @@ interface IProps {
 }
 
 const Match: NextPage<IProps> = ({ params }) => {
-  console.log(params);
   return <MatchPage id={params.matchId} />;
 };
 

@@ -1,22 +1,23 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import { SportGroup } from "@/features/group";
 import { Accordion } from "./ui/Accordion";
+import { ScrollbarProvider } from "@/app/providers/ScrollbarProvider";
 
 const FaqPage = () => {
   return (
-    <div className={styles.page}>
-      <h1>Вопросы и ответы</h1>
-      <div className={styles.content}>
-        <Accordion title={"Какие существуют способы оплаты?"}>
-          <div>
-            <p>
-              {`This Policy is subject to and made a part of the Usacashlink.com
+    <ScrollbarProvider>
+      <div className={styles.page}>
+        <h1>Вопросы и ответы</h1>
+        <div className={styles.content}>
+          <Accordion title={"Какие существуют способы оплаты?"}>
+            <div>
+              <p>
+                {`This Policy is subject to and made a part of the Usacashlink.com
               Terms of Use ("Terms"), which are incorporated into this Policy by
               reference.`}
-            </p>
-            <p>
-              {`Thank you for visiting the Usacashlink.com website located at
+              </p>
+              <p>
+                {`Thank you for visiting the Usacashlink.com website located at
               Usacashlink.com (the "Website" or "Sites"). The Website is owned
               and operated by Usacashlink.com ("Usacashlink.com", "we", "us", or
               "our"). Usacashlink.com is committed to protecting the privacy of
@@ -33,27 +34,27 @@ const FaqPage = () => {
               provide its products or services("Services"). If you do not agree
               to this Privacy Policy in its entirety, you are not authorized to
               register and/or use the Website in any manner or form whatsoever.`}
-            </p>
-            <p>
-              {`The Sites are intended for adult use only, and we do not knowingly
+              </p>
+              <p>
+                {`The Sites are intended for adult use only, and we do not knowingly
               collect any Personal Information from a minor. If you learn that a
               child has, in violation of this Policy, provided their Personal
               Information, please report it to us for deletion. In the event
               that we learn that a child has provided us with Personal
               Information, we will delete it. Please see section 11, "Children,"
               for more info.`}
-            </p>
-          </div>
-        </Accordion>
-        <Accordion title={"Какие существуют способы оплаты?"}>
-          <div>
-            <p>
-              {`This Policy is subject to and made a part of the Usacashlink.com
+              </p>
+            </div>
+          </Accordion>
+          <Accordion title={"Какие существуют способы оплаты?"}>
+            <div>
+              <p>
+                {`This Policy is subject to and made a part of the Usacashlink.com
               Terms of Use ("Terms"), which are incorporated into this Policy by
               reference.`}
-            </p>
-            <p>
-              {`Thank you for visiting the Usacashlink.com website located at
+              </p>
+              <p>
+                {`Thank you for visiting the Usacashlink.com website located at
               Usacashlink.com (the "Website" or "Sites"). The Website is owned
               and operated by Usacashlink.com ("Usacashlink.com", "we", "us", or
               "our"). Usacashlink.com is committed to protecting the privacy of
@@ -70,27 +71,27 @@ const FaqPage = () => {
               provide its products or services("Services"). If you do not agree
               to this Privacy Policy in its entirety, you are not authorized to
               register and/or use the Website in any manner or form whatsoever.`}
-            </p>
-            <p>
-              {`The Sites are intended for adult use only, and we do not knowingly
+              </p>
+              <p>
+                {`The Sites are intended for adult use only, and we do not knowingly
               collect any Personal Information from a minor. If you learn that a
               child has, in violation of this Policy, provided their Personal
               Information, please report it to us for deletion. In the event
               that we learn that a child has provided us with Personal
               Information, we will delete it. Please see section 11, "Children,"
               for more info.`}
-            </p>
-          </div>
-        </Accordion>
-        <Accordion title={"Какие существуют способы оплаты?"}>
-          <div>
-            <p>
-              {`This Policy is subject to and made a part of the Usacashlink.com
+              </p>
+            </div>
+          </Accordion>
+          <Accordion title={"Какие существуют способы оплаты?"}>
+            <div>
+              <p>
+                {`This Policy is subject to and made a part of the Usacashlink.com
               Terms of Use ("Terms"), which are incorporated into this Policy by
               reference.`}
-            </p>
-            <p>
-              {`Thank you for visiting the Usacashlink.com website located at
+              </p>
+              <p>
+                {`Thank you for visiting the Usacashlink.com website located at
               Usacashlink.com (the "Website" or "Sites"). The Website is owned
               and operated by Usacashlink.com ("Usacashlink.com", "we", "us", or
               "our"). Usacashlink.com is committed to protecting the privacy of
@@ -107,27 +108,27 @@ const FaqPage = () => {
               provide its products or services("Services"). If you do not agree
               to this Privacy Policy in its entirety, you are not authorized to
               register and/or use the Website in any manner or form whatsoever.`}
-            </p>
-            <p>
-              {`The Sites are intended for adult use only, and we do not knowingly
+              </p>
+              <p>
+                {`The Sites are intended for adult use only, and we do not knowingly
               collect any Personal Information from a minor. If you learn that a
               child has, in violation of this Policy, provided their Personal
               Information, please report it to us for deletion. In the event
               that we learn that a child has provided us with Personal
               Information, we will delete it. Please see section 11, "Children,"
               for more info.`}
-            </p>
-          </div>
-        </Accordion>
-        <Accordion title={"Какие существуют способы оплаты?"}>
-          <div>
-            <p>
-              {`This Policy is subject to and made a part of the Usacashlink.com
+              </p>
+            </div>
+          </Accordion>
+          <Accordion title={"Какие существуют способы оплаты?"}>
+            <div>
+              <p>
+                {`This Policy is subject to and made a part of the Usacashlink.com
               Terms of Use ("Terms"), which are incorporated into this Policy by
               reference.`}
-            </p>
-            <p>
-              {`Thank you for visiting the Usacashlink.com website located at
+              </p>
+              <p>
+                {`Thank you for visiting the Usacashlink.com website located at
               Usacashlink.com (the "Website" or "Sites"). The Website is owned
               and operated by Usacashlink.com ("Usacashlink.com", "we", "us", or
               "our"). Usacashlink.com is committed to protecting the privacy of
@@ -144,20 +145,21 @@ const FaqPage = () => {
               provide its products or services("Services"). If you do not agree
               to this Privacy Policy in its entirety, you are not authorized to
               register and/or use the Website in any manner or form whatsoever.`}
-            </p>
-            <p>
-              {`The Sites are intended for adult use only, and we do not knowingly
+              </p>
+              <p>
+                {`The Sites are intended for adult use only, and we do not knowingly
               collect any Personal Information from a minor. If you learn that a
               child has, in violation of this Policy, provided their Personal
               Information, please report it to us for deletion. In the event
               that we learn that a child has provided us with Personal
               Information, we will delete it. Please see section 11, "Children,"
               for more info.`}
-            </p>
-          </div>
-        </Accordion>
+              </p>
+            </div>
+          </Accordion>
+        </div>
       </div>
-    </div>
+    </ScrollbarProvider>
   );
 };
 
