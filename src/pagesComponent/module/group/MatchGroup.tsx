@@ -19,6 +19,7 @@ export const MatchesGroup: FC<IProps> = ({ matches }) => {
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
 
   useEffect(() => {
+    console.log(date, timeStatus);
     if (loading === null) {
       setLoading(false);
       return;
@@ -31,9 +32,11 @@ export const MatchesGroup: FC<IProps> = ({ matches }) => {
       })
       .finally(() => setLoading(false));
   }, [date, timeStatus]);
+
   useEffect(() => {
-    console.log(matches);
-  }, []);
+    console.log(data);
+  }, [data]);
+
   return (
     <div className="flex-1">
       {loading && (

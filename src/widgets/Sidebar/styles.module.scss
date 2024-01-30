@@ -135,11 +135,17 @@
   .content {
     position: static;
     height: 100%;
+    padding-top: 0;
+  }
+
+  .logo {
+    display: none;
   }
 }
 
 @media (max-width: 500px) {
   .body {
     width: 274px;
+    padding-top: 20px;
   }
 }
