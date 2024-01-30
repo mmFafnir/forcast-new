@@ -1,30 +1,22 @@
 "use client";
-import {
-  ChangeEvent,
-  ChangeEventHandler,
-  memo,
-  useEffect,
-  useState,
-} from "react";
+import { ChangeEvent, memo, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { IconSearch } from "@/features/search";
 import { Country } from "./ui/Country";
 import { getCountries } from "./api/getCountries";
-import { positionValues } from "react-custom-scrollbars-2";
 import { TypeCountry } from "./types/TypeCountry";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
 import Loader from "@/shared/UI/Loader";
-import { Scrollbar } from "react-scrollbars-custom";
 const CountriesWidget = () => {
   const [data, setData] = useState<TypeCountry[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [nextPage, setNextPage] = useState<string | null>("/get_country");
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  const scrollBottom = (values: positionValues) => {
-    if (values.top !== 1) return;
-    fetchCountries(nextPage);
-  };
+  // const scrollBottom = (values: positionValues) => {
+  //   if (values.top !== 1) return;
+  //   fetchCountries(nextPage);
+  // };
 
   const fetchCountries = (page: string | null) => {
     if (page === null) return;

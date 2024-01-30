@@ -1,0 +1,111 @@
+.react-calendar {
+  border-radius: 9px;
+  background: rgba(34, 37, 47, 0.8) !important;
+  backdrop-filter: blur(5.625px);
+  font-size: 12px;
+  font-family: inherit !important;
+  width: 282px !important;
+  max-width: none !important;
+  padding: 14px;
+  position: absolute;
+  right: 0;
+  top: 48px;
+  border: none !important;
+  opacity: 0;
+  visibility: hidden;
+  transition-duration: 0.1s;
+
+  &.calendar-open {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+.react-calendar__tile {
+  width: 30px;
+  flex: 0 0 30px !important;
+  height: 30px;
+  border-radius: 3px;
+  margin: 3px !important;
+  padding: 0 !important;
+  background: #292c36 !important;
+
+  @media (min-width: 901px) {
+    &:hover {
+      background: #414450 !important;
+    }
+  }
+
+  &.react-calendar__tile--active {
+    background: linear-gradient(0deg, #6064c2 0%, #6064c2 100%),
+      linear-gradient(
+        180deg,
+        rgba(236, 120, 255, 0.2) 0%,
+        rgba(0, 0, 0, 0) 100%
+      ),
+      #292c36 !important;
+  }
+
+  &.react-calendar__tile--now {
+    background-color: #22252f !important;
+  }
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  flex: 0 0 30px !important;
+  height: 30px;
+  width: 30px;
+  margin: 6px 3px !important;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: normal;
+  color: #8a8a8a;
+  abbr {
+    text-decoration: none;
+  }
+}
+
+.react-calendar__navigation {
+  height: 23px !important;
+  button {
+    min-width: 23px !important;
+    border-radius: 4px;
+    @media (min-width: 901px) {
+      &:hover {
+        background: #414450 !important;
+      }
+    }
+  }
+}
+
+.react-calendar__navigation button:enabled:focus,
+.react-calendar__navigation button:disabled {
+  background-color: transparent !important;
+}
+.react-calendar__navigation button:disabled {
+  color: #757575 !important;
+  pointer-events: none;
+}
+
+.react-calendar__year-view__months__month {
+  width: auto !important;
+  flex: 1 1 47% !important;
+}
+
+.react-calendar__decade-view__years__year,
+.react-calendar__century-view__decades__decade {
+  width: auto !important;
+  flex: 1 1 47% !important;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #fff !important;
+
+  &.react-calendar__month-view__days__day--neighboringMonth {
+    color: #757575 !important;
+  }
+  &:disabled {
+    color: #ababab !important;
+  }
+}

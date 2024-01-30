@@ -1,3 +1,99 @@
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg-main);
+  color: #fff;
+}
+
+input {
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1470px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.logo-icon {
+  border-radius: 50%;
+}
+.logo-country {
+  border-radius: 2px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+h3,
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.relative {
+  position: relative;
+}
+
+.page-text-block {
+  margin-top: 40px;
+  h3 {
+    margin-bottom: 15px;
+  }
+  p {
+    line-height: 1.5;
+    font-size: 14px;
+  }
+}
+
+.icon-arrow {
+  display: block;
+  position: relative;
+  width: 16px !important;
+  height: 16px !important;
+  transform: rotate(180deg);
+  svg {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    transition-duration: 100ms;
+  }
+  svg:first-child {
+    width: 100%;
+    height: 100%;
+  }
+  svg:last-child {
+    top: calc(50%);
+    opacity: 0;
+  }
+}
+
+.acc-hover {
+  @media (min-width: 901px) {
+    &:hover {
+      .icon-arrow {
+        svg:last-child {
+          top: calc(50% - 5px);
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
 .modal-close {
   width: 31px;
   height: 31px;
@@ -5,7 +101,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
   padding: 7px;
   svg {
     width: 100%;
@@ -71,7 +167,7 @@
   width: 100%;
   height: 100%;
   background-color: #0000003a;
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
 
   &.close {
     opacity: 0;
@@ -82,7 +178,7 @@
 .favorite-icon {
   svg,
   svg path {
-    transition-duration: 0.3s;
+    transition-duration: 100ms;
   }
 
   svg > path {
@@ -131,7 +227,7 @@
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1250px) {
   .bg-hover {
     display: block;
   }

@@ -24,14 +24,16 @@ export const MatchesGroup: FC<IProps> = ({ matches }) => {
       return;
     }
     setLoading(true);
-    getMatchSoccer({ date, timeStatus })
+    getMatchSoccer({ date: timeStatus === 1 ? "" : date, timeStatus })
       .then((res) => {
         console.log(res);
         setData(res.data);
       })
       .finally(() => setLoading(false));
   }, [date, timeStatus]);
-
+  useEffect(() => {
+    console.log(matches);
+  }, []);
   return (
     <div className="flex-1">
       {loading && (

@@ -10,14 +10,14 @@
 .content {
   overflow: hidden;
   position: relative;
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
 
   background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   &::before {
     // content: "";
-    transition-duration: 0.3s;
+    transition-duration: 100ms;
     display: block;
     position: absolute;
     width: 100%;
@@ -44,7 +44,7 @@
 .more {
   font-weight: 700;
   margin-top: 14px;
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
   @media (min-width: 901px) {
     &:hover {
       color: #dac285;

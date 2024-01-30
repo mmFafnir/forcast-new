@@ -22,7 +22,7 @@
   }
 
   i {
-    transition-duration: 0.3s;
+    transition-duration: 100ms;
     span {
       margin: 0;
       width: 14px !important;
@@ -33,7 +33,7 @@
 
 .list {
   overflow: hidden;
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
   position: absolute;
   background: rgba(0, 0, 0, 0.2);
   width: 100%;

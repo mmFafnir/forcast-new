@@ -11,6 +11,7 @@ import styles from "./styles.module.scss";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { closeSidebar } from "@/features/closeSidebar/slice/closeSidebarSlice";
 import { TelegramButton } from "@/features/shared";
+import Logo from "@/shared/UI/Logo";
 
 const Sidebar = () => {
   const dispatch = useTypeDispatch();
@@ -28,6 +29,13 @@ const Sidebar = () => {
       <div className={`${styles.body} ${activeSidebar ? styles.close : ""}`}>
         <div className={styles.wrapper}>
           <div className={styles.content}>
+            <div
+              className={`${styles.logo} ${activeSidebar ? styles.active : ""}`}
+            >
+              <div>
+                <Logo style={{ flex: "0 0 160px" }} />
+              </div>
+            </div>
             <div className={styles.search}>
               <Search />
             </div>

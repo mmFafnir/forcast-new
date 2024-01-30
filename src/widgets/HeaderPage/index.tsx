@@ -7,10 +7,14 @@ interface IProps {
 
 const HeaderPage: FC<IProps> = ({ title }) => {
   return (
-    <div className={styles.body}>
+    <>
+      {/* <div className={styles.body}> */}
       <h1 className={styles.title}>{title}</h1>
-      <Filters />
-    </div>
+      <div className={styles.filter}>
+        <Filters />
+      </div>
+      {/* </div> */}
+    </>
   );
 };
 

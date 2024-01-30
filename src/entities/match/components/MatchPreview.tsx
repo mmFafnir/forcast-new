@@ -44,8 +44,8 @@ interface IPropsBread {
 const BreadCrumbs: FC<IPropsBread> = ({ links }) => {
   return (
     <div className={styles.breadcrumbs}>
-      {links.map((link) => (
-        <Link key={link.href} href={link.href}>
+      {links.map((link, index) => (
+        <Link key={index} href={link.href}>
           {link.title}
         </Link>
       ))}
@@ -72,7 +72,7 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
   const time = getTimeStatusMatch(match.real_date);
 
   return (
-    <div className={styles.body}>
+    <div className={`${styles.body} review-match`}>
       <div className={styles.ball}>
         <SportsIcon icon="soccer" width={400} height={400} />
       </div>

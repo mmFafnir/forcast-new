@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   visibility: hidden;
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
   padding-top: 10%;
   align-items: flex-start;
 }
@@ -50,7 +50,7 @@
 
 .bg,
 .wrapper {
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
   opacity: 0;
   visibility: hidden;
 }
@@ -72,7 +72,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition-duration: 0.3s;
+    transition-duration: 100ms;
     @media (min-width: 901px) {
       &:hover {
         background-color: var(--btn-hover-color);

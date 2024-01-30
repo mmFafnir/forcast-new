@@ -1,39 +1,41 @@
 "use client";
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import styles from "../../styles/calendar.module.scss";
-import { getArrayDate } from "../../scripts/gerArrayDate";
+import dayjs from "dayjs";
+import { maxDate, minDate } from ".";
 
 interface IPops {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   day: string;
   setDay: (date: string) => void;
 }
-const days = getArrayDate();
 
 const Button: FC<IPops> = ({ setIsOpen, day, setDay }) => {
   const openList = () => setIsOpen((prev) => !prev);
-  const [indexDay, setIndexDay] = useState<number>(days.indexOf(day));
-  const [disableNext, setDisableNext] = useState<boolean>(false);
-  const [disablePrev, setDisablePrev] = useState<boolean>(false);
 
-  const onNextDay = () => setIndexDay((prev) => prev + 1);
-  const onPrevDay = () => setIndexDay((prev) => prev - 1);
+  const onNextDay = () => setDay(dayjs(day).add(1, "day").format("YYYY-MM-DD"));
+  const onPrevDay = () =>
+    setDay(dayjs(day).subtract(1, "day").format("YYYY-MM-DD"));
 
   useEffect(() => {
-    const day = days[indexDay];
-    setDay(day);
-    indexDay === 0 ? setDisablePrev(true) : setDisablePrev(false);
-    indexDay === days.length - 1 ? setDisableNext(true) : setDisableNext(false);
-  }, [indexDay]);
-
-  useEffect(() => {
-    setIndexDay(days.indexOf(day));
-  }, [day]);
+    const onCloseCalendar = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        !target.closest(".react-calendar") &&
+        !target.closest(`.${styles.button}`)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("click", onCloseCalendar);
+    return () => document.removeEventListener("click", onCloseCalendar);
+  }, []);
 
   return (
     <div className={styles.button}>
       <button
-        disabled={disablePrev}
+        disabled={day === minDate}
         className={styles.prev}
         onClick={onPrevDay}
       >
@@ -56,7 +58,7 @@ const Button: FC<IPops> = ({ setIsOpen, day, setDay }) => {
         <span>{day}</span>
       </button>
       <button
-        disabled={disableNext}
+        disabled={day === maxDate}
         className={styles.next}
         onClick={onNextDay}
       >

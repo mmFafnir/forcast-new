@@ -51,11 +51,14 @@ const MainLayout: FC<IProps> = async ({ children }) => {
     <UserProvider user={user}>
       <div className="container">
         <div className={styles.body}>
-          <Header />
           <div className={styles.flex}>
             <Sidebar />
             <div className="flex flex-1">
-              <div className={styles.page}>{children}</div>
+              <div className={styles.page}>
+                <Header />
+                {children}
+                <Footer />
+              </div>
               <Widgets
                 widgets={[
                   <Tabs

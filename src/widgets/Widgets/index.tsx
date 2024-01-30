@@ -6,6 +6,8 @@ import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { closeWidgets } from "@/features/closeSidebar/slice/closeSidebarSlice";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
+import { TimezoneSelect } from "@/features/timezone";
+import { ButtonLogin } from "../Auth";
 interface IProps {
   widgets: ReactNode[];
 }
@@ -25,6 +27,11 @@ const Widgets: FC<IProps> = ({ widgets }) => {
       <div className={`${styles.body} ${activeWidgets ? styles.active : ""}`}>
         <div className={styles.content}>
           <div className={styles.scroll}>
+            <div className={styles.btns}>
+              {/* <LanguagesSelect /> */}
+              <TimezoneSelect />
+              <ButtonLogin />
+            </div>
             <MyScrollbar>
               {widgets.map((wid, index) => (
                 <div className={styles.item} key={index}>

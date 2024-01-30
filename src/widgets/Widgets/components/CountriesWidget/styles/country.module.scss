@@ -13,10 +13,10 @@
   justify-content: space-between;
 
   p {
-    transition-duration: 0.3s;
+    transition-duration: 100ms;
   }
   span {
-    transition-duration: 0.3s;
+    transition-duration: 100ms;
     flex: 0 0 15px;
     width: 15px;
     line-height: 0;
@@ -48,5 +48,5 @@
 
 .body {
   overflow: hidden;
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
 }

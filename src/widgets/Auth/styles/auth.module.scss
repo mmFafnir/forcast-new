@@ -50,7 +50,7 @@
   text-align: left;
   margin-right: auto;
   display: block;
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
   @media (min-width: 901px) {
     &:hover {
       color: #ffd361;
@@ -74,7 +74,7 @@
   display: block;
   font-size: 16px;
   text-decoration: underline;
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
 
   @media (min-width: 901px) {
     &:hover {

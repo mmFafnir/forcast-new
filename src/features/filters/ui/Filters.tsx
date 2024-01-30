@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/shared/UI/Button";
-import FilterCalendar from "./FilterCalendar";
+import { FilterCalendar } from "./FilterCalendar";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { TypeTimeStatus, setTimeStatus } from "../slice/filterSlice";

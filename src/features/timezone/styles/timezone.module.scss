@@ -21,10 +21,11 @@
   background-color: #22252f;
   border-radius: 5px;
   overflow: hidden;
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
   opacity: 0;
   visibility: hidden;
   height: 300px;
+  z-index: 2;
 
   &.show {
     opacity: 1;
@@ -39,7 +40,7 @@
     width: 100%;
     text-overflow: ellipsis;
     text-align: center;
-    transition-duration: 0.3s;
+    transition-duration: 100ms;
     font-weight: 700;
     @media (min-width: 901px) {
       &:hover {

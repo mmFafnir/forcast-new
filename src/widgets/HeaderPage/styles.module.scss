@@ -1,14 +1,22 @@
 .body {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background-color: var(--bg-main);
+  // position: sticky;
+  // top: 0;
+  // z-index: 10;
+  // background-color: var(--bg-main);
   padding-bottom: 10px;
 }
 .title {
   padding-top: 5px;
   line-height: 1.4;
-  margin-bottom: 25px;
+  // margin-bottom: 25px;
+}
+.filter {
+  position: sticky;
+  z-index: 17;
+  top: 0;
+  padding-top: 25px;
+  padding-bottom: 10px;
+  background-color: var(--bg-main);
 }
 
 @media (max-width: 500px) {

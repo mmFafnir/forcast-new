@@ -31,7 +31,7 @@
   // display: none;
   opacity: 0;
   overflow: hidden;
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
   &.active {
     opacity: 1;
     overflow: visible;

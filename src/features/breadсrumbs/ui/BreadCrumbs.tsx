@@ -16,13 +16,13 @@ const links = [
 export const BreadCrumbs: FC = () => {
   return (
     <div className={styles.body}>
-      <MyScrollbar style={{ height: "auto", width: "100%" }}>
+      <MyScrollbar style={{ height: "auto", width: "99%" }}>
         <div className={"flex item-center h-full"}>
           <button className={styles.btn} style={{ marginRight: 5 }}>
             <span>Прогнозы на спорт</span>
           </button>
-          {links.map((link) => (
-            <Link className={styles.link} key={link.href} href={link.href}>
+          {links.map((link, index) => (
+            <Link className={styles.link} key={index} href={link.href}>
               <span>{link.title}</span>
             </Link>
           ))}

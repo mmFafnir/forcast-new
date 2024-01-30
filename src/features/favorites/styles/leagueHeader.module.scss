@@ -15,7 +15,7 @@
 .pin {
   svg,
   svg path {
-    transition-duration: 0.3s;
+    transition-duration: 100ms;
   }
   @media (min-width: 901px) {
     &:hover {

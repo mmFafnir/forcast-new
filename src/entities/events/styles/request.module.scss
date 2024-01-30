@@ -12,7 +12,7 @@
   font-weight: 700;
   a {
     text-decoration: underline;
-    transition-duration: 0.3s;
+    transition-duration: 100ms;
     @media (min-width: 901px) {
       &:hover {
         color: #ffd361;

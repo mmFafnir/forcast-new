@@ -4,7 +4,7 @@
   padding: 2px 20px;
   margin-top: 10px;
   width: 100%;
-  transition-duration: 0.3s;
+  transition-duration: 100ms;
   border-radius: 5px;
   text-align: left;
   img {
@@ -22,7 +22,7 @@
   }
   button {
     margin-left: auto;
-    transition-duration: 0.3s;
+    transition-duration: 100ms;
   }
 
   @media (min-width: 901px) {
