@@ -6,6 +6,7 @@ import { IFetchLeague } from "../types/TypeLeague";
 import { getLeagues } from "../api/getLeagues";
 import { PinButton } from "@/features/favorites";
 import Loader from "@/shared/UI/Loader";
+import MyScrollbar from "@/shared/UI/MyScrollbar";
 
 export const LeaguesWidget = () => {
   const [data, setData] = useState<IFetchLeague[]>([]);
@@ -27,33 +28,35 @@ export const LeaguesWidget = () => {
   }, []);
   return (
     <>
-      {loading && (
-        <div className="loader-body">
-          <Loader />
-        </div>
-      )}
-      {data.length === 0 && (
-        <div className={styles.empty}>
-          <p>У вас нет избранных лиг, вы можете их закрепить</p>
-        </div>
-      )}
-      {data.map((item) => (
-        <div
-          key={item.id}
-          className={styles.item}
-          title={item.league.league_name}
-        >
-          <Image
-            className="logo-icon"
-            src={`https://admin.aibetguru.com/uploads/${item.league.league_id}.png`}
-            width={400}
-            height={400}
-            alt={item.league.league_name}
-          />
-          <p className={styles.title}>{item.league.league_name}</p>
-          <PinButton active={item.status === "1"} />
-        </div>
-      ))}
+      <MyScrollbar className="scrollbar-track-0">
+        {loading && (
+          <div className="loader-body">
+            <Loader />
+          </div>
+        )}
+        {data.length === 0 && !loading && (
+          <div className={styles.empty}>
+            <p>У вас нет избранных лиг, вы можете их закрепить</p>
+          </div>
+        )}
+        {data.map((item) => (
+          <div
+            key={item.id}
+            className={styles.item}
+            title={item.league.league_name}
+          >
+            <Image
+              className="logo-icon"
+              src={`https://admin.aibetguru.com/uploads/${item.league.league_id}.png`}
+              width={400}
+              height={400}
+              alt={item.league.league_name}
+            />
+            <p className={styles.title}>{item.league.league_name}</p>
+            <PinButton active={item.status === "1"} />
+          </div>
+        ))}
+      </MyScrollbar>
     </>
   );
 };
