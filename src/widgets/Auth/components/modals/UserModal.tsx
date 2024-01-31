@@ -14,6 +14,8 @@ import { PremMatchBanner } from "@/entities/banners";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { logout } from "../../slice/authSlice";
+import { setModal } from "@/shared/UI/Modal/modalSlice";
+import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 
 const UserRole = () => {
   return (
@@ -33,6 +35,7 @@ const UserModal: FC<IProps> = ({ open }) => {
   const dispatch = useTypeDispatch();
 
   const onLogout = () => dispatch(logout());
+  const onOpenModalPrem = () => dispatch(setModal(EnumModals.PREMIUM));
 
   return (
     <div className={`${styles.body} user-modal ${open ? styles.open : ""}`}>
@@ -48,7 +51,7 @@ const UserModal: FC<IProps> = ({ open }) => {
         <UserRole />
       </div>
       <div className={styles.content}>
-        <Button type="text">
+        <Button type="text" onClick={onOpenModalPrem}>
           <IconDiamond />
           <span>Premium доступ</span>
           <span className={styles.premiumTime}>До 21.12.2024</span>
