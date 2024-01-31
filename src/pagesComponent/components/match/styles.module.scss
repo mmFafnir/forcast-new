@@ -10,6 +10,18 @@
   }
 }
 
+.buttonsTable {
+  display: none;
+  align-items: center;
+  margin-left: auto;
+
+  button {
+    margin-right: 10px;
+
+    background: transparent;
+  }
+}
+
 .person {
   display: flex;
   align-items: center;
@@ -19,6 +31,7 @@
     margin-right: 10px;
   }
 }
+
 .view {
   display: flex !important;
 }
@@ -47,4 +60,13 @@
 .recommend {
   margin-top: 40px;
   margin-bottom: 0 !important;
+}
+
+@media (max-width: 1250px) {
+  .buttonsTable {
+    display: flex;
+  }
+  .buttons {
+    display: none;
+  }
 }

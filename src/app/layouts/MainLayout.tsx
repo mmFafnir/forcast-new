@@ -16,6 +16,7 @@ import { cookies } from "next/headers";
 import axios from "@/shared/core/axios";
 import { UserProvider } from "../providers/UserProvider";
 import { ScrollbarProvider } from "../providers/ScrollbarProvider";
+import { ModalPremium } from "@/widgets/Premium";
 
 interface IProps {
   children: ReactNode;
@@ -42,6 +43,7 @@ async function getUser() {
       Authorization: `Bearer ${_token}`,
     },
   });
+
   return data.data;
 }
 
@@ -77,6 +79,7 @@ const MainLayout: FC<IProps> = async ({ children }) => {
         <Toolkit />
         <ModalAuth />
         <ModalSearch />
+        <ModalPremium />
       </div>
     </UserProvider>
   );

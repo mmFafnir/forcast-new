@@ -34,7 +34,7 @@ export const MatchPage: NextPage<IProps> = async ({ id }) => {
           Прогноз на матч: {data.home_team.team_name} -{" "}
           {data.away_team.team_name}
         </h1>
-        <div className={`flex item-center ${styles.buttons} desk`}>
+        <div className={`flex item-center ${styles.buttons}`}>
           <FavoriteAdd />
           <SharedButton />
         </div>
@@ -44,6 +44,10 @@ export const MatchPage: NextPage<IProps> = async ({ id }) => {
           <IconPerson />
           <p>S Æ A-XI</p>
         </Link>
+        <div className={styles.buttonsTable}>
+          <FavoriteAdd />
+          <SharedButton />
+        </div>
         <Views className={styles.view} />
       </div>
       <MatchPreview match={data} />

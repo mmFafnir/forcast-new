@@ -7,8 +7,6 @@ import styles from "../styles/preview.module.scss";
 import SportsIcon from "@/shared/icons/sports";
 import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
 import { getTimeStatusMatch } from "../scripts/getTimeStatusMatch";
-import { FavoriteAdd } from "@/features/favorites";
-import { SharedButton } from "@/features/shared";
 
 interface ITeamProps {
   src: string;
@@ -109,10 +107,6 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
           ) : (
             <button className={styles.live}>{time}</button>
           )}
-          <div className={`flex item-center mob ${styles.buttons}`}>
-            <FavoriteAdd />
-            <SharedButton />
-          </div>
         </div>
       </div>
     </div>

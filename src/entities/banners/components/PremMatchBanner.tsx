@@ -1,13 +1,22 @@
+"use client";
+
 import { FC, ReactNode } from "react";
 import styles from "../styles/prem.match.module.scss";
 import { Premium } from "../ui/Premium";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { setModal } from "@/shared/UI/Modal/modalSlice";
+import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 
 interface IProps {
   text?: string | ReactNode;
 }
 export const PremMatchBanner: FC<IProps> = ({ text }) => {
+  const dispatch = useTypeDispatch();
+
+  const onModalOpen = () => dispatch(setModal(EnumModals.PREMIUM));
+
   return (
-    <div className={styles.body}>
+    <div className={styles.body} onClick={onModalOpen}>
       <Premium />
       <p className={styles.text}>
         {text || (

@@ -11,15 +11,19 @@ interface IProps {
   children: ReactNode;
   name: EnumModals;
   stylesWrapper?: CSSProperties;
-  title?: string;
+  styleContent?: CSSProperties;
+  title?: string | ReactNode;
+  titleAlight?: "left" | "center" | "right";
   styleBody?: CSSProperties;
 }
 const Modal: FC<IProps> = ({
   children,
   stylesWrapper = {},
+  styleContent = stylesWrapper,
   name,
   title,
   styleBody = {},
+  titleAlight = "left",
 }) => {
   const { modal } = useTypeSelector((state) => state.modal);
   const dispatch = useTypeDispatch();
@@ -34,10 +38,12 @@ const Modal: FC<IProps> = ({
         className={`${styles.wrapper} ${title ? styles.wrapperTitle : ""}`}
         style={stylesWrapper}
       >
-        <div style={stylesWrapper}>
+        <div style={styleContent}>
           {title && (
             <div className={styles.header}>
-              <p className={styles.title}>{title}</p>
+              <p className={styles.title} style={{ textAlign: titleAlight }}>
+                {title}
+              </p>
               <button onClick={onClose}>
                 <svg
                   width="11"

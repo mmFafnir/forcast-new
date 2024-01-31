@@ -1,23 +1,23 @@
 .body {
-  text-align: center;
-}
+  margin: 20px 0px;
 
-.close {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-}
-
-.title {
-  font-size: 24px;
-  font-weight: 700;
-  text-align: left;
-  margin-bottom: 20px;
+  .btn {
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 400;
+    background: linear-gradient(
+      268deg,
+      rgba(101, 104, 118, 0.3) -20.78%,
+      rgba(92, 191, 233, 0.3) 95.9%
+    );
+  }
 }
 
 .inputDiv {
   position: relative;
-  margin-bottom: 10px;
+
   span {
     color: #d95555;
     font-size: 10px;
@@ -28,12 +28,12 @@
 }
 .input {
   width: 100%;
-  border-radius: 5px;
-  background: rgba(101, 104, 118, 0.3);
   font-size: 14px;
   padding: 0px 20px;
-  height: 37px;
+  height: 50px;
   text-align: center;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.2);
 }
 .inputDashed {
   width: 100%;
@@ -63,22 +63,36 @@
   font-weight: 400;
   margin: 10px 0;
 }
-.or {
+
+.cart {
+  display: flex;
   font-size: 18px;
-  margin-bottom: 10px;
+  max-width: 420px;
+  margin: 0 auto;
+  margin-bottom: 35px;
+  svg {
+    flex: 0 0 35px;
+    height: 37px;
+    margin-right: 20px;
+  }
 }
 
-.btn {
-  margin: 0 auto;
-  margin-top: 10px;
-  display: block;
-  font-size: 16px;
-  text-decoration: underline;
-  transition-duration: 100ms;
+.label {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 
-  @media (min-width: 901px) {
-    &:hover {
-      color: #ffd361;
-    }
+  .inputDiv {
+    flex: 1 1 auto;
+  }
+  .back {
+    flex: 0 0 49px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.2);
+    margin-left: 10px;
   }
 }
