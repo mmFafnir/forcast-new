@@ -68,7 +68,7 @@ interface IProps {
 
 export const MatchPreview: FC<IProps> = ({ match }) => {
   const time = getTimeStatusMatch(match.real_date);
-
+  console.log(match);
   return (
     <div className={`${styles.body} review-match`}>
       <div className={styles.ball}>
@@ -78,13 +78,21 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
         <Team
           src={`https://admin.aibetguru.com/uploads/${match.home_team.team_id}.png`}
           name={match.home_team.team_name}
-          translate={""}
+          translate={
+            match.home_team.translate[0]
+              ? match.home_team.translate[0].translation
+              : ""
+          }
         />
         <SportsIcon icon="soccer" width={400} height={400} />
         <Team
           src={`https://admin.aibetguru.com/uploads/${match.away_team.team_id}.png`}
           name={match.away_team.team_name}
-          translate=""
+          translate={
+            match.away_team.translate[0]
+              ? match.away_team.translate[0].translation
+              : ""
+          }
         />
       </div>
       <p className={styles.line}></p>

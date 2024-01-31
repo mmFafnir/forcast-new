@@ -55,6 +55,12 @@
   }
 }
 
+@media (max-width: 500px) {
+  .header {
+    top: 55px;
+  }
+}
+
 @media (max-width: 440px) {
   .body {
     font-size: 10px;

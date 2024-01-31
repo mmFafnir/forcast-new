@@ -70,7 +70,11 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
       <div className={styles.center}>
         <div className={styles.team}>
           <div>
-            <p>{match.home_team.team_name}</p>
+            <p>
+              {match.home_team.translate[0]
+                ? match.home_team.translate[0].translation
+                : ""}
+            </p>
             <p>{match.home_team.team_name}</p>
           </div>
           <Image
@@ -102,7 +106,11 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
             height={400}
           />
           <div>
-            <p>{match.away_team.team_name}</p>
+            <p>
+              {match.away_team.translate[0]
+                ? match.away_team.translate[0].translation
+                : ""}
+            </p>
             <p>{match.away_team.team_name}</p>
           </div>
         </div>

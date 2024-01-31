@@ -1,0 +1,17 @@
+.range-slider {
+  position: relative;
+  .rc-slider-handle {
+    width: 21px;
+    height: 21px;
+    background-color: #fff;
+    border: none !important;
+    box-shadow: none !important;
+    top: 50%;
+    transform: translateY(-50%) !important;
+    opacity: 1;
+    margin: 0;
+  }
+  .rc-slider-rail {
+    height: 7px;
+  }
+}

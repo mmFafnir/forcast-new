@@ -16,6 +16,13 @@ export type TypeEvent = {
   updated_at: string;
 };
 
+type TypeTranslateTeam = {
+  id: number;
+  lang_id: string;
+  parent_id: string;
+  translation: string;
+};
+
 export type TypeTeam = {
   created_at: null | string;
   get_photo: string;
@@ -26,6 +33,7 @@ export type TypeTeam = {
   team_id: number;
   team_name: string;
   updated_at: null | string;
+  translate: TypeTranslateTeam[];
 };
 
 export type TypeBet = {

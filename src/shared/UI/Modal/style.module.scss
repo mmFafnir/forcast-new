@@ -39,6 +39,8 @@
   display: flex;
   position: relative;
   z-index: 1;
+  overflow: auto;
+
   border-radius: 5px;
   background: radial-gradient(
       260.1% 120.1% at 50% 105.03%,

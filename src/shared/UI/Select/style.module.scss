@@ -1,0 +1,53 @@
+.body {
+  padding: 10px 0px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.2);
+  margin-right: 10px;
+  position: relative;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  width: 100%;
+  font-weight: 700;
+  span {
+    margin-right: 10px;
+  }
+
+  i {
+    transition-duration: 100ms;
+    span {
+      margin: 0;
+      width: 14px !important;
+      height: 8px !important;
+    }
+  }
+}
+
+.list {
+  overflow: hidden;
+  transition-duration: 100ms;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  top: 40px;
+  border-radius: 5px;
+
+  button {
+    width: 100%;
+    display: block;
+    padding: 7px 20px;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    border-radius: 0;
+    font-weight: 500;
+  }
+}

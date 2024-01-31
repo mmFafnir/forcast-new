@@ -25,3 +25,9 @@
     flex: 1 1 auto;
   }
 }
+
+@media (max-width: 500px) {
+  .page {
+    padding-top: 20px;
+  }
+}
