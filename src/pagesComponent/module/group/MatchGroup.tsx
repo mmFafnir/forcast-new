@@ -19,7 +19,6 @@ export const MatchesGroup: FC<IProps> = ({ matches }) => {
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
 
   useEffect(() => {
-    console.log(date, timeStatus);
     if (loading === null) {
       setLoading(false);
       return;

@@ -1,6 +1,6 @@
 "use client";
 import { FC } from "react";
-import { IconFavorite } from "@/features/favorites";
+import { FavoriteAdd, IconFavorite } from "@/features/favorites";
 import { Live } from "../ui/Live";
 import { Commands } from "../ui/Commands";
 import { Total } from "../ui/Total";
@@ -21,15 +21,17 @@ export const Match: FC<IProps> = ({ match }) => {
       <Link href={match.url} className={styles.href}></Link>
       <div className={styles.left}>
         <div className={`flex item-center js-between ${styles.first}`}>
-          <button className={`${styles.favorites} favorite-icon`}>
-            <IconFavorite />
-          </button>
+          <FavoriteAdd
+            active={match.favorite_auth_user_count === 1}
+            ids={[match.id]}
+            className={`${styles.favorites} favorite-icon`}
+          />
           {time === "finish" ? (
             <p style={{ color: "#E98080" }}>Завершен</p>
           ) : time === "live" ? (
             <Live />
           ) : (
-            time
+            match.real_time.slice(0, -3)
           )}
         </div>
 

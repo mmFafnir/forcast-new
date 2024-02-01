@@ -67,6 +67,14 @@
   }
 }
 
+.none {
+  padding: 0;
+
+  &:active {
+    box-shadow: none;
+  }
+}
+
 .loading {
   position: absolute;
   width: 100%;
@@ -75,13 +83,6 @@
   align-items: center;
   justify-content: center;
   background-color: #00000045;
-
-  svg {
-    animation-name: loader;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-  }
 }
 
 .disable {
@@ -91,13 +92,4 @@
 .iconBtn {
   border-radius: 50%;
   padding: 5px;
-}
-
-@keyframes loader {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }

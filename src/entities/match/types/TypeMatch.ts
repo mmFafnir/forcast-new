@@ -66,4 +66,5 @@ export type TypeMatch = {
   real_time_carbon: string;
   score: null;
   url: string;
+  favorite_auth_user_count: 0 | 1;
 };

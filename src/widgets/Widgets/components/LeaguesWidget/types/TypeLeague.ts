@@ -1,6 +1,5 @@
 export type TypeLeague = {
   created_at: null | string;
-  favorit: "0" | "1";
   has_leaguetable: number;
   has_toplist: number;
   id: number;
@@ -12,6 +11,8 @@ export type TypeLeague = {
   trans_status: "0" | "1";
   updated_at: string | null;
   url: string;
+  user_pind_count: 0 | 1;
+  user_pind_admin_count: 0 | 1;
 };
 
 export interface IFetchLeague {
@@ -23,6 +24,12 @@ export interface IFetchLeague {
   updated_at: string;
   league: Pick<
     TypeLeague,
-    "id" | "league_id" | "league_name" | "url" | "league_cc"
+    | "id"
+    | "league_id"
+    | "league_name"
+    | "url"
+    | "league_cc"
+    | "user_pind_count"
+    | "user_pind_admin_count"
   >;
 }

@@ -78,7 +78,9 @@ const CountriesWidget = () => {
             <Loader />
           </div>
         )}
-        {data.length == 0 && <p className={styles.empty}>Не найдено</p>}
+        {data.length == 0 && !loading && (
+          <p className={styles.empty}>Не найдено</p>
+        )}
         <MyScrollbar className="scrollbar-track-0">
           {data.map((item) => (
             <Country key={item.id} item={item} />

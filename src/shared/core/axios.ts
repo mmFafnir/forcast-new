@@ -1,4 +1,5 @@
 import axios from "axios";
+import { cookies } from "next/headers";
 import { parseCookies } from "nookies";
 
 axios.defaults.baseURL = "https://admin.aibetguru.com/api/app/";

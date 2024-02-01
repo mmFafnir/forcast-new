@@ -35,7 +35,11 @@ export const MatchPage: NextPage<IProps> = async ({ id }) => {
           {data.away_team.team_name}
         </h1>
         <div className={`flex item-center ${styles.buttons}`}>
-          <FavoriteAdd />
+          <FavoriteAdd
+            active={data.favorite_auth_user_count === 1}
+            ids={[data.id]}
+            type="default"
+          />
           <SharedButton />
         </div>
       </div>
@@ -45,7 +49,11 @@ export const MatchPage: NextPage<IProps> = async ({ id }) => {
           <p>S Æ A-XI</p>
         </Link>
         <div className={styles.buttonsTable}>
-          <FavoriteAdd />
+          <FavoriteAdd
+            active={data.favorite_auth_user_count === 1}
+            ids={[data.id]}
+            type="default"
+          />
           <SharedButton />
         </div>
         <Views className={styles.view} />

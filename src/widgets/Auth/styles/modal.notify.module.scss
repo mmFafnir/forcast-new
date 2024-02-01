@@ -35,6 +35,9 @@
 
   button {
     border-radius: 50%;
+    flex: 0 0 35px;
+    width: 35px;
+    padding: 0 8px;
   }
 }
 
@@ -47,7 +50,7 @@
   display: flex;
   padding: 10px;
   border-bottom: 1px solid #d9d9d976;
-  margin-right: 17px;
+  margin-right: 0px;
 
   > img,
   > svg {
@@ -60,6 +63,23 @@
 
   &:last-child {
     border-bottom: 1px solid transparent;
+  }
+
+  button {
+    flex: 0 0 31px;
+    height: 31px;
+    border-radius: 50%;
+    padding: 10px;
+    transition-duration: 100ms;
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+    @media (min-width: 901px) {
+      &:hover {
+        background: rgba(0, 0, 0, 0.2);
+      }
+    }
   }
 }
 

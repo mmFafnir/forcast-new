@@ -36,6 +36,9 @@
 }
 @media (max-width: 500px) {
   .header {
-    display: none;
+    // display: none;
+    height: 35px;
+    padding: 0;
+    margin-bottom: 10px;
   }
 }

@@ -7,6 +7,7 @@
   transition-duration: 100ms;
   border-radius: 5px;
   text-align: left;
+  height: 30px;
   img {
     width: 16px;
     height: 16px;
@@ -31,7 +32,11 @@
       visibility: hidden;
     }
     &:hover {
-      background: #656876;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0) 90.15%
+      );
       button {
         opacity: 1;
         visibility: visible;

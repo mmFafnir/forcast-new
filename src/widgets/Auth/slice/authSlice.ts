@@ -14,7 +14,7 @@ interface IState {
 
 const initialState: IState = {
   auth: false,
-  status: EnumStatus.DEFAULT,
+  status: EnumStatus.LOADING,
   user: null,
   errorsValid: [],
 };
@@ -28,13 +28,18 @@ const authSlice = createSlice({
     },
     setUser: (state, action: PayloadAction<TypeUser>) => {
       state.user = action.payload;
-      state.auth = false;
+      state.auth = true;
     },
 
     logout: (state) => {
       state.auth = false;
       state.user = null;
-      destroyCookie(undefined, "_token");
+      setCookie(null, "_token", "", {
+        path: "/",
+      });
+    },
+    setStatus: (state, action: PayloadAction<EnumStatus>) => {
+      state.status = action.payload;
     },
   },
 
@@ -57,6 +62,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAuth, setUser, logout } = authSlice.actions;
+export const { setAuth, setUser, logout, setStatus } = authSlice.actions;
 
 export default authSlice.reducer;

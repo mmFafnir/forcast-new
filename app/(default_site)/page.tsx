@@ -1,5 +1,14 @@
 import { MainPage } from "@/pagesComponent";
+import { NextPage } from "next";
 
-export default function Home() {
-  return <MainPage />;
+interface IProps {
+  params: {};
+  searchParams: { [key: string]: string };
 }
+
+const Home: NextPage<IProps> = ({ searchParams }) => {
+  const date = searchParams["date"] || null;
+  return <MainPage date={date} />;
+};
+
+export default Home;

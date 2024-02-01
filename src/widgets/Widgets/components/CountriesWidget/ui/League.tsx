@@ -14,7 +14,7 @@ export const League: FC<IProps> = ({ item }) => {
       <Link title={item.league_name} href={"/"} className={styles.name}>
         {item.league_name}
       </Link>
-      <PinButton active={item.favorit === "1"} />
+      <PinButton leagues={item} />
     </div>
   );
 };

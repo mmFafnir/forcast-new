@@ -38,13 +38,17 @@ const tabs = [
 async function getUser() {
   const _token = cookies().get("_token")?.value;
   if (_token === undefined) return null;
-  const { data } = await axios.get(`/auth_user_info`, {
-    headers: {
-      Authorization: `Bearer ${_token}`,
-    },
-  });
+  try {
+    const { data } = await axios.get(`/auth_user_info`, {
+      headers: {
+        Authorization: `Bearer ${_token}`,
+      },
+    });
 
-  return data.data;
+    return data.data;
+  } catch (error) {
+    return null;
+  }
 }
 
 const MainLayout: FC<IProps> = async ({ children }) => {

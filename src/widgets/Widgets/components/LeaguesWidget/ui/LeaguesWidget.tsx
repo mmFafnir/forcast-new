@@ -1,23 +1,59 @@
 "use client";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "../styles.module.scss";
 import Image from "next/image";
-import { IFetchLeague } from "../types/TypeLeague";
 import { getLeagues } from "../api/getLeagues";
 import { PinButton } from "@/features/favorites";
 import Loader from "@/shared/UI/Loader";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import { setDefaultLeague } from "@/features/favorites/slice/pinLeagueSlice";
+import { TypeLeague } from "..";
+
+interface IPropsItem {
+  item: Pick<
+    TypeLeague,
+    | "id"
+    | "league_id"
+    | "league_name"
+    | "url"
+    | "league_cc"
+    | "user_pind_count"
+    | "user_pind_admin_count"
+  >;
+}
+const ItemLeagues: FC<IPropsItem> = ({ item }) => {
+  return (
+    <div key={item.id} className={styles.item} title={item.league_name}>
+      <Image
+        className="logo-icon"
+        src={`https://admin.aibetguru.com/uploads/${item.league_id}.png`}
+        width={400}
+        height={400}
+        alt={item.league_name}
+      />
+      <p className={styles.title}>{item.league_name}</p>
+      <PinButton leagues={item} />
+    </div>
+  );
+};
 
 export const LeaguesWidget = () => {
-  const [data, setData] = useState<IFetchLeague[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const dispatch = useTypeDispatch();
+  const { pinDefaultLeagues, pinUserLeagues } = useTypeSelector(
+    (state) => state.pinLeague
+  );
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     setLoading(true);
     getLeagues()
       .then((res) => {
-        setData(res);
+        console.log(res);
+        const items = res.map((lig) => lig.league);
+        dispatch(setDefaultLeague(items));
       })
       .catch(() => {
         setError(true);
@@ -34,27 +70,16 @@ export const LeaguesWidget = () => {
             <Loader />
           </div>
         )}
-        {data.length === 0 && !loading && (
+        {[...pinUserLeagues, ...pinDefaultLeagues].length === 0 && !loading && (
           <div className={styles.empty}>
             <p>У вас нет избранных лиг, вы можете их закрепить</p>
           </div>
         )}
-        {data.map((item) => (
-          <div
-            key={item.id}
-            className={styles.item}
-            title={item.league.league_name}
-          >
-            <Image
-              className="logo-icon"
-              src={`https://admin.aibetguru.com/uploads/${item.league.league_id}.png`}
-              width={400}
-              height={400}
-              alt={item.league.league_name}
-            />
-            <p className={styles.title}>{item.league.league_name}</p>
-            <PinButton active={item.status === "1"} />
-          </div>
+        {pinUserLeagues.map((item) => (
+          <ItemLeagues key={item.id} item={item} />
+        ))}
+        {pinDefaultLeagues.map((item) => (
+          <ItemLeagues key={item.id} item={item} />
         ))}
       </MyScrollbar>
     </>

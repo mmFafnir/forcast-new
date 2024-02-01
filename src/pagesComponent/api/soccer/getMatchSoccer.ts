@@ -1,4 +1,6 @@
-import axios from "@/shared/core/axios";
+import axiosClient from "@/shared/core/axios";
+
+import axios from "axios";
 import { IFetchMatch } from "../../types/IFetchMatch";
 import { TypeTimeStatus } from "@/features/filters";
 
@@ -24,12 +26,41 @@ export const getMatchSoccer = async (
 ): Promise<IFetchMatch> => {
   try {
     const { date, timeStatus } = params || { date: "", timeStatus: "" };
-    const { data } = await axios.get(
+    const { data } = await axiosClient.get(
       `/get_matches?start_date=${date}&time_status=${timeStatus}`
     );
     return { data: data.data };
   } catch (error) {
-    console.log(error);
+    return defaultRes;
+  }
+};
+
+interface IIParamsServer extends IParams {
+  token: string;
+}
+
+export const getMatchSoccerServer = async (
+  params?: IIParamsServer
+): Promise<IFetchMatch> => {
+  try {
+    const { date, timeStatus, token } = params || {
+      date: "",
+      timeStatus: "",
+      token: "",
+    };
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    const { data } = await axios.get(
+      `/get_matches?start_date=${date}&time_status=${timeStatus}`,
+      config
+    );
+    console.log(data.data);
+
+    return { data: data.data };
+  } catch (error) {
     return defaultRes;
   }
 };

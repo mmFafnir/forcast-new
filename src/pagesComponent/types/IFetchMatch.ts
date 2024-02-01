@@ -44,4 +44,5 @@ export interface IFetchFullMatch {
   away_team: TypeTeam;
   best_bet_card: TypeBet[];
   cards: TypeBet[];
+  favorite_auth_user_count: 0 | 1;
 }

@@ -116,7 +116,10 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
         </div>
       </div>
       <div className={styles.favorite}>
-        <FavoriteAdd />
+        <FavoriteAdd
+          ids={[match.id]}
+          active={match.favorite_auth_user_count === 1}
+        />
       </div>
     </div>
   );

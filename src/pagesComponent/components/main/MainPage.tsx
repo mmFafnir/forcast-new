@@ -4,11 +4,14 @@ import { getMatchHome } from "../../api/main/getMatchHome";
 import { MatchesGroupHome } from "../../module/group/MatchesGroupHome";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
-import MyScrollbar from "@/shared/UI/MyScrollbar";
-import { ScrollbarProvider } from "@/app/providers/ScrollbarProvider";
 
-export const MainPage: NextPage = async () => {
-  const matches = await getMatchHome();
+interface IProps {
+  date: string | null;
+}
+export const MainPage: NextPage<IProps> = async ({ date }) => {
+  const matches = await getMatchHome(
+    date ? { date, timeStatus: "" } : undefined
+  );
   return (
     <>
       <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />

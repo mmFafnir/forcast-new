@@ -1,15 +1,32 @@
 import HeaderPage from "@/widgets/HeaderPage";
 import { NextPage } from "next";
-import { getMatchSoccer } from "../../api/soccer/getMatchSoccer";
+import {
+  getMatchSoccer,
+  getMatchSoccerServer,
+} from "../../api/soccer/getMatchSoccer";
 import { mapGetMatchSoccer } from "../../api/soccer/mapGetMatchSoccer";
 import { MatchesGroup } from "@/pagesComponent/module/group/MatchGroup";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
-import { ScrollbarProvider } from "@/app/providers/ScrollbarProvider";
-import Footer from "@/widgets/Footer";
+import { FC } from "react";
+import { cookies } from "next/headers";
 
-export const SoccerPage: NextPage = async () => {
-  const data = await getMatchSoccer();
+interface IProps {
+  date: string | null;
+}
+
+export const SoccerPage: FC<IProps> = async ({ date }) => {
+  const cookieStore = cookies();
+  const token = cookieStore.get("_token");
+
+  // console.log(token);
+
+  const data = await getMatchSoccerServer({
+    date: date || "",
+    timeStatus: "",
+    token: token?.value || "",
+  });
+
   const matches = mapGetMatchSoccer(data.data);
 
   return (
