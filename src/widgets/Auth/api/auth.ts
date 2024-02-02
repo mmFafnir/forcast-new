@@ -8,5 +8,4 @@ export interface IRegisterParams {
 
 export const login = async (params: IRegisterParams) => {
   const { data } = await axios.post("/register_or_login", params);
-  console.log(data);
 };

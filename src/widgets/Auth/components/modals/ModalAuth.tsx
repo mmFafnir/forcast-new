@@ -10,7 +10,6 @@ import { IconCart } from "../../icons/IconCart";
 import { OtherRegister } from "../OtherRegister";
 import styles from "../../styles/auth.module.scss";
 import Auth from "../Auth";
-import { Success } from "../ui/Success";
 
 export const ModalAuth = () => {
   const dispatch = useTypeDispatch();
@@ -31,12 +30,9 @@ export const ModalAuth = () => {
       titleAlight="center"
     >
       <Wrapper>
-        {/* {true ? (
-          <Success />
-        ) : ( */}
         <>
           <div className={styles.cart}>
-            <IconCart />
+            {/* <IconCart /> */}
             <p>
               Для продолжения покупки войдите или зарегистрируйтесь, введя свой
               email

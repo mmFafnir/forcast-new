@@ -67,6 +67,11 @@
 
 .resend {
   transition-duration: 100ms;
+
+  &:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
   @media (min-width: 901px) {
     &:hover {
       color: #dac285;

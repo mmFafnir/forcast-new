@@ -13,11 +13,6 @@ const CountriesWidget = () => {
   const [nextPage, setNextPage] = useState<string | null>("/get_country");
   const [searchTerm, setSearchTerm] = useState<string>("");
 
-  // const scrollBottom = (values: positionValues) => {
-  //   if (values.top !== 1) return;
-  //   fetchCountries(nextPage);
-  // };
-
   const fetchCountries = (page: string | null) => {
     if (page === null) return;
     getCountries(page).then((res) => {

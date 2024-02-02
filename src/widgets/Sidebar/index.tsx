@@ -6,12 +6,11 @@ import { Search } from "@/features/search";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { FavoritesButton } from "@/features/favorites";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
-import styles from "./styles.module.scss";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { closeSidebar } from "@/features/closeSidebar/slice/closeSidebarSlice";
 import { TelegramButton } from "@/features/shared";
 import Logo from "@/shared/UI/Logo";
+import styles from "./styles.module.scss";
 
 const Sidebar = () => {
   const dispatch = useTypeDispatch();

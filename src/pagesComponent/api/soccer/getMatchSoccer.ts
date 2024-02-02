@@ -57,7 +57,6 @@ export const getMatchSoccerServer = async (
       `/get_matches?start_date=${date}&time_status=${timeStatus}`,
       config
     );
-    console.log(data.data);
 
     return { data: data.data };
   } catch (error) {

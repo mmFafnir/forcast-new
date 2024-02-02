@@ -7,6 +7,7 @@ import toolkitSlice from "@/features/Toolkit/slice/toolkitSlice";
 import modalSlice from "@/shared/UI/Modal/modalSlice";
 import authSlice from "@/widgets/Auth/slice/authSlice";
 import pinLeagueSlice from "@/features/favorites/slice/pinLeagueSlice";
+import favoritesSlice from "@/features/favorites/slice/favoritesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     modal: modalSlice,
     auth: authSlice,
     pinLeague: pinLeagueSlice,
+    favorites: favoritesSlice,
   },
 });
 

@@ -35,7 +35,7 @@ export const ModalPremium = () => {
       titleAlight="center"
       title={
         <>
-          Доступ к <span>PREMIUM</span> контенту
+          Доступ к <span className={styles.gold}>PREMIUM</span> контенту
         </>
       }
     >
@@ -55,14 +55,16 @@ export const ModalPremium = () => {
         <div className={styles.footer}>
           <div className={styles.total}>
             <p>ИТОГО: </p>
-            <p>34 дня за 1919 руб.</p>
+            <p>
+              <span>34</span> дня за <span>1919</span> руб.
+            </p>
           </div>
           <Button className={styles.submit} type="gradient">
             ОПЛАТИТЬ
           </Button>
 
           <div className={styles.pol}>
-            <IconCheck />
+            {/* <IconCheck /> */}
             <p>
               Нажимая на кнопку “Оплатить” вы соглашаетесь с{" "}
               <Link href={"/privacy-policy"}>политикой конфиденциальности</Link>

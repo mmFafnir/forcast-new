@@ -21,6 +21,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
     "react-redux": "^9.0.4",
+    "react-timer-hook": "^3.0.7",
     "simplebar-react": "^3.2.4"
   },
   "devDependencies": {

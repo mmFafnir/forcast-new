@@ -1,37 +1,31 @@
 import HeaderPage from "@/widgets/HeaderPage";
 import { NextPage } from "next";
-import {
-  getMatchSoccer,
-  getMatchSoccerServer,
-} from "../../api/soccer/getMatchSoccer";
-import { mapGetMatchSoccer } from "../../api/soccer/mapGetMatchSoccer";
-import { MatchesGroup } from "@/pagesComponent/module/group/MatchGroup";
+import { getMatchHome } from "../../api/main/getMatchHome";
+import { MatchesGroupHome } from "../../module/group/MatchesGroupHome";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
-import { FC } from "react";
+import { getFavoritesServer } from "@/pagesComponent/api/favorites/getFavorites";
 import { cookies } from "next/headers";
+import { MatchesFavoritesGroup } from "@/pagesComponent/module/group/MatchesFavoritesGroup";
 
 interface IProps {
   date: string | null;
 }
-
-export const SoccerPage: FC<IProps> = async ({ date }) => {
+export const FavoritesPage: NextPage<IProps> = async ({ date }) => {
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
 
-  const data = await getMatchSoccerServer({
+  const matches = await getFavoritesServer({
     date: date || "",
     timeStatus: "",
     token: token?.value || "",
   });
 
-  const matches = mapGetMatchSoccer(data.data);
-
   return (
     <>
-      <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />
+      <HeaderPage title="Избарнное" />
       <div className="flex-1 flex-col">
-        <MatchesGroup matches={matches} />
+        <MatchesFavoritesGroup matches={matches} />
       </div>
       <RiskWidgets isMob />
       <TelegramButton isMob />

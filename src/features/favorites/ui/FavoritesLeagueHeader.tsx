@@ -1,27 +1,52 @@
 "use client";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styles from "../styles/leagueHeader.module.scss";
 import { IconFavorite } from "../icons/IconFavorite";
 import Image from "next/image";
 import { FavoriteAdd, PinButton } from "..";
 import { ILeagues } from "@/pagesComponent/types/TypeSportGroup";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { setFavorite } from "../slice/favoritesSlice";
 
 interface IProps {
   league: ILeagues;
 }
 export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
+  const { favorites } = useTypeSelector((state) => state.favorites);
+  const dispatch = useTypeDispatch();
+
+  const [active, setActive] = useState<boolean>(
+    league.games.find((game) => game.favorite_auth_user_count == 1)
+      ? true
+      : false
+  );
+
+  useEffect(() => {
+    const active = league.games.find((game) => favorites.includes(game.id))
+      ? true
+      : false;
+
+    setActive(active);
+  }, [favorites]);
+
+  useEffect(() => {
+    const ids: number[] = [];
+    league.games.forEach((game) => {
+      if (game.favorite_auth_user_count === 1) {
+        ids.push(game.id);
+      }
+    });
+    dispatch(setFavorite(ids));
+  }, []);
+
   return (
     <div className={styles.body}>
       <FavoriteAdd
-        active={
-          !league.games.find((game) => game.favorite_auth_user_count === 0)
-        }
+        active={active}
         ids={league.games.map((game) => game.id)}
         className={`${styles.button} favorite-icon`}
       />
-      {/* <button className={``}>
-        <IconFavorite />
-      </button> */}
       <div className={styles.league}>
         <Image
           src={`https://admin.aibetguru.com/uploads/${league.league_cc}.svg`}

@@ -34,9 +34,6 @@ const pinLeaguesSlice = createSlice({
       state.pinUserLeagues = [action.payload, ...state.pinUserLeagues];
     },
     deleteLeagues: (state, action: PayloadAction<number>) => {
-      state.pinUserLeagues.forEach((lig) => {
-        console.log(lig);
-      });
       state.pinUserLeagues = state.pinUserLeagues.filter(
         (lig) => lig.id !== action.payload
       );

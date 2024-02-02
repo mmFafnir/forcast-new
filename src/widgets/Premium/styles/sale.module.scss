@@ -1,7 +1,7 @@
 .body {
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.2);
-  padding: 30px;
+  padding: 20px 30px;
 }
 
 .header {
@@ -16,7 +16,7 @@
 
     &:first-child {
       color: #fff;
-      font-size: 24px;
+      font-size: 18px;
     }
   }
 }
@@ -33,10 +33,10 @@
 }
 
 .discount {
-  font-size: 16px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.5);
 }
 
 .sum {
-  font-size: 24px;
+  font-size: 18px;
 }

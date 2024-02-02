@@ -34,7 +34,7 @@ const ItemLeagues: FC<IPropsItem> = ({ item }) => {
         alt={item.league_name}
       />
       <p className={styles.title}>{item.league_name}</p>
-      <PinButton leagues={item} />
+      <PinButton leagues={{ ...item, user_pind_count: 1 }} />
     </div>
   );
 };
@@ -51,7 +51,6 @@ export const LeaguesWidget = () => {
     setLoading(true);
     getLeagues()
       .then((res) => {
-        console.log(res);
         const items = res.map((lig) => lig.league);
         dispatch(setDefaultLeague(items));
       })

@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import IconPinFavorite from "../icons/IconPinFavorite";
 import styles from "../styles/pin.module.scss";
 import { togglePin } from "../api/togglePin";
@@ -11,7 +11,6 @@ import {
   setLeagues,
 } from "../slice/pinLeagueSlice";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import IconLoader from "@/shared/icons/IconLoader";
 
 interface IProps {
   leagues: Pick<
@@ -27,8 +26,11 @@ interface IProps {
 }
 
 export const PinButton: FC<IProps> = ({ leagues }) => {
-  const dispatch = useTypeDispatch();
   const { auth } = useTypeSelector((state) => state.auth);
+  const { pinDefaultLeagues, pinUserLeagues } = useTypeSelector(
+    (state) => state.pinLeague
+  );
+  const dispatch = useTypeDispatch();
   const [loading, setLoading] = useState(false);
 
   const [isPin, setIsPin] = useState<boolean>(
@@ -50,7 +52,6 @@ export const PinButton: FC<IProps> = ({ leagues }) => {
     toggleSetLeague(!isPin);
     togglePin(leagues.id)
       .then((res) => {
-        console.log(res);
         setIsPin(res === 1);
       })
       .catch(() => {
@@ -62,8 +63,18 @@ export const PinButton: FC<IProps> = ({ leagues }) => {
       });
   };
 
-  if (!auth) return <></>;
+  useEffect(() => {
+    if (!isPin) return;
+    if (
+      ![...pinUserLeagues, ...pinDefaultLeagues].find(
+        (pin) => pin.id === leagues.id
+      )
+    ) {
+      setIsPin(false);
+    }
+  }, [pinUserLeagues, pinDefaultLeagues]);
 
+  if (!auth) return <></>;
   return (
     <button
       disabled={loading}

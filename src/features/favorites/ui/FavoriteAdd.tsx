@@ -1,10 +1,13 @@
 "use client";
 
 import Button, { TypeButton } from "@/shared/UI/Button";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { IconFavorite } from "..";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import styles from "../styles/favorite.button.module.scss";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { deleteIdsFavorite, setFavorite } from "../slice/favoritesSlice";
+import { addFavorite, deleteFavorite } from "../api/favorite";
 interface IProps {
   className?: string;
   ids: number[];
@@ -18,12 +21,51 @@ export const FavoriteAdd: FC<IProps> = ({
   type = "none",
 }) => {
   const { auth } = useTypeSelector((state) => state.auth);
+  const { favorites } = useTypeSelector((state) => state.favorites);
+  const dispatch = useTypeDispatch();
+  const [currentActive, setCurrentActive] = useState<boolean>(active);
+
+  const onAddFavorite = () => {
+    dispatch(setFavorite(ids));
+    setCurrentActive(true);
+    addFavorite(ids).catch((err) => {
+      dispatch(deleteIdsFavorite(err));
+      setCurrentActive(false);
+    });
+  };
+
+  const onDeleteFavorite = () => {
+    const deletedFav = favorites.filter((fav) => {
+      return ids.includes(fav);
+    });
+    dispatch(deleteIdsFavorite(deletedFav));
+    setCurrentActive(false);
+    deleteFavorite(deletedFav).catch((err) => {
+      console.log(err);
+      dispatch(setFavorite(err));
+      setCurrentActive(true);
+    });
+  };
+
+  useEffect(() => {
+    if (ids.length > 1) return;
+    if (favorites.find((id) => id === ids[0])) {
+      setCurrentActive(true);
+    } else {
+      setCurrentActive(false);
+    }
+  }, [favorites]);
+
+  useEffect(() => {
+    setCurrentActive(active);
+  }, [active]);
 
   if (!auth) return;
   return (
     <Button
       type={type}
-      className={`${className} ${active ? styles.active : ""}`}
+      className={`${className} ${currentActive ? styles.active : ""}`}
+      onClick={currentActive ? onDeleteFavorite : onAddFavorite}
     >
       <IconFavorite />
     </Button>

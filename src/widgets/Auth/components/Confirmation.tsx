@@ -1,5 +1,12 @@
 "use client";
-import { FC, useEffect, useRef, useState } from "react";
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styles from "../styles/confirmation.module.scss";
 import Loader from "@/shared/UI/Loader";
 import { confirm } from "../api/confirm";
@@ -7,10 +14,12 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setUser } from "../slice/authSlice";
 import { setCookie } from "nookies";
 import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
+import { login } from "../api/auth";
+import { useTimer } from "react-timer-hook";
 
 interface IInputsProps {
   digits: string[];
-  setDigits: (digits: string[]) => void;
+  setDigits: Dispatch<SetStateAction<string[]>>;
 }
 const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
   const inputsRef = useRef(new Array(digits.length));
@@ -20,7 +29,8 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
     const oldDigits = digits[index];
     const newDigits = newValue.trim().replace(oldDigits, "");
 
-    if (newDigits < "0" || newDigits > "9") return;
+    inputsRef.current[index].value = "";
+    if (newDigits < "0" || newDigits > "9" || !/^\d+$/.test(newValue)) return;
     setDigits(updateArray(digits, index, newDigits));
 
     const inputs = inputsRef.current;
@@ -31,14 +41,35 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
     }
   };
 
+  const onCopyPaste = (values: string) => {
+    let currentValues = values.length > 6 ? values.slice(0, 6) : values;
+    currentValues.split("").forEach((num, index) => {
+      setDigits((prev) => {
+        return prev.map((value, j) => (index === j ? num : value));
+      });
+    });
+  };
+
   const updateArray = (array: string[], index: number, newValue: string) => {
     const copy = [...array];
     copy[index] = newValue;
     return copy;
   };
 
+  const moveFocus = (key: "ArrowRight" | "ArrowLeft", index: number) => {
+    const inputs = inputsRef.current;
+
+    if (key === "ArrowLeft" && index !== 0) {
+      inputs[index - 1].focus();
+    }
+    if (key === "ArrowRight" && index < inputs.length - 1) {
+      inputs[index + 1].focus();
+    }
+  };
+
   const handleKeyDown = (index: number, keyPressed: string) => {
-    console.log(keyPressed);
+    if (keyPressed === "ArrowRight" || keyPressed === "ArrowLeft")
+      return moveFocus(keyPressed, index);
     if (keyPressed !== "Backspace") return;
     if (digits[index]) {
       setDigits(updateArray(digits, index, ""));
@@ -60,7 +91,11 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
             inputsRef.current[index] = ref;
           }}
           key={index}
-          onInput={(e) => handleChange(index, e.currentTarget.value)}
+          onInput={(e) =>
+            e.currentTarget.value.length > 1
+              ? onCopyPaste(e.currentTarget.value)
+              : handleChange(index, e.currentTarget.value)
+          }
           value={num}
           className={styles.input}
           type="number"
@@ -75,16 +110,20 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
 };
 
 const defaultDigits = ["", "", "", "", "", ""];
-
 interface IProps {
   email: string;
 }
+
 export const Confirmation: FC<IProps> = ({ email }) => {
   const dispatch = useTypeDispatch();
 
   const [digits, setDigits] = useState<string[]>(defaultDigits);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  const { seconds, isRunning, restart } = useTimer({
+    expiryTimestamp: new Date(),
+  });
 
   const onConfirm = () => {
     setLoading(true);
@@ -109,6 +148,15 @@ export const Confirmation: FC<IProps> = ({ email }) => {
       });
   };
 
+  const onLogin = () => {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 40);
+    restart(time);
+    login({ email })
+      .then((res) => {})
+      .finally(() => setLoading(false));
+  };
+
   useEffect(() => {
     if (digits.join("").length === 6) {
       onConfirm();
@@ -131,10 +179,18 @@ export const Confirmation: FC<IProps> = ({ email }) => {
       <Inputs digits={digits} setDigits={setDigits} />
       <div className={styles.footer}>
         {error && <p className={styles.error}>Неверный код</p>}
-        <p className={styles.timer}>
-          Повторная отправка через <span>40 сек</span>
-        </p>
-        <button className={styles.resend}>Отправить код повторно</button>
+        {isRunning && (
+          <p className={styles.timer}>
+            Повторная отправка через <span>{seconds} сек</span>
+          </p>
+        )}
+        <button
+          disabled={isRunning}
+          className={styles.resend}
+          onClick={onLogin}
+        >
+          Отправить код повторно
+        </button>
       </div>
     </div>
   );

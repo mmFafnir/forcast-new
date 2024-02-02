@@ -6,6 +6,5 @@ interface IConfirmParams {
 }
 export const confirm = async (params: IConfirmParams) => {
   const { data } = await axios.post("/confirm_register", params);
-  console.log(data);
   return data;
 };

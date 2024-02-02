@@ -68,7 +68,6 @@ interface IProps {
 
 export const MatchPreview: FC<IProps> = ({ match }) => {
   const time = getTimeStatusMatch(match.real_date);
-  console.log(match);
   return (
     <div className={`${styles.body} review-match`}>
       <div className={styles.ball}>
