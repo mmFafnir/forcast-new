@@ -18,6 +18,7 @@ import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 const MobileHeader = () => {
   const pathname = usePathname();
 
+  const { auth } = useTypeSelector((state) => state.auth);
   const { modal } = useTypeSelector((state) => state.modal);
   const { activeSidebar, activeWidgets } = useTypeSelector(
     (state) => state.closeSidebar
@@ -34,6 +35,10 @@ const MobileHeader = () => {
   const onToggleAuthModal = () => {
     if (modal === EnumModals.LOGIN) return onCloseModal();
     dispatch(setModal(EnumModals.LOGIN));
+  };
+  const onToggleUserModal = () => {
+    // if (modal === EnumModals.) return onCloseModal();
+    // dispatch(setModal(EnumModals.LOGIN));
   };
 
   const callbackClose = (callback: () => void) => {

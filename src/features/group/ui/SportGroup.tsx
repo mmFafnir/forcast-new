@@ -1,9 +1,8 @@
 "use client";
-import { FC, ReactNode, useEffect, useRef } from "react";
+import { FC, ReactNode, useRef } from "react";
 import styles from "../styles/group.module.scss";
 import SportsIcon, { TypeSportIcon } from "@/shared/icons/sports";
 import TotalMatches from "@/shared/UI/TotalMatches";
-import { initialSticky } from "../scripts/initialSticky";
 import IconArrow from "@/shared/icons/IconArrow";
 import useAccordion, {
   IAccordionStylesIcon,

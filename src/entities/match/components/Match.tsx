@@ -41,7 +41,7 @@ export const Match: FC<IProps> = ({ match }) => {
         {match.best_bet_card.length > 0 && (
           <Total bet={match.best_bet_card[0]} />
         )}
-        <Views />
+        <Views count={match.game_view_count} />
       </div>
     </div>
   );

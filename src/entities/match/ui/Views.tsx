@@ -4,12 +4,14 @@ import { IconView } from "../icons/IconView";
 
 interface IProps {
   className?: string;
+  count: number;
 }
-export const Views: FC<IProps> = ({ className }) => {
+export const Views: FC<IProps> = ({ className, count }) => {
+  if (count === 0) return;
   return (
     <div className={`${styles.body} ${className}`}>
       <IconView />
-      <p>213</p>
+      <p>{count}</p>
     </div>
   );
 };

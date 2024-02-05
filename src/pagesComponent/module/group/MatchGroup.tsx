@@ -32,6 +32,7 @@ export const MatchesGroup: FC<IProps> = ({ matches }) => {
       .finally(() => setLoading(false));
   }, [date, timeStatus]);
 
+  console.log(data);
   return (
     <div className="flex-1">
       {loading && (

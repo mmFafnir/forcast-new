@@ -43,8 +43,16 @@
 
 .more {
   font-weight: 700;
+  margin: 0 auto;
+  display: block;
   margin-top: 14px;
   transition-duration: 100ms;
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-right: 10px;
+  }
   @media (min-width: 901px) {
     &:hover {
       color: #dac285;

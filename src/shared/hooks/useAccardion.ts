@@ -37,6 +37,10 @@ const useAccordion = ({
   const onClose = () => setIsOpen(false);
   useEffect(() => {
     if (!ref.current) return;
+    if (defaultHeight && defaultHeight >= ref.current.clientHeight) {
+      setIsOpen(true);
+      return;
+    }
     const closeHeight = defaultHeight || 0;
     setIconStyle(isOpen ? iconStyles.open : iconStyles.close);
     setCurrentHeight(isOpen ? ref.current.clientHeight : closeHeight);

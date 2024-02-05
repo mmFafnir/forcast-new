@@ -25,7 +25,6 @@ interface IProps {
 
 export const MatchPage: NextPage<IProps> = async ({ id }) => {
   const data = await getOneMatch(id);
-
   return (
     <div className={styles.page}>
       <MatchPreviewSticky match={data} />
@@ -56,7 +55,7 @@ export const MatchPage: NextPage<IProps> = async ({ id }) => {
           />
           <SharedButton />
         </div>
-        <Views className={styles.view} />
+        <Views count={data.game_view_count} className={styles.view} />
       </div>
       <MatchPreview match={data} />
 

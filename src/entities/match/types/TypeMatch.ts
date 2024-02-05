@@ -67,4 +67,5 @@ export type TypeMatch = {
   score: null;
   url: string;
   favorite_auth_user_count: 0 | 1;
+  game_view_count: number;
 };
