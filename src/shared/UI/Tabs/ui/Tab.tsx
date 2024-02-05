@@ -11,9 +11,10 @@ export type TypeTab = {
 interface IProps {
   tab: TypeTab;
   activeId: number | string;
+  className?: string;
 }
 
-const Tab: FC<IProps> = ({ tab, activeId }) => {
+const Tab: FC<IProps> = ({ tab, activeId, className }) => {
   const [hidden, setHidden] = useState<boolean>(activeId !== tab.id);
   const [showStyle, setShowStyle] = useState<boolean>(activeId === tab.id);
   useEffect(() => {
@@ -32,7 +33,9 @@ const Tab: FC<IProps> = ({ tab, activeId }) => {
   return (
     <div
       key={tab.id}
-      className={`${styles.item} ${showStyle ? styles.active : ""}`}
+      className={`${styles.item} ${
+        showStyle ? styles.active : ""
+      } ${className}`}
       style={{ display: hidden ? "none" : "block" }}
     >
       {tab.content}

@@ -74,6 +74,7 @@ const MainLayout: FC<IProps> = async ({ children }) => {
                       maxHeight="350px"
                       tabs={tabs}
                       classNameBody="adaptive-mac"
+                      classNameTabs="sidebar-tabs"
                     />,
                     <RiskWidgets key={2} />,
                   ]}

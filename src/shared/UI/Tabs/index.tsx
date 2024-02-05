@@ -12,6 +12,7 @@ interface IProps {
   renderHeader?: ReactNode;
   currentTab?: string | number;
   classNameBody?: string;
+  classNameTabs?: string;
 }
 
 const Tabs: FC<IProps> = ({
@@ -21,6 +22,7 @@ const Tabs: FC<IProps> = ({
   renderHeader,
   currentTab,
   classNameBody = "",
+  classNameTabs = "",
 }) => {
   const [activeId, setActiveId] = useState<string | number>(tabs[0].id);
 
@@ -51,7 +53,12 @@ const Tabs: FC<IProps> = ({
       >
         <div>
           {tabs.map((tab) => (
-            <Tab key={tab.id} tab={tab} activeId={activeId} />
+            <Tab
+              key={tab.id}
+              className={classNameTabs}
+              tab={tab}
+              activeId={activeId}
+            />
           ))}
         </div>
       </div>

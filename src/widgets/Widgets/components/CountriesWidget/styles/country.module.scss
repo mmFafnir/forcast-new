@@ -50,3 +50,9 @@
   overflow: hidden;
   transition-duration: 100ms;
 }
+
+@media (max-width: 500px) {
+  .header {
+    padding: 7px 10px;
+  }
+}

@@ -237,4 +237,11 @@ h2 {
   .desk {
     display: none;
   }
+  .adaptive-mac {
+    height: calc(100vh - 110px) !important;
+  }
+
+  .sidebar-tabs {
+    // position: relative !important;
+  }
 }
