@@ -70,12 +70,7 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
       <div className={styles.center}>
         <div className={styles.team}>
           <div>
-            <p>
-              {match.home_team.translate[0]
-                ? match.home_team.translate[0].translation
-                : ""}
-            </p>
-            <p>{match.home_team.team_name}</p>
+            <p title={match.home_team.team_name}>{match.home_team.team_name}</p>
           </div>
           <Image
             src={`https://admin.aibetguru.com/uploads/${match.home_team.team_id}.png`}
@@ -94,6 +89,11 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
             <button className={styles.live}>
               <p style={{ color: "#E98080" }}>Завершен</p>
             </button>
+          ) : time.trim().length === 0 ? (
+            <div className={styles.live}>
+              <p>{match.real_date}</p>
+              <p>{match.real_time.slice(0, -3)}</p>
+            </div>
           ) : (
             <button className={styles.live}>{time}</button>
           )}
@@ -106,20 +106,36 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
             height={400}
           />
           <div>
-            <p>
-              {match.away_team.translate[0]
-                ? match.away_team.translate[0].translation
-                : ""}
-            </p>
-            <p>{match.away_team.team_name}</p>
+            <p title={match.away_team.team_name}>{match.away_team.team_name}</p>
           </div>
         </div>
       </div>
-      <div className={styles.favorite}>
-        <FavoriteAdd
-          ids={[match.id]}
-          active={match.favorite_auth_user_count === 1}
-        />
+      <div className={styles.right}>
+        <div className={styles.status}>
+          {time === "live" ? (
+            <button className={styles.live}>
+              <IconLive className={styles.iconLive} />
+              <span>Live</span>
+            </button>
+          ) : time === "finish" ? (
+            <button className={styles.live}>
+              <p style={{ color: "#E98080" }}>Завершен</p>
+            </button>
+          ) : time.trim().length === 0 ? (
+            <div className={styles.live}>
+              <p>{match.real_date}</p>
+              <p>{match.real_time.slice(0, -3)}</p>
+            </div>
+          ) : (
+            <p className={styles.live}>{time}</p>
+          )}
+        </div>
+        <div className={styles.favorite}>
+          <FavoriteAdd
+            ids={[match.id]}
+            active={match.favorite_auth_user_count === 1}
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { TypeTimeStatus } from "@/features/filters";
 import axios from "@/shared/core/axios";
 
 export const addFavorite = async (ids: number[]) => {
@@ -19,5 +20,16 @@ export const deleteFavorite = async (ids: number[]) => {
     return data;
   } catch (error) {
     throw ids;
+  }
+};
+
+export const fetchFavorites = async (timeStatus: TypeTimeStatus) => {
+  try {
+    const { data } = await axios.get(
+      `/get_user_favorite?time_status=${timeStatus}`
+    );
+    return data.data;
+  } catch (error) {
+    return [];
   }
 };

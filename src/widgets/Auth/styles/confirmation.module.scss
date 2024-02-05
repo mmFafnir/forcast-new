@@ -29,6 +29,7 @@
   justify-content: center;
   margin-bottom: 13px;
 }
+
 .input {
   margin: 0px 5px;
   flex: 0 0 46px;
@@ -76,5 +77,16 @@
     &:hover {
       color: #dac285;
     }
+  }
+}
+
+@media (max-width: 500px) {
+  .body {
+    font-size: 12px;
+  }
+  .input {
+    flex: 0 0 40px;
+    height: 40px;
+    width: 40px;
   }
 }

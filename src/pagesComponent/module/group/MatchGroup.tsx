@@ -26,6 +26,7 @@ export const MatchesGroup: FC<IProps> = ({ matches }) => {
     setLoading(true);
     getMatchSoccer({ date: timeStatus === 1 ? "" : date, timeStatus })
       .then((res) => {
+        console.log(res);
         setData(res.data);
       })
       .finally(() => setLoading(false));

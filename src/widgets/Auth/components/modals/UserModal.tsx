@@ -1,10 +1,7 @@
 "use client";
 
-import { FC, useState } from "react";
-import styles from "../../styles/modal.user.module.scss";
+import { FC } from "react";
 import Image from "next/image";
-
-import defaultImage from "../../images/default.svg";
 import { IconCron } from "../../icons/IconCron";
 import Button from "@/shared/UI/Button";
 import IconDiamond from "@/shared/icons/IconDiamond";
@@ -16,6 +13,8 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { logout } from "../../slice/authSlice";
 import { setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
+import styles from "../../styles/modal.user.module.scss";
+import defaultImage from "../../images/default.svg";
 
 const UserRole = () => {
   return (

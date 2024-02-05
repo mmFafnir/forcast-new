@@ -8,22 +8,18 @@ import { getFavoritesServer } from "@/pagesComponent/api/favorites/getFavorites"
 import { cookies } from "next/headers";
 import { MatchesFavoritesGroup } from "@/pagesComponent/module/group/MatchesFavoritesGroup";
 
-interface IProps {
-  date: string | null;
-}
-export const FavoritesPage: NextPage<IProps> = async ({ date }) => {
+export const FavoritesPage: NextPage = async () => {
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
 
   const matches = await getFavoritesServer({
-    date: date || "",
     timeStatus: "",
     token: token?.value || "",
   });
 
   return (
     <>
-      <HeaderPage title="Избарнное" />
+      <HeaderPage title="Избарнное" calendar={false} />
       <div className="flex-1 flex-col">
         <MatchesFavoritesGroup matches={matches} />
       </div>

@@ -1,11 +1,12 @@
 .body {
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
 .point {
   width: 21px;
   height: 21px;
-  position: absolute;
   z-index: 5;
   border-radius: 50%;
   transition-duration: 100ms;
@@ -13,14 +14,19 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  top: -2px;
-  transform: translateX(-50%);
   &::before {
     content: "";
     width: 1px;
     height: 13px;
     background-color: #fff;
     border-radius: 5px;
+  }
+
+  &:first-child {
+    transform: translateX(-5px);
+  }
+  &:nth-last-child(-n + 2) {
+    transform: translateX(5px);
   }
 
   @media (min-width: 901px) {

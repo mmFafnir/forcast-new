@@ -11,6 +11,7 @@ import { closeSidebar } from "@/features/closeSidebar/slice/closeSidebarSlice";
 import { TelegramButton } from "@/features/shared";
 import Logo from "@/shared/UI/Logo";
 import styles from "./styles.module.scss";
+import { memo } from "react";
 
 const Sidebar = () => {
   const dispatch = useTypeDispatch();
@@ -38,9 +39,7 @@ const Sidebar = () => {
             <div className={styles.search}>
               <Search />
             </div>
-            <div className={styles.favorite}>
-              <FavoritesButton />
-            </div>
+            <FavoritesButton className={styles.favorite} />
             <div className={styles.list}>
               {new Array(1).fill(null).map((link, index) => (
                 <Button
@@ -64,4 +63,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default memo(Sidebar);

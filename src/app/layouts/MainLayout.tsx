@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, use } from "react";
 import Header from "@/widgets/Header";
 import Sidebar from "@/widgets/Sidebar";
 
@@ -17,6 +17,7 @@ import axios from "@/shared/core/axios";
 import { UserProvider } from "../providers/UserProvider";
 import { ScrollbarProvider } from "../providers/ScrollbarProvider";
 import { ModalPremium } from "@/widgets/Premium";
+import { TelegramProvider } from "../providers/TelegramProvider";
 
 interface IProps {
   children: ReactNode;
@@ -44,8 +45,7 @@ async function getUser() {
         Authorization: `Bearer ${_token}`,
       },
     });
-
-    return data.data;
+    return { ...data.data, favorite_count: data.favorite_count };
   } catch (error) {
     return null;
   }
@@ -53,38 +53,41 @@ async function getUser() {
 
 const MainLayout: FC<IProps> = async ({ children }) => {
   const user = await getUser();
+  console.log(user);
   return (
     <UserProvider user={user}>
-      <div className="container">
-        <div className={styles.body}>
-          <div className={styles.flex}>
-            <Sidebar />
-            <div className="flex flex-1">
-              <div className={styles.page}>
-                <Header />
-                {children}
-                <Footer />
+      <TelegramProvider>
+        <div className="container">
+          <div className={styles.body}>
+            <div className={styles.flex}>
+              <Sidebar />
+              <div className="flex flex-1">
+                <div className={styles.page}>
+                  <Header />
+                  {children}
+                  <Footer />
+                </div>
+                <Widgets
+                  widgets={[
+                    <Tabs
+                      key={1}
+                      minHeight="350px"
+                      maxHeight="350px"
+                      tabs={tabs}
+                      classNameBody="adaptive-mac"
+                    />,
+                    <RiskWidgets key={2} />,
+                  ]}
+                />
               </div>
-              <Widgets
-                widgets={[
-                  <Tabs
-                    key={1}
-                    minHeight="350px"
-                    maxHeight="350px"
-                    tabs={tabs}
-                    classNameBody="adaptive-mac"
-                  />,
-                  <RiskWidgets key={2} />,
-                ]}
-              />
             </div>
           </div>
+          <Toolkit />
+          <ModalAuth />
+          <ModalSearch />
+          <ModalPremium />
         </div>
-        <Toolkit />
-        <ModalAuth />
-        <ModalSearch />
-        <ModalPremium />
-      </div>
+      </TelegramProvider>
     </UserProvider>
   );
 };

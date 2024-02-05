@@ -16,6 +16,7 @@ import { setCookie } from "nookies";
 import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 import { login } from "../api/auth";
 import { useTimer } from "react-timer-hook";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 interface IInputsProps {
   digits: string[];
@@ -115,13 +116,14 @@ interface IProps {
 }
 
 export const Confirmation: FC<IProps> = ({ email }) => {
-  const dispatch = useTypeDispatch();
+  const { auth } = useTypeSelector((state) => state.auth);
 
+  const dispatch = useTypeDispatch();
   const [digits, setDigits] = useState<string[]>(defaultDigits);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const { seconds, isRunning, restart } = useTimer({
+  const { seconds, restart } = useTimer({
     expiryTimestamp: new Date(),
   });
 
@@ -163,6 +165,10 @@ export const Confirmation: FC<IProps> = ({ email }) => {
     }
   }, [digits]);
 
+  useEffect(() => {
+    setDigits(defaultDigits);
+  }, [auth]);
+
   return (
     <div className={styles.body}>
       {loading && (
@@ -179,13 +185,13 @@ export const Confirmation: FC<IProps> = ({ email }) => {
       <Inputs digits={digits} setDigits={setDigits} />
       <div className={styles.footer}>
         {error && <p className={styles.error}>Неверный код</p>}
-        {isRunning && (
+        {seconds > 0 && (
           <p className={styles.timer}>
             Повторная отправка через <span>{seconds} сек</span>
           </p>
         )}
         <button
-          disabled={isRunning}
+          disabled={seconds > 0}
           className={styles.resend}
           onClick={onLogin}
         >

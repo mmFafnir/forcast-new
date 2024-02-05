@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import styles from "../styles/auth.module.scss";
 import { validEmail } from "@/shared/core/form-rules";
@@ -7,12 +7,15 @@ import Button from "@/shared/UI/Button";
 import { Confirmation } from "./Confirmation";
 import { login } from "../api/auth";
 import { IconPen } from "../icons/IconPen";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 interface IFormInputs {
   email: string;
 }
 
 const Auth: FC = () => {
+  const { auth } = useTypeSelector((state) => state.auth);
+
   const [step, setStep] = useState<0 | 1 | 2>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
@@ -34,9 +37,13 @@ const Auth: FC = () => {
   };
 
   const onBackStep = () => setStep(0);
+
+  useEffect(() => {
+    onBackStep();
+  }, [auth]);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.body}>
-      <p className={styles.label}>Введите Email</p>
       <div className={styles.flex}>
         <Controller
           name="email"

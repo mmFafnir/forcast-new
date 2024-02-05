@@ -5,7 +5,8 @@
 
   button,
   .link,
-  .telegram {
+  .telegram,
+  .favorite {
     width: 100%;
     overflow: hidden;
     > span {
@@ -63,13 +64,11 @@
 
 .favorite {
   margin-bottom: 20px;
-  button {
-    > span {
-      transition-delay: 0.3s;
-    }
-    > p {
-      margin-left: auto;
-    }
+  > span {
+    transition-delay: 0.3s;
+  }
+  > p {
+    margin-left: auto;
   }
 }
 
@@ -99,7 +98,8 @@
 
     button,
     .link,
-    .telegram {
+    .telegram,
+    .favorite {
       > span {
         max-width: 0px;
         opacity: 0;

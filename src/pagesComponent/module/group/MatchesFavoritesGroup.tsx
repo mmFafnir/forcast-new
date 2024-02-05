@@ -2,7 +2,7 @@
 import { SportGroup } from "@/features/group";
 import { FC, useEffect, useState } from "react";
 import TypeSportGroup, { ILeagues } from "../../types/TypeSportGroup";
-import { FavoritesLeagueHeader } from "@/features/favorites";
+import { FavoritesLeagueHeader, fetchFavorites } from "@/features/favorites";
 import { Match, TypeMatch } from "@/entities/match";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { getMatchHome } from "../../api/main/getMatchHome";
@@ -11,6 +11,7 @@ import { PremMatchBanner } from "@/entities/banners";
 import Loader from "@/shared/UI/Loader";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setFavorite } from "@/features/favorites/slice/favoritesSlice";
+import { mapGetMatchHome } from "@/pagesComponent/api/main/mapGetMatchHome";
 
 interface IProps {
   matches: TypeSportGroup[];
@@ -31,12 +32,12 @@ export const MatchesFavoritesGroup: FC<IProps> = ({ matches }) => {
       return;
     }
     setLoading(true);
-    getMatchHome({ date, timeStatus })
+    fetchFavorites(timeStatus)
       .then((res) => {
-        setData(res);
+        setData(mapGetMatchHome(res));
       })
       .finally(() => setLoading(false));
-  }, [date, timeStatus]);
+  }, [timeStatus]);
 
   useEffect(() => {
     let leagues: ILeagues[] = [];
@@ -52,7 +53,7 @@ export const MatchesFavoritesGroup: FC<IProps> = ({ matches }) => {
     dispatch(setFavorite(games.map((game) => game.id)));
   }, []);
 
-  useEffect(() => {}, [favorites]);
+  // useEffect(() => {}, [favorites]);
 
   return (
     <div className="flex-1">

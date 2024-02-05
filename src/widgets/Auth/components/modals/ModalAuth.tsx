@@ -6,7 +6,6 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useEffect, useState } from "react";
 import { Wrapper } from "../ui/Wrapper";
-import { IconCart } from "../../icons/IconCart";
 import { OtherRegister } from "../OtherRegister";
 import styles from "../../styles/auth.module.scss";
 import Auth from "../Auth";
@@ -32,7 +31,6 @@ export const ModalAuth = () => {
       <Wrapper>
         <>
           <div className={styles.cart}>
-            {/* <IconCart /> */}
             <p>
               Для продолжения покупки войдите или зарегистрируйтесь, введя свой
               email
@@ -41,7 +39,6 @@ export const ModalAuth = () => {
           <OtherRegister />
           <Auth />
         </>
-        {/* )} */}
       </Wrapper>
     </Modal>
   );

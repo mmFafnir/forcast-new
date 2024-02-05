@@ -1,12 +1,13 @@
 "use client";
+
 import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { IconLive } from "../icons/IconLive";
-import styles from "../styles/preview.module.scss";
 import SportsIcon from "@/shared/icons/sports";
 import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
 import { getTimeStatusMatch } from "../scripts/getTimeStatusMatch";
+import { IconLive } from "../icons/IconLive";
+import styles from "../styles/preview.module.scss";
 
 interface ITeamProps {
   src: string;

@@ -4,7 +4,6 @@ import axios from "axios";
 import { mapGetMatchHome } from "../main/mapGetMatchHome";
 
 interface IParams {
-  date: string;
   timeStatus: TypeTimeStatus;
   token?: string;
 }
@@ -12,8 +11,7 @@ export const getFavoritesServer = async (
   params?: IParams
 ): Promise<TypeSportGroup[]> => {
   try {
-    const { date, timeStatus, token } = params || {
-      date: "",
+    const { timeStatus, token } = params || {
       timeStatus: "",
       token: "",
     };
@@ -23,7 +21,7 @@ export const getFavoritesServer = async (
     };
 
     const { data } = await axios.get(
-      `/get_user_favorite?date=${date}&time_status=${timeStatus}`,
+      `/get_user_favorite?time_status=${timeStatus}`,
       config
     );
     return mapGetMatchHome(data.data);

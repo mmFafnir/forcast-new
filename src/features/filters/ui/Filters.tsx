@@ -27,7 +27,8 @@ export const Filters = () => {
   }, []);
 
   return (
-    <div className={`flex jc-between ${styles.body}`}>
+    <>
+      {/* <div className={`flex jc-between ${styles.body}`}> */}
       {isMob && <FilterMobile />}
       <div className={`${styles.list} flex`}>
         {!isMob &&
@@ -42,7 +43,7 @@ export const Filters = () => {
             </Button>
           ))}
       </div>
-      <FilterCalendar />
-    </div>
+      {/* </div> */}
+    </>
   );
 };

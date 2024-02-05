@@ -31,3 +31,11 @@
 .active {
   background: linear-gradient(95deg, #3c91c0 0%, #318782 98.42%);
 }
+
+@media (max-width: 500px) {
+  .button {
+    flex: 0 0 45px;
+    width: 45px;
+    height: 40px;
+  }
+}

@@ -1,4 +1,5 @@
 .body {
+  margin-bottom: 20px;
 }
 
 .promo {
@@ -84,5 +85,37 @@
   }
   span {
     color: #84eb88;
+  }
+}
+
+@media (max-width: 500px) {
+  .code {
+    height: 40px;
+    input {
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+  .btn {
+    font-size: 14px;
+    height: 40px !important;
+  }
+
+  .error,
+  .success,
+  .discount p {
+    font-size: 12px;
+  }
+  .error {
+    margin-bottom: 10px;
+  }
+
+  .success {
+    margin-bottom: 10px;
+    svg {
+      width: 17px;
+      flex: 0 0 17px;
+      height: 23px;
+    }
   }
 }

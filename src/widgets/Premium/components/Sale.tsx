@@ -2,15 +2,19 @@ import { FC } from "react";
 import styles from "../styles/sale.module.scss";
 import { Range } from "./ui/Range";
 
-export const Sale: FC = () => {
+interface IProps {
+  day: number;
+  setDay: (day: number) => void;
+}
+export const Sale: FC<IProps> = ({ day, setDay }) => {
   return (
     <div className={styles.body}>
       <div className={styles.header}>
-        <p>30 дней</p>
+        <p>{day} дней</p>
         <p>70.59 руб. / день</p>
       </div>
       <div className={styles.content}>
-        <Range />
+        <Range setDay={setDay} />
       </div>
       <div className={styles.footer}>
         <p className={styles.discount}>

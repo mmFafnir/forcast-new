@@ -19,8 +19,6 @@ export default function RootLayout({
       <body className={inter.className} style={{ margin: 0 }}>
         {children}
       </body>
-      <Script src="https://telegram.org/js/telegram-web-app.js"></Script>
-      <Script src="/script.js"></Script>
     </html>
   );
 }

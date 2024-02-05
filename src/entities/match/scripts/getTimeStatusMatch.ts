@@ -5,8 +5,13 @@ export const getTimeStatusMatch = (time: string) => {
   const currentDay = dayjs(time);
 
   if (today < currentDay) {
-    const ms = currentDay.diff(today);
-    return 1;
+    const totalMilliseconds = currentDay.diff(today);
+    const totalSeconds = Math.floor(totalMilliseconds / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+
+    if (totalHours > 24) return ``;
+    return `${totalHours}:${totalMinutes}`;
   }
   if (today > currentDay) return "finish";
   return "live";

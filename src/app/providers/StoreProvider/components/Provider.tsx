@@ -9,11 +9,5 @@ interface IProps {
 }
 
 export const StoreProvider: FC<IProps> = ({ children }) => {
-  // useEffect(() => {
-  //   // @ts-ignore
-  //   let tg = window.Telegram.WebApp;
-  //   tg.expand();
-  //   alert(JSON.stringify(tg.initDataUnsafe));
-  // }, []);
   return <Provider store={store}>{children}</Provider>;
 };

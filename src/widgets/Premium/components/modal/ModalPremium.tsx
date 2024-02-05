@@ -1,5 +1,4 @@
 "use client";
-
 import Modal from "@/shared/UI/Modal";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import styles from "../../styles/modal.premium.module.scss";
@@ -8,7 +7,7 @@ import { Sale } from "../Sale";
 import { PromoCode } from "../PromoCode";
 import Button from "@/shared/UI/Button";
 import Link from "next/link";
-import { IconCheck } from "../../icons/IconCheck";
+import { useState } from "react";
 
 const values = [
   {
@@ -26,6 +25,8 @@ const values = [
 ];
 
 export const ModalPremium = () => {
+  const [day, setDay] = useState<number>(30);
+
   return (
     <Modal
       name={EnumModals.PREMIUM}
@@ -49,14 +50,13 @@ export const ModalPremium = () => {
             <Select data={values} styleBody={{ minWidth: "100px" }} />
           </div>
         </div>
-        <Sale />
+        <Sale day={day} setDay={setDay} />
         <PromoCode />
-
         <div className={styles.footer}>
           <div className={styles.total}>
             <p>ИТОГО: </p>
             <p>
-              <span>34</span> дня за <span>1919</span> руб.
+              <span>{day}</span> дня за <span>1919</span> руб.
             </p>
           </div>
           <Button className={styles.submit} type="gradient">

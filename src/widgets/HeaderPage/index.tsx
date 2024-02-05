@@ -1,19 +1,19 @@
-import { Filters } from "@/features/filters";
+import { FilterCalendar, Filters } from "@/features/filters";
 import { FC } from "react";
 import styles from "./styles.module.scss";
 interface IProps {
   title: string;
+  calendar?: boolean;
 }
 
-const HeaderPage: FC<IProps> = ({ title }) => {
+const HeaderPage: FC<IProps> = ({ title, calendar = true }) => {
   return (
     <>
-      {/* <div className={styles.body}> */}
       <h1 className={styles.title}>{title}</h1>
-      <div className={styles.filter}>
+      <div className={`flex jc-between ${styles.filter}`}>
         <Filters />
+        {calendar && <FilterCalendar />}
       </div>
-      {/* </div> */}
     </>
   );
 };

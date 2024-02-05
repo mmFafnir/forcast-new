@@ -9,7 +9,6 @@ import "react-calendar/dist/Calendar.css";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { setDate } from "../../slice/filterSlice";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import useQuery from "@/shared/hooks/useQuery";
 
 export const minDate = "2001-12-12";
