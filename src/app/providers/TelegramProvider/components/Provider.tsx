@@ -1,8 +1,9 @@
 "use client";
 import { FC, ReactNode } from "react";
 import Script from "next/script";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import type { ITelegramUser, IWebApp } from "../types";
+import { loginInWebView } from "../api/loginInWebView";
 
 export interface ITelegramContext {
   webApp?: IWebApp;
@@ -26,8 +27,8 @@ export const TelegramProvider: FC<IProps> = ({ children }) => {
           }
         : {};
 
-      console.log(value);
-      alert(value.user);
+      alert(app.initDataUnsafe.user);
+      loginInWebView(value.user);
     }
   }, []);
 
