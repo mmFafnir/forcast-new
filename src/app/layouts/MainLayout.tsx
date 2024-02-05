@@ -53,10 +53,9 @@ async function getUser() {
 
 const MainLayout: FC<IProps> = async ({ children }) => {
   const user = await getUser();
-  console.log(user);
   return (
     <UserProvider user={user}>
-      <TelegramProvider>
+      <TelegramProvider user={user}>
         <div className="container">
           <div className={styles.body}>
             <div className={styles.flex}>

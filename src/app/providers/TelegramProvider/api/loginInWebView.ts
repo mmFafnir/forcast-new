@@ -11,5 +11,5 @@ export const loginInWebView = async (user: ITelegramUser) => {
     user_name: user.username,
   });
 
-  alert(JSON.stringify(data));
+  return data;
 };

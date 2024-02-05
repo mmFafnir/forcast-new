@@ -4,6 +4,10 @@ import Script from "next/script";
 import { useEffect } from "react";
 import type { ITelegramUser, IWebApp } from "../types";
 import { loginInWebView } from "../api/loginInWebView";
+import { TypeUser } from "@/widgets/Auth";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { setCookie } from "nookies";
+import { setUser } from "@/widgets/Auth/slice/authSlice";
 
 export interface ITelegramContext {
   webApp?: IWebApp;
@@ -11,11 +15,15 @@ export interface ITelegramContext {
 }
 
 interface IProps {
+  user: TypeUser | null;
   children: ReactNode;
 }
 
-export const TelegramProvider: FC<IProps> = ({ children }) => {
+export const TelegramProvider: FC<IProps> = ({ children, user }) => {
+  const dispatch = useTypeDispatch();
+
   useEffect(() => {
+    if (user) return;
     const app = (window as any).Telegram?.WebApp;
     if (app) {
       app.ready();
@@ -27,8 +35,12 @@ export const TelegramProvider: FC<IProps> = ({ children }) => {
           }
         : {};
 
-      alert(JSON.stringify(app.initDataUnsafe.user));
-      loginInWebView(value.user);
+      loginInWebView(value.user).then((res) => {
+        dispatch(setUser(res.data));
+        setCookie(null, "_token", res.token, {
+          path: "/",
+        });
+      });
     }
   }, []);
 
