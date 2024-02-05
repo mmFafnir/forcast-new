@@ -27,7 +27,7 @@ export const TelegramProvider: FC<IProps> = ({ children }) => {
           }
         : {};
 
-      alert(app.initDataUnsafe.user);
+      alert(JSON.stringify(app.initDataUnsafe.user));
       loginInWebView(value.user);
     }
   }, []);
