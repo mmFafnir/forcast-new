@@ -66,3 +66,13 @@
 .gold {
   color: #ffd361;
 }
+
+@media (max-width: 500px) {
+  .title {
+    font-size: 16px;
+  }
+
+  .header {
+    font-size: 12px;
+  }
+}

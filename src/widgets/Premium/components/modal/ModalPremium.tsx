@@ -34,9 +34,9 @@ export const ModalPremium = () => {
       styleBody={{ padding: 0 }}
       titleAlight="center"
       title={
-        <>
+        <p className={styles.title}>
           Доступ к <span className={styles.gold}>PREMIUM</span> контенту
-        </>
+        </p>
       }
     >
       <div className={styles.body}>
