@@ -1,9 +1,7 @@
 import React, { FC } from "react";
-import { IconPerson } from "../icons/IconPerson";
-import styles from "../styles/header.user.module.scss";
 import { NotifyButton } from "./ui/NotifyButton";
-import Button from "@/shared/UI/Button";
 import { UserButton } from "./ui/UserButton";
+import styles from "../styles/header.user.module.scss";
 
 export const UserHeader: FC = () => {
   return (

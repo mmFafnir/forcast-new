@@ -2,6 +2,7 @@
   padding: 20px;
   background: rgba(34, 37, 47, 0.8);
   border-radius: 5px;
+  position: relative;
 }
 
 .header {
@@ -32,6 +33,16 @@
 
 .mob {
   display: none;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+
+  svg {
+    margin-right: 10px;
+  }
 }
 
 @media (max-width: 500px) {

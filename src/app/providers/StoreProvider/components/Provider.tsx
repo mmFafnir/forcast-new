@@ -1,7 +1,7 @@
 "use client";
 import { Provider } from "react-redux";
 
-import { FC, ReactNode, useEffect } from "react";
+import { FC, ReactNode } from "react";
 import { store } from "../store";
 
 interface IProps {

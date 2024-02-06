@@ -6,14 +6,19 @@ import { Premium } from "../ui/Premium";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 interface IProps {
   text?: string | ReactNode;
 }
 export const PremMatchBanner: FC<IProps> = ({ text }) => {
+  const { auth } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
 
-  const onModalOpen = () => dispatch(setModal(EnumModals.PREMIUM));
+  const onModalOpen = () => {
+    if (!auth) return dispatch(setModal(EnumModals.LOGIN));
+    dispatch(setModal(EnumModals.PREMIUM));
+  };
 
   return (
     <div className={styles.body} onClick={onModalOpen}>

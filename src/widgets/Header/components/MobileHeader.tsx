@@ -37,8 +37,8 @@ const MobileHeader = () => {
     dispatch(setModal(EnumModals.LOGIN));
   };
   const onToggleUserModal = () => {
-    // if (modal === EnumModals.) return onCloseModal();
-    // dispatch(setModal(EnumModals.LOGIN));
+    if (modal === EnumModals.USER) return onCloseModal();
+    dispatch(setModal(EnumModals.USER));
   };
 
   const callbackClose = (callback: () => void) => {
@@ -73,7 +73,11 @@ const MobileHeader = () => {
         <Image src={"/logo-mobile.svg"} width={200} height={200} alt="icon" />
       </Link>
 
-      <button onClick={() => callbackClose(onToggleAuthModal)}>
+      <button
+        onClick={() =>
+          callbackClose(auth ? onToggleUserModal : onToggleAuthModal)
+        }
+      >
         <IconPerson />
       </button>
 

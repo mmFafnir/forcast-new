@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, FC, ReactNode } from "react";
+import { CSSProperties, FC, ReactNode, useEffect } from "react";
 import styles from "./style.module.scss";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { closeAllModal } from "./modalSlice";
@@ -28,6 +28,7 @@ const Modal: FC<IProps> = ({
   const { modal } = useTypeSelector((state) => state.modal);
   const dispatch = useTypeDispatch();
   const onClose = () => dispatch(closeAllModal());
+
   return (
     <div
       style={styleBody}
@@ -41,9 +42,9 @@ const Modal: FC<IProps> = ({
         <div style={styleContent}>
           {title && (
             <div className={styles.header}>
-              <p className={styles.title} style={{ textAlign: titleAlight }}>
+              <div className={styles.title} style={{ textAlign: titleAlight }}>
                 {title}
-              </p>
+              </div>
               <button onClick={onClose}>
                 <svg
                   width="11"

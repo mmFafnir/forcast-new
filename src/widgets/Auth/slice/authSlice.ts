@@ -9,6 +9,7 @@ interface IState {
   auth: boolean;
   status: EnumStatus;
   user: TypeUser | null;
+  token: string | null;
   errorsValid: ErrorValid[];
 }
 
@@ -16,6 +17,7 @@ const initialState: IState = {
   auth: false,
   status: EnumStatus.LOADING,
   user: null,
+  token: null,
   errorsValid: [],
 };
 
@@ -25,6 +27,9 @@ const authSlice = createSlice({
   reducers: {
     setAuth: (state, action: PayloadAction<boolean>) => {
       state.auth = action.payload;
+    },
+    setToken: (state, action: PayloadAction<string>) => {
+      state.token = action.payload;
     },
     setUser: (state, action: PayloadAction<TypeUser>) => {
       state.user = action.payload;
@@ -62,6 +67,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAuth, setUser, logout, setStatus } = authSlice.actions;
+export const { setAuth, setUser, logout, setStatus, setToken } =
+  authSlice.actions;
 
 export default authSlice.reducer;

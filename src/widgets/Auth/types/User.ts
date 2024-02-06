@@ -16,5 +16,5 @@ export type TypeUser = {
   surname: string;
   telegram_id: null | number;
   updated_at: string;
-  favorite_count: number;
+  favorite_count: number[];
 };

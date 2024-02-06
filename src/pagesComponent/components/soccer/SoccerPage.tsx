@@ -1,9 +1,5 @@
 import HeaderPage from "@/widgets/HeaderPage";
-import { NextPage } from "next";
-import {
-  getMatchSoccer,
-  getMatchSoccerServer,
-} from "../../api/soccer/getMatchSoccer";
+import { getMatchSoccerServer } from "../../api/soccer/getMatchSoccer";
 import { mapGetMatchSoccer } from "../../api/soccer/mapGetMatchSoccer";
 import { MatchesGroup } from "@/pagesComponent/module/group/MatchGroup";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";

@@ -29,7 +29,6 @@ export const getMatchSoccer = async (
     const { data } = await axiosClient.get(
       `/get_matches?start_date=${date}&time_status=${timeStatus}`
     );
-    console.log(data);
     return { data: data.data };
   } catch (error) {
     return defaultRes;
@@ -55,7 +54,7 @@ export const getMatchSoccerServer = async (
     };
 
     const { data } = await axios.get(
-      `/get_matches?start_date=${date}&time_status=${timeStatus}`,
+      `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}`,
       config
     );
 

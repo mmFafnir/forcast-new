@@ -26,6 +26,7 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
     if (user) return;
     const app = (window as any).Telegram?.WebApp;
     if (app) {
+      app.expand();
       app.ready();
       const value = app
         ? {
@@ -35,6 +36,7 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
           }
         : {};
 
+      if (!value.user) return;
       loginInWebView(value.user).then((res) => {
         dispatch(setUser(res.data));
         setCookie(null, "_token", res.token, {

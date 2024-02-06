@@ -3,4 +3,5 @@ export enum EnumModals {
   SEARCH = "search",
   SETTINGS = "settings",
   PREMIUM = "premium",
+  USER = "user",
 }

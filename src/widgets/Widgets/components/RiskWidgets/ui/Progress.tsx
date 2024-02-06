@@ -15,6 +15,7 @@ export const Progress: FC<IProps> = ({ color, title, available, total }) => {
       <div
         className={styles.bar}
         style={{
+          flex: `0 0 calc(${(available / total) * 100}% + 53px)`,
           background: ` linear-gradient(270deg, ${color} 0%, rgba(101, 104, 118, 0.00) 100%)`,
         }}
       >

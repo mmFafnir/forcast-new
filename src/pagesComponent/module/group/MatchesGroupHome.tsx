@@ -1,6 +1,6 @@
 "use client";
 import { SportGroup } from "@/features/group";
-import { FC, useEffect, useState } from "react";
+import { FC, memo, useEffect, useState } from "react";
 import TypeSportGroup, { ILeagues } from "../../types/TypeSportGroup";
 import { FavoritesLeagueHeader } from "@/features/favorites";
 import { Match } from "@/entities/match";
@@ -15,7 +15,7 @@ interface IProps {
   leagues?: ILeagues[];
 }
 
-export const MatchesGroupHome: FC<IProps> = ({ matches }) => {
+const MatchesGroupHomeMemo: FC<IProps> = ({ matches }) => {
   const [data, setData] = useState<TypeSportGroup[]>(matches);
   const [loading, setLoading] = useState<boolean | null>(null);
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
@@ -71,3 +71,5 @@ export const MatchesGroupHome: FC<IProps> = ({ matches }) => {
     </div>
   );
 };
+
+export const MatchesGroupHome = memo(MatchesGroupHomeMemo);

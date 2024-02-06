@@ -4,7 +4,9 @@ import TotalMatches from "@/shared/UI/TotalMatches";
 import styles from "../styles/button.module.scss";
 import { IconFavorite } from "../icons/IconFavorite";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { FC } from "react";
+import { FC, useEffect } from "react";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { setFavorite } from "../slice/favoritesSlice";
 
 interface IProps {
   className?: string;
@@ -13,6 +15,12 @@ interface IProps {
 export const FavoritesButton: FC<IProps> = ({ className }) => {
   const { user } = useTypeSelector((state) => state.auth);
   const { favorites } = useTypeSelector((state) => state.favorites);
+  const dispatch = useTypeDispatch();
+
+  useEffect(() => {
+    if (!user) return;
+    dispatch(setFavorite(user.favorite_count));
+  }, []);
 
   if (!user) return <></>;
   return (
@@ -23,9 +31,7 @@ export const FavoritesButton: FC<IProps> = ({ className }) => {
     >
       <IconFavorite />
       <span>Избранное</span>
-      <TotalMatches className={styles.total}>
-        {user.favorite_count}
-      </TotalMatches>
+      <TotalMatches className={styles.total}>{favorites.length}</TotalMatches>
     </Button>
   );
 };

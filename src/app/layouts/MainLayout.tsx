@@ -10,7 +10,7 @@ import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { LeaguesWidget } from "@/widgets/Widgets/components/LeaguesWidget";
 import CountriesWidget from "@/widgets/Widgets/components/CountriesWidget";
 import { Toolkit } from "@/features/Toolkit";
-import { ModalAuth } from "@/widgets/Auth";
+import { ModalAuth, getUserInfo } from "@/widgets/Auth";
 import { ModalSearch } from "@/features/search";
 import { cookies } from "next/headers";
 import axios from "@/shared/core/axios";
@@ -18,6 +18,8 @@ import { UserProvider } from "../providers/UserProvider";
 import { ScrollbarProvider } from "../providers/ScrollbarProvider";
 import { ModalPremium } from "@/widgets/Premium";
 import { TelegramProvider } from "../providers/TelegramProvider";
+import { PusherProvider } from "../providers/PusherProvider/components/Provider";
+import { EventProvider } from "../providers/EventProvider";
 
 interface IProps {
   children: ReactNode;
@@ -36,57 +38,47 @@ const tabs = [
   },
 ];
 
-async function getUser() {
-  const _token = cookies().get("_token")?.value;
-  if (_token === undefined) return null;
-  try {
-    const { data } = await axios.get(`/auth_user_info`, {
-      headers: {
-        Authorization: `Bearer ${_token}`,
-      },
-    });
-    return { ...data.data, favorite_count: data.favorite_count };
-  } catch (error) {
-    return null;
-  }
-}
-
 const MainLayout: FC<IProps> = async ({ children }) => {
-  const user = await getUser();
+  const _token = cookies().get("_token")?.value;
+  const user = await getUserInfo(_token);
   return (
     <UserProvider user={user}>
       <TelegramProvider user={user}>
-        <div className="container">
-          <div className={styles.body}>
-            <div className={styles.flex}>
-              <Sidebar />
-              <div className="flex flex-1">
-                <div className={styles.page}>
-                  <Header />
-                  {children}
-                  <Footer />
+        <PusherProvider>
+          <EventProvider>
+            <div className="container">
+              <div className={styles.body}>
+                <div className={styles.flex}>
+                  <Sidebar />
+                  <div className="flex flex-1">
+                    <div className={styles.page}>
+                      <Header />
+                      {children}
+                      <Footer />
+                    </div>
+                    <Widgets
+                      widgets={[
+                        <Tabs
+                          key={1}
+                          minHeight="350px"
+                          maxHeight="350px"
+                          tabs={tabs}
+                          classNameBody="adaptive-mac"
+                          classNameTabs="sidebar-tabs"
+                        />,
+                        <RiskWidgets key={2} />,
+                      ]}
+                    />
+                  </div>
                 </div>
-                <Widgets
-                  widgets={[
-                    <Tabs
-                      key={1}
-                      minHeight="350px"
-                      maxHeight="350px"
-                      tabs={tabs}
-                      classNameBody="adaptive-mac"
-                      classNameTabs="sidebar-tabs"
-                    />,
-                    <RiskWidgets key={2} />,
-                  ]}
-                />
               </div>
+              <Toolkit />
+              <ModalAuth />
+              <ModalSearch />
+              <ModalPremium />
             </div>
-          </div>
-          <Toolkit />
-          <ModalAuth />
-          <ModalSearch />
-          <ModalPremium />
-        </div>
+          </EventProvider>
+        </PusherProvider>
       </TelegramProvider>
     </UserProvider>
   );

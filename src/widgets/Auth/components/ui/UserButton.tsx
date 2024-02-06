@@ -4,12 +4,18 @@ import { IconPerson } from "../../icons/IconPerson";
 import Button from "@/shared/UI/Button";
 import UserModal from "../modals/UserModal";
 import { useEffect, useState } from "react";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { EnumModals } from "@/shared/UI/Modal/EnumModals";
+import { closeAllModal, setModal } from "@/shared/UI/Modal/modalSlice";
 
 export const UserButton = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { modal } = useTypeSelector((state) => state.modal);
+  const dispatch = useTypeDispatch();
+  // const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = () => dispatch(setModal(EnumModals.USER));
+  const closeModal = () => dispatch(closeAllModal());
 
   useEffect(() => {
     const onCloseModal = (e: MouseEvent) => {
@@ -26,14 +32,14 @@ export const UserButton = () => {
   return (
     <>
       <Button
-        onClick={isModalOpen ? closeModal : openModal}
+        onClick={modal === EnumModals.USER ? closeModal : openModal}
         className="user-open-btn"
         iconButton
         type="text"
       >
         <IconPerson />
       </Button>
-      <UserModal open={isModalOpen} />
+      <UserModal open={modal === EnumModals.USER} />
     </>
   );
 };

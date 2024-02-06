@@ -1,6 +1,4 @@
 import axios from "@/shared/core/axios";
-import { AxiosError } from "axios";
-import { ErrorValid } from "@/shared/types/ErrorType";
 
 export interface IRegisterParams {
   email: string;
@@ -8,4 +6,11 @@ export interface IRegisterParams {
 
 export const login = async (params: IRegisterParams) => {
   const { data } = await axios.post("/register_or_login", params);
+};
+
+export const loginTelegram = async (ref?: string) => {
+  const { data } = await axios.post("/login_or_register_with_telegram", {
+    ref_code: ref || "",
+  });
+  return data;
 };

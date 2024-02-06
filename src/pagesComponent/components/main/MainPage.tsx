@@ -1,17 +1,23 @@
 import HeaderPage from "@/widgets/HeaderPage";
 import { NextPage } from "next";
-import { getMatchHome } from "../../api/main/getMatchHome";
+import { getMatchHome, getMatchMainServer } from "../../api/main/getMatchHome";
 import { MatchesGroupHome } from "../../module/group/MatchesGroupHome";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
+import { cookies } from "next/headers";
 
 interface IProps {
   date: string | null;
 }
 export const MainPage: NextPage<IProps> = async ({ date }) => {
-  const matches = await getMatchHome(
-    date ? { date, timeStatus: "" } : undefined
-  );
+  const cookieStore = cookies();
+  const token = cookieStore.get("_token");
+
+  const matches = await getMatchMainServer({
+    date: date || "",
+    timeStatus: "",
+    token: token?.value || "",
+  });
   return (
     <>
       <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />

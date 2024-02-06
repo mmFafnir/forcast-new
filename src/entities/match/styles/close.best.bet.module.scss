@@ -1,0 +1,100 @@
+.body {
+  font-size: 12px;
+  padding: 9px 15px;
+  margin-right: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: rgb(70, 101, 119);
+  flex: 0 0 219px;
+  background: radial-gradient(
+    circle,
+    rgb(70, 101, 119) 0%,
+    rgb(133, 128, 116) -5%,
+    rgb(92, 105, 121) 98%
+  );
+  // backdrop-filter: blur(16.549999237060547px);
+  color: #fff;
+  position: relative;
+  font-weight: 700;
+  z-index: 1;
+
+  > div {
+    transition-duration: 100ms;
+    display: flex;
+    align-items: center;
+  }
+  svg {
+    margin-right: 10px;
+
+    path {
+      stroke: transparent !important;
+    }
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    width: 29px;
+    height: 43px;
+    // background-color: red;
+    position: absolute;
+    top: 0;
+    left: -2%;
+    transform: skew(-34deg);
+    animation-duration: 2s;
+  }
+
+  @media (min-width: 901px) {
+    &:hover {
+      &::before {
+        animation-name: anim-skew;
+      }
+
+      .hover {
+        opacity: 1;
+      }
+      .main {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.hover {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  opacity: 0;
+}
+
+@keyframes anim-skew {
+  0% {
+    left: -3%;
+  }
+  100% {
+    left: 120%;
+  }
+}
+
+@media (max-width: 900px) {
+  .body {
+    padding: 6px 10px;
+    font-size: 10px;
+    flex: 0 0 182px;
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+@media (max-width: 600px) {
+  .body {
+    margin-right: 0;
+  }
+}
+@media (max-width: 500px) {
+  .body {
+    display: none;
+  }
+}
