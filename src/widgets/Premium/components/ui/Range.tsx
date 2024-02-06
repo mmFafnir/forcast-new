@@ -5,7 +5,7 @@ import Slider from "rc-slider";
 import styles from "../../styles/range.module.scss";
 import "rc-slider/assets/index.css";
 
-const arrayDays = [7, 15, 30, 90, 180, 365];
+const arrayDays = [1, 7, 15, 30, 90, 180, 365];
 interface IProps {
   setDay: (day: number) => void;
 }
