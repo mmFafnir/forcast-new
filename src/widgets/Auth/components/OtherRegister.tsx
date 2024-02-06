@@ -85,7 +85,7 @@ export const OtherRegister: FC = () => {
   return (
     <>
       {loader && (
-        <div className="loader-hover">
+        <div className={styles.loader}>
           <Loader />
         </div>
       )}

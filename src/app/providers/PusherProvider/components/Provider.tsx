@@ -2,9 +2,9 @@
 
 import { FC, ReactNode, useEffect } from "react";
 import { IStatePusher } from "../types";
-import Pusher from "pusher-js/with-encryption";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setToken } from "@/widgets/Auth/slice/authSlice";
+import Pusher from "pusher-js/with-encryption";
 
 interface IProps {
   children: ReactNode;
