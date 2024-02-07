@@ -5,6 +5,7 @@ import { IStatePusher } from "../types";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setToken } from "@/widgets/Auth/slice/authSlice";
 import Pusher from "pusher-js/with-encryption";
+import { parseCookies, setCookie } from "nookies";
 
 interface IProps {
   children: ReactNode;
@@ -23,9 +24,13 @@ export const PusherProvider: FC<IProps> = ({ children }) => {
         data.message.type === "confirm_login_for_telegram" &&
         data.message.token
       ) {
+        const { pusher_code } = parseCookies();
+        if (pusher_code !== data.message.code) return;
         dispatch(setToken(data.message.token));
+        setCookie(null, "pusher_code", "", {
+          path: "/",
+        });
       }
-      console.log(data);
     });
   };
   useEffect(() => {

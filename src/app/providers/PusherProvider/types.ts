@@ -7,6 +7,7 @@ export interface TypePusher {
   sender_id: number | null;
   type: string;
   token: string;
+  code?: string;
 }
 
 export interface IStatePusher {

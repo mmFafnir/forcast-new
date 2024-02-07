@@ -64,6 +64,7 @@ export const OtherRegister: FC = () => {
     setLoader(true);
     loginTelegram()
       .then((res) => {
+        setCookie(null, "pusher_code", res.code);
         const newWindow = window.open(res.url, "_blank", "noopener,noreferrer");
         if (newWindow) newWindow.opener = null;
       })
