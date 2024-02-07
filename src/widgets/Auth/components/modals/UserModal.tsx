@@ -41,7 +41,7 @@ const UserModal: FC<IProps> = ({ open }) => {
       <div className={styles.person}>
         <Image src={defaultImage} width={400} height={400} alt="sadsda" />
         <div>
-          {user && <p>{user.nickname}</p>}
+          {user?.nickname && <p>{user.nickname}</p>}
           {user && <p>{user.email}</p>}
         </div>
       </div>
