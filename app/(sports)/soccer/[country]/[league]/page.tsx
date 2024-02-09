@@ -3,15 +3,19 @@ import { NextPage } from "next";
 
 interface IProps {
   params: {
+    league: string;
     country: string;
   };
   searchParams: { [key: string]: string };
 }
 
-const SoccerCountryPage: NextPage<IProps> = ({ searchParams, params }) => {
+const SoccerLeaguePage: NextPage<IProps> = ({ searchParams, params }) => {
   console.log(params);
+
   const date = searchParams["date"] || null;
-  return <SoccerPage date={date} />;
+  return (
+    <SoccerPage date={date} league={params.league} country={params.country} />
+  );
 };
 
-export default SoccerCountryPage;
+export default SoccerLeaguePage;

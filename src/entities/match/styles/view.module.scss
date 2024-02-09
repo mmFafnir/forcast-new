@@ -3,7 +3,14 @@
   align-items: center;
 
   svg {
-    margin-right: 10px;
+    margin-left: 10px;
+  }
+  p {
+    width: 32px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: right;
   }
 
   color: #9c9c9c;

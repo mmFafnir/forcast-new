@@ -8,6 +8,7 @@ import useAccordion, {
 import { FC, useRef } from "react";
 import { League } from "./League";
 import { TypeCountry } from "../types/TypeCountry";
+import Link from "next/link";
 
 const iconStyles: IAccordionStylesIcon = {
   open: {},
@@ -29,8 +30,8 @@ export const Country: FC<IProps> = ({ item }) => {
 
   return (
     <div className={styles.item}>
-      <div className={`${styles.header} acc-hover`} onClick={onToggle}>
-        <div className={styles.country}>
+      <div className={`${styles.header} acc-hover`}>
+        <Link href={`/soccer/${item.code}`} className={styles.country}>
           <Image
             src={`https://admin.aibetguru.com/uploads/${item.code}.svg`}
             width={16}
@@ -38,14 +39,19 @@ export const Country: FC<IProps> = ({ item }) => {
             className="logo-icon"
             alt={item.name}
           />
+
           <p className={styles.itemName} title={item.translation}>
             {item.translation}
           </p>
-        </div>
+        </Link>
         {item.league.length > 0 && (
-          <span style={iconStyle}>
+          <button
+            className={`${styles.btn} acc-hover`}
+            style={iconStyle}
+            onClick={onToggle}
+          >
             <IconArrow />
-          </span>
+          </button>
         )}
       </div>
       <div className={styles.body} style={{ height: currentHeight + "px" }}>

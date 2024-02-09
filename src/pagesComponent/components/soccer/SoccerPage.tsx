@@ -9,8 +9,8 @@ import { cookies } from "next/headers";
 
 interface IProps {
   date: string | null;
-  country?: string | null;
-  league?: string | null;
+  country?: string;
+  league?: string;
 }
 
 export const SoccerPage: FC<IProps> = async ({
@@ -20,19 +20,26 @@ export const SoccerPage: FC<IProps> = async ({
 }) => {
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
-
+  console.log(country, league);
   const data = await getMatchSoccerServer({
     date: date || "",
     timeStatus: "",
     token: token?.value || "",
+    country: country,
+    league: league,
   });
 
+  const title = data.title;
   const matches = mapGetMatchSoccer(data.data);
+
+  console.log(data);
   return (
     <>
-      <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />
+      <HeaderPage
+        title={title || "Прогнозы ставок на футбольные матчи от ИИ"}
+      />
       <div className="flex-1 flex-col">
-        <MatchesGroup matches={matches} />
+        <MatchesGroup matches={matches} league={league} country={country} />
       </div>
       <RiskWidgets isMob />
       <TelegramButton isMob />

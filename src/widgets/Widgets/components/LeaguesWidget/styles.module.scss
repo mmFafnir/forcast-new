@@ -21,6 +21,13 @@
     text-overflow: ellipsis;
     margin-right: 10px;
   }
+  a {
+    @media (min-width: 901px) {
+      &:hover {
+        color: #65a3ff;
+      }
+    }
+  }
   button {
     margin-left: auto;
     transition-duration: 100ms;

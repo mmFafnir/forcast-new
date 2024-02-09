@@ -4,6 +4,6 @@ import { IFetchDataCountries } from "../types/TypeCountry";
 export const getCountries = async (
   url: string
 ): Promise<IFetchDataCountries> => {
-  const { data } = await axios(url);
+  const { data } = await axios.get(url);
   return data.data;
 };

@@ -10,6 +10,7 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { setDefaultLeague } from "@/features/favorites/slice/pinLeagueSlice";
 import { TypeLeague } from "@/shared/types/leagues";
+import Link from "next/link";
 
 interface IPropsItem {
   item: Pick<
@@ -33,7 +34,11 @@ const ItemLeagues: FC<IPropsItem> = ({ item }) => {
         height={400}
         alt={item.league_name}
       />
-      <p className={styles.title}>{item.league_name}</p>
+      <p className={styles.title}>
+        <Link href={`/soccer/${item.league_cc}/${item.url}`}>
+          {item.league_name}
+        </Link>
+      </p>
       <PinButton leagues={{ ...item, user_pind_count: 1 }} />
     </div>
   );

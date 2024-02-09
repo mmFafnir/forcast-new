@@ -11,20 +11,32 @@ import { ILeagues } from "@/shared/types/leagues";
 
 interface IProps {
   matches: ILeagues[];
+  country?: string;
+  league?: string;
 }
 
-const MatchesGroupMemo: FC<IProps> = ({ matches }) => {
+const MatchesGroupMemo: FC<IProps> = ({
+  matches,
+  league = "",
+  country = "",
+}) => {
   const [data, setData] = useState<ILeagues[]>(matches);
   const [loading, setLoading] = useState<boolean | null>(null);
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
 
   useEffect(() => {
+    console.log(matches);
     if (loading === null) {
       setLoading(false);
       return;
     }
     setLoading(true);
-    getMatchSoccer({ date: timeStatus === 1 ? "" : date, timeStatus })
+    getMatchSoccer({
+      date: timeStatus === 1 ? "" : date,
+      timeStatus,
+      country,
+      league,
+    })
       .then((res) => {
         setData(res.data);
       })

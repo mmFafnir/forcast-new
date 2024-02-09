@@ -1,7 +1,6 @@
 "use client";
 import React, { FC, useEffect, useState } from "react";
 import styles from "../styles/leagueHeader.module.scss";
-import { IconFavorite } from "../icons/IconFavorite";
 import Image from "next/image";
 import { FavoriteAdd, PinButton } from "..";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";

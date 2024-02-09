@@ -3,6 +3,7 @@ import { TypeBet, TypeTeam } from "@/shared/types/match";
 
 export interface IFetchMatch {
   data: ILeagues[];
+  title?: string;
 }
 
 export interface IFetchFullMatch {
