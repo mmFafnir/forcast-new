@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styles from "../styles/commands.module.scss";
 import Image from "next/image";
-import { TypeTeam } from "..";
+import { TypeTeam } from "@/shared/types/match";
 
 interface IProps {
   away: TypeTeam;

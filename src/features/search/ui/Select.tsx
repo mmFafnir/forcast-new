@@ -22,9 +22,10 @@ const iconStyles: IAccordionStylesIcon = {
 
 interface IProps {
   data: TypeSelect[];
+  setValue: (value: string | number) => void;
 }
 
-export const Select: FC<IProps> = ({ data }) => {
+export const Select: FC<IProps> = ({ data, setValue }) => {
   const id = useId();
 
   const [currentValue, setCurrentValue] = useState<TypeSelect>(data[0]);
@@ -46,6 +47,10 @@ export const Select: FC<IProps> = ({ data }) => {
     document.addEventListener("click", onCloseEvent);
     return () => document.removeEventListener("click", onCloseEvent);
   }, []);
+
+  useEffect(() => {
+    setValue(currentValue.value);
+  }, [currentValue]);
 
   return (
     <div className={`${styles.body}`} id={id}>

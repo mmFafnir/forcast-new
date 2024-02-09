@@ -4,6 +4,7 @@ import { BreadCrumbs } from "@/features/breadсrumbs";
 import { CloseSidebarButton } from "@/features/closeSidebar";
 import "./style.scss";
 import MobileHeader from "./components/MobileHeader";
+import { SettingsAuthModal } from "../Auth";
 
 const Header: FC = () => {
   return (

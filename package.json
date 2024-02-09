@@ -1,6 +1,6 @@
 {
-  "name": "forecasts-new",
-  "version": "0.1.0",
+  "name": "aibetguru.com",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

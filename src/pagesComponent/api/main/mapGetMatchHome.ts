@@ -1,4 +1,4 @@
-import TypeSportGroup from "../../types/TypeSportGroup";
+import { TypeSportGroup } from "@/shared/types/sport";
 
 export const mapGetMatchHome = (data: TypeSportGroup[]): TypeSportGroup[] => {
   const res: TypeSportGroup[] = [];

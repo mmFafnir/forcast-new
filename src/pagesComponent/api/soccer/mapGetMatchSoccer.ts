@@ -1,4 +1,4 @@
-import { ILeagues } from "../../types/TypeSportGroup";
+import { ILeagues } from "@/shared/types/leagues";
 
 export const mapGetMatchSoccer = (data: ILeagues[]): ILeagues[] => {
   const res: ILeagues[] = [];

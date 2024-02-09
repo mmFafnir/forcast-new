@@ -6,9 +6,9 @@ import { Commands } from "../ui/Commands";
 import { Total } from "../ui/Total";
 import { Views } from "../ui/Views";
 import Link from "next/link";
-import { TypeMatch } from "..";
 import styles from "../styles/match.module.scss";
 import { getTimeStatusMatch } from "../scripts/getTimeStatusMatch";
+import { TypeMatch } from "@/shared/types/match";
 
 interface IProps {
   match: TypeMatch;
@@ -18,7 +18,7 @@ export const Match: FC<IProps> = ({ match }) => {
   const time = getTimeStatusMatch(match.real_date);
   return (
     <div className={`${styles.body}`}>
-      <Link href={match.url} className={styles.href}></Link>
+      <Link href={`match/${match.url}`} className={styles.href}></Link>
       <div className={styles.left}>
         <div className={`flex item-center js-between ${styles.first}`}>
           <FavoriteAdd
@@ -26,13 +26,15 @@ export const Match: FC<IProps> = ({ match }) => {
             ids={[match.id]}
             className={`${styles.favorites} favorite-icon`}
           />
-          {time === "finish" ? (
-            <p style={{ color: "#E98080" }}>Завершен</p>
-          ) : time === "live" ? (
-            <Live />
-          ) : (
-            match.real_time.slice(0, -3)
-          )}
+          <div className={styles.time}>
+            {time === "finish" ? (
+              <p style={{ color: "#E98080" }}>Завершен</p>
+            ) : time === "live" ? (
+              <Live />
+            ) : (
+              <p>{match.real_time.slice(0, -3)}</p>
+            )}
+          </div>
         </div>
 
         <Commands away={match.away_team} home={match.home_team} />

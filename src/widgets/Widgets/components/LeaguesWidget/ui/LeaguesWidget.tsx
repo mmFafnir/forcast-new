@@ -9,7 +9,7 @@ import MyScrollbar from "@/shared/UI/MyScrollbar";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { setDefaultLeague } from "@/features/favorites/slice/pinLeagueSlice";
-import { TypeLeague } from "..";
+import { TypeLeague } from "@/shared/types/leagues";
 
 interface IPropsItem {
   item: Pick<

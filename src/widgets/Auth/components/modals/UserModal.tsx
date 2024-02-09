@@ -35,6 +35,7 @@ const UserModal: FC<IProps> = ({ open }) => {
 
   const onLogout = () => dispatch(logout());
   const onOpenModalPrem = () => dispatch(setModal(EnumModals.PREMIUM));
+  const onOpenModalSetting = () => dispatch(setModal(EnumModals.SETTINGS));
 
   return (
     <div className={`${styles.body} user-modal ${open ? styles.open : ""}`}>
@@ -55,7 +56,7 @@ const UserModal: FC<IProps> = ({ open }) => {
           <span>Premium доступ</span>
           <span className={styles.premiumTime}>До 21.12.2024</span>
         </Button>
-        <Button type="text">
+        <Button type="text" onClick={onOpenModalSetting}>
           <IconSettings />
           <span>Настройки аккаунта</span>
         </Button>

@@ -1,0 +1,12 @@
+DirectoryIndex disabled
+RewriteEngine On
+
+# Перенаправление корневого URL на Next.js сервер
+RewriteRule ^$ http://127.0.0.1:3000/ [P,L]
+
+# Проверка условий: файлы и каталоги не существуют
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Перенаправление всех остальных запросов на Next.js сервер
+RewriteRule ^(.*)$ http://127.0.0.1:3000/$1 [P,L]

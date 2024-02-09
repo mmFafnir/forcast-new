@@ -1,5 +1,5 @@
 "use client";
-import { FC, ReactNode, useRef } from "react";
+import { FC, ReactNode, useEffect, useRef } from "react";
 import styles from "../styles/group.module.scss";
 import SportsIcon, { TypeSportIcon } from "@/shared/icons/sports";
 import TotalMatches from "@/shared/UI/TotalMatches";
@@ -38,17 +38,19 @@ export const SportGroup: FC<IProps> = ({
     ref: listRef,
   });
 
-  // const startInitialSticky = () => {
-  //   if (!bodyRef.current) return;
-  //   initialSticky(bodyRef.current);
-  // };
-
-  // useEffect(() => {
-  //   startInitialSticky();
-  //   document.addEventListener("resize", startInitialSticky);
-
-  //   return () => document.removeEventListener("resize", startInitialSticky);
-  // }, []);
+  useEffect(() => {
+    if (!bodyRef.current) return;
+    const header = bodyRef.current.querySelector(
+      ".group-header"
+    ) as HTMLElement;
+    if (
+      header &&
+      !header.closest(".group-body") &&
+      header.closest(".simplebar-content")
+    ) {
+      header.style.top = "0px";
+    }
+  }, []);
 
   return (
     <div ref={bodyRef} className={`${styles.body} group-list`}>

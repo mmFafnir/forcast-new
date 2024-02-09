@@ -4,10 +4,10 @@ import styles from "../styles/leagueHeader.module.scss";
 import { IconFavorite } from "../icons/IconFavorite";
 import Image from "next/image";
 import { FavoriteAdd, PinButton } from "..";
-import { ILeagues } from "@/pagesComponent/types/TypeSportGroup";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setFavorite } from "../slice/favoritesSlice";
+import { ILeagues } from "@/shared/types/leagues";
 
 interface IProps {
   league: ILeagues;

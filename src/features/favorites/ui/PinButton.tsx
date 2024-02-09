@@ -4,13 +4,13 @@ import IconPinFavorite from "../icons/IconPinFavorite";
 import styles from "../styles/pin.module.scss";
 import { togglePin } from "../api/togglePin";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import { TypeLeague } from "@/widgets/Widgets/components/LeaguesWidget";
 import {
   deleteDefaultLeagues,
   deleteLeagues,
   setLeagues,
 } from "../slice/pinLeagueSlice";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import { TypeLeague } from "@/shared/types/leagues";
 
 interface IProps {
   leagues: Pick<

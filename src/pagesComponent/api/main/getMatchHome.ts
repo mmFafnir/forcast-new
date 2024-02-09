@@ -1,7 +1,7 @@
 import axios from "@/shared/core/axios";
-import TypeSportGroup from "../../types/TypeSportGroup";
 import { mapGetMatchHome } from "./mapGetMatchHome";
 import { TypeTimeStatus } from "@/features/filters";
+import { TypeSportGroup } from "@/shared/types/sport";
 
 interface IParams {
   date: string;

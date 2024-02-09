@@ -47,6 +47,7 @@ export const getMatchSoccerServer = async (
       date: "",
       timeStatus: "",
       token: "",
+      country_code: "",
     };
 
     const config = {

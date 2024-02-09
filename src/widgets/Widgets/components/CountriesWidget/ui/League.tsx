@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import styles from "../styles/league.module.scss";
 import { PinButton } from "@/features/favorites";
-import { TypeLeague } from "../../LeaguesWidget/types/TypeLeague";
 import Link from "next/link";
+import { TypeLeague } from "@/shared/types/leagues";
 
 interface IProps {
   item: TypeLeague;

@@ -1,6 +1,5 @@
 "use client";
 import Button from "@/shared/UI/Button";
-import { FilterCalendar } from "./FilterCalendar";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { TypeTimeStatus, setTimeStatus } from "../slice/filterSlice";
@@ -28,7 +27,6 @@ export const Filters = () => {
 
   return (
     <>
-      {/* <div className={`flex jc-between ${styles.body}`}> */}
       {isMob && <FilterMobile />}
       <div className={`${styles.list} flex`}>
         {!isMob &&
@@ -43,7 +41,6 @@ export const Filters = () => {
             </Button>
           ))}
       </div>
-      {/* </div> */}
     </>
   );
 };

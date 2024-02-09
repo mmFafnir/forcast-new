@@ -1,3 +1,4 @@
+"use client";
 import { FilterCalendar, Filters } from "@/features/filters";
 import { FC } from "react";
 import styles from "./styles.module.scss";

@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import styles from "../styles/total.module.scss";
 import IconCup from "../../../shared/icons/IconCup";
 import { ToolkitSpan } from "@/features/Toolkit";
-import { TypeBet } from "../types/TypeMatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { CloseBestBet } from "./CloseBestBet";
+import { TypeBet } from "@/shared/types/match";
 
 interface IProps {
   bet: TypeBet;

@@ -9,9 +9,15 @@ import { cookies } from "next/headers";
 
 interface IProps {
   date: string | null;
+  country?: string | null;
+  league?: string | null;
 }
 
-export const SoccerPage: FC<IProps> = async ({ date }) => {
+export const SoccerPage: FC<IProps> = async ({
+  date,
+  country = "",
+  league = "",
+}) => {
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
 
@@ -22,7 +28,6 @@ export const SoccerPage: FC<IProps> = async ({ date }) => {
   });
 
   const matches = mapGetMatchSoccer(data.data);
-
   return (
     <>
       <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />

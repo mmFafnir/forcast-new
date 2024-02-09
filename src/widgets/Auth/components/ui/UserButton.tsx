@@ -12,22 +12,24 @@ import { closeAllModal, setModal } from "@/shared/UI/Modal/modalSlice";
 export const UserButton = () => {
   const { modal } = useTypeSelector((state) => state.modal);
   const dispatch = useTypeDispatch();
-  // const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openModal = () => dispatch(setModal(EnumModals.USER));
   const closeModal = () => dispatch(closeAllModal());
 
+  const onCloseModal = (e: MouseEvent) => {
+    console.log(modal);
+    if (modal !== EnumModals.USER) return;
+    const target = e.target as HTMLElement;
+    if (!target.closest(`.user-modal`) && !target.closest(`.user-open-btn`)) {
+      closeModal();
+    }
+  };
+
   useEffect(() => {
-    const onCloseModal = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (!target.closest(`.user-modal`) && !target.closest(`.user-open-btn`)) {
-        closeModal();
-      }
-    };
     document.addEventListener("click", onCloseModal);
 
     return () => document.removeEventListener("click", onCloseModal);
-  }, []);
+  }, [modal]);
 
   return (
     <>

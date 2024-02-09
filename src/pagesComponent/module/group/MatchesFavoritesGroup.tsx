@@ -1,17 +1,18 @@
 "use client";
 import { SportGroup } from "@/features/group";
 import { FC, useEffect, useState } from "react";
-import TypeSportGroup, { ILeagues } from "../../types/TypeSportGroup";
 import { FavoritesLeagueHeader, fetchFavorites } from "@/features/favorites";
-import { Match, TypeMatch } from "@/entities/match";
+import { Match } from "@/entities/match";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { getMatchHome } from "../../api/main/getMatchHome";
 import IconEmpty from "@/shared/icons/IconEmpty";
 import { PremMatchBanner } from "@/entities/banners";
 import Loader from "@/shared/UI/Loader";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setFavorite } from "@/features/favorites/slice/favoritesSlice";
 import { mapGetMatchHome } from "@/pagesComponent/api/main/mapGetMatchHome";
+import { TypeSportGroup } from "@/shared/types/sport";
+import { ILeagues } from "@/shared/types/leagues";
+import { TypeMatch } from "@/shared/types/match";
 
 interface IProps {
   matches: TypeSportGroup[];

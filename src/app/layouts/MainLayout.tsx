@@ -10,7 +10,7 @@ import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { LeaguesWidget } from "@/widgets/Widgets/components/LeaguesWidget";
 import CountriesWidget from "@/widgets/Widgets/components/CountriesWidget";
 import { Toolkit } from "@/features/Toolkit";
-import { ModalAuth, getUserInfo } from "@/widgets/Auth";
+import { ModalAuth, SettingsAuthModal, getUserInfo } from "@/widgets/Auth";
 import { ModalSearch } from "@/features/search";
 import { cookies } from "next/headers";
 import axios from "@/shared/core/axios";
@@ -76,6 +76,7 @@ const MainLayout: FC<IProps> = async ({ children }) => {
               <ModalAuth />
               <ModalSearch />
               <ModalPremium />
+              <SettingsAuthModal />
             </div>
           </EventProvider>
         </PusherProvider>

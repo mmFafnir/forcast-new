@@ -1,19 +1,19 @@
 "use client";
 import { SportGroup } from "@/features/group";
-import { FC, useEffect, useState } from "react";
-import { ILeagues } from "../../types/TypeSportGroup";
+import { FC, memo, useEffect, useState } from "react";
 import { FavoritesLeagueHeader } from "@/features/favorites";
 import { Match } from "@/entities/match";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import IconEmpty from "@/shared/icons/IconEmpty";
 import { getMatchSoccer } from "@/pagesComponent/api/soccer/getMatchSoccer";
 import Loader from "@/shared/UI/Loader";
+import { ILeagues } from "@/shared/types/leagues";
 
 interface IProps {
   matches: ILeagues[];
 }
 
-export const MatchesGroup: FC<IProps> = ({ matches }) => {
+const MatchesGroupMemo: FC<IProps> = ({ matches }) => {
   const [data, setData] = useState<ILeagues[]>(matches);
   const [loading, setLoading] = useState<boolean | null>(null);
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
@@ -60,3 +60,5 @@ export const MatchesGroup: FC<IProps> = ({ matches }) => {
     </div>
   );
 };
+
+export const MatchesGroup = memo(MatchesGroupMemo);

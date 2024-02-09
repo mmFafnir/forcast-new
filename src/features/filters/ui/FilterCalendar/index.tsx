@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { FC, memo, useEffect, useState } from "react";
 import styles from "../../styles/calendar.module.scss";
 import Calendar from "react-calendar";
 import Button from "./Button";
@@ -14,7 +14,7 @@ import useQuery from "@/shared/hooks/useQuery";
 export const minDate = "2001-12-12";
 export const maxDate = "2030-12-12";
 
-export const FilterCalendar: FC = () => {
+const FilterCalendarMemo: FC = () => {
   const dispatch = useTypeDispatch();
   const { timeStatus, date } = useTypeSelector((state) => state.filters);
   const { setQuery, deleteQuery } = useQuery();
@@ -30,9 +30,12 @@ export const FilterCalendar: FC = () => {
     setQuery({ name: "date", value: date });
   };
 
-  const onChange = (value: any) => {
-    setDay(value);
-  };
+  const onChange = (value: any) => setDay(value);
+
+  useEffect(() => {
+    console.log("mount");
+    // dispatch(setDate(dayjs().format("YYYY-MM-DD")));
+  }, []);
 
   if (timeStatus === 1) return <></>;
   return (
@@ -48,3 +51,5 @@ export const FilterCalendar: FC = () => {
     </div>
   );
 };
+
+export const FilterCalendar = memo(FilterCalendarMemo);

@@ -3,13 +3,13 @@ import React, { FC, useRef } from "react";
 import styles from "../styles/event.module.scss";
 import BestBet from "../ui/BestBet";
 import { Wrapper } from "../ui/Wrapper";
-import { TypeBet } from "@/entities/match";
 import { Status } from "../ui/Status";
 import useAccordion, {
   IAccordionStylesIcon,
 } from "@/shared/hooks/useAccardion";
 import IconArrow from "@/shared/icons/IconArrow";
 import Button from "@/shared/UI/Button";
+import { TypeBet } from "@/shared/types/match";
 
 interface IProps {
   bet: TypeBet;

@@ -1,7 +1,7 @@
 import { TypeTimeStatus } from "@/features/filters";
-import TypeSportGroup from "@/pagesComponent/types/TypeSportGroup";
 import axios from "axios";
 import { mapGetMatchHome } from "../main/mapGetMatchHome";
+import { TypeSportGroup } from "@/shared/types/sport";
 
 interface IParams {
   timeStatus: TypeTimeStatus;

@@ -1,5 +1,4 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React from "react";
 
 const useQuery = () => {
   const router = useRouter();

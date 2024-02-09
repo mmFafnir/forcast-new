@@ -15,6 +15,7 @@ interface IProps {
   title?: string | ReactNode;
   titleAlight?: "left" | "center" | "right";
   styleBody?: CSSProperties;
+  styleChildren?: CSSProperties;
 }
 const Modal: FC<IProps> = ({
   children,
@@ -23,11 +24,15 @@ const Modal: FC<IProps> = ({
   name,
   title,
   styleBody = {},
+  styleChildren = {},
   titleAlight = "left",
 }) => {
   const { modal } = useTypeSelector((state) => state.modal);
   const dispatch = useTypeDispatch();
-  const onClose = () => dispatch(closeAllModal());
+  const onClose = () => {
+    console.log("close");
+    dispatch(closeAllModal());
+  };
 
   return (
     <div
@@ -61,7 +66,9 @@ const Modal: FC<IProps> = ({
               </button>
             </div>
           )}
-          <div className={styles.content}>{children}</div>
+          <div className={styles.content} style={styleChildren}>
+            {children}
+          </div>
         </div>
       </div>
     </div>

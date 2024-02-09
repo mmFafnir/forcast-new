@@ -1,4 +1,4 @@
-import { TypeLeague } from "../../LeaguesWidget/types/TypeLeague";
+import { TypeLeague } from "@/shared/types/leagues";
 
 export type TypeCountry = {
   code: string;

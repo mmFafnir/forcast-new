@@ -1,7 +1,7 @@
 import { EnumStatus } from "@/shared/types/Enums";
-import { TypeLeague } from "@/widgets/Widgets/components/LeaguesWidget";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { togglePinLeague } from "./asyncActions";
+import { TypeLeague } from "@/shared/types/leagues";
 
 type TypePinLeague = Pick<
   TypeLeague,
