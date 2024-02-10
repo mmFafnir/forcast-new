@@ -35,11 +35,9 @@ export const getMatchMainServer = async (
       timeStatus: "",
       token: "",
     };
-
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-
     const { data } = await axios.get(
       `https://admin.aibetguru.com/api/app/get_home_page_matches?date=${date}&time_status=${timeStatus}`,
       config
@@ -47,6 +45,7 @@ export const getMatchMainServer = async (
 
     return mapGetMatchHome(data.data);
   } catch (error) {
+    console.log(error);
     return [];
   }
 };

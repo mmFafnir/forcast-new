@@ -18,7 +18,7 @@ import { UserProvider } from "../providers/UserProvider";
 import { ScrollbarProvider } from "../providers/ScrollbarProvider";
 import { ModalPremium } from "@/widgets/Premium";
 import { TelegramProvider } from "../providers/TelegramProvider";
-import { PusherProvider } from "../providers/PusherProvider/components/Provider";
+// import { PusherProvider } from "../providers/PusherProvider/components/Provider";
 import { EventProvider } from "../providers/EventProvider";
 
 interface IProps {
@@ -44,42 +44,42 @@ const MainLayout: FC<IProps> = async ({ children }) => {
   return (
     <UserProvider user={user}>
       <TelegramProvider user={user}>
-        <PusherProvider>
-          <EventProvider>
-            <div className="container">
-              <div className={styles.body}>
-                <div className={styles.flex}>
-                  <Sidebar />
-                  <div className="flex flex-1">
-                    <div className={styles.page}>
-                      <Header />
-                      {children}
-                      <Footer />
-                    </div>
-                    <Widgets
-                      widgets={[
-                        <Tabs
-                          key={1}
-                          minHeight="350px"
-                          maxHeight="350px"
-                          tabs={tabs}
-                          classNameBody="adaptive-mac"
-                          classNameTabs="sidebar-tabs"
-                        />,
-                        <RiskWidgets key={2} />,
-                      ]}
-                    />
+        {/* <PusherProvider> */}
+        <EventProvider>
+          <div className="container">
+            <div className={styles.body}>
+              <div className={styles.flex}>
+                <Sidebar />
+                <div className="flex flex-1">
+                  <div className={styles.page}>
+                    <Header />
+                    {children}
+                    <Footer />
                   </div>
+                  <Widgets
+                    widgets={[
+                      <Tabs
+                        key={1}
+                        minHeight="350px"
+                        maxHeight="350px"
+                        tabs={tabs}
+                        classNameBody="adaptive-mac"
+                        classNameTabs="sidebar-tabs"
+                      />,
+                      <RiskWidgets key={2} />,
+                    ]}
+                  />
                 </div>
               </div>
-              <Toolkit />
-              <ModalAuth />
-              <ModalSearch />
-              <ModalPremium />
-              <SettingsAuthModal />
             </div>
-          </EventProvider>
-        </PusherProvider>
+            <Toolkit />
+            <ModalAuth />
+            <ModalSearch />
+            <ModalPremium />
+            <SettingsAuthModal />
+          </div>
+        </EventProvider>
+        {/* </PusherProvider> */}
       </TelegramProvider>
     </UserProvider>
   );

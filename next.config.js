@@ -16,6 +16,11 @@ const nextConfig = {
     NEXT_PUBLIC_PUSHER_SECRET: "d7da10ff10c3572be6ad",
     NEXT_PUBLIC_PUSHER_CLUSTER: "mt1",
   },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
 };
 
 module.exports = nextConfig;

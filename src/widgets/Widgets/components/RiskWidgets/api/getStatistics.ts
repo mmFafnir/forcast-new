@@ -20,7 +20,7 @@ export const getStatistics = async (params: IParams) => {
   } = params;
 
   const { data } = await axios.get(
-    `get_statistics?date=${date}&risk_id=${risk_id}&time_status=${time_status}&league_id=${league_id}&sport_id=${sport_id}&country_id=${country_id}`
+    `get_statistics?risk_id=${risk_id}&time_status=${time_status}&league_id=${league_id}&sport_id=${sport_id}&country_id=${country_id}`
   );
   return data.data;
 };
