@@ -18,6 +18,7 @@ export const MainPage: NextPage<IProps> = async ({ date }) => {
     timeStatus: "",
     token: token?.value || "",
   });
+
   return (
     <>
       <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />

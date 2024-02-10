@@ -38,7 +38,6 @@ const FilterCalendarMemo: FC = () => {
   }, []);
 
   if (timeStatus === 1) return <></>;
-  return <></>;
   return (
     <div className={styles.body}>
       <Button setDay={setDay} day={date} setIsOpen={setIsOpen} />
