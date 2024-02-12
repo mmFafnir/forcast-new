@@ -22,6 +22,7 @@
     margin-right: 10px;
   }
   a {
+    transition-duration: 100ms;
     @media (min-width: 901px) {
       &:hover {
         color: #65a3ff;

@@ -55,7 +55,8 @@ export const SettingsAuthModal = () => {
       name={EnumModals.SETTINGS}
       title="Настройки аккаунта"
       stylesWrapper={{ flex: "0 1 100%", height: "100%" }}
-      styleContent={{ flex: "0 1 500px", margin: "0 auto", paddingTop: "10%" }}
+      styleContent={{ flex: "0 1 500px", margin: "0 auto" }}
+      classContent="modal-wrapper"
       styleBody={{ padding: 0 }}
     >
       <p className={styles.title}>{user.name || user.nickname || user.email}</p>

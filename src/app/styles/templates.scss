@@ -27,6 +27,7 @@ a {
 .logo-icon {
   border-radius: 50%;
 }
+
 .logo-country {
   border-radius: 2px;
 }
@@ -118,12 +119,15 @@ h2 {
 .flex {
   display: flex;
 }
+
 .jc-between {
   justify-content: space-between;
 }
+
 .item-center {
   align-items: center;
 }
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -207,6 +211,16 @@ h2 {
   color: #d95555;
   margin-bottom: 5px;
   text-align: right;
+}
+
+.modal-wrapper {
+  padding-top: 10%;
+}
+
+@media (max-width: 800px) {
+  .modal-wrapper {
+    padding-top: 0;
+  }
 }
 
 @media (min-width: 501px) {

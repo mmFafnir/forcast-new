@@ -18,7 +18,9 @@ export const FavoritesButton: FC<IProps> = ({ className }) => {
   const dispatch = useTypeDispatch();
 
   useEffect(() => {
+    console.log(user);
     if (!user) return;
+    console.log(user.favorite_count);
     dispatch(setFavorite(user.favorite_count));
   }, []);
 

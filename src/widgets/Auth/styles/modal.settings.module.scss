@@ -56,7 +56,6 @@
 }
 
 .logout {
-  display: none !important;
   height: 45px !important;
   border: 1px solid #a58d8d;
   border-radius: 5px;
@@ -66,7 +65,7 @@
   color: #e97c7c;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1250px) {
   .logout {
     display: flex !important;
   }

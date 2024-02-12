@@ -16,9 +16,10 @@ interface IProps {
 
 export const Match: FC<IProps> = ({ match }) => {
   const time = getTimeStatusMatch(match.real_date);
+  console.log(match);
   return (
     <div className={`${styles.body}`}>
-      <Link href={`match/${match.url}`} className={styles.href}></Link>
+      <Link href={match.url || "/"} className={styles.href}></Link>
       <div className={styles.left}>
         <div className={`flex item-center js-between ${styles.first}`}>
           <FavoriteAdd
@@ -36,7 +37,6 @@ export const Match: FC<IProps> = ({ match }) => {
             )}
           </div>
         </div>
-
         <Commands away={match.away_team} home={match.home_team} />
       </div>
       <div className={styles.right}>

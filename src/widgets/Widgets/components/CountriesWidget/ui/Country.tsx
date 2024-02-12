@@ -9,6 +9,7 @@ import { FC, useRef } from "react";
 import { League } from "./League";
 import { TypeCountry } from "../types/TypeCountry";
 import Link from "next/link";
+import CustomImage from "@/shared/UI/CustomImage";
 
 const iconStyles: IAccordionStylesIcon = {
   open: {},
@@ -32,7 +33,7 @@ export const Country: FC<IProps> = ({ item }) => {
     <div className={styles.item}>
       <div className={`${styles.header} acc-hover`}>
         <Link href={`/soccer/${item.code}`} className={styles.country}>
-          <Image
+          <CustomImage
             src={`https://admin.aibetguru.com/uploads/${item.code}.svg`}
             width={16}
             height={16}

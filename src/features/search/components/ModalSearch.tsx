@@ -19,14 +19,6 @@ const sportsData = [
     label: "Футбол",
     value: "soccer",
   },
-  {
-    label: "Баскетбол",
-    value: "basket",
-  },
-  {
-    label: "Волейбол",
-    value: "vol",
-  },
 ];
 
 const statusMatchData = [
@@ -52,6 +44,7 @@ export const ModalSearch: FC = () => {
   const [data, setData] = useState<TypeSportGroup[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [status, setStatus] = useState<string | number>("");
+  const [sport, setSport] = useState<string | number>("");
   const [search, setSearch] = useState<string>("");
 
   const fetchMatches = (value: string) => {
@@ -82,6 +75,7 @@ export const ModalSearch: FC = () => {
     console.log(status);
     fetchMatches(search);
   }, [status]);
+
   return (
     <Modal
       title={"Поиск"}
@@ -94,6 +88,7 @@ export const ModalSearch: FC = () => {
           <Input onSearch={onSearch} />
         </div>
         <div className="flex item-center">
+          <Select setValue={setSport} data={sportsData} />
           <Select setValue={setStatus} data={statusMatchData} />
         </div>
         <div>
@@ -102,7 +97,6 @@ export const ModalSearch: FC = () => {
               <GroupHome data={data} loading={loading} />
             </MyScrollbar>
           </div>
-          {/* <Found /> */}
         </div>
       </div>
     </Modal>

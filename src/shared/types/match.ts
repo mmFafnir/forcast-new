@@ -1,3 +1,5 @@
+import { TypeLeague } from "./leagues";
+
 export type TypeRisk = {
   created_at: string;
   id: number;
@@ -68,4 +70,5 @@ export type TypeMatch = {
   url: string;
   favorite_auth_user_count: 0 | 1;
   game_view_count: number;
+  league: TypeLeague;
 };

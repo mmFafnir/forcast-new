@@ -1,32 +1,60 @@
 "use client";
-import { ChangeEvent, memo, useEffect, useState } from "react";
-import styles from "./styles.module.scss";
+import { ChangeEvent, memo, useCallback, useEffect, useState } from "react";
 import { IconSearch } from "@/features/search";
 import { Country } from "./ui/Country";
 import { getCountries } from "./api/getCountries";
 import { TypeCountry } from "./types/TypeCountry";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
 import Loader from "@/shared/UI/Loader";
+import styles from "./styles.module.scss";
+
 const CountriesWidget = () => {
   const [data, setData] = useState<TypeCountry[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [nextPage, setNextPage] = useState<string | null>("/get_country");
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [isBottom, setIsBottom] = useState<boolean>(false);
 
-  const fetchCountries = (page: string | null) => {
-    if (page === null) return;
-    getCountries(page).then((res) => {
-      const nextUrl =
-        res.next_page_url &&
-        res.next_page_url.replace("https://admin.aibetguru.com/api/app", "");
-      setNextPage(nextUrl);
-      setData((prev) => [...prev, ...res.data]);
-    });
+  const fetchCountries = () => {
+    if (nextPage === null) return;
+
+    setLoadingMore(true);
+
+    getCountries(nextPage)
+      .then((res) => {
+        const nextUrl =
+          res.next_page_url &&
+          res.next_page_url.replace("https://admin.aibetguru.com/api/app", "");
+
+        setNextPage(nextUrl);
+        // setData((prev) => [...prev, ...res.data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoadingMore(false);
+      });
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
+
+  const onScroll = (bottom: boolean) => {
+    console.log(bottom && !loadingMore);
+    if (bottom) {
+      console.log(nextPage);
+      fetchCountries();
+    }
+  };
+
+  useEffect(() => {
+    if (!isBottom) return;
+    console.log(nextPage);
+    fetchCountries();
+  }, [isBottom]);
 
   useEffect(() => {
     setLoading(true);
@@ -76,7 +104,10 @@ const CountriesWidget = () => {
         {data.length == 0 && !loading && (
           <p className={styles.empty}>Не найдено</p>
         )}
-        <MyScrollbar className="scrollbar-track-0">
+        <MyScrollbar
+          className="scrollbar-track-0"
+          onBottomScroll={(bottom) => setIsBottom(bottom)}
+        >
           {data.map((item) => (
             <Country key={item.id} item={item} />
           ))}

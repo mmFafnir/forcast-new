@@ -4,7 +4,7 @@ import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Wrapper } from "../ui/Wrapper";
 import { OtherRegister } from "../OtherRegister";
 import styles from "../../styles/auth.module.scss";
@@ -13,6 +13,8 @@ import Auth from "../Auth";
 export const ModalAuth = () => {
   const dispatch = useTypeDispatch();
   const onCloseModal = () => dispatch(closeAllModal());
+
+  const { click } = useTypeSelector((state) => state.modal);
   const { auth } = useTypeSelector((state) => state.auth);
 
   useEffect(() => {
@@ -23,19 +25,22 @@ export const ModalAuth = () => {
     <Modal
       name={EnumModals.LOGIN}
       stylesWrapper={{ flex: "0 1 100%", height: "100%" }}
-      styleContent={{ flex: "0 1 500px", margin: "0 auto", paddingTop: "10%" }}
+      styleContent={{ flex: "0 1 500px", margin: "0 auto" }}
+      classContent="modal-wrapper"
       styleBody={{ padding: 0 }}
       title="Вход или регистрация"
       titleAlight="center"
     >
       <Wrapper>
         <>
-          <div className={styles.cart}>
-            <p>
-              Для продолжения покупки войдите или зарегистрируйтесь, введя свой
-              email
-            </p>
-          </div>
+          {click === "prem" && (
+            <div className={styles.cart}>
+              <p>
+                Для продолжения покупки войдите или зарегистрируйтесь, введя
+                свой email
+              </p>
+            </div>
+          )}
           <OtherRegister />
           <Auth />
         </>

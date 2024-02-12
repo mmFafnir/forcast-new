@@ -4,7 +4,7 @@ import { FC } from "react";
 import styles from "../styles/close.best.bet.module.scss";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { setModal } from "@/shared/UI/Modal/modalSlice";
+import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 export const CloseBestBet: FC = () => {
   const { auth } = useTypeSelector((state) => state.auth);
@@ -12,7 +12,8 @@ export const CloseBestBet: FC = () => {
 
   const onOpenModal = () => {
     if (!auth) return dispatch(setModal(EnumModals.LOGIN));
-    return dispatch(setModal(EnumModals.PREMIUM));
+    dispatch(setClick("prem"));
+    dispatch(setModal(EnumModals.PREMIUM));
   };
 
   return (

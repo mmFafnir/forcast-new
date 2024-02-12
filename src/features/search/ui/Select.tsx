@@ -15,7 +15,6 @@ type TypeSelect = {
 const iconStyles: IAccordionStylesIcon = {
   open: {},
   close: {
-    // backgroundColor: 'red',
     transform: `scale(1, -1)`,
   },
 };
@@ -27,9 +26,7 @@ interface IProps {
 
 export const Select: FC<IProps> = ({ data, setValue }) => {
   const id = useId();
-
   const [currentValue, setCurrentValue] = useState<TypeSelect>(data[0]);
-
   const listRef = useRef<HTMLDivElement>(null);
   const { iconStyle, onToggle, currentHeight, onClose } = useAccordion({
     iconStyles,
@@ -72,13 +69,6 @@ export const Select: FC<IProps> = ({ data, setValue }) => {
             >
               {item.label}
             </Button>
-            // <button
-            //   onClick={() => setCurrentValue(item)}
-            //   key={item.value}
-            //   title={item.label}
-            // >
-            //   {item.label}
-            // </button>
           ))}
         </div>
       </div>

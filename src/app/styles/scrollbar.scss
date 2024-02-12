@@ -18,7 +18,7 @@
 
 .simplebar-horizontal {
   height: 4px !important;
-  background-color: #242b36;
+  background-color: transparent;
   bottom: -6px !important;
   .simplebar-scrollbar::before {
     height: 2px;
@@ -26,6 +26,15 @@
     background: rgba(217, 217, 217, 0.7);
     transform: translateY(-50%);
     top: 50%;
+  }
+}
+
+.scroll-hide {
+  .simplebar-track {
+    opacity: 0 !important;
+  }
+  &:hover .simplebar-track {
+    opacity: 1 !important;
   }
 }
 .simplebar-track {

@@ -1,0 +1,40 @@
+.body {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  border-radius: 10px;
+  background: #22252f;
+  overflow: hidden;
+  transition-duration: 0.2s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.wrapper {
+  display: flex;
+  z-index: 20;
+}
+
+.btn {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  transition-duration: 100ms;
+  border-radius: 0px !important;
+  margin-left: 0 !important;
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (min-width: 901px) {
+    &:hover {
+      background: #414450;
+    }
+  }
+}

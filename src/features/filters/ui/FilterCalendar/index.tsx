@@ -42,6 +42,7 @@ const FilterCalendarMemo: FC = () => {
     <div className={styles.body}>
       <Button setDay={setDay} day={date} setIsOpen={setIsOpen} />
       <Calendar
+        locale="ru"
         className={isOpen ? "calendar-open" : ""}
         minDate={new Date(minDate)}
         maxDate={new Date(maxDate)}

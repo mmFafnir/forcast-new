@@ -11,6 +11,8 @@ import {
 } from "../slice/pinLeagueSlice";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { TypeLeague } from "@/shared/types/leagues";
+import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
+import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 
 interface IProps {
   leagues: Pick<
@@ -31,6 +33,7 @@ export const PinButton: FC<IProps> = ({ leagues }) => {
     (state) => state.pinLeague
   );
   const dispatch = useTypeDispatch();
+
   const [loading, setLoading] = useState(false);
 
   const [isPin, setIsPin] = useState<boolean>(
@@ -63,6 +66,11 @@ export const PinButton: FC<IProps> = ({ leagues }) => {
       });
   };
 
+  const onOpenLogin = () => {
+    dispatch(setClick("pin"));
+    dispatch(setModal(EnumModals.LOGIN));
+  };
+
   useEffect(() => {
     if (!isPin) return;
     if (
@@ -74,12 +82,11 @@ export const PinButton: FC<IProps> = ({ leagues }) => {
     }
   }, [pinUserLeagues, pinDefaultLeagues]);
 
-  if (!auth) return <></>;
   return (
     <button
       disabled={loading}
       className={`${styles.button} ${isPin ? styles.active : ""}`}
-      onClick={onTogglePin}
+      onClick={auth ? onTogglePin : onOpenLogin}
     >
       {<IconPinFavorite />}
     </button>

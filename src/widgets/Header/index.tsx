@@ -1,12 +1,14 @@
 "use client";
 import { FC } from "react";
-import { BreadCrumbs } from "@/features/breadсrumbs";
+import { BreadCrumbs, IBreadCrumb } from "@/features/breadсrumbs";
 import { CloseSidebarButton } from "@/features/closeSidebar";
-import "./style.scss";
 import MobileHeader from "./components/MobileHeader";
-import { SettingsAuthModal } from "../Auth";
+import "./style.scss";
 
-const Header: FC = () => {
+interface IProps {
+  breadCrumbs: IBreadCrumb[];
+}
+const Header: FC<IProps> = ({ breadCrumbs }) => {
   return (
     <>
       <div className="header">
@@ -14,7 +16,7 @@ const Header: FC = () => {
           <CloseSidebarButton />
         </div>
         <div className="header__bread">
-          <BreadCrumbs />
+          <BreadCrumbs links={breadCrumbs} />
         </div>
       </div>
       <MobileHeader />

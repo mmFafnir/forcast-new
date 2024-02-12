@@ -10,8 +10,6 @@ interface IProps {
 }
 
 const SoccerLeaguePage: NextPage<IProps> = ({ searchParams, params }) => {
-  console.log(params);
-
   const date = searchParams["date"] || null;
   return (
     <SoccerPage date={date} league={params.league} country={params.country} />

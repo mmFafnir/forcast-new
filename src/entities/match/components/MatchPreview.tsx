@@ -97,7 +97,20 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
       </div>
       <p className={styles.line}></p>
       <div className={styles.desc}>
-        <BreadCrumbs links={links} />
+        <BreadCrumbs
+          links={[
+            {
+              title: "Футбол",
+              href: "/soccer",
+            },
+            {
+              title: `${
+                match.league.country.translation || match.league.country.name
+              }: ${match.league.league_name}`,
+              href: `/soccer/${match.league.league_cc}/${match.league.url}`,
+            },
+          ]}
+        />
         <div className={styles.times}>
           <p>{match.real_date}</p>
           <p>{match.real_time}</p>

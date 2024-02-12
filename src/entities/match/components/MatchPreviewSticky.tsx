@@ -15,7 +15,6 @@ interface IProps {
 
 export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
   const { activeSidebar } = useTypeSelector((state) => state.closeSidebar);
-
   const time = getTimeStatusMatch(match.real_date);
   const [isShow, setIsShow] = useState<boolean>(false);
   const [pos, setPos] = useState<{ width: string; left: string }>({

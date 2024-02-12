@@ -1,4 +1,4 @@
-import { FC, ReactNode, use } from "react";
+import { FC, ReactNode } from "react";
 import Header from "@/widgets/Header";
 import Sidebar from "@/widgets/Sidebar";
 
@@ -13,13 +13,13 @@ import { Toolkit } from "@/features/Toolkit";
 import { ModalAuth, SettingsAuthModal, getUserInfo } from "@/widgets/Auth";
 import { ModalSearch } from "@/features/search";
 import { cookies } from "next/headers";
-import axios from "@/shared/core/axios";
 import { UserProvider } from "../providers/UserProvider";
-import { ScrollbarProvider } from "../providers/ScrollbarProvider";
 import { ModalPremium } from "@/widgets/Premium";
 import { TelegramProvider } from "../providers/TelegramProvider";
 import { EventProvider } from "../providers/EventProvider";
 import { PusherProvider } from "../providers/PusherProvider/components/Provider";
+import { BreadCrumbs } from "@/features/breadсrumbs";
+import { SidebarSettings } from "@/widgets/Settings";
 
 interface IProps {
   children: ReactNode;
@@ -52,7 +52,6 @@ const MainLayout: FC<IProps> = async ({ children }) => {
                   <Sidebar />
                   <div className="flex flex-1">
                     <div className={styles.page}>
-                      <Header />
                       {children}
                       <Footer />
                     </div>
@@ -74,9 +73,11 @@ const MainLayout: FC<IProps> = async ({ children }) => {
               </div>
               <Toolkit />
               <ModalAuth />
+              x``
               <ModalSearch />
               <ModalPremium />
               <SettingsAuthModal />
+              <SidebarSettings />
             </div>
           </EventProvider>
         </PusherProvider>

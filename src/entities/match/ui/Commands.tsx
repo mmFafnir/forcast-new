@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styles from "../styles/commands.module.scss";
 import Image from "next/image";
 import { TypeTeam } from "@/shared/types/match";
+import CustomImage from "@/shared/UI/CustomImage";
 
 interface IProps {
   away: TypeTeam;
@@ -12,7 +13,7 @@ export const Commands: FC<IProps> = ({ away, home }) => {
   return (
     <div className={styles.body}>
       <div className={styles.team}>
-        <Image
+        <CustomImage
           src={`https://admin.aibetguru.com/uploads/${home.team_id}.png`}
           width={400}
           height={400}
@@ -22,7 +23,7 @@ export const Commands: FC<IProps> = ({ away, home }) => {
         <p className={styles.name}>{home.team_name}</p>
       </div>
       <div className={styles.team}>
-        <Image
+        <CustomImage
           src={`https://admin.aibetguru.com/uploads/${away.team_id}.png`}
           width={400}
           height={400}

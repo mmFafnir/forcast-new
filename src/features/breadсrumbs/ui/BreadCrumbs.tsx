@@ -1,22 +1,24 @@
 "use clients";
 
 import { FC } from "react";
-import Button from "@/shared/UI/Button";
 import Link from "next/link";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
 import styles from "../styles/breadсrumbs.module.scss";
+import { usePathname } from "next/navigation";
+import { IBreadCrumb } from "../type";
 
-const links = [
-  { title: "Футбол", href: "/soccer" },
-  { title: "Испания", href: "/soccer/es" },
-  { title: "Бундеслига", href: "/soccer/bunders" },
-  { title: "Барселона - Барселона", href: "/soccer/match/12312" },
-];
+interface IProps {
+  links: IBreadCrumb[];
+}
 
-export const BreadCrumbs: FC = () => {
+export const BreadCrumbs: FC<IProps> = ({ links = [] }) => {
+  const paths = usePathname();
+  const pathNames = paths.split("/").filter((path) => path);
+
+  console.log(pathNames);
   return (
     <div className={styles.body}>
-      <MyScrollbar style={{ height: "auto", width: "99%" }}>
+      <MyScrollbar autoHide={true} style={{ height: "auto", width: "99%" }}>
         <div className={"flex item-center h-full"}>
           <button className={styles.btn} style={{ marginRight: 5 }}>
             <span>Прогнозы на спорт</span>

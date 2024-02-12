@@ -8,6 +8,8 @@ import styles from "../styles/favorite.button.module.scss";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { deleteIdsFavorite, setFavorite } from "../slice/favoritesSlice";
 import { addFavorite, deleteFavorite } from "../api/favorite";
+import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
+import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 interface IProps {
   className?: string;
   ids: number[];
@@ -47,6 +49,11 @@ export const FavoriteAdd: FC<IProps> = ({
     });
   };
 
+  const onOpenLogin = () => {
+    dispatch(setClick("favorite"));
+    dispatch(setModal(EnumModals.LOGIN));
+  };
+
   useEffect(() => {
     if (ids.length > 1) return;
     if (favorites.find((id) => id === ids[0])) {
@@ -60,12 +67,13 @@ export const FavoriteAdd: FC<IProps> = ({
     setCurrentActive(active);
   }, [active]);
 
-  if (!auth) return;
   return (
     <Button
       type={type}
       className={`${className} ${currentActive ? styles.active : ""}`}
-      onClick={currentActive ? onDeleteFavorite : onAddFavorite}
+      onClick={
+        auth ? (currentActive ? onDeleteFavorite : onAddFavorite) : onOpenLogin
+      }
     >
       <IconFavorite />
     </Button>

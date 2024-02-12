@@ -1,3 +1,4 @@
 export { IconShared } from "./icons/IconShared";
-export { SharedButton } from "./ui/SharedButton";
-export { TelegramButton } from "./ui/TelegramButton";
+export { SharedButton } from "./components/SharedButton";
+export { TelegramButton } from "./components/TelegramButton";
+// export { ModalShared } from "./components/ModalShared";

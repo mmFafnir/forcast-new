@@ -32,20 +32,27 @@ const MobileHeader = () => {
     activeWidgets ? dispatch(closeWidgets()) : dispatch(toggleWidgets());
 
   const onCloseModal = () => dispatch(closeAllModal());
+
   const onToggleAuthModal = () => {
     if (modal === EnumModals.LOGIN) return onCloseModal();
     dispatch(setModal(EnumModals.LOGIN));
   };
+
   const onToggleUserModal = () => {
     if (modal === EnumModals.SETTINGS) return onCloseModal();
     dispatch(setModal(EnumModals.SETTINGS));
   };
 
-  const callbackClose = (callback: () => void) => {
+  const onToggleSettingsModal = () => {
+    if (modal === EnumModals.SETTINGS_MOBILE) return onCloseModal();
+    dispatch(setModal(EnumModals.SETTINGS_MOBILE));
+  };
+
+  const callbackClose = (callback?: () => void) => {
     dispatch(closeSidebar());
     dispatch(closeWidgets());
     onCloseModal();
-    callback();
+    if (callback) callback();
   };
 
   return (
@@ -70,7 +77,11 @@ const MobileHeader = () => {
           />
         </button>
 
-        <Link href={"/"} className={pathname === "/" ? styles.active : ""}>
+        <Link
+          onClick={() => callbackClose()}
+          href={"/"}
+          className={pathname === "/" ? styles.active : ""}
+        >
           <Image src={"/logo-mobile.svg"} width={200} height={200} alt="icon" />
         </Link>
 
@@ -82,7 +93,7 @@ const MobileHeader = () => {
           <IconPerson />
         </button>
 
-        <button>
+        <button onClick={() => callbackClose(onToggleSettingsModal)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"

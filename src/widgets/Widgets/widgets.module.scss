@@ -1,8 +1,8 @@
 .body {
   flex: 0 0 350px;
   margin-left: 20px;
-  // overflow: hidden;
 }
+
 .content {
   height: 100%;
 }
@@ -52,7 +52,7 @@
 @media (max-width: 1250px) {
   .body {
     position: fixed;
-    left: -350px;
+    left: -104%;
     top: 0;
     width: 300px;
     background: rgba(34, 37, 47, 0.9);
@@ -85,6 +85,6 @@
 
 @media (max-width: 500px) {
   .body {
-    width: 274px;
+    width: 100%;
   }
 }

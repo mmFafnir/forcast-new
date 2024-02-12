@@ -1,9 +1,15 @@
-import { ILeagues } from "@/shared/types/leagues";
+import { ILeagues, TypeLeague } from "@/shared/types/leagues";
 import { TypeBet, TypeTeam } from "@/shared/types/match";
+import { TypeCountry } from "@/widgets/Widgets/components/CountriesWidget/types/TypeCountry";
 
 export interface IFetchMatch {
   data: ILeagues[];
-  title?: string;
+  country?: string;
+  league?: string;
+}
+
+interface ICountryLeagues extends TypeLeague {
+  country: TypeCountry;
 }
 
 export interface IFetchFullMatch {
@@ -37,6 +43,7 @@ export interface IFetchFullMatch {
   away_team: TypeTeam;
   best_bet_card: TypeBet[];
   cards: TypeBet[];
+  league: ICountryLeagues;
   favorite_auth_user_count: 0 | 1;
   game_view_count: number;
 }

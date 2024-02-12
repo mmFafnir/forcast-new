@@ -5,6 +5,7 @@ import { MatchesGroupHome } from "../../module/group/MatchesGroupHome";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
 import { cookies } from "next/headers";
+import Header from "@/widgets/Header";
 
 interface IProps {
   date: string | null;
@@ -21,6 +22,7 @@ export const MainPage: NextPage<IProps> = async ({ date }) => {
 
   return (
     <>
+      <Header breadCrumbs={[]} />
       <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />
       <div className="flex-1 flex-col">
         <MatchesGroupHome matches={matches} />

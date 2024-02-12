@@ -64,8 +64,9 @@
   justify-content: space-between;
   padding-bottom: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0px 20px;
   margin-bottom: 5px;
-  padding: 15px 20px;
+  padding: 15px 0px;
 
   button {
     width: 31px;
@@ -78,7 +79,7 @@
     transition-duration: 100ms;
     position: absolute;
     top: 50%;
-    right: 15px;
+    right: 0px;
     transform: translateY(-50%);
     @media (min-width: 901px) {
       &:hover {

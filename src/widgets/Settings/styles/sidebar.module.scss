@@ -1,0 +1,25 @@
+.body {
+  display: none;
+}
+
+@media (max-width: 1250px) {
+  .body {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    height: 100dvh;
+    width: 300px;
+    background: rgba(34, 37, 47, 0.9);
+    backdrop-filter: blur(7px);
+    z-index: 20;
+    padding: 15px 10px;
+    transition-duration: 0.3s;
+    left: -104%;
+  }
+
+  .active {
+    left: 0;
+  }
+}

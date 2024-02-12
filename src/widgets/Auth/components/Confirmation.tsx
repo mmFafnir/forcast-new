@@ -99,7 +99,7 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
           }
           value={num}
           className={styles.input}
-          type="number"
+          type="tel"
           onKeyDown={(e) => handleKeyDown(index, e.nativeEvent.key)}
           maxLength={1}
           max={9}
@@ -125,6 +125,7 @@ export const Confirmation: FC<IProps> = ({ email }) => {
 
   const { seconds, restart } = useTimer({
     expiryTimestamp: new Date(),
+    autoStart: true,
   });
 
   const onConfirm = () => {
@@ -168,6 +169,12 @@ export const Confirmation: FC<IProps> = ({ email }) => {
   useEffect(() => {
     setDigits(defaultDigits);
   }, [auth]);
+
+  useEffect(() => {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 40);
+    restart(time);
+  }, []);
 
   return (
     <div className={styles.body}>

@@ -6,6 +6,7 @@ import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
 import { FC } from "react";
 import { cookies } from "next/headers";
+import Header from "@/widgets/Header";
 
 interface IProps {
   date: string | null;
@@ -20,7 +21,7 @@ export const SoccerPage: FC<IProps> = async ({
 }) => {
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
-  console.log(country, league);
+
   const data = await getMatchSoccerServer({
     date: date || "",
     timeStatus: "",
@@ -29,14 +30,31 @@ export const SoccerPage: FC<IProps> = async ({
     league: league,
   });
 
-  const title = data.title;
+  const title = data.country + ": " + data.league || "";
   const matches = mapGetMatchSoccer(data.data);
 
-  console.log(data);
+  const breadCumbers = [
+    {
+      title: "Футбол",
+      href: "/soccer",
+    },
+  ];
+  if (data.country)
+    breadCumbers.push({
+      title: data.country,
+      href: `/soccer/${country}`,
+    });
+  if (data.league)
+    breadCumbers.push({
+      title: data.league,
+      href: `/soccer/${country}${league}`,
+    });
+
   return (
     <>
+      <Header breadCrumbs={breadCumbers} />
       <HeaderPage
-        title={title || "Прогнозы ставок на футбольные матчи от ИИ"}
+        title={data.country || "Прогнозы ставок на футбольные матчи от ИИ"}
       />
       <div className="flex-1 flex-col">
         <MatchesGroup matches={matches} league={league} country={country} />

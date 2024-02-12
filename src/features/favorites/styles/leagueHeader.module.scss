@@ -7,6 +7,14 @@
     width: 20px;
     height: 20px;
   }
+  a {
+    transition-duration: 100ms;
+    @media (min-width: 901px) {
+      &:hover {
+        color: #65a3ff;
+      }
+    }
+  }
 }
 
 .name {
@@ -48,5 +56,22 @@
   .name {
     white-space: nowrap;
     overflow: hidden;
+  }
+  .button {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .name {
+    max-width: 208px;
+    text-overflow: ellipsis;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 400px) {
+  .name {
+    max-width: 134px;
   }
 }

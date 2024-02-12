@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, ReactNode, useEffect } from "react";
+import { FC, ReactNode } from "react";
 import styles from "./widgets.module.scss";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
@@ -8,6 +8,7 @@ import { closeWidgets } from "@/features/closeSidebar/slice/closeSidebarSlice";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
 import { TimezoneSelect } from "@/features/timezone";
 import { ButtonLogin } from "../Auth";
+
 interface IProps {
   widgets: ReactNode[];
 }

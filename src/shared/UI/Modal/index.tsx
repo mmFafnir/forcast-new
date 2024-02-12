@@ -12,6 +12,7 @@ interface IProps {
   name: EnumModals;
   stylesWrapper?: CSSProperties;
   styleContent?: CSSProperties;
+  classContent?: string;
   title?: string | ReactNode;
   titleAlight?: "left" | "center" | "right";
   styleBody?: CSSProperties;
@@ -26,6 +27,7 @@ const Modal: FC<IProps> = ({
   styleBody = {},
   styleChildren = {},
   titleAlight = "left",
+  classContent = "",
 }) => {
   const { modal } = useTypeSelector((state) => state.modal);
   const dispatch = useTypeDispatch();
@@ -44,7 +46,7 @@ const Modal: FC<IProps> = ({
         className={`${styles.wrapper} ${title ? styles.wrapperTitle : ""}`}
         style={stylesWrapper}
       >
-        <div style={styleContent}>
+        <div style={styleContent} className={classContent}>
           {title && (
             <div className={styles.header}>
               <div className={styles.title} style={{ textAlign: titleAlight }}>

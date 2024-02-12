@@ -1,3 +1,4 @@
+import { TypeCountry } from "@/widgets/Widgets/components/CountriesWidget/types/TypeCountry";
 import { TypeMatch } from "./match";
 
 export type TypeLeague = {
@@ -15,6 +16,7 @@ export type TypeLeague = {
   url: string;
   user_pind_count: 0 | 1;
   user_pind_admin_count: 0 | 1;
+  country: TypeCountry;
 };
 export interface ILeagues extends TypeLeague {
   games: TypeMatch[];

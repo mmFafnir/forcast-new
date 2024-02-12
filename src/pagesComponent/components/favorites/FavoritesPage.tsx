@@ -7,6 +7,7 @@ import { TelegramButton } from "@/features/shared";
 import { getFavoritesServer } from "@/pagesComponent/api/favorites/getFavorites";
 import { cookies } from "next/headers";
 import { MatchesFavoritesGroup } from "@/pagesComponent/module/group/MatchesFavoritesGroup";
+import Header from "@/widgets/Header";
 
 export const FavoritesPage: NextPage = async () => {
   const cookieStore = cookies();
@@ -19,6 +20,15 @@ export const FavoritesPage: NextPage = async () => {
 
   return (
     <>
+      <Header
+        breadCrumbs={[
+          {
+            title: "Избранное",
+            href: "favorites",
+          },
+        ]}
+      />
+
       <HeaderPage title="Избарнное" calendar={false} />
       <div className="flex-1 flex-col">
         <MatchesFavoritesGroup matches={matches} />

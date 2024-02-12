@@ -7,6 +7,7 @@ import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setFavorite } from "../slice/favoritesSlice";
 import { ILeagues } from "@/shared/types/leagues";
+import Link from "next/link";
 
 interface IProps {
   league: ILeagues;
@@ -39,6 +40,7 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
     dispatch(setFavorite(ids));
   }, []);
 
+  console.log(league);
   return (
     <div className={styles.body}>
       <FavoriteAdd
@@ -54,7 +56,13 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
           height={400}
           alt={league.league_name}
         />
-        <span className={styles.name}>{league.league_name}</span>
+        <Link
+          href={`/soccer/${league.league_cc}/${league.url}`}
+          className={styles.name}
+        >
+          {league.country.translation || league.country.name}:{" "}
+          {league.league_name}
+        </Link>
       </div>
       <PinButton leagues={league} />
     </div>

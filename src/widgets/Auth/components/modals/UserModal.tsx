@@ -11,7 +11,7 @@ import { PremMatchBanner } from "@/entities/banners";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { logout } from "../../slice/authSlice";
-import { setModal } from "@/shared/UI/Modal/modalSlice";
+import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import styles from "../../styles/modal.user.module.scss";
 import defaultImage from "../../images/default.svg";
@@ -34,7 +34,10 @@ const UserModal: FC<IProps> = ({ open }) => {
   const dispatch = useTypeDispatch();
 
   const onLogout = () => dispatch(logout());
-  const onOpenModalPrem = () => dispatch(setModal(EnumModals.PREMIUM));
+  const onOpenModalPrem = () => {
+    dispatch(setClick("prem"));
+    dispatch(setModal(EnumModals.PREMIUM));
+  };
   const onOpenModalSetting = () => dispatch(setModal(EnumModals.SETTINGS));
 
   return (

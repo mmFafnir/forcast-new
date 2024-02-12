@@ -29,7 +29,7 @@ const Auth: FC = () => {
     setLoading(true);
 
     login(data)
-      .then((res) => {
+      .then(() => {
         setStep(1);
         setEmail(data.email);
       })

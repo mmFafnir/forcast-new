@@ -1,7 +1,6 @@
 "use client";
 import { FC, useEffect, useState } from "react";
 import styles from "../styles.module.scss";
-import Image from "next/image";
 import { getLeagues } from "../api/getLeagues";
 import { PinButton } from "@/features/favorites";
 import Loader from "@/shared/UI/Loader";
@@ -11,6 +10,7 @@ import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { setDefaultLeague } from "@/features/favorites/slice/pinLeagueSlice";
 import { TypeLeague } from "@/shared/types/leagues";
 import Link from "next/link";
+import CustomImage from "@/shared/UI/CustomImage";
 
 interface IPropsItem {
   item: Pick<
@@ -27,7 +27,7 @@ interface IPropsItem {
 const ItemLeagues: FC<IPropsItem> = ({ item }) => {
   return (
     <div key={item.id} className={styles.item} title={item.league_name}>
-      <Image
+      <CustomImage
         className="logo-icon"
         src={`https://admin.aibetguru.com/uploads/${item.league_id}.png`}
         width={400}

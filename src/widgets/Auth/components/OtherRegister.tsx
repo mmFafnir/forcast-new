@@ -1,12 +1,12 @@
 "use client";
 import { FC, useEffect, useState } from "react";
 import styles from "../styles/other.module.scss";
-import tg from "../images/tg.svg";
-import apple from "../images/apple.svg";
-import vk from "../images/vk.svg";
-import y from "../images/y.svg";
-import mail from "../images/mail.svg";
-import google from "../images/google.svg";
+import tg from "@/shared/images/socials/tg.svg";
+import apple from "@/shared/images/socials/apple.svg";
+import vk from "@/shared/images/socials/vk.svg";
+import y from "@/shared/images/socials/y.svg";
+import mail from "@/shared/images/socials/mail.svg";
+import google from "@/shared/images/socials/google.svg";
 import Image from "next/image";
 import { loginTelegram } from "../api/auth";
 import Loader from "@/shared/UI/Loader";

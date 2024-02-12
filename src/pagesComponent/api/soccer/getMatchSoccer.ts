@@ -72,16 +72,19 @@ export const getMatchSoccerServer = async (
       `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_cc=${country}&league_url=${league}`,
       config
     );
-    let title = null;
+    let leagueTitle = null;
+    let countryLeague = null;
     if (data.request_country) {
-      title = data.request_country.translation || data.request_country.name;
+      countryLeague =
+        data.request_country.translation || data.request_country.name;
     }
     if (data.request_league) {
-      title = data.request_league?.league_name;
+      leagueTitle = data.request_league?.league_name;
     }
     return {
       data: data.data,
-      title: title,
+      country: countryLeague,
+      league: leagueTitle,
     };
   } catch (error) {
     console.log(error);
