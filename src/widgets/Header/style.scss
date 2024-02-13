@@ -24,6 +24,11 @@
 }
 
 @media (max-width: 1250px) {
+  .header-mob {
+    // display: none;
+    height: 0;
+    overflow: hidden;
+  }
   .header {
     > div {
       display: none;
@@ -35,6 +40,9 @@
   }
 }
 @media (max-width: 500px) {
+  .header-mob {
+    display: none;
+  }
   .header {
     // display: none;
     height: 35px;

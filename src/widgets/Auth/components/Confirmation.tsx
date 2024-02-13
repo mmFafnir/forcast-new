@@ -27,6 +27,7 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (index: number, newValue: string) => {
+    console.log("handle");
     const oldDigits = digits[index];
     const newDigits = newValue.trim().replace(oldDigits, "");
 
@@ -44,6 +45,7 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
 
   const onCopyPaste = (values: string) => {
     let currentValues = values.length > 6 ? values.slice(0, 6) : values;
+    console.log(values, currentValues);
     currentValues.split("").forEach((num, index) => {
       setDigits((prev) => {
         return prev.map((value, j) => (index === j ? num : value));
@@ -93,7 +95,7 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
           }}
           key={index}
           onInput={(e) =>
-            e.currentTarget.value.length > 1
+            e.currentTarget.value.length > 2
               ? onCopyPaste(e.currentTarget.value)
               : handleChange(index, e.currentTarget.value)
           }
@@ -101,7 +103,6 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
           className={styles.input}
           type="tel"
           onKeyDown={(e) => handleKeyDown(index, e.nativeEvent.key)}
-          maxLength={1}
           max={9}
           disabled={loading}
         />
@@ -192,18 +193,19 @@ export const Confirmation: FC<IProps> = ({ email }) => {
       <Inputs digits={digits} setDigits={setDigits} />
       <div className={styles.footer}>
         {error && <p className={styles.error}>Неверный код</p>}
-        {seconds > 0 && (
+        {seconds > 0 ? (
           <p className={styles.timer}>
             Повторная отправка через <span>{seconds} сек</span>
           </p>
+        ) : (
+          <button
+            disabled={seconds > 0}
+            className={styles.resend}
+            onClick={onLogin}
+          >
+            Отправить код повторно
+          </button>
         )}
-        <button
-          disabled={seconds > 0}
-          className={styles.resend}
-          onClick={onLogin}
-        >
-          Отправить код повторно
-        </button>
       </div>
     </div>
   );

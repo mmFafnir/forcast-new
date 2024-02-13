@@ -12,10 +12,6 @@ import MyScrollbar from "@/shared/UI/MyScrollbar";
 
 const sportsData = [
   {
-    label: "Все виды спорта",
-    value: "",
-  },
-  {
     label: "Футбол",
     value: "soccer",
   },

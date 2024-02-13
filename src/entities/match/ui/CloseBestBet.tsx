@@ -6,13 +6,14 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
+
 export const CloseBestBet: FC = () => {
   const { auth } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
 
   const onOpenModal = () => {
-    if (!auth) return dispatch(setModal(EnumModals.LOGIN));
     dispatch(setClick("prem"));
+    if (!auth) return dispatch(setModal(EnumModals.LOGIN));
     dispatch(setModal(EnumModals.PREMIUM));
   };
 

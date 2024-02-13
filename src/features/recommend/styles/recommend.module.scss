@@ -3,6 +3,11 @@
 }
 
 .content {
+  border-radius: 5px;
+  background: var(--Widget-background, rgba(34, 37, 47, 0.5));
+  margin-top: 20px;
+  padding: 20px;
+  position: relative;
   a {
     margin-top: 10px;
   }

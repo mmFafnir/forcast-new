@@ -12,6 +12,8 @@ import { getOneMatch } from "@/pagesComponent/api/soccer/getOneMatch";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import Header from "@/widgets/Header";
+import { Recommend } from "@/features/recommend";
+import { getRecommendServer } from "@/pagesComponent/api/soccer/getRecommend";
 
 const events = {
   odd: "1.59",
@@ -29,7 +31,7 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
   const data = await getOneMatch(url, token?.value);
-
+  const recommendetData = data ? await getRecommendServer({ id: data.id }) : [];
   if (!data)
     return (
       <div>
@@ -136,7 +138,11 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
           не организует игры на деньги. Контент носит исключительно
           информационный характер.
         </p>
-        <div className={styles.recommend}>{/* <Recommend /> */}</div>
+        {recommendetData.length > 0 && (
+          <div className={styles.recommend}>
+            <Recommend id={data.id} data={recommendetData} />
+          </div>
+        )}
       </div>
     </>
   );

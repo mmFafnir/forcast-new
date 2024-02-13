@@ -27,6 +27,7 @@ const CountriesWidget = () => {
           res.next_page_url &&
           res.next_page_url.replace("https://admin.aibetguru.com/api/app", "");
 
+        console.log(nextUrl);
         setNextPage(nextUrl);
         // setData((prev) => [...prev, ...res.data]);
       })
@@ -76,9 +77,9 @@ const CountriesWidget = () => {
     if (!nextPage) return;
     setLoading(true);
     getCountries(nextPage).then((res) => {
-      const nextUrl =
-        res.next_page_url &&
-        res.next_page_url.replace("https://admin.aibetguru.com/api/app", "");
+      const nextUrl = res.next_page_url;
+      // res.next_page_url.replace("https://admin.aibetguru.com/api/app", "");
+      console.log(nextUrl);
       setNextPage(nextUrl);
       setData(res.data);
       setLoading(false);

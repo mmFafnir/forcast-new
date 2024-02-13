@@ -8,6 +8,8 @@ import { PromoCode } from "../PromoCode";
 import Button from "@/shared/UI/Button";
 import Link from "next/link";
 import { useState } from "react";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { setModal } from "@/shared/UI/Modal/modalSlice";
 
 const values = [
   {
@@ -25,7 +27,10 @@ const values = [
 ];
 
 export const ModalPremium = () => {
+  const dispatch = useTypeDispatch();
   const [day, setDay] = useState<number>(30);
+
+  const onOpenPremiumWhy = () => dispatch(setModal(EnumModals.PREMIUM_WHY));
 
   return (
     <Modal
@@ -43,7 +48,7 @@ export const ModalPremium = () => {
       <div className={styles.body}>
         <div className={styles.header}>
           <p>
-            Что такое <button>Premium?</button>
+            Что такое <button onClick={onOpenPremiumWhy}>Premium?</button>
           </p>
           <div className={styles.right}>
             <p>Выбери валюту:</p>

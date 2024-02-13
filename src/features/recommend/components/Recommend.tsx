@@ -1,19 +1,53 @@
-import { FC } from "react";
+"use client";
+import { FC, useEffect, useState } from "react";
 import styles from "../styles/recommend.module.scss";
 import Filter from "./Filter";
 import { Match } from "@/entities/match";
+import { TypeMatch } from "@/shared/types/match";
+import { getRecommend } from "@/pagesComponent/api/soccer/getRecommend";
+import Loader from "@/shared/UI/Loader";
+import Empty from "@/shared/UI/Empty";
 
-export const Recommend: FC = () => {
+interface IProps {
+  data: TypeMatch[];
+  id: number | string;
+}
+
+export const Recommend: FC<IProps> = ({ data, id }) => {
+  const [matches, setMatches] = useState<TypeMatch[]>(data);
+  const [filter, setFilter] = useState<string>("");
+
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setLoading(true);
+    getRecommend({
+      id: id,
+      country: filter === "" || filter === "country",
+      league: filter === "" || filter === "league",
+    })
+      .then((res) => {
+        setMatches(res);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [filter]);
+
   return (
     <div className={styles.body}>
       <h2 className={styles.title}>Другие матчи</h2>
-      <Filter />
+      <Filter value={filter} setValue={setFilter} />
       <div className={styles.content}>
-        {/* <Match />
-        <Match />
-        <Match />
-        <Match />
-        <Match /> */}
+        {loading && (
+          <div className="loader-hover">
+            <Loader />
+          </div>
+        )}
+        {matches.length === 0 && <Empty />}
+        {matches.map((match) => (
+          <Match key={match.id} match={match} />
+        ))}
       </div>
     </div>
   );

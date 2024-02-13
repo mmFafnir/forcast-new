@@ -1,9 +1,11 @@
 .premium {
   border-radius: 5px;
-  border: 4px solid #ccb26f;
+  border: 3px solid #33888a;
+
   padding: 30px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background: radial-gradient(
       81.28% 57.65% at 94.21% -27.9%,
@@ -11,59 +13,6 @@
       rgba(176, 146, 66, 0) 100%
     ),
     #22252f;
-
-  > div {
-    width: 100%;
-  }
-
-  button {
-    position: relative;
-    border-radius: 8px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 69px;
-    font-size: 16px;
-    font-weight: 700;
-    transition-duration: 100ms;
-    overflow: hidden;
-    border: solid 1px transparent;
-    margin-top: 10px;
-    padding: 0px 20px;
-    &::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      transition-duration: 100ms;
-      background: rgb(121, 189, 110);
-      background: radial-gradient(
-        circle,
-        rgba(121, 189, 110, 0.4) 0%,
-        rgba(73, 200, 208, 0.4) 45%,
-        rgba(175, 244, 232, 0.4) 100%
-      );
-    }
-
-    span {
-      position: relative;
-      z-index: 1;
-    }
-    i {
-      color: #ffd361;
-      font-style: normal;
-    }
-
-    @media (min-width: 901px) {
-      &:hover {
-        border-color: #ffd361;
-        &:before {
-          opacity: 0;
-        }
-      }
-    }
-  }
 
   a {
     margin-top: 20px;
@@ -75,22 +24,51 @@
       }
     }
   }
+
+  h3 {
+    margin-bottom: 20px;
+  }
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap-reverse;
-  h3 {
-    white-space: nowrap;
-    max-width: 300px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.cup {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 20px;
+  svg {
+    width: 100%;
+    height: 100%;
   }
-  p,
-  h3 {
-    margin-bottom: 10px;
+}
+
+.btn {
+  position: relative;
+  border-radius: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 37px;
+  font-size: 12px;
+  font-weight: 700;
+  overflow: hidden;
+  padding: 0px 20px;
+  max-width: 270px;
+  margin: 0 auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition-duration: 100ms;
+
+  svg,
+  span {
+    position: relative;
+    z-index: 1;
+  }
+  span {
+    margin-left: 16px;
+  }
+  i {
+    color: #ffd361;
+    font-style: normal;
   }
 }
 

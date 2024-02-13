@@ -20,6 +20,7 @@ import { EventProvider } from "../providers/EventProvider";
 import { PusherProvider } from "../providers/PusherProvider/components/Provider";
 import { BreadCrumbs } from "@/features/breadсrumbs";
 import { SidebarSettings } from "@/widgets/Settings";
+import { ModalPremiumWhy } from "@/widgets/Premium/components/modal/ModalPremiumWhy";
 
 interface IProps {
   children: ReactNode;
@@ -73,9 +74,9 @@ const MainLayout: FC<IProps> = async ({ children }) => {
               </div>
               <Toolkit />
               <ModalAuth />
-              x``
               <ModalSearch />
               <ModalPremium />
+              <ModalPremiumWhy />
               <SettingsAuthModal />
               <SidebarSettings />
             </div>

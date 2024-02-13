@@ -54,9 +54,11 @@ const Auth: FC = () => {
             pattern: validEmail,
           }}
           render={({ field, fieldState: { error } }) => (
-            <div className={styles.inputDiv}>
+            <div className={`${styles.inputDiv} ${error && styles.error}`}>
               <input className={styles.input} {...field} placeholder="E-mail" />
-              {error && <span>{error.message}</span>}
+              {error && (
+                <span className={styles.errorMes}>{error.message}</span>
+              )}
             </div>
           )}
         />

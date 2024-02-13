@@ -4,7 +4,6 @@ import { FC } from "react";
 import Link from "next/link";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
 import styles from "../styles/breadсrumbs.module.scss";
-import { usePathname } from "next/navigation";
 import { IBreadCrumb } from "../type";
 
 interface IProps {
@@ -12,10 +11,6 @@ interface IProps {
 }
 
 export const BreadCrumbs: FC<IProps> = ({ links = [] }) => {
-  const paths = usePathname();
-  const pathNames = paths.split("/").filter((path) => path);
-
-  console.log(pathNames);
   return (
     <div className={styles.body}>
       <MyScrollbar autoHide={true} style={{ height: "auto", width: "99%" }}>

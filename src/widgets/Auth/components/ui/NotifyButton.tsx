@@ -4,8 +4,11 @@ import { IconBell } from "../../icons/IconBell";
 import styles from "../../styles/button.notify.module.scss";
 import Button from "@/shared/UI/Button";
 import { NotifyModal } from "../modals/NotifyModal";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import { selectActiveNotifyCount } from "../../slice/selectors";
 
 export const NotifyButton: FC = () => {
+  const notifyCountActive = useTypeSelector(selectActiveNotifyCount);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -34,9 +37,11 @@ export const NotifyButton: FC = () => {
         type="text"
         className={styles.body}
       >
-        <p>
-          <span>21</span>
-        </p>
+        {notifyCountActive > 0 && (
+          <p>
+            <span>{notifyCountActive}</span>
+          </p>
+        )}
         <IconBell />
       </Button>
       <NotifyModal open={isModalOpen} />

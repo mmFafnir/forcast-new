@@ -19,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={" __className_e66fe9"}>
+    <html lang="ru">
+      <body className={"__className_e66fe9"}>
         <StoreProvider>
           <MainLayout>{children}</MainLayout>
         </StoreProvider>

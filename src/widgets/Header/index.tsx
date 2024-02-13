@@ -11,7 +11,7 @@ interface IProps {
 const Header: FC<IProps> = ({ breadCrumbs }) => {
   return (
     <>
-      <div className="header">
+      <div className={`header ${breadCrumbs.length == 0 ? "header-mob" : ""}`}>
         <div className="header__flex">
           <CloseSidebarButton />
         </div>

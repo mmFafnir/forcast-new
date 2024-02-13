@@ -40,7 +40,6 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
     dispatch(setFavorite(ids));
   }, []);
 
-  console.log(league);
   return (
     <div className={styles.body}>
       <FavoriteAdd
@@ -56,13 +55,14 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
           height={400}
           alt={league.league_name}
         />
-        <Link
-          href={`/soccer/${league.league_cc}/${league.url}`}
-          className={styles.name}
-        >
-          {league.country.translation || league.country.name}:{" "}
-          {league.league_name}
-        </Link>
+        <p className={styles.name}>
+          <Link href={`/soccer/${league.league_cc}`}>
+            {league.country.translation || league.country.name}:{" "}
+          </Link>
+          <Link href={`/soccer/${league.league_cc}/${league.url}`}>
+            {league.league_name}
+          </Link>
+        </p>
       </div>
       <PinButton leagues={league} />
     </div>

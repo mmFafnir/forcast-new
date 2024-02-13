@@ -4,32 +4,39 @@ import TotalMatches from "@/shared/UI/TotalMatches";
 import styles from "../styles/button.module.scss";
 import { IconFavorite } from "../icons/IconFavorite";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { FC, useEffect } from "react";
+import { FC, use, useEffect } from "react";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setFavorite } from "../slice/favoritesSlice";
+import { useRouter } from "next/navigation";
+import { setModal } from "@/shared/UI/Modal/modalSlice";
+import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 
 interface IProps {
   className?: string;
 }
 
 export const FavoritesButton: FC<IProps> = ({ className }) => {
+  const navigate = useRouter();
   const { user } = useTypeSelector((state) => state.auth);
   const { favorites } = useTypeSelector((state) => state.favorites);
   const dispatch = useTypeDispatch();
+
+  const goToFavorite = () => navigate.push("/favorites");
+  const onOpenModalLogin = () => dispatch(setModal(EnumModals.LOGIN));
 
   useEffect(() => {
     console.log(user);
     if (!user) return;
     console.log(user.favorite_count);
     dispatch(setFavorite(user.favorite_count));
-  }, []);
+  }, [user]);
 
-  if (!user) return <></>;
   return (
     <Button
       type="text"
+      style={{ justifyContent: "flex-start" }}
       className={`${styles.button} ${className}`}
-      href="/favorites"
+      onClick={!user ? onOpenModalLogin : goToFavorite}
     >
       <IconFavorite />
       <span>Избранное</span>
