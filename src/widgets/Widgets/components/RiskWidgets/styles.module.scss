@@ -34,12 +34,13 @@
 .mob {
   display: none;
 }
-
+.content {
+  height: 89px;
+}
 .empty {
   display: flex;
   align-items: center;
   font-size: 12px;
-
   svg {
     margin-right: 10px;
   }

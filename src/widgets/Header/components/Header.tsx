@@ -2,13 +2,12 @@
 import { FC } from "react";
 import { BreadCrumbs, IBreadCrumb } from "@/features/breadсrumbs";
 import { CloseSidebarButton } from "@/features/closeSidebar";
-import MobileHeader from "./components/MobileHeader";
-import "./style.scss";
+import "../styles/header.scss";
 
 interface IProps {
   breadCrumbs: IBreadCrumb[];
 }
-const Header: FC<IProps> = ({ breadCrumbs }) => {
+export const Header: FC<IProps> = ({ breadCrumbs }) => {
   return (
     <>
       <div className={`header ${breadCrumbs.length == 0 ? "header-mob" : ""}`}>
@@ -19,9 +18,6 @@ const Header: FC<IProps> = ({ breadCrumbs }) => {
           <BreadCrumbs links={breadCrumbs} />
         </div>
       </div>
-      <MobileHeader />
     </>
   );
 };
-
-export default Header;

@@ -5,7 +5,6 @@ export const getOneMatch = async (
   url: string,
   token?: string
 ): Promise<IFetchFullMatch | null> => {
-  console.log("url post", url);
   try {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -18,7 +17,6 @@ export const getOneMatch = async (
       },
       config
     );
-    console.log(data);
     return data.data;
   } catch (error) {
     return null;

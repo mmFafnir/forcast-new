@@ -1,11 +1,11 @@
 import HeaderPage from "@/widgets/HeaderPage";
 import { NextPage } from "next";
-import { getMatchHome, getMatchMainServer } from "../../api/main/getMatchHome";
+import { getMatchMainServer } from "../../api/main/getMatchHome";
 import { MatchesGroupHome } from "../../module/group/MatchesGroupHome";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
 import { cookies } from "next/headers";
-import Header from "@/widgets/Header";
+import { Header } from "@/widgets/Header";
 
 interface IProps {
   date: string | null;

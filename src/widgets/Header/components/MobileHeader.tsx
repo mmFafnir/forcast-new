@@ -15,7 +15,7 @@ import { closeAllModal, setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
-const MobileHeader = () => {
+export const MobileHeader = () => {
   const pathname = usePathname();
 
   const { auth } = useTypeSelector((state) => state.auth);
@@ -111,5 +111,3 @@ const MobileHeader = () => {
     </>
   );
 };
-
-export default MobileHeader;

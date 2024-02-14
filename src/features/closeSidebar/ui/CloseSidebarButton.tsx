@@ -1,14 +1,9 @@
 "use client";
 import Button from "@/shared/UI/Button";
-import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 import styles from "../styles/style.module.scss";
-import {
-  closeSidebar,
-  openSidebar,
-  toggleSidebar,
-} from "../slice/closeSidebarSlice";
+import { closeSidebar, toggleSidebar } from "../slice/closeSidebarSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
@@ -16,9 +11,14 @@ export const CloseSidebarButton = () => {
   const { activeSidebar } = useTypeSelector((state) => state.closeSidebar);
   const dispatch = useDispatch();
 
-  const onOpen = () => dispatch(openSidebar());
   const onClose = () => dispatch(closeSidebar());
   const onToggleSidebar = () => dispatch(toggleSidebar());
+
+  useEffect(() => {
+    if (window.innerWidth < 1250) {
+      onClose();
+    }
+  }, []);
   return (
     <Button className={styles.button} onClick={onToggleSidebar}>
       <svg

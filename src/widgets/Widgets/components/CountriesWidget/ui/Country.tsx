@@ -32,7 +32,7 @@ export const Country: FC<IProps> = ({ item }) => {
   return (
     <div className={styles.item}>
       <div className={`${styles.header} acc-hover`}>
-        <Link href={`/soccer/${item.code}`} className={styles.country}>
+        <Link href={`/soccer/${item.url}`} className={styles.country}>
           <CustomImage
             src={`https://admin.aibetguru.com/uploads/${item.code}.svg`}
             width={16}

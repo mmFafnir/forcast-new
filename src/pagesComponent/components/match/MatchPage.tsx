@@ -11,17 +11,10 @@ import EventPremium from "@/entities/events/components/EventPremium";
 import { getOneMatch } from "@/pagesComponent/api/soccer/getOneMatch";
 import Link from "next/link";
 import { cookies } from "next/headers";
-import Header from "@/widgets/Header";
 import { Recommend } from "@/features/recommend";
 import { getRecommendServer } from "@/pagesComponent/api/soccer/getRecommend";
-
-const events = {
-  odd: "1.59",
-  event: "Индивидуальный тотал",
-  bet: "Фора Реал Мадрид - 1",
-  risk: "Высокий",
-  text: "И Вольфсбург (Вольфсбург), и Байер (Байер Леверкузен) демонстрируют стабильную игру в матчах, в которых забивается более 2,5 голов. В последних матчах Вольфсбурга в среднем забивается 2,7 гола, а Байер еще более результативен - 4,1 гола в среднем. Это означает, что исторически и в текущей форме обе команды участвуют в матчах, в которых забивается не менее 3 голов. Учитывая эти данные и форму обеих команд, можно с большой долей вероятности предположить, что в матче будет забито не менее 3 голов, что делает эту ставку надежным вариантом с низким уровнем риска. Учитывая эти данные и форму обеих команд, можно с большой долей вероятности предположить, что в матче будет забито не менее 3 голов, что делает эту ставку И Вольфсбург (Вольфсбург), и Байер (Байер Леверкузен) демонстрируют стабильную игру в матчах, в которых забивается более 2,5 голов. В последних матчах Вольфсбурга в среднем забивается 2,7 гола, а Байер еще более результативен - 4,1 гола в среднем. Это означает, что исторически и в текущей форме обе команды участвуют в матчах, в которых забивается не менее 3 голов. Учитывая эти данные и форму обеих команд, можно с большой долей вероятности предположить, что в матче будет забито не менее 3 голов, что делает эту ставку надежным вариантом с низким уровнем риска. Учитывая эти данные и форму обеих команд, можно с большой долей вероятности предположить, что в матче будет забито не менее 3 голов, что делает эту ставку  ",
-};
+import { Header } from "@/widgets/Header";
+import { LinksProvider } from "@/app/providers/LinksProvider";
 
 interface IProps {
   url: string;
@@ -39,34 +32,46 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
       </div>
     );
 
+  const countryTitle =
+    data.league.country.translation || data.league.country.name;
+  const leagueTitle = data.league.league_name;
+  const matchTitle = `${
+    data.home_team.translate[0]
+      ? data.home_team.translate[0].translation
+      : data.home_team.team_name
+  } - ${
+    data.away_team.translate[0]
+      ? data.away_team.translate[0].translation
+      : data.away_team.team_name
+  }`;
+
   const breadCrumbs = [
     {
       title: "Футбол",
       href: "/soccer",
     },
     {
-      title: data.league.country.translation || data.league.country.name,
-      href: `/soccer/${data.league.country.code}`,
+      title: countryTitle,
+      href: `/soccer/${data.league.country.url}`,
     },
     {
-      title: data.league.league_name,
-      href: `/soccer/${data.league.country.code}/${data.league.url}`,
+      title: leagueTitle,
+      href: `/soccer/${data.league.url}`,
     },
     {
-      title: `${
-        data.home_team.translate[0]
-          ? data.home_team.translate[0].translation
-          : data.home_team.team_name
-      } - ${
-        data.away_team.translate[0]
-          ? data.away_team.translate[0].translation
-          : data.away_team.team_name
-      }`,
+      title: matchTitle,
       href: data.url,
     },
   ];
   return (
-    <>
+    <LinksProvider
+      links={{
+        country: countryTitle,
+        league: leagueTitle,
+        sport: "Футбол",
+        match: "",
+      }}
+    >
       <Header breadCrumbs={breadCrumbs} />
       <div className={styles.page}>
         <MatchPreviewSticky match={data} />
@@ -144,6 +149,6 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
           </div>
         )}
       </div>
-    </>
+    </LinksProvider>
   );
 };

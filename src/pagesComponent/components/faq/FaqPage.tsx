@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss";
 import { Accordion } from "./ui/Accordion";
-import { ScrollbarProvider } from "@/app/providers/ScrollbarProvider";
-import Header from "@/widgets/Header";
+import { Header } from "@/widgets/Header";
 
 const FaqPage = () => {
   return (

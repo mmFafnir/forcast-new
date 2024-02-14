@@ -4,6 +4,7 @@ import { TypeMatch } from "./match";
 export type TypeLeague = {
   created_at: null | string;
   has_leaguetable: number;
+  country_url: string;
   has_toplist: number;
   id: number;
   league_cc: string;

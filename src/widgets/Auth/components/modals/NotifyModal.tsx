@@ -94,8 +94,6 @@ export const NotifyModal: FC<IProps> = ({ open }) => {
     });
   }, []);
 
-  console.log(notification);
-
   return (
     <div className={`${styles.body} notify-modal ${open ? styles.open : ""}`}>
       <div className={styles.header}>

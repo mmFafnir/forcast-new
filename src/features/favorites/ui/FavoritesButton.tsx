@@ -25,9 +25,7 @@ export const FavoritesButton: FC<IProps> = ({ className }) => {
   const onOpenModalLogin = () => dispatch(setModal(EnumModals.LOGIN));
 
   useEffect(() => {
-    console.log(user);
     if (!user) return;
-    console.log(user.favorite_count);
     dispatch(setFavorite(user.favorite_count));
   }, [user]);
 

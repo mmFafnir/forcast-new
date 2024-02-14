@@ -22,20 +22,15 @@ const FilterCalendarMemo: FC = () => {
 
   const setDay = (day: string) => {
     const date = dayjs(day).format("YYYY-MM-DD");
-    dispatch(setDate(date));
     if (date === dayjs().format("YYYY-MM-DD")) {
       deleteQuery("date");
       return;
     }
     setQuery({ name: "date", value: date });
+    dispatch(setDate(date));
   };
 
   const onChange = (value: any) => setDay(value);
-
-  useEffect(() => {
-    console.log("mount");
-    // dispatch(setDate(dayjs().format("YYYY-MM-DD")));
-  }, []);
 
   if (timeStatus === 1) return <></>;
   return (

@@ -3,16 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { togglePinLeague } from "./asyncActions";
 import { TypeLeague } from "@/shared/types/leagues";
 
-type TypePinLeague = Pick<
-  TypeLeague,
-  | "id"
-  | "league_id"
-  | "league_name"
-  | "url"
-  | "league_cc"
-  | "user_pind_count"
-  | "user_pind_admin_count"
->;
+type TypePinLeague = TypeLeague;
 
 interface IState {
   pinUserLeagues: TypePinLeague[];

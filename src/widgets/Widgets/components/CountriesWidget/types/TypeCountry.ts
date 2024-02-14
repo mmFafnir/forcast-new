@@ -9,6 +9,7 @@ export type TypeCountry = {
   trans_status: "1" | "0";
   translation: string;
   updated_at: string;
+  url: string;
 };
 
 export interface IFetchDataCountries {

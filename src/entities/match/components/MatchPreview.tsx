@@ -1,13 +1,13 @@
 "use client";
 
 import { FC } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import SportsIcon from "@/shared/icons/sports";
 import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
 import { getTimeStatusMatch } from "../scripts/getTimeStatusMatch";
 import { IconLive } from "../icons/IconLive";
 import styles from "../styles/preview.module.scss";
+import CustomImage from "@/shared/UI/CustomImage";
 
 interface ITeamProps {
   src: string;
@@ -18,7 +18,7 @@ const Team: FC<ITeamProps> = ({ src, name, translate }) => {
   return (
     <div className={styles.team}>
       <div className={styles.teamImg}>
-        <Image
+        <CustomImage
           className="logo-icon"
           src={src}
           alt={name}
@@ -51,17 +51,6 @@ const BreadCrumbs: FC<IPropsBread> = ({ links }) => {
     </div>
   );
 };
-
-const links = [
-  {
-    href: "/",
-    title: "Футбол",
-  },
-  {
-    href: "/",
-    title: "Европа: Europa Conference League - Групповой этап",
-  },
-];
 
 interface IProps {
   match: IFetchFullMatch;
@@ -107,7 +96,7 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
               title: `${
                 match.league.country.translation || match.league.country.name
               }: ${match.league.league_name}`,
-              href: `/soccer/${match.league.league_cc}/${match.league.url}`,
+              href: `/soccer/${match.league.url}`,
             },
           ]}
         />

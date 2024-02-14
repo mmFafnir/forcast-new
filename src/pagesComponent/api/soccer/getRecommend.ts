@@ -13,7 +13,6 @@ export const getRecommend = async (params: IParams) => {
     const { data } = await clientAxios.get(
       `more_match_for_game?game_id=${id}&league=${league}&country=${country}`
     );
-    console.log(data);
     return data.data.data;
   } catch (error) {
     return [];

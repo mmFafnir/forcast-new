@@ -27,7 +27,6 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (index: number, newValue: string) => {
-    console.log("handle");
     const oldDigits = digits[index];
     const newDigits = newValue.trim().replace(oldDigits, "");
 
@@ -45,7 +44,6 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
 
   const onCopyPaste = (values: string) => {
     let currentValues = values.length > 6 ? values.slice(0, 6) : values;
-    console.log(values, currentValues);
     currentValues.split("").forEach((num, index) => {
       setDigits((prev) => {
         return prev.map((value, j) => (index === j ? num : value));

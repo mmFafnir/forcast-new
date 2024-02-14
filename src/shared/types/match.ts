@@ -65,6 +65,7 @@ export type TypeMatch = {
   id: number;
   real_date: string;
   real_time: string;
+  sport_id: number;
   real_time_carbon: string;
   score: null;
   url: string;

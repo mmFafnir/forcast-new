@@ -8,6 +8,7 @@ import { FavoriteAdd } from "@/features/favorites";
 import SportsIcon from "@/shared/icons/sports";
 import styles from "../styles/preview.sticky.module.scss";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import CustomImage from "@/shared/UI/CustomImage";
 
 interface IProps {
   match: IFetchFullMatch;
@@ -71,7 +72,7 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
           <div>
             <p title={match.home_team.team_name}>{match.home_team.team_name}</p>
           </div>
-          <Image
+          <CustomImage
             src={`https://admin.aibetguru.com/uploads/${match.home_team.team_id}.png`}
             alt={match.home_team.team_name}
             width={400}
@@ -98,7 +99,7 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
           )}
         </div>
         <div className={styles.team}>
-          <Image
+          <CustomImage
             src={`https://admin.aibetguru.com/uploads/${match.away_team.team_id}.png`}
             alt={match.away_team.team_name}
             width={400}

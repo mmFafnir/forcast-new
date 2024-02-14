@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import styles from "./style.module.scss";
-import Header from "@/widgets/Header";
+import { Header } from "@/widgets/Header";
 
 const Privacy: NextPage = () => {
   return (

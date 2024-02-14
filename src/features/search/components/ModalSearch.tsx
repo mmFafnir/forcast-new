@@ -52,7 +52,6 @@ export const ModalSearch: FC = () => {
       order_by_cf: "desc",
     })
       .then((res) => {
-        console.log(res);
         setData(res);
       })
       .finally(() => {
@@ -68,7 +67,6 @@ export const ModalSearch: FC = () => {
 
   useEffect(() => {
     if (search.trim().length === 0) return;
-    console.log(status);
     fetchMatches(search);
   }, [status]);
 

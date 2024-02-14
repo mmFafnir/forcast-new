@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import Header from "@/widgets/Header";
+import { MobileHeader } from "@/widgets/Header";
 import Sidebar from "@/widgets/Sidebar";
 
 import styles from "../styles/mainLayout.module.scss";
@@ -18,7 +18,6 @@ import { ModalPremium } from "@/widgets/Premium";
 import { TelegramProvider } from "../providers/TelegramProvider";
 import { EventProvider } from "../providers/EventProvider";
 import { PusherProvider } from "../providers/PusherProvider/components/Provider";
-import { BreadCrumbs } from "@/features/breadсrumbs";
 import { SidebarSettings } from "@/widgets/Settings";
 import { ModalPremiumWhy } from "@/widgets/Premium/components/modal/ModalPremiumWhy";
 
@@ -54,6 +53,7 @@ const MainLayout: FC<IProps> = async ({ children }) => {
                   <div className="flex flex-1">
                     <div className={styles.page}>
                       {children}
+                      <MobileHeader />
                       <Footer />
                     </div>
                     <Widgets

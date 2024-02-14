@@ -8,7 +8,6 @@ import { getColorRisk } from "./scripts/getColorRisk";
 import { getStatistics } from "./api/getStatistics";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { TypeStatistic } from "./types";
-import { sumValueStatistic } from "./scripts/sumValueStatistic";
 import Loader from "@/shared/UI/Loader";
 import { usePathname } from "next/navigation";
 import { getSportId } from "./scripts/getSportId";
@@ -61,8 +60,12 @@ interface IProps {
   isMob?: boolean;
 }
 const RiskWidgets: FC<IProps> = ({ isMob }) => {
-  const pathname = usePathname();
-  const { date, timeStatus } = useTypeSelector((state) => state.filters);
+  const { countryId, leagueId, sportId } = useTypeSelector(
+    (state) => state.filters
+  );
+  const { country, league, match, sport } = useTypeSelector(
+    (state) => state.links
+  );
 
   const [risk, setRisk] = useState<string | number>("");
   const [data, setData] = useState<TypeStatistic | null>(null);
@@ -71,10 +74,10 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
   useEffect(() => {
     setLoading(true);
     getStatistics({
-      date,
-      time_status: timeStatus,
+      league_id: leagueId,
+      country_id: countryId,
       risk_id: risk,
-      sport_id: getSportId(pathname),
+      sport_id: sportId,
     })
       .then((res) => {
         setData(res);
@@ -82,12 +85,16 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
       .finally(() => {
         setLoading(false);
       });
-  }, [risk, date, timeStatus, pathname]);
+  }, [risk, countryId, leagueId, sportId]);
 
   return (
     <div className={`${styles.body} ${isMob ? styles.mob : ""}`}>
       <div className={styles.header}>
-        <p>Статистика: Страна/Вид спорта/Лига</p>
+        <p>
+          Статистика: {sport && sport}
+          {country && "/" + country}
+          {league && "/" + league}
+        </p>
       </div>
       <div>
         <RadiosRisk setRisk={setRisk} />
@@ -114,30 +121,24 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
               <p>Информации пока нет, попробуйте позже</p>
             </div>
           )}
-          {data && (
+          {data && data.all_cards_count + data.all_access_card_count > 0 && (
             <>
-              {data.all_cards_count > 0 && (
-                <Progress
-                  color="#57D0A5"
-                  title="Всего"
-                  total={data.all_cards_count}
-                  available={data.all_access_card_count}
-                />
-              )}
-              {data.best_bet !== 0 && (
-                <Progress
-                  color="#9C44BB"
-                  title="Лучшие"
-                  total={data.best_bet}
-                  available={data.access_best_bet}
-                />
-              )}
-              {data.avg > 0 && (
-                <div className={styles.odds}>
-                  <p>Средний коэф</p>
-                  <p>{data.avg.toFixed(2)}</p>
-                </div>
-              )}
+              <Progress
+                color="#57D0A5"
+                title="Всего"
+                total={data.all_cards_count}
+                available={data.all_access_card_count}
+              />
+              <Progress
+                color="#9C44BB"
+                title="Лучшие"
+                total={data.best_bet}
+                available={data.access_best_bet}
+              />
+              <div className={styles.odds}>
+                <p>Средний коэф</p>
+                <p>{data.avg.toFixed(2)}</p>
+              </div>
             </>
           )}
         </div>

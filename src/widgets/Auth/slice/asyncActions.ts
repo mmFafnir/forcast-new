@@ -31,7 +31,6 @@ export const getNotification = createAsyncThunk(
   "auth/getNotification",
   async () => {
     const { data } = await axios.get("/get_auth_user_notification");
-    console.log(data);
     return data.data.data;
   }
 );

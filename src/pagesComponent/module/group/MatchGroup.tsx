@@ -23,9 +23,8 @@ const MatchesGroupMemo: FC<IProps> = ({
   const [data, setData] = useState<ILeagues[]>(matches);
   const [loading, setLoading] = useState<boolean | null>(null);
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
-
+  console.log(data);
   useEffect(() => {
-    console.log(matches);
     if (loading === null) {
       setLoading(false);
       return;

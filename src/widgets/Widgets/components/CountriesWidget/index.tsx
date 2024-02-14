@@ -27,7 +27,6 @@ const CountriesWidget = () => {
           res.next_page_url &&
           res.next_page_url.replace("https://admin.aibetguru.com/api/app", "");
 
-        console.log(nextUrl);
         setNextPage(nextUrl);
         // setData((prev) => [...prev, ...res.data]);
       })

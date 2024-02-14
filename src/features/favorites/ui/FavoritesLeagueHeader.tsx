@@ -8,6 +8,7 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setFavorite } from "../slice/favoritesSlice";
 import { ILeagues } from "@/shared/types/leagues";
 import Link from "next/link";
+import { getSportName } from "@/shared/helper/getSportName";
 
 interface IProps {
   league: ILeagues;
@@ -56,12 +57,12 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
           alt={league.league_name}
         />
         <p className={styles.name}>
-          <Link href={`/soccer/${league.league_cc}`}>
+          <Link
+            href={`/${getSportName(league.sport_id)}/${league.country_url}`}
+          >
             {league.country.translation || league.country.name}:{" "}
           </Link>
-          <Link href={`/soccer/${league.league_cc}/${league.url}`}>
-            {league.league_name}
-          </Link>
+          <Link href={`/soccer/${league.url}`}>{league.league_name}</Link>
         </p>
       </div>
       <PinButton leagues={league} />

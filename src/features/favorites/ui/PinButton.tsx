@@ -15,16 +15,7 @@ import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 
 interface IProps {
-  leagues: Pick<
-    TypeLeague,
-    | "id"
-    | "league_id"
-    | "league_name"
-    | "url"
-    | "league_cc"
-    | "user_pind_count"
-    | "user_pind_admin_count"
-  >;
+  leagues: TypeLeague;
 }
 
 export const PinButton: FC<IProps> = ({ leagues }) => {

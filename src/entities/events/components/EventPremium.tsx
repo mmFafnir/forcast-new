@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import IconCup from "@/shared/icons/IconCup";
 
 import bgBtn from "../image/bg-btn.svg";
@@ -8,14 +7,18 @@ import styles from "../styles/premium.module.scss";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
-import { setModal } from "@/shared/UI/Modal/modalSlice";
+import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
 
 const EventPremium = () => {
   const dispatch = useTypeDispatch();
   const { auth } = useTypeSelector((state) => state.auth);
 
   const onOpenPrem = () => dispatch(setModal(EnumModals.PREMIUM));
-  const onOpenLogin = () => dispatch(setModal(EnumModals.LOGIN));
+  const onOpenPremWhy = () => dispatch(setModal(EnumModals.PREMIUM_WHY));
+  const onOpenLogin = () => {
+    dispatch(setClick("prem"));
+    dispatch(setModal(EnumModals.LOGIN));
+  };
 
   return (
     <div className={styles.premium}>
@@ -37,7 +40,9 @@ const EventPremium = () => {
         </svg>
         <span>Открыть лучшую ставку</span>
       </Button>
-      <Link href={"/"}>Что такое Premium?</Link>
+      <button className={styles.link} onClick={onOpenPremWhy}>
+        Что такое Premium?
+      </button>
     </div>
   );
 };

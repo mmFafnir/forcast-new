@@ -34,7 +34,7 @@ export const getMatchSoccer = async (
       league = "",
     } = params || { date: "", timeStatus: "", country: "", league: "" };
     const { data } = await axiosClient.get(
-      `/get_matches?start_date=${date}&time_status=${timeStatus}&country_cc=${country}&league_url=${league}`
+      `/get_matches?start_date=${date}&time_status=${timeStatus}&country_cc=${country}&league_url=${league}&sport_id=1`
     );
     return { data: data.data };
   } catch (error) {
@@ -69,23 +69,35 @@ export const getMatchSoccerServer = async (
     };
 
     const { data } = await axios.get(
-      `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_cc=${country}&league_url=${league}`,
+      `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1`,
       config
     );
-    let leagueTitle = null;
-    let countryLeague = null;
+    const res: IFetchMatch = {
+      data: data.data,
+    };
+
+    if (data.request_sport) {
+      res.sport = {
+        title: data.request_sport.name,
+        id: data.request_sport.id,
+        url: data.request_sport.url,
+      };
+    }
     if (data.request_country) {
-      countryLeague =
-        data.request_country.translation || data.request_country.name;
+      res.country = {
+        title: data.request_country.translation || data.request_country.name,
+        url: data.request_country.url,
+        id: data.request_country.id,
+      };
     }
     if (data.request_league) {
-      leagueTitle = data.request_league?.league_name;
+      res.league = {
+        title: data.request_league?.league_name,
+        url: data.request_league.url,
+        id: data.request_league.id,
+      };
     }
-    return {
-      data: data.data,
-      country: countryLeague,
-      league: leagueTitle,
-    };
+    return res;
   } catch (error) {
     console.log(error);
     return defaultRes;

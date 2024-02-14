@@ -13,16 +13,7 @@ import Link from "next/link";
 import CustomImage from "@/shared/UI/CustomImage";
 
 interface IPropsItem {
-  item: Pick<
-    TypeLeague,
-    | "id"
-    | "league_id"
-    | "league_name"
-    | "url"
-    | "league_cc"
-    | "user_pind_count"
-    | "user_pind_admin_count"
-  >;
+  item: TypeLeague;
 }
 const ItemLeagues: FC<IPropsItem> = ({ item }) => {
   return (
@@ -35,7 +26,7 @@ const ItemLeagues: FC<IPropsItem> = ({ item }) => {
         alt={item.league_name}
       />
       <p className={styles.title}>
-        <Link href={`/soccer/${item.league_cc}/${item.url}`}>
+        <Link href={`/soccer/${item.country_url}/${item.url}`}>
           {item.league_name}
         </Link>
       </p>

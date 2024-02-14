@@ -21,7 +21,6 @@ export const ModalAuth = () => {
     onCloseModal();
   }, [auth]);
 
-  console.log(click);
   return (
     <Modal
       name={EnumModals.LOGIN}

@@ -7,6 +7,9 @@ export type TypeTimeStatus = "" | 0 | 1 | 3;
 interface IState {
   date: string;
   timeStatus: TypeTimeStatus;
+  leagueId: number | "";
+  countryId: number | "";
+  sportId: number | "";
 }
 
 const date =
@@ -17,6 +20,9 @@ const date =
 const initialState: IState = {
   date: date,
   timeStatus: "",
+  sportId: "",
+  leagueId: "",
+  countryId: "",
 };
 
 const filterSlice = createSlice({
@@ -29,8 +35,23 @@ const filterSlice = createSlice({
     setTimeStatus: (state, actions: PayloadAction<TypeTimeStatus>) => {
       state.timeStatus = actions.payload;
     },
+    setCountryFilter: (state, action: PayloadAction<number | "">) => {
+      state.countryId = action.payload;
+    },
+    setLeagueFilter: (state, action: PayloadAction<number | "">) => {
+      state.leagueId = action.payload;
+    },
+    setSportFilter: (state, action: PayloadAction<number | "">) => {
+      state.sportId = action.payload;
+    },
   },
 });
 
-export const { setDate, setTimeStatus } = filterSlice.actions;
+export const {
+  setDate,
+  setTimeStatus,
+  setCountryFilter,
+  setLeagueFilter,
+  setSportFilter,
+} = filterSlice.actions;
 export default filterSlice.reducer;

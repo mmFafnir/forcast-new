@@ -4,8 +4,9 @@ import { TypeCountry } from "@/widgets/Widgets/components/CountriesWidget/types/
 
 export interface IFetchMatch {
   data: ILeagues[];
-  country?: string;
-  league?: string;
+  country?: { title: string; url: string; id: number };
+  league?: { title: string; url: string; id: number };
+  sport?: { title: string; id: number; url: string };
 }
 
 interface ICountryLeagues extends TypeLeague {

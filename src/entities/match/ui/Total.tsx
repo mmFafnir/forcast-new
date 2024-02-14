@@ -22,7 +22,11 @@ export const Total: FC<IProps> = ({ bet }) => {
         </ToolkitSpan>
       )}
       <p className={styles.name}>{bet.bet}</p>
-      <p style={{ color }}>{bet.odds}</p>
+      {bet.odds && (
+        <p className={styles.odds} style={{ color }}>
+          {bet.odds}
+        </p>
+      )}
     </div>
   );
 };

@@ -1,8 +1,23 @@
-import React from "react";
+"use client";
+import { FC, useEffect } from "react";
 import styles from "./payment.module.scss";
 import Button from "@/shared/UI/Button";
+import { useTimer } from "react-timer-hook";
+import { useRouter } from "next/navigation";
 
-export const PaymentSuccess = () => {
+export const PaymentSuccess: FC = () => {
+  const navigation = useRouter();
+  const { seconds, restart, isRunning } = useTimer({
+    expiryTimestamp: new Date(),
+    onExpire: () => navigation.push("/"),
+    autoStart: true,
+  });
+
+  useEffect(() => {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 10);
+    restart(time);
+  }, []);
   return (
     <div className={styles.page}>
       <div className={styles.wrapper}>
@@ -26,7 +41,7 @@ export const PaymentSuccess = () => {
             </svg>
           </div>
           <p className={styles.timer}>
-            Вы будете перенаправлены на сайт через 10 сек
+            Вы будете перенаправлены на сайт через {seconds} сек
           </p>
           <Button className={styles.btn} type="gradient" href="/">
             На главную

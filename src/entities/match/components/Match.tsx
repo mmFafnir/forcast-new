@@ -9,6 +9,7 @@ import Link from "next/link";
 import styles from "../styles/match.module.scss";
 import { getTimeStatusMatch } from "../scripts/getTimeStatusMatch";
 import { TypeMatch } from "@/shared/types/match";
+import { getSportName } from "@/shared/helper/getSportName";
 
 interface IProps {
   match: TypeMatch;
@@ -18,7 +19,10 @@ export const Match: FC<IProps> = ({ match }) => {
   const time = getTimeStatusMatch(match.real_date);
   return (
     <div className={`${styles.body}`}>
-      <Link href={match.url || "/"} className={styles.href}></Link>
+      <Link
+        href={match.url ? `${getSportName(match.sport_id)}/${match.url}` : "/"}
+        className={styles.href}
+      ></Link>
       <div className={styles.left}>
         <div className={`flex item-center js-between ${styles.first}`}>
           <FavoriteAdd

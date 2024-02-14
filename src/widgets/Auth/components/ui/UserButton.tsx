@@ -17,7 +17,6 @@ export const UserButton = () => {
   const closeModal = () => dispatch(closeAllModal());
 
   const onCloseModal = (e: MouseEvent) => {
-    console.log(modal);
     if (modal !== EnumModals.USER) return;
     const target = e.target as HTMLElement;
     if (!target.closest(`.user-modal`) && !target.closest(`.user-open-btn`)) {
