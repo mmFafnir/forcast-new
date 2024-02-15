@@ -10,11 +10,15 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { setDate } from "../../slice/filterSlice";
 import useQuery from "@/shared/hooks/useQuery";
+import { usePathname } from "next/navigation";
+import { parseQueryParams } from "@/shared/helper/parseQueryParams";
 
 export const minDate = "2001-12-12";
 export const maxDate = "2030-12-12";
 
 const FilterCalendarMemo: FC = () => {
+  const pathname = usePathname();
+
   const dispatch = useTypeDispatch();
   const { timeStatus, date } = useTypeSelector((state) => state.filters);
   const { setQuery, deleteQuery } = useQuery();
@@ -22,15 +26,20 @@ const FilterCalendarMemo: FC = () => {
 
   const setDay = (day: string) => {
     const date = dayjs(day).format("YYYY-MM-DD");
+    setQuery({ name: "date", value: date });
+    dispatch(setDate(date));
     if (date === dayjs().format("YYYY-MM-DD")) {
       deleteQuery("date");
       return;
     }
-    setQuery({ name: "date", value: date });
-    dispatch(setDate(date));
   };
 
   const onChange = (value: any) => setDay(value);
+
+  useEffect(() => {
+    const date = parseQueryParams(window.location.search).date;
+    dispatch(setDate(date ? date : dayjs().format("YYYY-MM-DD")));
+  }, [pathname]);
 
   if (timeStatus === 1) return <></>;
   return (

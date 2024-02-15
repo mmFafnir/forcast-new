@@ -1,17 +1,17 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface IState {
-  country: string;
-  league: string;
-  sport: string;
-  match: string;
+  country: string | null;
+  league: string | null;
+  sport: string | null;
+  match: string | null;
 }
 
 const initialState: IState = {
-  country: "",
-  league: "",
-  sport: "",
-  match: "",
+  country: null,
+  league: null,
+  sport: null,
+  match: null,
 };
 
 export const linkSlice = createSlice({

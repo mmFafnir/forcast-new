@@ -16,7 +16,7 @@ export const NumberOne = () => {
           gradientUnits="userSpaceOnUse"
         >
           <stop />
-          <stop offset="1" stop-color="#282B37" />
+          <stop offset="1" stopColor="#282B37" />
         </linearGradient>
       </defs>
     </svg>
@@ -41,7 +41,7 @@ export const NumberTwo = () => {
           gradientUnits="userSpaceOnUse"
         >
           <stop />
-          <stop offset="1" stop-color="#282B37" />
+          <stop offset="1" stopColor="#282B37" />
         </linearGradient>
       </defs>
     </svg>
@@ -66,7 +66,7 @@ export const NumberThree = () => {
           gradientUnits="userSpaceOnUse"
         >
           <stop />
-          <stop offset="1" stop-color="#282B37" />
+          <stop offset="1" stopColor="#282B37" />
         </linearGradient>
       </defs>
     </svg>

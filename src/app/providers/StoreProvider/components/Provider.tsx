@@ -9,5 +9,9 @@ interface IProps {
 }
 
 export const StoreProvider: FC<IProps> = ({ children }) => {
-  return <Provider store={store}>{children}</Provider>;
+  return (
+    <>
+      <Provider store={store}>{children}</Provider>
+    </>
+  );
 };

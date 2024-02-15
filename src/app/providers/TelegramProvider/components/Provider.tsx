@@ -36,6 +36,7 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
           }
         : {};
 
+      alert(value.user);
       if (!value.user) return;
       loginInWebView(value.user).then((res) => {
         dispatch(setUser(res.data));

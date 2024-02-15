@@ -13,7 +13,7 @@ export const League: FC<IProps> = ({ item }) => {
     <div className={styles.item}>
       <Link
         title={item.league_name}
-        href={`/soccer/${item.country_url}/${item.url}`}
+        href={`/soccer/${item.url}`}
         className={styles.name}
       >
         {item.league_name}

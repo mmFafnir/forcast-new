@@ -30,7 +30,8 @@ const MyScrollbar: FC<IProps> = ({
     if (target) {
       const { scrollTop, scrollHeight, clientHeight } = target;
 
-      const isNearBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+      const isNearBottom =
+        Math.ceil(scrollTop + clientHeight + 1) >= scrollHeight;
 
       if (isNearBottom) return onBottomScroll(true);
       onBottomScroll(false);

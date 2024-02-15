@@ -8,6 +8,8 @@ import { getTimeStatusMatch } from "../scripts/getTimeStatusMatch";
 import { IconLive } from "../icons/IconLive";
 import styles from "../styles/preview.module.scss";
 import CustomImage from "@/shared/UI/CustomImage";
+import dayjs from "dayjs";
+import "dayjs/locale/ru";
 
 interface ITeamProps {
   src: string;
@@ -101,8 +103,8 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
           ]}
         />
         <div className={styles.times}>
-          <p>{match.real_date}</p>
-          <p>{match.real_time}</p>
+          <p>{dayjs(match.real_date).locale("ru").format("DD MMMM YYYY")}</p>
+          <p>{match.real_time.slice(0, -3)}</p>
         </div>
         <div className={styles.footer}>
           {time === "live" ? (
@@ -115,7 +117,9 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
               <p style={{ color: "#E98080" }}>Завершен</p>
             </button>
           ) : (
-            <button className={styles.live}>{time}</button>
+            dayjs(match.real_date) === dayjs() && (
+              <button className={styles.live}>До начала осталось {time}</button>
+            )
           )}
         </div>
       </div>

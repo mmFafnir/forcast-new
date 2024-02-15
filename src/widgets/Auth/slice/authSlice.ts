@@ -9,7 +9,7 @@ import {
   login,
 } from "./asyncActions";
 import { ErrorValid } from "@/shared/types/ErrorType";
-import { destroyCookie, setCookie } from "nookies";
+import { setCookie } from "nookies";
 import { INotification } from "../types/Notify";
 
 interface IState {
@@ -48,6 +48,7 @@ const authSlice = createSlice({
     logout: (state) => {
       state.auth = false;
       state.user = null;
+      state.notification = [];
       setCookie(null, "_token", "", {
         path: "/",
       });

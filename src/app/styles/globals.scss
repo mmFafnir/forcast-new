@@ -6,6 +6,9 @@
 @import "./calendar";
 @import "./range";
 
+#nprogress {
+  z-index: 1000;
+}
 @media (max-width: 900px) {
   .container {
     padding: 0px 10px;

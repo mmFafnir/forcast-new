@@ -8,6 +8,7 @@ import { getFavoritesServer } from "@/pagesComponent/api/favorites/getFavorites"
 import { cookies } from "next/headers";
 import { MatchesFavoritesGroup } from "@/pagesComponent/module/group/MatchesFavoritesGroup";
 import { Header } from "@/widgets/Header";
+import { LinksProvider } from "@/app/providers/LinksProvider";
 
 export const FavoritesPage: NextPage = async () => {
   const cookieStore = cookies();
@@ -19,7 +20,9 @@ export const FavoritesPage: NextPage = async () => {
   });
 
   return (
-    <>
+    <LinksProvider
+      links={{ league: null, country: null, sport: null, match: null }}
+    >
       <Header
         breadCrumbs={[
           {
@@ -50,6 +53,6 @@ export const FavoritesPage: NextPage = async () => {
           информационный характер.
         </p>
       </div>
-    </>
+    </LinksProvider>
   );
 };

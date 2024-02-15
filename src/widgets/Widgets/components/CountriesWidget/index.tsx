@@ -17,18 +17,17 @@ const CountriesWidget = () => {
   const [isBottom, setIsBottom] = useState<boolean>(false);
 
   const fetchCountries = () => {
+    console.log(nextPage);
     if (nextPage === null) return;
-
     setLoadingMore(true);
-
     getCountries(nextPage)
       .then((res) => {
         const nextUrl =
           res.next_page_url &&
-          res.next_page_url.replace("https://admin.aibetguru.com/api/app", "");
+          res.next_page_url.replace("http://admin.aibetguru.com/api/app", "");
 
         setNextPage(nextUrl);
-        // setData((prev) => [...prev, ...res.data]);
+        setData((prev) => [...prev, ...res.data]);
       })
       .catch((err) => {
         console.log(err);
@@ -42,17 +41,9 @@ const CountriesWidget = () => {
     setSearchTerm(event.target.value);
   };
 
-  const onScroll = (bottom: boolean) => {
-    console.log(bottom && !loadingMore);
-    if (bottom) {
-      console.log(nextPage);
-      fetchCountries();
-    }
-  };
-
   useEffect(() => {
+    if (loadingMore) return;
     if (!isBottom) return;
-    console.log(nextPage);
     fetchCountries();
   }, [isBottom]);
 
@@ -76,9 +67,10 @@ const CountriesWidget = () => {
     if (!nextPage) return;
     setLoading(true);
     getCountries(nextPage).then((res) => {
-      const nextUrl = res.next_page_url;
-      // res.next_page_url.replace("https://admin.aibetguru.com/api/app", "");
-      console.log(nextUrl);
+      const nextUrl = res.next_page_url
+        ? res.next_page_url.replace("http://admin.aibetguru.com/api/app", "")
+        : null;
+
       setNextPage(nextUrl);
       setData(res.data);
       setLoading(false);

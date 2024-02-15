@@ -9,17 +9,20 @@ interface IProps {
 }
 
 export const Progress: FC<IProps> = ({ color, title, available, total }) => {
+  console.log(available, total);
   return (
     <div className={styles.body}>
       <p>{title}</p>
       <div
         className={styles.bar}
         style={{
-          flex: `0 0 calc(${(available / total) * 100}% + 53px)`,
+          flex: `0 0 calc(${
+            (available / total ? available / total : 0) * 100
+          }% + 53px)`,
           background: ` linear-gradient(270deg, ${color} 0%, rgba(101, 104, 118, 0.00) 100%)`,
         }}
       >
-        <p>{Math.floor((available / total) * 100)}%</p>
+        <p>{Math.floor((available / total ? available / total : 0) * 100)}%</p>
       </div>
       <p>
         {available} / {total}

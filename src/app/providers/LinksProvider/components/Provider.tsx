@@ -6,10 +6,10 @@ import { FC, ReactNode, useEffect } from "react";
 
 interface IProps {
   links: {
-    country: string;
-    league: string;
-    sport: string;
-    match: string;
+    country: string | null;
+    league: string | null;
+    sport: string | null;
+    match: string | null;
   };
   children: ReactNode;
 }

@@ -1,6 +1,6 @@
-export { FavoritesButton } from "./ui/FavoritesButton";
-export { FavoritesLeagueHeader } from "./ui/FavoritesLeagueHeader";
+export { FavoritesButton } from "./components/FavoritesButton";
+export { FavoritesLeagueHeader } from "./components/FavoritesLeagueHeader";
 export { IconFavorite } from "./icons/IconFavorite";
-export { PinButton } from "./ui/PinButton";
-export { FavoriteAdd } from "./ui/FavoriteAdd";
+export { PinButton } from "./components/PinButton";
+export { FavoriteAdd } from "./components/FavoriteAdd";
 export { fetchFavorites } from "./api/favorite";
