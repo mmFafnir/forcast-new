@@ -15,7 +15,7 @@ interface IParamsServer {
   date: string;
 }
 
-const defaultRes = {
+const defaultRes:IFetchArchive = {
   current_page: 1,
   data: [],
   first_page_url: "",

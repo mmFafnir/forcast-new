@@ -18,7 +18,7 @@ const ArchivePage: NextPage<IProps> = async ({ date }) => {
 
   return (
     <div>
-      <MatchArchiveGroup matches={data} />
+      <MatchArchiveGroup matches={data.data} />
     </div>
   );
 };
