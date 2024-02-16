@@ -39,6 +39,7 @@ const Item: FC<IProps> = ({ index, text, title, image }) => {
 };
 
 export const ModalPremiumWhy = () => {
+  const { auth } = useTypeSelector((state) => state.auth);
   const { click } = useTypeSelector((state) => state.modal);
   const dispatch = useTypeDispatch();
 
@@ -46,6 +47,12 @@ export const ModalPremiumWhy = () => {
     if (click == "no-auth") return dispatch(closeAllModal());
     dispatch(setModal(EnumModals.PREMIUM));
   };
+
+  const onBtnClick = () => {
+    if (auth) return dispatch(setModal(EnumModals.PREMIUM));
+    dispatch(setModal(EnumModals.LOGIN));
+  };
+
   return (
     <Modal
       name={EnumModals.PREMIUM_WHY}
@@ -71,7 +78,7 @@ export const ModalPremiumWhy = () => {
             <Item key={index} {...item} />
           ))}
         </div>
-        <Button onClick={onBack} className={styles.btn} type="gradient">
+        <Button onClick={onBtnClick} className={styles.btn} type="gradient">
           <IconBack />
           <span>Вернуться к оформлению</span>
           <span className={styles.btnMobSpan}>

@@ -15,9 +15,7 @@ const EventPremium = () => {
 
   const onOpenPrem = () => dispatch(setModal(EnumModals.PREMIUM));
   const onOpenPremWhy = () => {
-    if (!auth) {
-      dispatch(setClick("no-auth"));
-    }
+    dispatch(setClick("no-auth"));
     dispatch(setModal(EnumModals.PREMIUM_WHY));
   };
   const onOpenLogin = () => {
