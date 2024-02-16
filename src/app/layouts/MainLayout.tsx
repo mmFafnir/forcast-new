@@ -59,8 +59,9 @@ const MainLayout: FC<IProps> = async ({ children }) => {
                     <Widgets
                       widgets={[
                         <Tabs
+                          style={{ height: "100%" }}
                           key={1}
-                          minHeight="350px"
+                          minHeight="100%"
                           maxHeight="350px"
                           tabs={tabs}
                           classNameBody="adaptive-mac"

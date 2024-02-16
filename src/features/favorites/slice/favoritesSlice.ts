@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { addFavorite } from "../api/favorite";
 
 interface IState {
   favorites: number[];
@@ -27,9 +26,17 @@ const favoritesSlice = createSlice({
         return !action.payload.includes(fav);
       });
     },
+
+    deleteAllFavorites: (state) => {
+      state.favorites = [];
+    },
   },
 });
 
-export const { setFavorite, deleteFavorite, deleteIdsFavorite } =
-  favoritesSlice.actions;
+export const {
+  setFavorite,
+  deleteFavorite,
+  deleteIdsFavorite,
+  deleteAllFavorites,
+} = favoritesSlice.actions;
 export default favoritesSlice.reducer;

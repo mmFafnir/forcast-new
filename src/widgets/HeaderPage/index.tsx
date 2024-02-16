@@ -1,18 +1,20 @@
 "use client";
 import { FilterCalendar, Filters } from "@/features/filters";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import styles from "./styles.module.scss";
 interface IProps {
   title: string;
   calendar?: boolean;
+  filtersRender?: ReactNode;
 }
 
-const HeaderPage: FC<IProps> = ({ title, calendar = true }) => {
+const HeaderPage: FC<IProps> = ({ title, calendar = true, filtersRender }) => {
   return (
     <>
       <h1 className={styles.title}>{title}</h1>
       <div className={`flex jc-between ${styles.filter}`}>
-        <Filters />
+        {filtersRender ? filtersRender : <Filters />}
+
         {calendar && <FilterCalendar />}
       </div>
     </>

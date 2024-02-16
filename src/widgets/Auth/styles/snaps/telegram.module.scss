@@ -1,0 +1,45 @@
+.body {
+}
+
+.link {
+  display: flex;
+  align-items: center;
+
+  svg {
+    margin-right: 10px;
+  }
+
+  button {
+    font-size: 16px;
+    color: #45e9ff;
+  }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  padding: 10px 0px;
+  border-bottom: 1px solid #ffffff8e;
+  margin-bottom: 20px;
+}
+
+.qr {
+  margin-right: 20px;
+  img {
+    width: 105px;
+    height: auto;
+  }
+}
+
+.text {
+  font-size: 14px;
+  p {
+    margin-bottom: 5px;
+  }
+}
+
+.btn {
+  width: 100%;
+  height: 50px !important;
+  font-size: 18px !important;
+}

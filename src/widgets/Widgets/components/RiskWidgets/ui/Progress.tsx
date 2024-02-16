@@ -12,7 +12,7 @@ export const Progress: FC<IProps> = ({ color, title, available, total }) => {
   console.log(available, total);
   return (
     <div className={styles.body}>
-      <p>{title}</p>
+      <p className={styles.title}>{title}</p>
       <div
         className={styles.bar}
         style={{

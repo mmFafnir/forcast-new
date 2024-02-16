@@ -9,6 +9,7 @@ import { IconLive } from "../icons/IconLive";
 import styles from "../styles/preview.module.scss";
 import CustomImage from "@/shared/UI/CustomImage";
 import dayjs from "dayjs";
+import backgroundMatchImage from "../images/previewImage.jpg";
 import "dayjs/locale/ru";
 
 interface ITeamProps {
@@ -61,7 +62,10 @@ interface IProps {
 export const MatchPreview: FC<IProps> = ({ match }) => {
   const time = getTimeStatusMatch(match.real_date);
   return (
-    <div className={`${styles.body} review-match`}>
+    <div
+      className={`${styles.body} review-match`}
+      style={{ backgroundImage: `url(${backgroundMatchImage.src})` }}
+    >
       <div className={styles.ball}>
         <SportsIcon icon="soccer" width={400} height={400} />
       </div>

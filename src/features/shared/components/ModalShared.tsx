@@ -15,22 +15,8 @@ interface IProps {
 }
 
 const ModalSharedMemo: FC<IProps> = ({ open, onClose }) => {
-  useEffect(() => {
-    const outsideClose = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        !target.closest(`.${styles.body}`) &&
-        !target.closest(`.shared-btn`)
-      ) {
-        onClose();
-      }
-    };
-    document.addEventListener("click", outsideClose);
-    return () => document.removeEventListener("click", outsideClose);
-  }, []);
-
   return (
-    <div className={`${styles.body} ${open ? styles.active : ""}`}>
+    <div className={`${styles.body} modal-shared ${open ? styles.active : ""}`}>
       <div className={styles.wrapper}>
         <Button className={styles.btn}>
           <Image src={tg} alt="telegram" width={100} height={100} />

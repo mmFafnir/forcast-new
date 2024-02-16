@@ -16,7 +16,15 @@
   background: rgba(101, 104, 118, 0.3);
   margin-right: 10px;
   transition-duration: 100ms;
-
+  position: relative;
+  &:disabled {
+    pointer-events: none;
+  }
+  svg {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+  }
   &:last-child {
     margin-right: 0;
   }

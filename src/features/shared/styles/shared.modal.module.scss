@@ -1,23 +1,23 @@
 .body {
   position: absolute;
   right: 0;
-  top: 40px;
-  border-radius: 10px;
-  background: #22252f;
-  overflow: hidden;
-  transition-duration: 0.2s;
+  top: 35px;
   opacity: 0;
   visibility: hidden;
+  z-index: 20;
+  padding-top: 5px;
 }
 
 .active {
   opacity: 1;
   visibility: visible;
 }
-
 .wrapper {
+  border-radius: 10px;
+  background: #22252f;
+  overflow: hidden;
+  transition-duration: 0.2s;
   display: flex;
-  z-index: 20;
 }
 
 .btn {
@@ -36,5 +36,11 @@
     &:hover {
       background: #414450;
     }
+  }
+}
+
+@media (max-width: 1250px) {
+  .btn {
+    height: 46px !important;
   }
 }

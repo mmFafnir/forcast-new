@@ -8,6 +8,7 @@ export interface TypePusher {
   type: string;
   token: string;
   code?: string;
+  telegram_id: number;
 }
 
 export interface IStatePusher {

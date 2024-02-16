@@ -21,6 +21,9 @@ interface IProps {
   title?: string;
   loading?: boolean;
   iconButton?: boolean;
+  onBlur?: () => void;
+  onMouseEnter?: (e: MouseEvent) => void;
+  onMouseLeave?: (e: MouseEvent) => void;
 }
 const Button: FC<IProps> = ({
   className = "",
@@ -37,6 +40,9 @@ const Button: FC<IProps> = ({
   title,
   loading = false,
   iconButton = false,
+  onBlur = () => {},
+  onMouseEnter,
+  onMouseLeave,
 }) => {
   const newStyles = { width, height, ...style };
 
@@ -63,6 +69,9 @@ const Button: FC<IProps> = ({
     <button
       type={htmlType}
       title={title}
+      onBlur={onBlur}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       style={newStyles}
       onClick={handlerClick}
       className={`

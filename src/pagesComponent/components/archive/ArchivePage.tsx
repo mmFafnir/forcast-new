@@ -1,5 +1,7 @@
 import { getArchiveServer } from "@/pagesComponent/api/archive/getArchiveMatch";
 import { MatchArchiveGroup } from "@/pagesComponent/module/group/MatchArchiveGroup";
+import { Header } from "@/widgets/Header";
+import HeaderPage from "@/widgets/HeaderPage";
 import { NextPage } from "next";
 import { cookies } from "next/headers";
 import React from "react";
@@ -18,6 +20,15 @@ const ArchivePage: NextPage<IProps> = async ({ date }) => {
 
   return (
     <div>
+      <Header
+        breadCrumbs={[
+          {
+            href: "/archive",
+            title: "Архив",
+          },
+        ]}
+      />
+      <HeaderPage filtersRender={<div></div>} title={"Архив"} />
       <MatchArchiveGroup matches={data.data} />
     </div>
   );

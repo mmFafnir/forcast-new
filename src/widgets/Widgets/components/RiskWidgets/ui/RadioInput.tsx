@@ -7,8 +7,8 @@ interface IProps {
   title: string;
   color: string;
   checked?: boolean;
-  setRisk: (risk: string | number) => void;
-  value: string | number;
+  setRisk: (risk: number) => void;
+  value: number;
 }
 export const RadioInput: FC<IProps> = ({
   name,

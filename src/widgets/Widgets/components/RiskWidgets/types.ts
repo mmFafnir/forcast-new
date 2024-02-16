@@ -5,3 +5,8 @@ export type TypeStatistic = {
   avg: number;
   best_bet: number;
 };
+
+export interface IFetchStatistics {
+  key: string;
+  item: TypeStatistic;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, ReactNode, useEffect, useState } from "react";
+import { CSSProperties, FC, ReactNode, useEffect, useState } from "react";
 import styles from "./tabs.module.scss";
 import Button from "../Button";
 import Tab, { TypeTab } from "./ui/Tab";
@@ -8,6 +8,7 @@ import Tab, { TypeTab } from "./ui/Tab";
 interface IProps {
   tabs: TypeTab[];
   minHeight?: string;
+  style?: CSSProperties;
   maxHeight?: string;
   renderHeader?: ReactNode;
   currentTab?: string | number;
@@ -18,6 +19,7 @@ interface IProps {
 const Tabs: FC<IProps> = ({
   tabs,
   maxHeight = "auto",
+  style = {},
   minHeight = "auto",
   renderHeader,
   currentTab,
@@ -32,7 +34,7 @@ const Tabs: FC<IProps> = ({
   }, [currentTab]);
 
   return (
-    <div className={styles.tabs}>
+    <div className={styles.tabs} style={style}>
       {renderHeader || (
         <div className={styles.header}>
           {tabs.map((tab) => (

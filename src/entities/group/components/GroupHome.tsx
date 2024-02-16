@@ -5,12 +5,13 @@ import { SportGroup } from "@/features/group";
 import Loader from "@/shared/UI/Loader";
 import IconEmpty from "@/shared/icons/IconEmpty";
 import { TypeSportGroup } from "@/shared/types/sport";
-import React, { FC } from "react";
+import { FC } from "react";
 
 interface IProps {
   data: TypeSportGroup[];
   loading: boolean | null;
 }
+
 export const GroupHome: FC<IProps> = ({ data, loading }) => {
   return (
     <div className="flex-1">

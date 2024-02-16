@@ -4,7 +4,6 @@ import MainLayout from "@/app/layouts/MainLayout";
 import { StoreProvider } from "@/app/providers/StoreProvider";
 import "../src/app/styles/root.scss";
 import "../src/app/styles/globals.scss";
-import ProgressBar from "@/shared/UI/ProgressBar";
 import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({ subsets: ["latin"] });

@@ -4,9 +4,13 @@ import TotalMatches from "@/shared/UI/TotalMatches";
 import styles from "../styles/button.module.scss";
 import { IconFavorite } from "../icons/IconFavorite";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { FC, useEffect } from "react";
+import { FC, use, useEffect } from "react";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import { setFavorite } from "../slice/favoritesSlice";
+import {
+  deleteAllFavorites,
+  deleteFavorite,
+  setFavorite,
+} from "../slice/favoritesSlice";
 import { useRouter } from "next/navigation";
 import { setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
@@ -25,11 +29,12 @@ export const FavoritesButton: FC<IProps> = ({ className }) => {
   const onOpenModalLogin = () => dispatch(setModal(EnumModals.LOGIN));
 
   useEffect(() => {
+    console.log(user);
     if (!user) {
-      dispatch(setFavorite([]));
+      dispatch(deleteAllFavorites());
       return;
     }
-
+    console.log(user);
     dispatch(setFavorite(user.favorite_count));
   }, [user]);
 

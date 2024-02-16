@@ -14,7 +14,12 @@ const EventPremium = () => {
   const { auth } = useTypeSelector((state) => state.auth);
 
   const onOpenPrem = () => dispatch(setModal(EnumModals.PREMIUM));
-  const onOpenPremWhy = () => dispatch(setModal(EnumModals.PREMIUM_WHY));
+  const onOpenPremWhy = () => {
+    if (!auth) {
+      dispatch(setClick("no-auth"));
+    }
+    dispatch(setModal(EnumModals.PREMIUM_WHY));
+  };
   const onOpenLogin = () => {
     dispatch(setClick("prem"));
     dispatch(setModal(EnumModals.LOGIN));

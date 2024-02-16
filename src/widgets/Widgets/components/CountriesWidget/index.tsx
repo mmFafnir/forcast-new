@@ -7,6 +7,8 @@ import { TypeCountry } from "./types/TypeCountry";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
 import Loader from "@/shared/UI/Loader";
 import styles from "./styles.module.scss";
+import Image from "next/image";
+import loaderSvg from "./images/loader.svg";
 
 const CountriesWidget = () => {
   const [data, setData] = useState<TypeCountry[]>([]);
@@ -42,7 +44,9 @@ const CountriesWidget = () => {
   };
 
   useEffect(() => {
+    console.log("work");
     if (loadingMore) return;
+    console.log("after-laoding");
     if (!isBottom) return;
     fetchCountries();
   }, [isBottom]);
@@ -56,6 +60,7 @@ const CountriesWidget = () => {
           res.next_page_url.replace("https://admin.aibetguru.com/api/app", "");
         setNextPage(nextUrl);
         setData(res.data);
+        setIsBottom(false);
         setLoading(false);
       });
     }, 500);
@@ -96,14 +101,29 @@ const CountriesWidget = () => {
         {data.length == 0 && !loading && (
           <p className={styles.empty}>Не найдено</p>
         )}
-        <MyScrollbar
-          className="scrollbar-track-0"
-          onBottomScroll={(bottom) => setIsBottom(bottom)}
-        >
-          {data.map((item) => (
-            <Country key={item.id} item={item} />
-          ))}
-        </MyScrollbar>
+        {!loading && (
+          <MyScrollbar
+            className="scrollbar-track-0"
+            bottomTrigger={200}
+            onBottomScroll={(bottom) => {
+              console.log(bottom);
+              setIsBottom(bottom);
+            }}
+          >
+            {data.map((item) => (
+              <Country key={item.id} item={item} />
+            ))}
+          </MyScrollbar>
+        )}
+        {loadingMore && (
+          <Image
+            className={styles.loading}
+            src={loaderSvg}
+            width={50}
+            height={50}
+            alt="loading icon"
+          />
+        )}
       </div>
     </div>
   );

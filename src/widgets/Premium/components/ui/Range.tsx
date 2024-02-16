@@ -18,13 +18,6 @@ export const Range: FC<IProps> = ({ setDay }) => {
 
   return (
     <div className={styles.body}>
-      {arrayDays.map((point, index) => (
-        <div
-          key={index}
-          onClick={() => setValues(index)}
-          className={styles.point}
-        ></div>
-      ))}
       <Slider
         railStyle={{
           background:
@@ -33,6 +26,7 @@ export const Range: FC<IProps> = ({ setDay }) => {
         value={value}
         max={arrayDays.length - 1}
         min={0}
+        dots={true}
         onChange={(val) => setValues(val as number)}
         trackStyle={{
           background: "transparent",
@@ -42,3 +36,5 @@ export const Range: FC<IProps> = ({ setDay }) => {
     </div>
   );
 };
+//  100 lenght index
+// index * lenght / lengt

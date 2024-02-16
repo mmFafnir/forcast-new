@@ -11,6 +11,7 @@ interface IProps {
   scrollSize?: "big" | "small";
   style?: CSSProperties;
   autoHide?: boolean;
+  bottomTrigger?: number;
   onBottomScroll?: (value: boolean) => void;
 }
 
@@ -21,6 +22,7 @@ const MyScrollbar: FC<IProps> = ({
   autoHide = true,
   style = {},
   onBottomScroll,
+  bottomTrigger = 0,
 }) => {
   const scrollableNodeRef = React.createRef<HTMLElement>();
 
@@ -31,7 +33,7 @@ const MyScrollbar: FC<IProps> = ({
       const { scrollTop, scrollHeight, clientHeight } = target;
 
       const isNearBottom =
-        Math.ceil(scrollTop + clientHeight + 1) >= scrollHeight;
+        Math.ceil(scrollTop + clientHeight + 1 + bottomTrigger) >= scrollHeight;
 
       if (isNearBottom) return onBottomScroll(true);
       onBottomScroll(false);
@@ -40,7 +42,6 @@ const MyScrollbar: FC<IProps> = ({
 
   useEffect(() => {
     if (!onBottomScroll) return;
-
     const listInnerElement = scrollableNodeRef.current;
     if (listInnerElement) {
       listInnerElement.addEventListener("scroll", onScroll);

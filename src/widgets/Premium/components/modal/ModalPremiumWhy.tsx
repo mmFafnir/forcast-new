@@ -1,15 +1,17 @@
 "use client";
+import Image, { StaticImageData } from "next/image";
 import Modal from "@/shared/UI/Modal";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import styles from "../../styles/modal.premium.why.module.scss";
 import { IconBack } from "../../icons/IconBack";
-import Image, { StaticImageData } from "next/image";
 
 import { FC, ReactNode } from "react";
 import { premiumWhyItems } from "../../const/premiumWhyItems";
 import Button from "@/shared/UI/Button";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import { setModal } from "@/shared/UI/Modal/modalSlice";
+import { closeAllModal, setModal } from "@/shared/UI/Modal/modalSlice";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import IconX from "@/shared/icons/IconX";
 
 interface IProps {
   index: ReactNode;
@@ -37,9 +39,13 @@ const Item: FC<IProps> = ({ index, text, title, image }) => {
 };
 
 export const ModalPremiumWhy = () => {
+  const { click } = useTypeSelector((state) => state.modal);
   const dispatch = useTypeDispatch();
 
-  const onBack = () => dispatch(setModal(EnumModals.PREMIUM));
+  const onBack = () => {
+    if (click == "no-auth") return dispatch(closeAllModal());
+    dispatch(setModal(EnumModals.PREMIUM));
+  };
   return (
     <Modal
       name={EnumModals.PREMIUM_WHY}
@@ -51,7 +57,7 @@ export const ModalPremiumWhy = () => {
       }}
       styleBody={{ padding: 0 }}
       titleAlight="center"
-      iconClose={<IconBack />}
+      iconClose={click == "no-auth" ? <IconX /> : <IconBack />}
       onCloseCallback={onBack}
       title={
         <h2 className={styles.title}>

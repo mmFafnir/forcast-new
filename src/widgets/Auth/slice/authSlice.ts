@@ -45,6 +45,15 @@ const authSlice = createSlice({
       state.auth = true;
     },
 
+    setStatus: (state, action: PayloadAction<EnumStatus>) => {
+      state.status = action.payload;
+    },
+
+    setTelegramId: (state, action: PayloadAction<number>) => {
+      if (!state.user) return;
+      state.user = { ...state.user, telegram_id: action.payload };
+    },
+
     logout: (state) => {
       state.auth = false;
       state.user = null;
@@ -52,10 +61,6 @@ const authSlice = createSlice({
       setCookie(null, "_token", "", {
         path: "/",
       });
-    },
-
-    setStatus: (state, action: PayloadAction<EnumStatus>) => {
-      state.status = action.payload;
     },
   },
 
@@ -129,7 +134,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAuth, setUser, logout, setStatus, setToken } =
+export const { setAuth, setUser, logout, setStatus, setToken, setTelegramId } =
   authSlice.actions;
 
 export default authSlice.reducer;

@@ -6,6 +6,7 @@
 
 .point {
   width: 21px;
+  position: absolute;
   height: 21px;
   z-index: 5;
   border-radius: 50%;
@@ -22,12 +23,12 @@
     border-radius: 5px;
   }
 
-  &:first-child {
-    transform: translateX(-5px);
-  }
-  &:nth-last-child(-n + 2) {
-    transform: translateX(5px);
-  }
+  // &:first-child {
+  //   transform: translateX(-5px);
+  // }
+  // &:nth-last-child(-n + 2) {
+  //   transform: translateX(5px);
+  // }
 
   @media (min-width: 901px) {
     &:hover {
