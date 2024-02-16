@@ -90,7 +90,7 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
   return (
     <div className={`${styles.body} ${isMob ? styles.mob : ""}`}>
       <div className={styles.header}>
-        <p>Статистика {sport && ":" + (league || country || sport)}</p>
+        <p>Статистика{sport && ": " + (league || country || sport)}</p>
       </div>
       <div>
         <RadiosRisk setRisk={setRisk} />
