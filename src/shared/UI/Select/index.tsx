@@ -5,7 +5,6 @@ import {
   memo,
   useEffect,
   useId,
-  useMemo,
   useRef,
   useState,
 } from "react";
@@ -17,7 +16,7 @@ import Button from "@/shared/UI/Button";
 import styles from "./style.module.scss";
 import MyScrollbar from "../MyScrollbar";
 
-type TypeSelect = {
+export type TypeSelect = {
   label: string;
   value: string | number;
 };
@@ -35,6 +34,8 @@ interface IProps {
   value: string | number;
   setValue: (value: TypeSelect) => void;
   styleBody?: CSSProperties;
+  contentClass?: string;
+  titleClass?: string;
   disabled?: boolean;
 }
 
@@ -44,6 +45,8 @@ const Select: FC<IProps> = ({
   styleBody = {},
   setValue,
   value,
+  contentClass = "",
+  titleClass = "",
 }) => {
   const id = useId();
   const [currentValue, setCurrentValue] = useState<TypeSelect>(
@@ -88,7 +91,10 @@ const Select: FC<IProps> = ({
           <IconArrow />
         </i>
       </button>
-      <div className={styles.list} style={{ height: currentHeight + "px" }}>
+      <div
+        className={`${styles.list} ${contentClass}`}
+        style={{ height: currentHeight + "px" }}
+      >
         <div ref={listRef}>
           <MyScrollbar style={{ maxHeight: 300 }}>
             {data.map((item) => (

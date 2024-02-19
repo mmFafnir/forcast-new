@@ -57,6 +57,7 @@ export const FilterArchive = () => {
       <Select
         value={sportValue}
         setValue={(item) => setSportValue(Number(item.value) || "")}
+        contentClass={styles.selectContent}
         styleBody={stylesSelect}
         data={[
           {
@@ -73,6 +74,7 @@ export const FilterArchive = () => {
         value={countryValue}
         setValue={(item) => setCountryValue(Number(item.value) || "")}
         styleBody={stylesSelect}
+        contentClass={styles.selectContent}
         disabled={countryData.length === 0}
         data={[
           {
@@ -88,6 +90,7 @@ export const FilterArchive = () => {
       <Select
         value={leagueValue}
         setValue={(item) => setLeagueValue(Number(item.value) || "")}
+        contentClass={styles.selectContent}
         styleBody={stylesSelect}
         disabled={leagueData.length === 0}
         data={[
@@ -108,4 +111,5 @@ export const FilterArchive = () => {
 const stylesSelect: CSSProperties = {
   flex: "0 1 150px",
   maxWidth: "150px",
+  backgroundColor: "#292C36",
 };

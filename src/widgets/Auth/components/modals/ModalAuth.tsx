@@ -27,8 +27,9 @@ export const ModalAuth = () => {
   const onCloseModal = () => dispatch(closeAllModal());
 
   useEffect(() => {
-    // onCloseModal();
-    setComponent("success");
+    if (auth) {
+      setComponent("success");
+    }
   }, [auth]);
 
   useEffect(() => {

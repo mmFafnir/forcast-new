@@ -7,9 +7,9 @@ import useAccordion, {
 } from "@/shared/hooks/useAccardion";
 import { FC, useRef } from "react";
 import { League } from "./League";
-import { TypeCountry } from "../types/TypeCountry";
 import Link from "next/link";
 import CustomImage from "@/shared/UI/CustomImage";
+import { TypeCountry } from "@/shared/types/country";
 
 const iconStyles: IAccordionStylesIcon = {
   open: {},

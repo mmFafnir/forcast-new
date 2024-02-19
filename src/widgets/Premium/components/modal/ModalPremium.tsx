@@ -52,7 +52,12 @@ export const ModalPremium = () => {
           </p>
           <div className={styles.right}>
             <p>Выбери валюту:</p>
-            <Select data={values} styleBody={{ minWidth: "100px" }} />
+            <Select
+              value={values[0].value}
+              setValue={() => {}}
+              data={values}
+              styleBody={{ minWidth: "100px" }}
+            />
           </div>
         </div>
         <Sale day={day} setDay={setDay} />

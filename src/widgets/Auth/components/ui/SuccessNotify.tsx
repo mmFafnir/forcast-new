@@ -2,8 +2,18 @@
 import React, { useEffect } from "react";
 import styles from "../../styles/ui/success.module.scss";
 import Button from "@/shared/UI/Button";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 export const SuccessNotify = () => {
-  useEffect(() => {}, []);
+  const dispatch = useTypeDispatch();
+
+  const onCloseModal = () => dispatch(closeAllModal());
+
+  useEffect(() => {
+    setTimeout(() => {
+      onCloseModal();
+    }, 10000);
+  }, []);
 
   return (
     <div className={styles.body}>
@@ -21,7 +31,12 @@ export const SuccessNotify = () => {
       <p className={styles.timer}>
         Вы будете перенаправлены на сайт через 10 сек
       </p>
-      <Button className={styles.btn} href="/" type="gradient">
+      <Button
+        className={styles.btn}
+        href="/"
+        type="gradient"
+        onClick={onCloseModal}
+      >
         На главную
       </Button>
     </div>
