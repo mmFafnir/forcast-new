@@ -9,7 +9,6 @@ interface IProps {
 }
 
 export const Progress: FC<IProps> = ({ color, title, available, total }) => {
-  console.log(available, total);
   return (
     <div className={styles.body}>
       <p className={styles.title}>{title}</p>

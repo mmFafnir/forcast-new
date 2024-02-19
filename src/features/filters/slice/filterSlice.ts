@@ -10,6 +10,7 @@ interface IState {
   leagueId: number | "";
   countryId: number | "";
   sportId: number | "";
+  page: number;
 }
 
 const date =
@@ -23,6 +24,7 @@ const initialState: IState = {
   sportId: "",
   leagueId: "",
   countryId: "",
+  page: 1,
 };
 
 const filterSlice = createSlice({
@@ -44,6 +46,10 @@ const filterSlice = createSlice({
     setSportFilter: (state, action: PayloadAction<number | "">) => {
       state.sportId = action.payload;
     },
+
+    setPage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
+    },
   },
 });
 
@@ -53,5 +59,6 @@ export const {
   setCountryFilter,
   setLeagueFilter,
   setSportFilter,
+  setPage,
 } = filterSlice.actions;
 export default filterSlice.reducer;

@@ -1,6 +1,6 @@
 "use client";
 import { FC } from "react";
-import { FavoriteAdd, IconFavorite } from "@/features/favorites";
+import { FavoriteAdd } from "@/features/favorites";
 import { Live } from "../ui/Live";
 import { Commands } from "../ui/Commands";
 import { Total } from "../ui/Total";

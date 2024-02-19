@@ -20,21 +20,16 @@ interface IProps {
 }
 
 export const FavoritesButton: FC<IProps> = ({ className }) => {
-  const navigate = useRouter();
   const { user } = useTypeSelector((state) => state.auth);
   const { favorites } = useTypeSelector((state) => state.favorites);
   const dispatch = useTypeDispatch();
-
-  const goToFavorite = () => navigate.push("/favorites");
   const onOpenModalLogin = () => dispatch(setModal(EnumModals.LOGIN));
 
   useEffect(() => {
-    console.log(user);
     if (!user) {
       dispatch(deleteAllFavorites());
       return;
     }
-    console.log(user);
     dispatch(setFavorite(user.favorite_count));
   }, [user]);
 

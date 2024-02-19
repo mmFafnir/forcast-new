@@ -1,4 +1,4 @@
-import { TypeCountry } from "@/widgets/Widgets/components/CountriesWidget/types/TypeCountry";
+import { TypeCountry } from "./country";
 import { TypeMatch } from "./match";
 
 export type TypeLeague = {

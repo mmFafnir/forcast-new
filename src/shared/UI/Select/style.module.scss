@@ -18,6 +18,10 @@
   font-weight: 700;
   span {
     margin-right: 10px;
+    flex: 0 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   i {
@@ -49,5 +53,11 @@
     text-overflow: ellipsis;
     border-radius: 0;
     font-weight: 500;
+    overflow: hidden;
   }
+}
+
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
 }

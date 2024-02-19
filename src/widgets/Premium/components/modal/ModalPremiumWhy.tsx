@@ -79,8 +79,10 @@ export const ModalPremiumWhy = () => {
           ))}
         </div>
         <Button onClick={onBtnClick} className={styles.btn} type="gradient">
-          <IconBack />
-          <span>Вернуться к оформлению</span>
+          {click !== "no-auth" && <IconBack />}
+          <span>
+            {click !== "no-auth" ? "Вернуться к оформлению" : "Купить PREMIUM"}
+          </span>
           <span className={styles.btnMobSpan}>
             Купить <i>PREMIUM</i>
           </span>

@@ -1,12 +1,12 @@
 "use client";
 import { FC, useEffect, useState } from "react";
 import styles from "../styles/recommend.module.scss";
-import Filter from "./Filter";
 import { Match } from "@/entities/match";
 import { TypeMatch } from "@/shared/types/match";
 import { getRecommend } from "@/pagesComponent/api/soccer/getRecommend";
 import Loader from "@/shared/UI/Loader";
 import Empty from "@/shared/UI/Empty";
+import { Filter } from "./Filter";
 
 interface IProps {
   data: TypeMatch[];

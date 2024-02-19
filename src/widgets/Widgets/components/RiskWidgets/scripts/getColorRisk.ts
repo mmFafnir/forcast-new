@@ -1,12 +1,12 @@
-export const getColorRisk = (risk: string) => {
+export const getColorRisk = (risk: number) => {
   switch (risk) {
-    case "Low":
+    case 1:
       return "rgb(162, 208, 125)";
 
-    case "Medium":
+    case 3:
       return "rgb(227, 215, 104)";
 
-    case "High":
+    case 4:
       return "rgb(208, 125, 125)";
 
     default:

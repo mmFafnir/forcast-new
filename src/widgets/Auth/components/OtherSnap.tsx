@@ -1,5 +1,5 @@
 "use client";
-import { FC, use, useEffect, useMemo } from "react";
+import { FC, useEffect, useMemo } from "react";
 import styles from "../styles/other.module.scss";
 import tg from "@/shared/images/socials/tg.svg";
 import apple from "@/shared/images/socials/apple.svg";
@@ -11,11 +11,6 @@ import Image from "next/image";
 import { IconCheck } from "../icons/IconCheck";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
-interface IBtn {
-  name: string;
-  svg: string;
-  onClick: () => void;
-}
 interface IProps {
   setComponent: (value: string) => void;
   component: string;
@@ -59,7 +54,6 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
     setComponent(buttons.find((btn) => !btn.checked)?.name || "mail");
   }, [buttons]);
 
-  console.log(user);
   return (
     <>
       <div className={styles.body}>
@@ -68,8 +62,9 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
             <button
               disabled={btn.checked}
               className={`${styles.button} ${
-                component === btn.name || btn.checked ? styles.active : ""
-              }`}
+                component === btn.name ? styles.active : ""
+              }
+              ${btn.checked ? styles.default : ""}`}
               onClick={() => setComponent(btn.name)}
               key={btn.name}
             >

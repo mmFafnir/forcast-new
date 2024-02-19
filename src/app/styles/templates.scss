@@ -231,18 +231,6 @@ h2 {
   }
 }
 
-@media (max-height: 841px) {
-  .adaptive-mac {
-    height: 275px !important;
-  }
-}
-
-@media (max-height: 750px) {
-  .adaptive-mac {
-    height: 200px !important;
-  }
-}
-
 @media (max-width: 1250px) {
   .bg-hover {
     display: block;
@@ -255,9 +243,5 @@ h2 {
   }
   .adaptive-mac {
     height: calc(100vh - 110px) !important;
-  }
-
-  .sidebar-tabs {
-    // position: relative !important;
   }
 }

@@ -53,6 +53,7 @@ export type TypeBet = {
   updated_at: string | null;
   why: string;
   why_best: string;
+  status?: "0" | "1";
 };
 
 export type TypeMatch = {

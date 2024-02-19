@@ -5,8 +5,8 @@ import styles from "../../styles/snaps/telegram.module.scss";
 import Image from "next/image";
 import Button from "@/shared/UI/Button";
 import axios from "@/shared/core/axios";
-import { AxiosResponse } from "axios";
 import { setCookie } from "nookies";
+import { loginTelegram } from "../../api/auth";
 
 interface IFetchData {
   status: boolean;
@@ -20,12 +20,17 @@ const postBindingTelegram = async (): Promise<IFetchData> => {
   return data;
 };
 
-export const TelegramSnap: FC = () => {
+interface IProps {
+  mode?: "bind" | "login";
+}
+
+export const TelegramSnap: FC<IProps> = ({ mode = "bind" }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const onSpanTelegram = () => {
     setLoading(true);
-    postBindingTelegram()
+    const asyncAction = mode == "bind" ? postBindingTelegram : loginTelegram;
+    asyncAction()
       .then((res) => {
         setCookie(null, "pusher_code", `${res.code}`);
         const newWindow = window.open(res.url, "_blank", "noopener,noreferrer");

@@ -1,16 +1,5 @@
+import { TypeCountry } from "@/shared/types/country";
 import { TypeLeague } from "@/shared/types/leagues";
-
-export type TypeCountry = {
-  code: string;
-  id: number;
-  league: TypeLeague[];
-  name: string;
-  status: "0" | "1";
-  trans_status: "1" | "0";
-  translation: string;
-  updated_at: string;
-  url: string;
-};
 
 export interface IFetchDataCountries {
   current_page: number;

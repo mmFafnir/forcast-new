@@ -6,6 +6,7 @@ import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
 import { cookies } from "next/headers";
 import { Header } from "@/widgets/Header";
+import { FilterProvider } from "@/app/providers/FilterProvider";
 
 interface IProps {
   date: string | null;
@@ -21,7 +22,7 @@ export const MainPage: NextPage<IProps> = async ({ date }) => {
   });
 
   return (
-    <>
+    <FilterProvider sport={""} league={""} country={""}>
       <Header breadCrumbs={[]} />
       <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />
       <div className="flex-1 flex-col">
@@ -44,6 +45,6 @@ export const MainPage: NextPage<IProps> = async ({ date }) => {
           информационный характер.
         </p>
       </div>
-    </>
+    </FilterProvider>
   );
 };

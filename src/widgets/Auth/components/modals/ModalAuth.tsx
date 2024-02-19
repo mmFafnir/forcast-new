@@ -4,22 +4,42 @@ import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Wrapper } from "../ui/Wrapper";
 import { OtherRegister } from "../OtherRegister";
 import styles from "../../styles/auth.module.scss";
 import Auth from "../Auth";
+import { OtherSnap } from "../OtherSnap";
+import { TelegramSnap } from "../Snaps/TelegramSnap";
+import { setCookie } from "nookies";
+import { setUser } from "../../slice/authSlice";
+import { getUserInfo } from "../../api/getUserInfo";
+import { SuccessNotify } from "../ui/SuccessNotify";
 
 export const ModalAuth = () => {
   const dispatch = useTypeDispatch();
-  const onCloseModal = () => dispatch(closeAllModal());
 
   const { click } = useTypeSelector((state) => state.modal);
-  const { auth } = useTypeSelector((state) => state.auth);
+  const { auth, token } = useTypeSelector((state) => state.auth);
+
+  const [component, setComponent] = useState<string>("mail");
+
+  const onCloseModal = () => dispatch(closeAllModal());
 
   useEffect(() => {
-    onCloseModal();
+    // onCloseModal();
+    setComponent("success");
   }, [auth]);
+
+  useEffect(() => {
+    if (!token) return;
+    setCookie(null, "_token", token, {
+      path: "/",
+    });
+    getUserInfo(token).then((res) => {
+      dispatch(setUser(res));
+    });
+  }, [token]);
 
   return (
     <Modal
@@ -41,8 +61,10 @@ export const ModalAuth = () => {
               </p>
             </div>
           )}
-          <OtherRegister />
-          <Auth />
+          <OtherSnap component={component} setComponent={setComponent} />
+          {component === "mail" && <Auth />}
+          {component === "telegram" && <TelegramSnap mode="login" />}
+          {component === "success" && <SuccessNotify />}
         </>
       </Wrapper>
     </Modal>

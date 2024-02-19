@@ -13,7 +13,6 @@ interface IProps {
 type TypePage = "league_url" | "country_url" | "get_match_url";
 
 const SoccerSlugPage: NextPage<IProps> = async ({ params, searchParams }) => {
-  console.log(params);
   let pageType: TypePage | null = null;
   try {
     const { data } = await axios.post(
@@ -27,13 +26,11 @@ const SoccerSlugPage: NextPage<IProps> = async ({ params, searchParams }) => {
         pageType = key as TypePage;
       }
     }
-    console.log(data);
   } catch (error) {
     console.log(error);
   }
 
   const date = searchParams["date"] || null;
-  console.log(pageType);
 
   if (pageType === "country_url")
     return <SoccerPage date={date} country={params.slug} />;

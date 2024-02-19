@@ -13,7 +13,7 @@
 }
 
 .mob {
-  display: none;
+  display: none !important;
 }
 
 @media (max-width: 500px) {
@@ -22,6 +22,6 @@
   }
   .mob {
     margin-top: 20px;
-    display: flex;
+    display: flex !important;
   }
 }

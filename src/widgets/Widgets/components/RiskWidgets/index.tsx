@@ -9,13 +9,34 @@ import { getStatistics } from "./api/getStatistics";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { IFetchStatistics, TypeStatistic } from "./types";
 import Loader from "@/shared/UI/Loader";
+import { usePathname } from "next/navigation";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import {
+  setCountryFilter,
+  setLeagueFilter,
+  setSportFilter,
+} from "@/features/filters/slice/filterSlice";
+import { setParamsLink } from "@/features/breadсrumbs/slice/linkSlice";
 
 type TypeRisk = {
   id: number;
   name: string;
 };
 const RadiosRisk = ({ setRisk }: { setRisk: (risk: number) => void }) => {
-  const [risks, setRisks] = useState<TypeRisk[]>([]);
+  const [risks, setRisks] = useState<TypeRisk[]>([
+    {
+      id: 1,
+      name: "Низкий риск",
+    },
+    {
+      id: 3,
+      name: "Средний риск",
+    },
+    {
+      id: 4,
+      name: "Высокий риск",
+    },
+  ]);
   const id = useId();
   useEffect(() => {
     if (risks.length > 0) return;
@@ -28,7 +49,7 @@ const RadiosRisk = ({ setRisk }: { setRisk: (risk: number) => void }) => {
     <div className={styles.tabs}>
       <RadioInput
         id={"all" + id}
-        title={"Общее"}
+        title={"Общая"}
         name={"risk-" + id}
         checked
         color={"rgb(217, 217, 217)"}
@@ -43,7 +64,7 @@ const RadiosRisk = ({ setRisk }: { setRisk: (risk: number) => void }) => {
           id={String(risk.id + id)}
           title={risk.name}
           name={"risk-" + id}
-          color={getColorRisk(risk.name)}
+          color={getColorRisk(risk.id)}
         />
       ))}
     </div>
@@ -54,10 +75,12 @@ interface IProps {
   isMob?: boolean;
 }
 const RiskWidgets: FC<IProps> = ({ isMob }) => {
+  const pathname = usePathname();
   const { countryId, leagueId, sportId } = useTypeSelector(
     (state) => state.filters
   );
   const { country, league, sport } = useTypeSelector((state) => state.links);
+  const dispatch = useTypeDispatch();
 
   const [risk, setRisk] = useState<number>(0);
   const [data, setData] = useState<IFetchStatistics[]>([]);
@@ -78,6 +101,16 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
       });
   }, [countryId, leagueId, sportId]);
 
+  useEffect(() => {
+    dispatch(
+      setParamsLink({
+        country: "",
+        sport: "",
+        league: "",
+        match: "",
+      })
+    );
+  }, [pathname]);
   return (
     <div className={`${styles.body} ${isMob ? styles.mob : ""}`}>
       <div className={styles.header}>

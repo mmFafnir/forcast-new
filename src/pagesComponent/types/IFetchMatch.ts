@@ -1,6 +1,6 @@
+import { TypeCountry } from "@/shared/types/country";
 import { ILeagues, TypeLeague } from "@/shared/types/leagues";
 import { TypeBet, TypeTeam } from "@/shared/types/match";
-import { TypeCountry } from "@/widgets/Widgets/components/CountriesWidget/types/TypeCountry";
 
 export interface IFetchMatch {
   data: ILeagues[];

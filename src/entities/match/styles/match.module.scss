@@ -24,6 +24,11 @@
           }
         }
       }
+      .bet {
+        svg path {
+          stroke: transparent !important;
+        }
+      }
     }
   }
 }
@@ -44,8 +49,8 @@
 }
 
 .time {
-  flex: 0 0 64px;
-  width: 64px;
+  flex: 0 0 77px;
+  width: 77px;
   text-align: center;
 }
 .first {
@@ -87,6 +92,37 @@
   justify-content: flex-end;
   align-items: center;
   overflow: hidden;
+}
+
+.bets {
+  margin-right: 10px;
+}
+
+.bet {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  &:first-child {
+    margin-bottom: 5px;
+  }
+  p {
+    white-space: nowrap;
+    max-width: 355px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 10px;
+  }
+}
+.betOdd {
+  font-size: 14px;
+}
+
+.betStatus {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+  background-color: red;
 }
 
 @media (max-width: 440px) {

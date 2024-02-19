@@ -11,10 +11,10 @@
   }
 }
 
-.list,
 .country {
-  height: 95%;
-  padding-bottom: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .list {
@@ -29,17 +29,21 @@
 }
 
 .loading {
-  position: absolute;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(-50%);
+  display: block;
+  margin: 0 auto;
+  // position: absolute;
+  // bottom: 0px;
+  // left: 50%;
+  // transform: translateX(-50%);
 }
+
+@media (max-height: 841px) {
+}
+
 @media (max-width: 500px) {
   .search {
     border: 1px solid #59caa1;
     background: rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-  }
-  .list {
   }
 }

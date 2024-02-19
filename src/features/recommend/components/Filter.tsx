@@ -22,7 +22,7 @@ interface IProps {
   value: string;
 }
 
-const Filter: FC<IProps> = ({ setValue, value }) => {
+export const Filter: FC<IProps> = ({ setValue, value }) => {
   return (
     <div className={styles.body}>
       {filters.map((fil) => (
@@ -38,5 +38,3 @@ const Filter: FC<IProps> = ({ setValue, value }) => {
     </div>
   );
 };
-
-export default Filter;

@@ -1,8 +1,12 @@
-import { IFetchFullMatch } from "./IFetchMatch";
+import { TypeBet, TypeMatch } from "@/shared/types/match";
+
+interface IMatch extends TypeMatch {
+  card: TypeBet[];
+}
 
 export interface IFetchArchive {
   current_page: number;
-  data: IFetchFullMatch[];
+  data: IMatch[];
   first_page_url: string;
   from: number;
   last_page: number;

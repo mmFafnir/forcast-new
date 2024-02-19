@@ -77,6 +77,8 @@
     left: 0;
   }
   .scroll {
+    height: 100vh;
+    height: calc(100dvh - 90px);
     padding-top: 0;
   }
 
@@ -94,5 +96,9 @@
 @media (max-width: 500px) {
   .body {
     width: 100%;
+  }
+  .widgets,
+  .item {
+    height: 100%;
   }
 }

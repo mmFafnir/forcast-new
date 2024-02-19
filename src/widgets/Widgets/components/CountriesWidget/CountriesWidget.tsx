@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, memo, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { IconSearch } from "@/features/search";
 import { Country } from "./ui/Country";
 import { getCountries } from "./api/getCountries";
@@ -10,7 +10,7 @@ import Image from "next/image";
 import loaderSvg from "./images/loader.svg";
 import { TypeCountry } from "@/shared/types/country";
 
-const CountriesWidget = () => {
+export const CountriesWidget = () => {
   const [data, setData] = useState<TypeCountry[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -109,20 +109,18 @@ const CountriesWidget = () => {
             {data.map((item) => (
               <Country key={item.id} item={item} />
             ))}
-            {loadingMore && (
-              <Image
-                className={styles.loading}
-                src={loaderSvg}
-                width={50}
-                height={50}
-                alt="loading icon"
-              />
-            )}
+            {/* {loadingMore && ( */}
+            <Image
+              className={styles.loading}
+              src={loaderSvg}
+              width={50}
+              height={50}
+              alt="loading icon"
+            />
+            {/* )} */}
           </MyScrollbar>
         )}
       </div>
     </div>
   );
 };
-
-export default memo(CountriesWidget);
