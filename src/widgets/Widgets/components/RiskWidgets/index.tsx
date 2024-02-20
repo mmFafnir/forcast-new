@@ -7,15 +7,10 @@ import { getRisks } from "./api/gerRisks";
 import { getColorRisk } from "./scripts/getColorRisk";
 import { getStatistics } from "./api/getStatistics";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { IFetchStatistics, TypeStatistic } from "./types";
+import { IFetchStatistics } from "./types";
 import Loader from "@/shared/UI/Loader";
 import { usePathname } from "next/navigation";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import {
-  setCountryFilter,
-  setLeagueFilter,
-  setSportFilter,
-} from "@/features/filters/slice/filterSlice";
 import { setParamsLink } from "@/features/breadсrumbs/slice/linkSlice";
 
 type TypeRisk = {
@@ -29,7 +24,7 @@ const RadiosRisk = ({ setRisk }: { setRisk: (risk: number) => void }) => {
       name: "Низкий риск",
     },
     {
-      id: 3,
+      id: 2,
       name: "Средний риск",
     },
     {
@@ -85,7 +80,6 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
   const [risk, setRisk] = useState<number>(0);
   const [data, setData] = useState<IFetchStatistics[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-
   useEffect(() => {
     setLoading(true);
     getStatistics({

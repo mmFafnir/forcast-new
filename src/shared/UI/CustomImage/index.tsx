@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 import imgError from "./errorImage.svg";
 
@@ -22,21 +22,45 @@ const CustomImage: FC<IProps> = ({
   className,
   errorImage,
 }) => {
+  const [loading, setLoading] = useState<boolean>(true);
   const [image, setImage] = useState<string>(src);
+
+  function onImageLoad() {
+    setLoading(false);
+    setImage(src);
+    console.log("loaded");
+  }
 
   const onError = (e: any) => {
     setImage(errorImage || imgError);
   };
 
+  useEffect(() => {
+    setImage(src);
+  }, [src]);
   return (
-    <Image
-      onError={onError}
-      src={image}
-      className={className}
-      width={width}
-      height={height}
-      alt={alt}
-    />
+    <>
+      {loading && (
+        <Image
+          src={image}
+          className={className}
+          width={width}
+          height={height}
+          alt={alt}
+          style={{ display: loading ? "none" : "block" }}
+        />
+      )}
+      <Image
+        onLoad={onImageLoad}
+        onError={onError}
+        src={image}
+        className={className}
+        width={width}
+        height={height}
+        alt={alt}
+        style={{ display: loading ? "none" : "block" }}
+      />
+    </>
   );
 };
 

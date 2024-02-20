@@ -1,7 +1,6 @@
 "use client";
 import { MatchArchive } from "@/entities/match";
 import { getArchive } from "@/pagesComponent/api/archive/getArchiveMatch";
-import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
 import Empty from "@/shared/UI/Empty";
 import Loader from "@/shared/UI/Loader";
 import Pagination, { TypeLink } from "@/shared/UI/Pagination";

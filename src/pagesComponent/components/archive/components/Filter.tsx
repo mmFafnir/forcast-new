@@ -13,6 +13,8 @@ import {
   setSportFilter,
 } from "@/features/filters/slice/filterSlice";
 
+const hostImage = "https://admin.aibetguru.com/uploads";
+
 export const FilterArchive = () => {
   const dispatch = useTypeDispatch();
 
@@ -56,6 +58,8 @@ export const FilterArchive = () => {
     <div className={styles.body}>
       <Select
         value={sportValue}
+        image="/football.svg"
+        titleClass={styles.selectTitle}
         setValue={(item) => setSportValue(Number(item.value) || "")}
         contentClass={styles.selectContent}
         styleBody={stylesSelect}
@@ -74,6 +78,10 @@ export const FilterArchive = () => {
         value={countryValue}
         setValue={(item) => setCountryValue(Number(item.value) || "")}
         styleBody={stylesSelect}
+        image={`${hostImage}/${
+          countryData.find((item) => item.id === countryValue)?.code
+        }.svg`}
+        titleClass={styles.selectTitle}
         contentClass={styles.selectContent}
         disabled={countryData.length === 0}
         data={[
@@ -91,7 +99,11 @@ export const FilterArchive = () => {
         value={leagueValue}
         setValue={(item) => setLeagueValue(Number(item.value) || "")}
         contentClass={styles.selectContent}
+        titleClass={styles.selectTitle}
         styleBody={stylesSelect}
+        image={`${hostImage}/${
+          leagueData.find((item) => item.id === leagueValue)?.league_id
+        }.png`}
         disabled={leagueData.length === 0}
         data={[
           {

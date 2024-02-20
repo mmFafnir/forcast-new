@@ -15,6 +15,7 @@ import useAccordion, {
 import Button from "@/shared/UI/Button";
 import styles from "./style.module.scss";
 import MyScrollbar from "../MyScrollbar";
+import CustomImage from "../CustomImage";
 
 export type TypeSelect = {
   label: string;
@@ -37,6 +38,7 @@ interface IProps {
   contentClass?: string;
   titleClass?: string;
   disabled?: boolean;
+  image?: string;
 }
 
 const Select: FC<IProps> = ({
@@ -47,6 +49,7 @@ const Select: FC<IProps> = ({
   value,
   contentClass = "",
   titleClass = "",
+  image,
 }) => {
   const id = useId();
   const [currentValue, setCurrentValue] = useState<TypeSelect>(
@@ -75,6 +78,8 @@ const Select: FC<IProps> = ({
     return () => document.removeEventListener("click", onCloseEvent);
   }, []);
 
+  console.log(image);
+
   return (
     <div
       className={`${styles.body} ${disabled ? styles.disabled : ""}`}
@@ -82,10 +87,18 @@ const Select: FC<IProps> = ({
       style={styleBody}
     >
       <button
-        className={styles.title}
+        className={`${styles.title} ${titleClass}`}
         onClick={onToggle}
         title={currentValue.label}
       >
+        {image && (
+          <CustomImage
+            src={image}
+            width={17}
+            height={17}
+            alt={currentValue.label}
+          />
+        )}
         <span>{currentValue.label}</span>
         <i style={iconStyle}>
           <IconArrow />

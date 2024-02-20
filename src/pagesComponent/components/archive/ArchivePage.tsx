@@ -29,7 +29,11 @@ const ArchivePage: NextPage<IProps> = async ({ date }) => {
           },
         ]}
       />
-      <HeaderPage filtersRender={<FilterArchive />} title={"Архив"} />
+      <HeaderPage
+        filtersRender={<FilterArchive />}
+        title={"Архив"}
+        filterStyle={{ flexWrap: "wrap" }}
+      />
       <div className="flex-1 relative">
         <MatchArchiveGroup matches={data.data} links={data.links} />
       </div>
