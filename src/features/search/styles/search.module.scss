@@ -25,6 +25,10 @@
 @media (max-height: 874px) {
   .modal {
     padding-top: 5% !important;
+
+    > div:last-child {
+      flex: 0 1 879px !important;
+    }
   }
   .content {
     height: 530px;
@@ -33,7 +37,7 @@
 
 @media (max-height: 800px) {
   .modal {
-    padding-top: 20px !important;
+    padding-top: 2% !important;
   }
 }
 @media (max-width: 900px) {

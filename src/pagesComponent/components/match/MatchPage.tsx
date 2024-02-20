@@ -114,7 +114,11 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
           </div>
         )}
 
-        <div className={styles.events}>
+        <div
+          className={`${styles.events} ${
+            data.cards.length === 0 ? styles.eventsOne : ""
+          }`}
+        >
           <EventsBlock
             events={data.cards}
             matchId={data.id}
@@ -123,6 +127,11 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
           />
         </div>
 
+        {recommendData.length > 0 && (
+          <div className={styles.recommend}>
+            <Recommend id={data.id} data={recommendData} />
+          </div>
+        )}
         <p className={styles.text}>
           Мы предлагаем бесплатные прогнозы на футбол, основанные на тщательном
           анализе искусственным интеллектом прошлых игр, формы игроков и других
@@ -135,11 +144,6 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
           не организует игры на деньги. Контент носит исключительно
           информационный характер.
         </p>
-        {recommendData.length > 0 && (
-          <div className={styles.recommend}>
-            <Recommend id={data.id} data={recommendData} />
-          </div>
-        )}
       </div>
     </LinksProvider>
   );

@@ -1,6 +1,7 @@
 import { MatchPage, SoccerPage } from "@/pagesComponent";
 import axios from "axios";
 import { NextPage } from "next";
+import { notFound } from "next/navigation";
 import React from "react";
 
 interface IProps {
@@ -28,6 +29,7 @@ const SoccerSlugPage: NextPage<IProps> = async ({ params, searchParams }) => {
     }
   } catch (error) {
     console.log(error);
+    return notFound();
   }
 
   const date = searchParams["date"] || null;
@@ -37,8 +39,7 @@ const SoccerSlugPage: NextPage<IProps> = async ({ params, searchParams }) => {
   if (pageType === "league_url")
     return <SoccerPage date={date} league={params.slug} />;
   if (pageType === "get_match_url") return <MatchPage url={`${params.slug}`} />;
-
-  return <div>Slug epta</div>;
+  return notFound();
 };
 
 export default SoccerSlugPage;

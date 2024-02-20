@@ -58,6 +58,7 @@
 }
 
 .text {
+  margin-top: 20px;
   font-size: 14px;
   color: rgba(255, 255, 255, 0.5);
 }
@@ -65,6 +66,11 @@
 .recommend {
   margin-top: 40px;
   margin-bottom: 0 !important;
+}
+
+.eventsOne {
+  padding: 80px 0px;
+  padding-bottom: 60px;
 }
 
 @media (max-width: 1250px) {

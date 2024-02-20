@@ -45,6 +45,7 @@ const FilterCalendarMemo: FC<IProps> = ({
 
   useEffect(() => {
     const date = parseQueryParams(window.location.search).date;
+
     dispatch(setDate(date ? date : dayjs().format("YYYY-MM-DD")));
   }, [pathname]);
 

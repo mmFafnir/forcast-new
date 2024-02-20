@@ -20,9 +20,8 @@ export const EventsBlock: FC<IProps> = ({
   request,
   favoriteLeague,
 }) => {
-  const { user, status } = useTypeSelector((state) => state.auth);
+  const { user } = useTypeSelector((state) => state.auth);
 
-  if (status === EnumStatus.LOADING) return <></>;
   return (
     <>
       {events.length > 0 && (
