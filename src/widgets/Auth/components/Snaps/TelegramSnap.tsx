@@ -7,6 +7,7 @@ import Button from "@/shared/UI/Button";
 import axios from "@/shared/core/axios";
 import { setCookie } from "nookies";
 import { loginTelegram } from "../../api/auth";
+import { isMobile } from "@/features/shared/scripts/isMobile";
 
 interface IFetchData {
   status: boolean;
@@ -33,6 +34,10 @@ export const TelegramSnap: FC<IProps> = ({ mode = "bind" }) => {
     asyncAction()
       .then((res) => {
         setCookie(null, "pusher_code", `${res.code}`);
+        if (isMobile.iOS()) {
+          window.location.assign(res.url);
+          return;
+        }
         setTimeout(() => {
           const newWindow = window.open(
             res.url,
