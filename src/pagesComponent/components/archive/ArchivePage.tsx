@@ -21,7 +21,7 @@ const ArchivePage: NextPage<IProps> = async ({ date }) => {
   });
 
   return (
-    <div className="flex-1 flex-col">
+    <div className={styles.page}>
       <Header
         breadCrumbs={[
           {
