@@ -25,6 +25,7 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
   useEffect(() => {
     if (user) return;
     const app = (window as any).Telegram?.WebApp;
+    alert(JSON.stringify(app.initDataUnsafe.user));
     if (app) {
       app.expand();
       app.ready();
