@@ -37,9 +37,10 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
           }
         : {};
 
-      alert(value.user);
+      alert(JSON.stringify(value.user));
       if (!value.user) return;
       loginInWebView(value.user).then((res) => {
+        alert("res: " + JSON.stringify(res));
         dispatch(setUser(res.data));
         setCookie(null, "_token", res.token, {
           path: "/",
