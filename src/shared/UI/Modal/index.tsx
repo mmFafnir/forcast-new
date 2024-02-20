@@ -13,6 +13,7 @@ interface IProps {
   stylesWrapper?: CSSProperties;
   styleContent?: CSSProperties;
   classContent?: string;
+  classBody?: string;
   title?: string | ReactNode;
   iconClose?: ReactNode;
   onCloseCallback?: () => void;
@@ -32,6 +33,7 @@ const Modal: FC<IProps> = ({
   styleChildren = {},
   titleAlight = "left",
   classContent = "",
+  classBody = "",
 }) => {
   const { modal } = useTypeSelector((state) => state.modal);
   const dispatch = useTypeDispatch();
@@ -42,7 +44,9 @@ const Modal: FC<IProps> = ({
   return (
     <div
       style={styleBody}
-      className={`${styles.body} ${name === modal ? styles.show : ""}`}
+      className={`${styles.body} ${classBody} ${
+        name === modal ? styles.show : ""
+      }`}
     >
       <div className={styles.bg} onClick={onClose}></div>
       <div

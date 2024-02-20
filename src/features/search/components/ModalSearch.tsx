@@ -76,7 +76,9 @@ export const ModalSearch: FC = () => {
     <Modal
       title={"Поиск"}
       name={EnumModals.SEARCH}
-      stylesWrapper={{ flex: "0 1 854px" }}
+      styleBody={{ paddingTop: "2%" }}
+      classBody={styles.modal}
+      stylesWrapper={{ flex: "0 1 1238px" }}
       styleChildren={{ paddingBottom: "15px" }}
     >
       <div className={styles.body}>

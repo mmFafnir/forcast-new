@@ -119,6 +119,7 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
             events={data.cards}
             matchId={data.id}
             request={data.request_for_card_button}
+            favoriteLeague={data.league.favorit === "1"}
           />
         </div>
 

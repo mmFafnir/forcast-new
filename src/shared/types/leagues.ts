@@ -18,6 +18,7 @@ export type TypeLeague = {
   user_pind_count: 0 | 1;
   user_pind_admin_count: 0 | 1;
   country: TypeCountry;
+  favorit: "0" | "1";
 };
 export interface ILeagues extends TypeLeague {
   games: TypeMatch[];

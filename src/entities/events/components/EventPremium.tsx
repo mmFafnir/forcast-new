@@ -9,7 +9,7 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
 
-const EventPremium = () => {
+const EventPremium = ({ odds }: { odds: string }) => {
   const dispatch = useTypeDispatch();
   const { auth } = useTypeSelector((state) => state.auth);
 
@@ -28,7 +28,7 @@ const EventPremium = () => {
       <div className={styles.cup}>
         <IconCup />
       </div>
-      <h3>Коэффициент 1.59</h3>
+      <h3>Коэффициент {odds}</h3>
       <Button
         onClick={auth ? onOpenPrem : onOpenLogin}
         type="gradient"

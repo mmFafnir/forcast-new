@@ -1,3 +1,7 @@
+.modal {
+  padding-left: 20px;
+  padding-right: 20px;
+}
 .body {
   border-radius: 5px;
   overflow: hidden;
@@ -14,11 +18,17 @@
 
 .content {
   margin-top: 10px;
-  height: 400px;
+  height: 639px;
   padding-right: 10px;
 }
 
+@media (max-width: 1200px) {
+}
+
 @media (max-width: 900px) {
+  .modal {
+    padding: 0 !important;
+  }
   .content {
     height: calc(100vh - 247px);
     height: calc(100dvh - 247px);
