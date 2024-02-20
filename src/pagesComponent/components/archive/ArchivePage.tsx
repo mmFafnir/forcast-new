@@ -30,7 +30,7 @@ const ArchivePage: NextPage<IProps> = async ({ date }) => {
         ]}
       />
       <HeaderPage filtersRender={<FilterArchive />} title={"Архив"} />
-      <div className="flex-1">
+      <div className="flex-1 relative">
         <MatchArchiveGroup matches={data.data} links={data.links} />
       </div>
       <div className="page-text-block mt-auto">

@@ -33,9 +33,15 @@ export const TelegramSnap: FC<IProps> = ({ mode = "bind" }) => {
     asyncAction()
       .then((res) => {
         setCookie(null, "pusher_code", `${res.code}`);
-        const newWindow = window.open(res.url, "_blank", "noopener,noreferrer");
-        if (newWindow) newWindow.opener = null;
-        console.log(res);
+        setTimeout(() => {
+          const newWindow = window.open(
+            res.url,
+            "_blank",
+            "noopener,noreferrer"
+          );
+          if (newWindow) newWindow.opener = null;
+          console.log(res);
+        });
       })
       .catch((err) => {
         console.log(err);

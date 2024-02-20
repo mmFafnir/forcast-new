@@ -63,7 +63,7 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
   }, [page]);
 
   return (
-    <div className="relative">
+    <div>
       {data.map((match) => (
         <MatchArchive key={match.id} match={match} />
       ))}
