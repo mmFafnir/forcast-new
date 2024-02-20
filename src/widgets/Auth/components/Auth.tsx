@@ -38,9 +38,9 @@ const Auth: FC = () => {
 
   const onBackStep = () => setStep(0);
 
-  useEffect(() => {
-    onBackStep();
-  }, [auth]);
+  // useEffect(() => {
+  //   onBackStep();
+  // }, [auth]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.body}>

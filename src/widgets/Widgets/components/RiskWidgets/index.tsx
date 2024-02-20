@@ -96,14 +96,21 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
   }, [countryId, leagueId, sportId]);
 
   useEffect(() => {
-    dispatch(
-      setParamsLink({
-        country: "",
-        sport: "",
-        league: "",
-        match: "",
-      })
-    );
+    if (
+      pathname === "/privacy-policy" ||
+      pathname === "/" ||
+      pathname === "/faq" ||
+      pathname === "/archive"
+    ) {
+      dispatch(
+        setParamsLink({
+          country: "",
+          sport: "",
+          league: "",
+          match: "",
+        })
+      );
+    }
   }, [pathname]);
   return (
     <div className={`${styles.body} ${isMob ? styles.mob : ""}`}>

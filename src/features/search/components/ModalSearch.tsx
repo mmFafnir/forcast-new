@@ -9,6 +9,7 @@ import { getMatches } from "../api/getMatches";
 import { TypeSportGroup } from "@/shared/types/sport";
 import { GroupHome } from "@/entities/group";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 const sportsData = [
   {
@@ -37,6 +38,7 @@ const statusMatchData = [
 ];
 
 export const ModalSearch: FC = () => {
+  const { modal } = useTypeSelector((state) => state.modal);
   const [data, setData] = useState<TypeSportGroup[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [status, setStatus] = useState<string | number>("");
@@ -79,7 +81,7 @@ export const ModalSearch: FC = () => {
     >
       <div className={styles.body}>
         <div className={styles.header}>
-          <Input onSearch={onSearch} />
+          <Input focus={modal === EnumModals.SEARCH} onSearch={onSearch} />
         </div>
         <div className="flex item-center">
           <Select setValue={setSport} data={sportsData} />

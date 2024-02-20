@@ -4,13 +4,17 @@ import styles from "../../styles/ui/success.module.scss";
 import Button from "@/shared/UI/Button";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
+
+let timerId = null;
 export const SuccessNotify = () => {
   const dispatch = useTypeDispatch();
 
-  const onCloseModal = () => dispatch(closeAllModal());
+  const onCloseModal = () => {
+    dispatch(closeAllModal());
+  };
 
   useEffect(() => {
-    setTimeout(() => {
+    timerId = setTimeout(() => {
       onCloseModal();
     }, 10000);
   }, []);
@@ -31,13 +35,8 @@ export const SuccessNotify = () => {
       <p className={styles.timer}>
         Вы будете перенаправлены на сайт через 10 сек
       </p>
-      <Button
-        className={styles.btn}
-        href="/"
-        type="gradient"
-        onClick={onCloseModal}
-      >
-        На главную
+      <Button className={styles.btn} type="gradient" onClick={onCloseModal}>
+        Закрыть
       </Button>
     </div>
   );

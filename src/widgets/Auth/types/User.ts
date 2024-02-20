@@ -7,6 +7,7 @@ export type TypeUser = {
   email_verify_code: string;
   gender: "M" | "F";
   id: number;
+  premium: "0" | "1";
   name: string;
   nickname: string;
   ref_code: null | string;

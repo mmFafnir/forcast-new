@@ -13,7 +13,6 @@ import { confirm } from "../api/confirm";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setUser } from "../slice/authSlice";
 import { setCookie } from "nookies";
-import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 import { login } from "../api/auth";
 import { useTimer } from "react-timer-hook";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
@@ -79,6 +78,12 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
     }
   };
 
+  useEffect(() => {
+    if (inputsRef.current[0]) {
+      inputsRef.current[0].focus();
+    }
+  }, []);
+
   return (
     <div className={styles.inputs}>
       {loading && (
@@ -138,8 +143,6 @@ export const Confirmation: FC<IProps> = ({ email }) => {
         setCookie(null, "_token", res.token, {
           path: "/",
         });
-
-        dispatch(closeAllModal());
       })
       .catch((err) => {
         console.log(err);

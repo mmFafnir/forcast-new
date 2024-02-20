@@ -11,14 +11,18 @@ export const getOneMatch = async (
     };
 
     const { data } = await axios.post(
-      `https://admin.aibetguru.com/api/app/single_page_match`,
+      `/single_page_match`,
       {
         url: url,
       },
       config
     );
-    return data.data;
+    return {
+      ...data.data,
+      request_for_card_button: data.request_for_card_button,
+    };
   } catch (error) {
+    console.log("error", error);
     return null;
   }
 };

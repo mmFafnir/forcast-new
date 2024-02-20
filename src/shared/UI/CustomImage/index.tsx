@@ -28,7 +28,6 @@ const CustomImage: FC<IProps> = ({
   function onImageLoad() {
     setLoading(false);
     setImage(src);
-    console.log("loaded");
   }
 
   const onError = (e: any) => {
@@ -40,16 +39,6 @@ const CustomImage: FC<IProps> = ({
   }, [src]);
   return (
     <>
-      {loading && (
-        <Image
-          src={image}
-          className={className}
-          width={width}
-          height={height}
-          alt={alt}
-          style={{ display: loading ? "none" : "block" }}
-        />
-      )}
       <Image
         onLoad={onImageLoad}
         onError={onError}
@@ -58,7 +47,6 @@ const CustomImage: FC<IProps> = ({
         width={width}
         height={height}
         alt={alt}
-        style={{ display: loading ? "none" : "block" }}
       />
     </>
   );

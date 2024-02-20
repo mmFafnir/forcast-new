@@ -5,9 +5,6 @@ import styles from "./styles.module.scss";
 import IconPerson from "@/shared/icons/IconPerson";
 import { MatchPreview, MatchPreviewSticky, Views } from "@/entities/match";
 import TextMore from "@/shared/UI/TextMore";
-import TotalMatches from "@/shared/UI/TotalMatches";
-import { Event, EventNotReady, EventSendRequest } from "@/entities/events";
-import EventPremium from "@/entities/events/components/EventPremium";
 import { getOneMatch } from "@/pagesComponent/api/soccer/getOneMatch";
 import Link from "next/link";
 import { cookies } from "next/headers";
@@ -15,6 +12,7 @@ import { Recommend } from "@/features/recommend";
 import { getRecommendServer } from "@/pagesComponent/api/soccer/getRecommend";
 import { Header } from "@/widgets/Header";
 import { LinksProvider } from "@/app/providers/LinksProvider";
+import { EventsBlock } from "./components/EventsBlock";
 
 interface IProps {
   url: string;
@@ -24,7 +22,8 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
   const data = await getOneMatch(url, token?.value);
-  const recommendetData = data ? await getRecommendServer({ id: data.id }) : [];
+  const recommendData = data ? await getRecommendServer({ id: data.id }) : [];
+
   if (!data)
     return (
       <div>
@@ -63,6 +62,7 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
       href: data.url,
     },
   ];
+
   return (
     <LinksProvider
       links={{
@@ -115,22 +115,13 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
         )}
 
         <div className={styles.events}>
-          {data.cards.length > 0 && (
-            <div className="flex item-center">
-              <h2>Список событий</h2>
-              <TotalMatches>{data.cards.length}</TotalMatches>
-            </div>
-          )}
-
-          {data.cards.map((bet) => (
-            <Event key={bet.id} bet={bet} />
-          ))}
-
-          <EventPremium />
-          <EventNotReady />
-          <EventSendRequest premium={true} />
-          <EventSendRequest premium={false} />
+          <EventsBlock
+            events={data.cards}
+            matchId={data.id}
+            request={data.request_for_card_button}
+          />
         </div>
+
         <p className={styles.text}>
           Мы предлагаем бесплатные прогнозы на футбол, основанные на тщательном
           анализе искусственным интеллектом прошлых игр, формы игроков и других
@@ -143,9 +134,9 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
           не организует игры на деньги. Контент носит исключительно
           информационный характер.
         </p>
-        {recommendetData.length > 0 && (
+        {recommendData.length > 0 && (
           <div className={styles.recommend}>
-            <Recommend id={data.id} data={recommendetData} />
+            <Recommend id={data.id} data={recommendData} />
           </div>
         )}
       </div>

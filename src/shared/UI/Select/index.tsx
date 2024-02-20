@@ -78,8 +78,6 @@ const Select: FC<IProps> = ({
     return () => document.removeEventListener("click", onCloseEvent);
   }, []);
 
-  console.log(image);
-
   return (
     <div
       className={`${styles.body} ${disabled ? styles.disabled : ""}`}
