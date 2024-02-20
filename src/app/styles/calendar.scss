@@ -14,7 +14,7 @@
   opacity: 0;
   visibility: hidden;
   transition-duration: 0.1s;
-  z-index: 1;
+  z-index: 10;
 
   &.calendar-open {
     visibility: visible;

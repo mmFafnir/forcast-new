@@ -6,7 +6,8 @@ import { NextPage } from "next";
 import { cookies } from "next/headers";
 import React from "react";
 import { FilterArchive } from "./components/Filter";
-
+import { FilterCalendar } from "@/features/filters";
+import styles from "./styles.module.scss";
 interface IProps {
   date: string | null;
 }
@@ -30,7 +31,15 @@ const ArchivePage: NextPage<IProps> = async ({ date }) => {
         ]}
       />
       <HeaderPage
-        filtersRender={<FilterArchive />}
+        filtersRender={
+          <>
+            <FilterArchive />
+            <FilterCalendar
+              bodyClass={styles.calendar}
+              titleClass={styles.calendar}
+            />
+          </>
+        }
         title={"Архив"}
         filterStyle={{ flexWrap: "wrap" }}
       />

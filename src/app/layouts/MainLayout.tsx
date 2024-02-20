@@ -50,7 +50,7 @@ const MainLayout: FC<IProps> = async ({ children }) => {
               <div className={styles.body}>
                 <div className={styles.flex}>
                   <Sidebar />
-                  <div className="flex flex-1">
+                  <div className={styles.layout}>
                     <div className={styles.page}>
                       {children}
                       <MobileHeader />

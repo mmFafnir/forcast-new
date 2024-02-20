@@ -32,34 +32,18 @@
 
 @media (max-width: 500px) {
   .body {
-    flex: 0 1 auto;
-    order: 0;
-    margin-right: 10px;
+    flex: 1 1 100%;
+    order: 2;
+    margin-right: 0px;
+    flex-wrap: wrap;
     > div {
-      position: static;
-      width: auto !important;
-    }
-  }
-  .selectTitle {
-    height: 35px;
-    width: 35px;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    img {
-      margin-right: 0;
-      display: block;
-    }
-    span {
-      display: none;
+      flex: 1 1 100% !important;
+      margin-right: 0 !important;
+      margin-bottom: 5px;
+      z-index: 1;
     }
   }
   .selectContent {
-    left: 0;
-    top: 55px;
-    background: #292c36;
-    button {
-      text-align: center;
-    }
+    z-index: 1;
   }
 }

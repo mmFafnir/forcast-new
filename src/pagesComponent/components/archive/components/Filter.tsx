@@ -62,7 +62,7 @@ export const FilterArchive = () => {
         titleClass={styles.selectTitle}
         setValue={(item) => setSportValue(Number(item.value) || "")}
         contentClass={styles.selectContent}
-        styleBody={stylesSelect}
+        styleBody={{ ...stylesSelect, zIndex: 3 }}
         data={[
           {
             label: "Все",
@@ -77,7 +77,7 @@ export const FilterArchive = () => {
       <Select
         value={countryValue}
         setValue={(item) => setCountryValue(Number(item.value) || "")}
-        styleBody={stylesSelect}
+        styleBody={{ ...stylesSelect, zIndex: 2 }}
         image={`${hostImage}/${
           countryData.find((item) => item.id === countryValue)?.code
         }.svg`}
@@ -100,7 +100,7 @@ export const FilterArchive = () => {
         setValue={(item) => setLeagueValue(Number(item.value) || "")}
         contentClass={styles.selectContent}
         titleClass={styles.selectTitle}
-        styleBody={stylesSelect}
+        styleBody={{ ...stylesSelect, zIndex: 1 }}
         image={`${hostImage}/${
           leagueData.find((item) => item.id === leagueValue)?.league_id
         }.png`}

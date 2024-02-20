@@ -9,9 +9,10 @@ interface IPops {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   day: string;
   setDay: (date: string) => void;
+  className?: string;
 }
 
-const Button: FC<IPops> = ({ setIsOpen, day, setDay }) => {
+const Button: FC<IPops> = ({ setIsOpen, day, setDay, className = "" }) => {
   const openList = () => setIsOpen((prev) => !prev);
 
   const onNextDay = () => setDay(dayjs(day).add(1, "day").format("YYYY-MM-DD"));
@@ -33,7 +34,7 @@ const Button: FC<IPops> = ({ setIsOpen, day, setDay }) => {
   }, []);
 
   return (
-    <div className={styles.button}>
+    <div className={`${styles.button} ${className}`}>
       <button
         disabled={day === minDate}
         className={styles.prev}

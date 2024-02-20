@@ -9,12 +9,23 @@
   min-height: 100dvh;
 }
 
+.layout {
+  display: flex;
+  flex: 1 1 auto;
+}
 .page {
   flex: 1 1 100%;
   display: flex;
   flex-direction: column;
   // max-height: calc(100dvh - 82px);
   // max-height: calc(100vh - 82px);
+}
+
+@media (max-width: 1250px) {
+  .layout {
+    display: block;
+    width: 100%;
+  }
 }
 
 @media (max-width: 1200px) {

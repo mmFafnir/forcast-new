@@ -16,7 +16,14 @@ import { parseQueryParams } from "@/shared/helper/parseQueryParams";
 export const minDate = "2001-12-12";
 export const maxDate = "2030-12-12";
 
-const FilterCalendarMemo: FC = () => {
+interface IProps {
+  titleClass?: string;
+  bodyClass?: string;
+}
+const FilterCalendarMemo: FC<IProps> = ({
+  titleClass = "",
+  bodyClass = "",
+}) => {
   const pathname = usePathname();
 
   const dispatch = useTypeDispatch();
@@ -43,8 +50,13 @@ const FilterCalendarMemo: FC = () => {
 
   if (timeStatus === 1) return <></>;
   return (
-    <div className={styles.body}>
-      <Button setDay={setDay} day={date} setIsOpen={setIsOpen} />
+    <div className={`${styles.body} ${bodyClass}`}>
+      <Button
+        className={titleClass}
+        setDay={setDay}
+        day={date}
+        setIsOpen={setIsOpen}
+      />
       <Calendar
         locale="ru"
         className={isOpen ? "calendar-open" : ""}

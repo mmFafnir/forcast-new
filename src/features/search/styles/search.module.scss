@@ -22,9 +22,20 @@
   padding-right: 10px;
 }
 
-@media (max-width: 1200px) {
+@media (max-height: 874px) {
+  .modal {
+    padding-top: 5% !important;
+  }
+  .content {
+    height: 530px;
+  }
 }
 
+@media (max-height: 800px) {
+  .modal {
+    padding-top: 20px !important;
+  }
+}
 @media (max-width: 900px) {
   .modal {
     padding: 0 !important;
