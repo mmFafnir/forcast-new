@@ -1,5 +1,5 @@
 import { loginWithOtherSocials } from "@/widgets/Auth";
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { setCookie } from "nookies";
 

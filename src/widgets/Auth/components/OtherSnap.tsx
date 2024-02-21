@@ -48,7 +48,7 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
 
   useEffect(() => {
     console.log("data sesston", data);
-  }, []);
+  }, [data]);
 
   return (
     <>
