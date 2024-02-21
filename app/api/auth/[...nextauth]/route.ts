@@ -18,18 +18,18 @@ const handler = NextAuth({
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token from a provider.
       console.log(session, token, user);
-      loginWithOtherSocials({
-        // @ts-ignore
-        id: user.sub,
-        email: user.email,
-        name: user.name || "",
-        type: "google",
-      }).then((res) => {
-        console.log("res", res);
-        setCookie(null, "_token", res, {
-          path: "/",
-        });
-      });
+      // loginWithOtherSocials({
+      //   // @ts-ignore
+      //   id: user.sub,
+      //   email: user.email,
+      //   name: user.name || "",
+      //   type: "google",
+      // }).then((res) => {
+      //   console.log("res", res);
+      //   setCookie(null, "_token", res, {
+      //     path: "/",
+      //   });
+      // });
 
       return session;
     },
