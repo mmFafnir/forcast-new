@@ -10,6 +10,7 @@ const handler = NextAuth({
       // prompt: 'select_account' // uncomment this line if you want to always show the account selection screen
     }),
   ],
+  secret: process.env.SECRET,
 
   callbacks: {
     async session({ session, token, user }) {
