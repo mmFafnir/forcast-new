@@ -54,6 +54,11 @@ const authSlice = createSlice({
       state.user = { ...state.user, telegram_id: action.payload };
     },
 
+    setUserEmail: (state, action: PayloadAction<string>) => {
+      if (!state.user) return;
+      state.user = { ...state.user, email: action.payload };
+    },
+
     logout: (state) => {
       state.auth = false;
       state.user = null;
@@ -134,7 +139,14 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAuth, setUser, logout, setStatus, setToken, setTelegramId } =
-  authSlice.actions;
+export const {
+  setAuth,
+  setUser,
+  logout,
+  setStatus,
+  setToken,
+  setTelegramId,
+  setUserEmail,
+} = authSlice.actions;
 
 export default authSlice.reducer;

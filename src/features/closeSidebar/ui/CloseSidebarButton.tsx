@@ -5,7 +5,6 @@ import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import styles from "../styles/style.module.scss";
 import { closeSidebar, toggleSidebar } from "../slice/closeSidebarSlice";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 
 export const CloseSidebarButton = () => {
   const { activeSidebar } = useTypeSelector((state) => state.closeSidebar);
@@ -14,11 +13,6 @@ export const CloseSidebarButton = () => {
   const onClose = () => dispatch(closeSidebar());
   const onToggleSidebar = () => dispatch(toggleSidebar());
 
-  useEffect(() => {
-    if (window.innerWidth < 1250) {
-      onClose();
-    }
-  }, []);
   return (
     <Button className={styles.button} onClick={onToggleSidebar}>
       <svg

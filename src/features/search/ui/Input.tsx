@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, memo, useEffect, useRef, useState } from "react";
 import { IconSearch } from "../icons/IconSearch";
 import styles from "../styles/input.module.scss";
 
@@ -7,7 +7,7 @@ interface IProps {
   onSearch: (value: string) => void;
   focus?: boolean;
 }
-export const Input: FC<IProps> = ({ onSearch, focus = false }) => {
+const InputMemo: FC<IProps> = ({ onSearch, focus = false }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState<string>("");
   const search = () => onSearch(value);
@@ -35,3 +35,5 @@ export const Input: FC<IProps> = ({ onSearch, focus = false }) => {
     </div>
   );
 };
+
+export const Input = memo(InputMemo);

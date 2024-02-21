@@ -11,7 +11,7 @@ import styles from "../styles/confirmation.module.scss";
 import Loader from "@/shared/UI/Loader";
 import { confirm } from "../api/confirm";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import { setUser } from "../slice/authSlice";
+import { setUser, setUserEmail } from "../slice/authSlice";
 import { setCookie } from "nookies";
 import { login } from "../api/auth";
 import { useTimer } from "react-timer-hook";
@@ -117,9 +117,16 @@ const Inputs: FC<IInputsProps> = ({ digits, setDigits }) => {
 const defaultDigits = ["", "", "", "", "", ""];
 interface IProps {
   email: string;
+  callbackConfirm?: ({
+    code,
+    email,
+  }: {
+    code: string;
+    email: string;
+  }) => Promise<string | null>;
 }
 
-export const Confirmation: FC<IProps> = ({ email }) => {
+export const Confirmation: FC<IProps> = ({ email, callbackConfirm }) => {
   const { auth } = useTypeSelector((state) => state.auth);
 
   const dispatch = useTypeDispatch();
@@ -134,6 +141,22 @@ export const Confirmation: FC<IProps> = ({ email }) => {
 
   const onConfirm = () => {
     setLoading(true);
+    if (callbackConfirm) {
+      callbackConfirm({ code: digits.join(""), email: email })
+        .then((res) => {
+          if (!res) return;
+          dispatch(setUserEmail(res));
+        })
+        .catch((err) => {
+          console.log(err);
+          setError(true);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+      return;
+    }
+
     confirm({
       email,
       code: digits.join(""),

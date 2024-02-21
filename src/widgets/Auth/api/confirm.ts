@@ -11,3 +11,14 @@ export const confirm = async (params: IConfirmParams) => {
     token: data.token,
   };
 };
+
+export const confirmNewEmail = async (params: {
+  code: string;
+  email: string;
+}) => {
+  const { data } = await axios.post("/confirm_new_email_code", {
+    code: params.code,
+  });
+  if (data.message === "Email Updated") return params.email;
+  return null;
+};

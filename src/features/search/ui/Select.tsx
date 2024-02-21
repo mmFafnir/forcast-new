@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect, useId, useRef, useState } from "react";
+import { FC, memo, useEffect, useId, useRef, useState } from "react";
 import styles from "../styles/select.module.scss";
 import IconArrow from "@/shared/icons/IconArrow";
 import useAccordion, {
@@ -24,7 +24,7 @@ interface IProps {
   setValue: (value: string | number) => void;
 }
 
-export const Select: FC<IProps> = ({ data, setValue }) => {
+const SelectMemo: FC<IProps> = ({ data, setValue }) => {
   const id = useId();
   const [currentValue, setCurrentValue] = useState<TypeSelect>(data[0]);
   const listRef = useRef<HTMLDivElement>(null);
@@ -75,3 +75,5 @@ export const Select: FC<IProps> = ({ data, setValue }) => {
     </div>
   );
 };
+
+export const Select = memo(SelectMemo);

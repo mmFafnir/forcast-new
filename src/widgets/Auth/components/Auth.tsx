@@ -7,15 +7,19 @@ import Button from "@/shared/UI/Button";
 import { Confirmation } from "./Confirmation";
 import { login } from "../api/auth";
 import { IconPen } from "../icons/IconPen";
-import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 interface IFormInputs {
   email: string;
 }
 
-const Auth: FC = () => {
-  const { auth } = useTypeSelector((state) => state.auth);
-
+interface IProps {
+  callback?: (data: IFormInputs) => void;
+  callbackConfirm?: (params: {
+    code: string;
+    email: string;
+  }) => Promise<string | null>;
+}
+const Auth: FC<IProps> = ({ callback, callbackConfirm }) => {
   const [step, setStep] = useState<0 | 1 | 2>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
@@ -27,8 +31,9 @@ const Auth: FC = () => {
 
   const onSubmit: SubmitHandler<IFormInputs> = (data) => {
     setLoading(true);
-
-    login(data)
+    const asyncAction = async (data: IFormInputs) =>
+      callback ? callback(data) : login(data);
+    asyncAction(data)
       .then(() => {
         setStep(1);
         setEmail(data.email);
@@ -37,10 +42,6 @@ const Auth: FC = () => {
   };
 
   const onBackStep = () => setStep(0);
-
-  // useEffect(() => {
-  //   onBackStep();
-  // }, [auth]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.body}>
@@ -79,7 +80,9 @@ const Auth: FC = () => {
           Продолжить
         </Button>
       )}
-      {step === 1 && <Confirmation email={email} />}
+      {step === 1 && (
+        <Confirmation callbackConfirm={callbackConfirm} email={email} />
+      )}
     </form>
   );
 };

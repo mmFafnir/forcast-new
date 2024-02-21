@@ -5,14 +5,14 @@ import { SportGroup } from "@/features/group";
 import Loader from "@/shared/UI/Loader";
 import IconEmpty from "@/shared/icons/IconEmpty";
 import { TypeSportGroup } from "@/shared/types/sport";
-import { FC } from "react";
+import { FC, memo } from "react";
 
 interface IProps {
   data: TypeSportGroup[];
   loading: boolean | null;
 }
 
-export const GroupHome: FC<IProps> = ({ data, loading }) => {
+const GroupHomeMemo: FC<IProps> = ({ data, loading }) => {
   return (
     <div className="flex-1">
       {loading && (
@@ -51,3 +51,5 @@ export const GroupHome: FC<IProps> = ({ data, loading }) => {
     </div>
   );
 };
+
+export const GroupHome = memo(GroupHomeMemo);

@@ -14,7 +14,6 @@ import { logout } from "../../slice/authSlice";
 import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import styles from "../../styles/modal.user.module.scss";
-import defaultImage from "../../images/default.svg";
 
 const UserRole = () => {
   return (
@@ -43,7 +42,12 @@ const UserModal: FC<IProps> = ({ open }) => {
   return (
     <div className={`${styles.body} user-modal ${open ? styles.open : ""}`}>
       <div className={styles.person}>
-        <Image src={defaultImage} width={400} height={400} alt="sadsda" />
+        <Image
+          src={`https://admin.aibetguru.com/avatars/${user?.avatar}`}
+          width={400}
+          height={400}
+          alt="sadsda"
+        />
         <div>
           {user?.nickname && <p>{user.nickname}</p>}
           {user && <p>{user.email}</p>}

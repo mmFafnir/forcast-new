@@ -72,13 +72,15 @@ export const ModalSearch: FC = () => {
     fetchMatches(search);
   }, [status]);
 
+  console.log(data);
+
   return (
     <Modal
       title={"Поиск"}
       name={EnumModals.SEARCH}
-      styleBody={{ paddingTop: "2%" }}
+      styleBody={{ paddingTop: "4.5%" }}
       classBody={styles.modal}
-      stylesWrapper={{ flex: "0 1 1238px" }}
+      stylesWrapper={{ flex: "0 1 900px" }}
       styleChildren={{ paddingBottom: "15px" }}
     >
       <div className={styles.body}>

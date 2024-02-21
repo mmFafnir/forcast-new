@@ -20,6 +20,7 @@ import { EventProvider } from "../providers/EventProvider";
 import { PusherProvider } from "../providers/PusherProvider/components/Provider";
 import { SidebarSettings } from "@/widgets/Settings";
 import { ModalPremiumWhy } from "@/widgets/Premium/components/modal/ModalPremiumWhy";
+import { AuthProvider } from "../providers/AuthProvider";
 
 interface IProps {
   children: ReactNode;
@@ -43,47 +44,49 @@ const MainLayout: FC<IProps> = async ({ children }) => {
   const user = await getUserInfo(_token);
   return (
     <UserProvider user={user}>
-      <TelegramProvider user={user}>
-        <PusherProvider>
-          <EventProvider>
-            <div className="container">
-              <div className={styles.body}>
-                <div className={styles.flex}>
-                  <Sidebar />
-                  <div className={styles.layout}>
-                    <div className={styles.page}>
-                      {children}
-                      <MobileHeader />
-                      <Footer />
+      <AuthProvider>
+        <TelegramProvider user={user}>
+          <PusherProvider>
+            <EventProvider>
+              <div className="container">
+                <div className={styles.body}>
+                  <div className={styles.flex}>
+                    <Sidebar />
+                    <div className={styles.layout}>
+                      <div className={styles.page}>
+                        {children}
+                        <MobileHeader />
+                        <Footer />
+                      </div>
+                      <Widgets
+                        widgets={[
+                          <Tabs
+                            style={{ height: "100%" }}
+                            key={1}
+                            minHeight="100%"
+                            maxHeight="350px"
+                            tabs={tabs}
+                            classNameBody="adaptive-mac"
+                            classNameTabs="sidebar-tabs"
+                          />,
+                          <RiskWidgets key={2} />,
+                        ]}
+                      />
                     </div>
-                    <Widgets
-                      widgets={[
-                        <Tabs
-                          style={{ height: "100%" }}
-                          key={1}
-                          minHeight="100%"
-                          maxHeight="350px"
-                          tabs={tabs}
-                          classNameBody="adaptive-mac"
-                          classNameTabs="sidebar-tabs"
-                        />,
-                        <RiskWidgets key={2} />,
-                      ]}
-                    />
                   </div>
                 </div>
+                <Toolkit />
+                <ModalAuth />
+                <ModalSearch />
+                <ModalPremium />
+                <ModalPremiumWhy />
+                <SettingsAuthModal />
+                <SidebarSettings />
               </div>
-              <Toolkit />
-              <ModalAuth />
-              <ModalSearch />
-              <ModalPremium />
-              <ModalPremiumWhy />
-              <SettingsAuthModal />
-              <SidebarSettings />
-            </div>
-          </EventProvider>
-        </PusherProvider>
-      </TelegramProvider>
+            </EventProvider>
+          </PusherProvider>
+        </TelegramProvider>
+      </AuthProvider>
     </UserProvider>
   );
 };

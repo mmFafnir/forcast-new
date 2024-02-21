@@ -13,6 +13,8 @@ import { User } from "../User";
 import { OtherSnap } from "../OtherSnap";
 import { useState } from "react";
 import { TelegramSnap } from "../Snaps/TelegramSnap";
+import { addNewEmail } from "../../api/auth";
+import { confirmNewEmail } from "../../api/confirm";
 
 export const SettingsAuthModal = () => {
   const { user } = useTypeSelector((state) => state.auth);
@@ -34,7 +36,9 @@ export const SettingsAuthModal = () => {
     >
       <User />
       <OtherSnap component={component} setComponent={setComponent} />
-      {component === "mail" && <Auth />}
+      {component === "mail" && (
+        <Auth callbackConfirm={confirmNewEmail} callback={addNewEmail} />
+      )}
       {component === "telegram" && <TelegramSnap />}
       <Button onClick={onLogout} className={styles.logout} type="text">
         Выйти

@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect, useMemo } from "react";
+import { FC, MouseEvent, useEffect, useMemo } from "react";
 import styles from "../styles/other.module.scss";
 import tg from "@/shared/images/socials/tg.svg";
 import apple from "@/shared/images/socials/apple.svg";
@@ -10,6 +10,7 @@ import google from "@/shared/images/socials/google.svg";
 import Image from "next/image";
 import { IconCheck } from "../icons/IconCheck";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import { signIn, useSession } from "next-auth/react";
 
 interface IProps {
   setComponent: (value: string) => void;
@@ -17,7 +18,6 @@ interface IProps {
 }
 export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
   const { user } = useTypeSelector((state) => state.auth);
-
   const buttons = useMemo(
     () => [
       {
@@ -33,6 +33,10 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
       {
         name: "google",
         svg: google,
+        onClick: (e: MouseEvent) => {
+          e.preventDefault();
+          signIn("google");
+        },
       },
       {
         name: "apple",
@@ -50,9 +54,15 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
     [user]
   );
 
+  const { data } = useSession();
+
   useEffect(() => {
     setComponent(buttons.find((btn) => !btn.checked)?.name || "mail");
   }, [buttons]);
+
+  useEffect(() => {
+    console.log("data sesston", data);
+  }, []);
 
   return (
     <>
@@ -65,7 +75,9 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
                 component === btn.name ? styles.active : ""
               }
               ${btn.checked ? styles.default : ""}`}
-              onClick={() => setComponent(btn.name)}
+              onClick={(e) =>
+                btn.onClick ? btn.onClick(e) : setComponent(btn.name)
+              }
               key={btn.name}
             >
               {btn.checked ? <IconCheck /> : <></>}

@@ -3,22 +3,16 @@
 import { FC, ReactNode, useEffect } from "react";
 import { IStatePusher } from "../types";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import {
-  setTelegramId,
-  setToken,
-  setUser,
-} from "@/widgets/Auth/slice/authSlice";
+import { setTelegramId, setToken } from "@/widgets/Auth/slice/authSlice";
 import Pusher from "pusher-js";
 
 import { parseCookies, setCookie } from "nookies";
-import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 interface IProps {
   children: ReactNode;
 }
 export const PusherProvider: FC<IProps> = ({ children }) => {
   const dispatch = useTypeDispatch();
-  const { user } = useTypeSelector((state) => state.auth);
   useEffect(() => {
     const Pushers = async () => {
       const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY as string, {

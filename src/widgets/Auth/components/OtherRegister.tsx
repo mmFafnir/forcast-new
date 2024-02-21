@@ -15,6 +15,7 @@ import { setCookie } from "nookies";
 import { getUserInfo } from "..";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setUser } from "../slice/authSlice";
+import { signIn } from "next-auth/react";
 
 interface IBtn {
   name: string;
@@ -35,7 +36,7 @@ const buttons: IBtn[] = [
   {
     name: "google",
     svg: google,
-    onClick: () => {},
+    onClick: () => signIn("google"),
   },
   {
     name: "apple",

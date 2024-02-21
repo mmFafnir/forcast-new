@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, FC, ReactNode, useEffect } from "react";
+import { CSSProperties, FC, ReactNode, memo, useEffect } from "react";
 import styles from "./style.module.scss";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { closeAllModal } from "./modalSlice";
@@ -88,4 +88,4 @@ const Modal: FC<IProps> = ({
   );
 };
 
-export default Modal;
+export default memo(Modal);

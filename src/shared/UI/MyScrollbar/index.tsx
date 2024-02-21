@@ -1,6 +1,6 @@
 "use client";
 
-import React, { CSSProperties, FC, ReactNode, useEffect } from "react";
+import React, { CSSProperties, FC, ReactNode, memo, useEffect } from "react";
 import SimpleBar from "simplebar-react";
 import "simplebar-react/dist/simplebar.min.css";
 import styles from "./styles.module.scss";
@@ -64,4 +64,4 @@ const MyScrollbar: FC<IProps> = ({
   );
 };
 
-export default MyScrollbar;
+export default memo(MyScrollbar);

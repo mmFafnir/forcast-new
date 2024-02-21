@@ -24,12 +24,9 @@ export const ModalAuth = () => {
 
   const [component, setComponent] = useState<string>("mail");
 
-  const onCloseModal = () => dispatch(closeAllModal());
-
   useEffect(() => {
-    if (auth) {
-      setComponent("success");
-    }
+    if (auth) setComponent("success");
+    if (!auth) setComponent("mail");
   }, [auth]);
 
   useEffect(() => {
@@ -62,7 +59,9 @@ export const ModalAuth = () => {
               </p>
             </div>
           )}
-          <OtherSnap component={component} setComponent={setComponent} />
+          {component !== "success" && (
+            <OtherSnap component={component} setComponent={setComponent} />
+          )}
           {component === "mail" && <Auth />}
           {component === "telegram" && <TelegramSnap mode="login" />}
           {component === "success" && <SuccessNotify />}

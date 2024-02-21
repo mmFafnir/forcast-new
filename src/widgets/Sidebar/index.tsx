@@ -7,7 +7,7 @@ import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { FavoritesButton } from "@/features/favorites";
 import { usePathname } from "next/navigation";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import { closeSidebar } from "@/features/closeSidebar/slice/closeSidebarSlice";
+import { toggleSidebar } from "@/features/closeSidebar/slice/closeSidebarSlice";
 import { TelegramButton } from "@/features/shared";
 import Logo from "@/shared/UI/Logo";
 import styles from "./styles.module.scss";
@@ -18,12 +18,13 @@ const Sidebar = () => {
   const { activeSidebar } = useTypeSelector((state) => state.closeSidebar);
   const pathname = usePathname();
 
-  const onCloseSidebar = () => dispatch(closeSidebar());
-
+  const onCloseSidebar = () => dispatch(toggleSidebar());
   return (
     <>
       <button
-        className={`bg-hover  ${activeSidebar && "close"}`}
+        className={`bg-hover ${styles.hover} ${
+          activeSidebar && `close ${styles.hoverShow}`
+        }`}
         onClick={onCloseSidebar}
       ></button>
       <div className={`${styles.body} ${activeSidebar ? styles.close : ""}`}>

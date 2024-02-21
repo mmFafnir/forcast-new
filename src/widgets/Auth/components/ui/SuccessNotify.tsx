@@ -1,22 +1,39 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/ui/success.module.scss";
 import Button from "@/shared/UI/Button";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import { useTimer } from "react-timer-hook";
 
-let timerId = null;
+let timerId: NodeJS.Timeout | null = null;
 export const SuccessNotify = () => {
   const dispatch = useTypeDispatch();
+  const { modal } = useTypeSelector((state) => state.modal);
+
+  const { seconds, restart, isRunning, pause } = useTimer({
+    expiryTimestamp: new Date(),
+    onExpire: () => dispatch(closeAllModal()),
+    autoStart: true,
+  });
 
   const onCloseModal = () => {
     dispatch(closeAllModal());
+    pause();
   };
 
   useEffect(() => {
-    timerId = setTimeout(() => {
-      onCloseModal();
-    }, 10000);
+    console.log(modal);
+    if (modal === null && isRunning) {
+      pause();
+    }
+  }, [modal]);
+
+  useEffect(() => {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + 10);
+    restart(time);
   }, []);
 
   return (
@@ -33,7 +50,7 @@ export const SuccessNotify = () => {
         />
       </svg>
       <p className={styles.timer}>
-        Вы будете перенаправлены на сайт через 10 сек
+        Вы будете перенаправлены на сайт через {seconds} сек
       </p>
       <Button className={styles.btn} type="gradient" onClick={onCloseModal}>
         Закрыть
