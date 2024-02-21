@@ -1,7 +1,9 @@
 "use client";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { EnumStatus } from "@/shared/types/Enums";
 import { TypeUser } from "@/widgets/Auth";
-import { setStatus, setUser } from "@/widgets/Auth/slice/authSlice";
+import { setStatus, setToken, setUser } from "@/widgets/Auth/slice/authSlice";
+import { useSession } from "next-auth/react";
 import { FC, ReactNode, use, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
@@ -11,12 +13,24 @@ interface IProps {
 }
 
 export const UserProvider: FC<IProps> = ({ user, children }) => {
+  const { data } = useSession();
+
+  const userParams = useTypeSelector((state) => state.auth);
   const dispatch = useDispatch();
-  console.log(user);
+
   useEffect(() => {
     dispatch(setStatus(EnumStatus.DEFAULT));
     if (!user) return;
     dispatch(setUser(user));
   }, []);
+
+  useEffect(() => {
+    if (userParams.user || !data) return;
+    const user = data.user as TypeUser;
+    // @ts-ignore
+    const token = data.token;
+    dispatch(setUser(user));
+    dispatch(setToken(token));
+  }, [data]);
   return <>{children}</>;
 };

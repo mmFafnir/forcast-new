@@ -8,7 +8,7 @@ import google from "@/shared/images/socials/google.svg";
 import Image from "next/image";
 import { IconCheck } from "../icons/IconCheck";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 interface IProps {
   setComponent: (value: string) => void;
@@ -16,6 +16,7 @@ interface IProps {
 }
 export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
   const { user } = useTypeSelector((state) => state.auth);
+
   const buttons = useMemo(
     () => [
       {
@@ -40,15 +41,9 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
     [user]
   );
 
-  const { data } = useSession();
-
   useEffect(() => {
     setComponent(buttons.find((btn) => !btn.checked)?.name || "mail");
   }, [buttons]);
-
-  useEffect(() => {
-    console.log("data sesston", data);
-  }, [data]);
 
   return (
     <>
