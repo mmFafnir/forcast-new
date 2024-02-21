@@ -19,7 +19,7 @@ const handler = NextAuth({
       // Send properties to the client, like an access_token from a provider.
       console.log(session, token, user, user.id);
       // @ts-ignore
-      const id = user.id || user.sub;
+      const id = user.sub;
       loginWithOtherSocials({
         id: id,
         email: user.email,
