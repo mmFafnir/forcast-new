@@ -35,21 +35,34 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
         svg: google,
         onClick: (e: MouseEvent) => {
           e.preventDefault();
-          signIn("google");
+          signIn("google", { callbackUrl: "true" }).then((res) => {
+            const authWindow = window.open(
+              "",
+              "GoogleAuthWindow",
+              "width=800,height=600"
+            );
+            if (res?.error) {
+              authWindow && authWindow.close();
+            } else {
+              if (authWindow) authWindow.location = res?.url || "";
+            }
+
+            console.log(res);
+          });
         },
       },
-      {
-        name: "apple",
-        svg: apple,
-      },
-      {
-        name: "vkontakte",
-        svg: vk,
-      },
-      {
-        name: "yahoo",
-        svg: y,
-      },
+      // {
+      //   name: "apple",
+      //   svg: apple,
+      // },
+      // {
+      //   name: "vkontakte",
+      //   svg: vk,
+      // },
+      // {
+      //   name: "yahoo",
+      //   svg: y,
+      // },
     ],
     [user]
   );

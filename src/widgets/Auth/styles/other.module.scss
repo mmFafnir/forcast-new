@@ -11,11 +11,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 61px;
+  flex: 1 1 auto;
   height: 50px;
   border-radius: 5px;
   background: rgba(101, 104, 118, 0.3);
-  margin-right: 10px;
+  margin-right: 25px;
   transition-duration: 100ms;
   position: relative;
   &:disabled {
@@ -55,7 +55,7 @@
 
 @media (max-width: 500px) {
   .button {
-    flex: 0 0 45px;
+    // flex: 0 0 45px;
     width: 45px;
     height: 40px;
   }
