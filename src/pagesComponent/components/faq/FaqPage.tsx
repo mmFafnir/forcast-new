@@ -1,9 +1,10 @@
-import React from "react";
+import { NextPage } from "next";
 import styles from "./styles.module.scss";
 import { Accordion } from "./ui/Accordion";
 import { Header } from "@/widgets/Header";
 
-const FaqPage = () => {
+const FaqPage:NextPage = async () => {
+
   return (
     <>
       <Header

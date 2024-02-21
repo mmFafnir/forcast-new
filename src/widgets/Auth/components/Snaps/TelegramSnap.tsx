@@ -33,20 +33,26 @@ export const TelegramSnap: FC<IProps> = ({ mode = "bind" }) => {
     const asyncAction = mode == "bind" ? postBindingTelegram : loginTelegram;
     asyncAction()
       .then((res) => {
+        let a = document.createElement("a") as HTMLAnchorElement;
+        document.body.appendChild(a);
+        a.style.display = "none";
+        a.target = "_blank";
+        a.href = res.url;
         setCookie(null, "pusher_code", `${res.code}`);
-        if (isMobile.iOS()) {
-          window.location.assign(res.url);
-          return;
-        }
         setTimeout(() => {
-          const newWindow = window.open(
-            res.url,
-            "_blank",
-            "noopener,noreferrer"
-          );
-          if (newWindow) newWindow.opener = null;
-          console.log(res);
-        });
+          // if (isMobile.iOS()) {
+          a.click();
+          document.body.removeChild(a);
+          return;
+          // }
+          // const newWindow = window.open(
+          //   res.url,
+          //   "_blank",
+          //   "noopener,noreferrer"
+          // );
+          // if (newWindow) newWindow.opener = null;
+          // console.log(res);
+        }, 100);
       })
       .catch((err) => {
         console.log(err);
