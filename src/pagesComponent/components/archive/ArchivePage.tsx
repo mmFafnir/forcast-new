@@ -8,6 +8,7 @@ import React from "react";
 import { FilterArchive } from "./components/Filter";
 import { FilterCalendar } from "@/features/filters";
 import styles from "./styles.module.scss";
+import dayjs from "dayjs";
 interface IProps {
   date: string | null;
 }
@@ -35,6 +36,7 @@ const ArchivePage: NextPage<IProps> = async ({ date }) => {
           <>
             <FilterArchive />
             <FilterCalendar
+              startDate={dayjs().subtract(3, "month").format("YYYY-MM-DD")}
               bodyClass={styles.calendar}
               titleClass={styles.calendar}
             />

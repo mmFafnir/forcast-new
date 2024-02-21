@@ -15,10 +15,6 @@ const handler = NextAuth({
 
   callbacks: {
     async session({ session, token, user }) {
-      console.log("session", session);
-      console.log("token", token);
-      console.log("user", user);
-
       if (!session.user) return session;
 
       try {

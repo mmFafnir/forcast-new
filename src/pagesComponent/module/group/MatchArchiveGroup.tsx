@@ -27,6 +27,7 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
   );
 
   useEffect(() => {
+    console.log("date", date);
     setLoading(true);
     getArchive({
       date,

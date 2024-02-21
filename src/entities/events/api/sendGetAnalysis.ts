@@ -5,6 +5,5 @@ export const sendGetAnalysis = async (matchId: number) => {
     match_id: matchId,
   });
 
-  console.log(data);
   return data;
 };

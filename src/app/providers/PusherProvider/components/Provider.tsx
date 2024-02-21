@@ -14,7 +14,6 @@ interface IProps {
 export const PusherProvider: FC<IProps> = ({ children }) => {
   const dispatch = useTypeDispatch();
   useEffect(() => {
-    console.log('pusher key', process.env.NEXT_PUBLIC_PUSHER_KEY)
     const Pushers = async () => {
       const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY as string, {
         cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER as string,
@@ -26,7 +25,6 @@ export const PusherProvider: FC<IProps> = ({ children }) => {
           console.log(data);
           const { pusher_code } = parseCookies();
           if (!data.message) return;
-          console.log(pusher_code == data.message.code);
           if (pusher_code != data.message.code) return;
           if (
             data.message.type === "confirm_login_for_telegram" &&

@@ -19,22 +19,27 @@ export const maxDate = "2030-12-12";
 interface IProps {
   titleClass?: string;
   bodyClass?: string;
+  startDate?: string;
 }
 const FilterCalendarMemo: FC<IProps> = ({
   titleClass = "",
   bodyClass = "",
+  startDate,
 }) => {
   const pathname = usePathname();
 
   const dispatch = useTypeDispatch();
   const { timeStatus, date } = useTypeSelector((state) => state.filters);
   const { setQuery, deleteQuery } = useQuery();
+
+  const [currentDate, setCurrentDate] = useState<string>(startDate || date);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const setDay = (day: string) => {
     const date = dayjs(day).format("YYYY-MM-DD");
     setQuery({ name: "date", value: date });
     dispatch(setDate(date));
+    setCurrentDate(date);
     if (date === dayjs().format("YYYY-MM-DD")) {
       deleteQuery("date");
       return;
@@ -42,6 +47,12 @@ const FilterCalendarMemo: FC<IProps> = ({
   };
 
   const onChange = (value: any) => setDay(value);
+
+  useEffect(() => {
+    if (!startDate) return;
+    console.log(currentDate);
+    dispatch(setDate(startDate));
+  }, []);
 
   useEffect(() => {
     const date = parseQueryParams(window.location.search).date;
@@ -55,7 +66,7 @@ const FilterCalendarMemo: FC<IProps> = ({
       <Button
         className={titleClass}
         setDay={setDay}
-        day={date}
+        day={currentDate}
         setIsOpen={setIsOpen}
       />
       <Calendar
@@ -64,7 +75,7 @@ const FilterCalendarMemo: FC<IProps> = ({
         minDate={new Date(minDate)}
         maxDate={new Date(maxDate)}
         onChange={onChange}
-        value={new Date(date)}
+        value={new Date(currentDate)}
       />
     </div>
   );
