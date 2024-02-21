@@ -17,19 +17,24 @@ const handler = NextAuth({
   callbacks: {
     async session({ session, token, user }) {
       // Send properties to the client, like an access_token from a provider.
-      console.log(session, token, user);
-      // loginWithOtherSocials({
-      //   // @ts-ignore
-      //   id: user.sub,
-      //   email: user.email,
-      //   name: user.name || "",
-      //   type: "google",
-      // }).then((res) => {
-      //   console.log("res", res);
-      //   setCookie(null, "_token", res, {
-      //     path: "/",
-      //   });
-      // });
+      console.log("session", session);
+      console.log("token", token);
+      console.log("user", user);
+
+      if (session.user) {
+        loginWithOtherSocials({
+          // @ts-nocheck
+          id: token.sub || "",
+          email: session.user.email || "",
+          name: session.user.name || "",
+          type: "google",
+        }).then((res) => {
+          console.log("res", res);
+          setCookie(null, "_token", res, {
+            path: "/",
+          });
+        });
+      }
 
       return session;
     },
