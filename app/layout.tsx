@@ -5,6 +5,7 @@ import { StoreProvider } from "@/app/providers/StoreProvider";
 import "../src/app/styles/root.scss";
 import "../src/app/styles/globals.scss";
 import NextTopLoader from "nextjs-toploader";
+import { AuthProvider } from "@/app/providers/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,7 +34,9 @@ export default function RootLayout({
         <NextTopLoader showSpinner={false} />
 
         <StoreProvider>
-          <MainLayout>{children}</MainLayout>
+          <AuthProvider>
+            <MainLayout>{children}</MainLayout>
+          </AuthProvider>
         </StoreProvider>
       </body>
     </html>
