@@ -14,6 +14,7 @@ interface IProps {
 export const PusherProvider: FC<IProps> = ({ children }) => {
   const dispatch = useTypeDispatch();
   useEffect(() => {
+    console.log('pusher key', process.env.NEXT_PUBLIC_PUSHER_KEY)
     const Pushers = async () => {
       const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY as string, {
         cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER as string,
