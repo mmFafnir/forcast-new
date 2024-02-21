@@ -25,6 +25,7 @@ export const UserProvider: FC<IProps> = ({ user, children }) => {
   }, []);
 
   useEffect(() => {
+    console.log(data);
     if (userParams.user || !data) return;
     const user = data.user as TypeUser;
     // @ts-ignore
