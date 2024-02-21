@@ -32,8 +32,8 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
       {
         name: "google",
         svg: google,
-        onClick: (e: MouseEvent) => {
-          e.preventDefault();
+        onClick: () => {
+          console.log("click");
           signIn("google");
         },
       },
@@ -57,7 +57,7 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
               }
               ${btn.checked ? styles.default : ""}`}
               onClick={(e) =>
-                btn.onClick ? btn.onClick(e) : setComponent(btn.name)
+                btn.onClick ? btn.onClick() : setComponent(btn.name)
               }
               key={btn.name}
             >

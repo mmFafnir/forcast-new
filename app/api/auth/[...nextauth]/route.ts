@@ -1,7 +1,6 @@
 import { loginWithOtherSocials } from "@/widgets/Auth";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { setCookie } from "nookies";
 
 console.log("env", process.env.GOOGLE_CLIENT_ID);
 const handler = NextAuth({
