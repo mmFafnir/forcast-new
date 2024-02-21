@@ -33,10 +33,7 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
         svg: google,
         onClick: (e: MouseEvent) => {
           e.preventDefault();
-          signIn("google", { callbackUrl: "false" }).then((res) => {
-            console.log(res);
-            return false;
-          });
+          signIn("google");
         },
       },
     ],
