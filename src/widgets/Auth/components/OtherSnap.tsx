@@ -1,10 +1,8 @@
 "use client";
+
 import { FC, MouseEvent, useEffect, useMemo } from "react";
 import styles from "../styles/other.module.scss";
 import tg from "@/shared/images/socials/tg.svg";
-import apple from "@/shared/images/socials/apple.svg";
-import vk from "@/shared/images/socials/vk.svg";
-import y from "@/shared/images/socials/y.svg";
 import mail from "@/shared/images/socials/mail.svg";
 import google from "@/shared/images/socials/google.svg";
 import Image from "next/image";
@@ -35,21 +33,12 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
         svg: google,
         onClick: (e: MouseEvent) => {
           e.preventDefault();
-          signIn("google");
+          signIn("google", { callbackUrl: "false" }).then((res) => {
+            console.log(res);
+            return false;
+          });
         },
       },
-      // {
-      //   name: "apple",
-      //   svg: apple,
-      // },
-      // {
-      //   name: "vkontakte",
-      //   svg: vk,
-      // },
-      // {
-      //   name: "yahoo",
-      //   svg: y,
-      // },
     ],
     [user]
   );
