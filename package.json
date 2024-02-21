@@ -13,6 +13,7 @@
     "@types/react-scroll": "^1.8.10",
     "axios": "^1.6.5",
     "dayjs": "^1.11.10",
+    "dotenv": "^16.4.5",
     "next": "14.0.4",
     "next-auth": "^4.24.6",
     "nextjs-toploader": "^1.6.6",
