@@ -14,31 +14,33 @@ const handler = NextAuth({
   ],
   secret: process.env.SECRET,
 
-  // callbacks: {
-  //   async session({ session, token, user }) {
+  callbacks: {
+    async session({ session, token, user }) {
+      console.log("session", session);
+      console.log("token", token);
+      console.log("user", user);
 
-  //     console.log("session", session);
-  //     console.log("token", token);
-  //     console.log("user", user);
+      if (!session.user) return session;
 
-  //     if (session.user) {
-  //       loginWithOtherSocials({
-  //         // @ts-nocheck
-  //         id: token.sub || "",
-  //         email: session.user.email || "",
-  //         name: session.user.name || "",
-  //         type: "google",
-  //       }).then((res) => {
-  //         console.log("res", res);
-  //         setCookie(null, "_token", res, {
-  //           path: "/",
-  //         });
-  //       });
-  //     }
+      try {
+        const data = await loginWithOtherSocials({
+          // @ts-nocheck
+          id: token.sub || "",
+          email: session.user.email || "",
+          name: session.user.name || "",
+          type: "google",
+        });
 
-  //     return session;
-  //   },
-  // },
+        session.user = data.user;
+        // @ts-ignore
+        session.token = data.token;
+        return session;
+      } catch (error) {
+        console.log("error", error);
+        return session;
+      }
+    },
+  },
 });
 
 export { handler as GET, handler as POST };

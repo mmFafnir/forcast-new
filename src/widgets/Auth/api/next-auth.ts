@@ -23,5 +23,5 @@ export const loginWithOtherSocials = async ({
   );
 
   console.log(data);
-  return data.token;
+  return { token: data.token, user: data.user };
 };
