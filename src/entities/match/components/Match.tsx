@@ -20,9 +20,8 @@ interface IProps {
 }
 
 export const Match: FC<IProps> = ({ match }) => {
-  const { time, status, hours } = useTimeStatus({
+  const { status, hours } = useTimeStatus({
     matchTime: match.real_time_carbon,
-    onlyTime: true,
   });
 
   return (
