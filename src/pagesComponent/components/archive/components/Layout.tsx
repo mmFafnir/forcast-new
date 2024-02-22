@@ -1,26 +1,15 @@
-import { getArchiveServer } from "@/pagesComponent/api/archive/getArchiveMatch";
-import { MatchArchiveGroup } from "@/pagesComponent/module/group/MatchArchiveGroup";
-import { Header } from "@/widgets/Header";
+import { FC, ReactNode } from "react";
+import styles from "../styles/page.module.scss";
 import HeaderPage from "@/widgets/HeaderPage";
-import { NextPage } from "next";
-import { cookies } from "next/headers";
-import React from "react";
-import { FilterArchive } from "./components/Filter";
+import { FilterArchive } from "./Filter";
 import { FilterCalendar } from "@/features/filters";
-import styles from "./styles.module.scss";
+import { Header } from "@/widgets/Header";
 import dayjs from "dayjs";
+
 interface IProps {
-  date: string | null;
+  children: ReactNode;
 }
-
-const ArchivePage: NextPage<IProps> = async ({ date }) => {
-  const cookieStore = cookies();
-  const token = cookieStore.get("_token");
-  const data = await getArchiveServer({
-    date: date || "",
-    token: token?.value || "",
-  });
-
+export const ArchiveLayout: FC<IProps> = ({ children }) => {
   return (
     <div className={styles.page}>
       <Header
@@ -45,9 +34,7 @@ const ArchivePage: NextPage<IProps> = async ({ date }) => {
         title={"Архив"}
         filterStyle={{ flexWrap: "wrap" }}
       />
-      <div className="flex-1 relative">
-        <MatchArchiveGroup matches={data.data} links={data.links} />
-      </div>
+      <div className="flex-1 relative">{children}</div>
       <div className="page-text-block mt-auto">
         <h3>Прогнозы ставок на футбольные матчи от ИИ</h3>
         <p>
@@ -66,5 +53,3 @@ const ArchivePage: NextPage<IProps> = async ({ date }) => {
     </div>
   );
 };
-
-export default ArchivePage;

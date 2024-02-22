@@ -32,7 +32,9 @@ const UserModal: FC<IProps> = ({ open }) => {
   const { user } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
 
-  const onLogout = () => dispatch(logout());
+  const onLogout = () => {
+    dispatch(logout());
+  };
   const onOpenModalPrem = () => {
     dispatch(setClick("prem"));
     dispatch(setModal(EnumModals.PREMIUM));

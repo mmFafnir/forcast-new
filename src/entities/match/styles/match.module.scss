@@ -162,13 +162,13 @@
     flex: 1 1 auto;
     justify-content: flex-start;
     p:first-child {
-      flex: 1 1 auto;
       max-width: none;
     }
   }
   .betOdd {
     font-size: inherit !important;
     flex: 0 0 31px;
+    margin-left: auto !important;
   }
 }
 

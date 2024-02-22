@@ -9,6 +9,7 @@ import SportsIcon from "@/shared/icons/sports";
 import styles from "../styles/preview.sticky.module.scss";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import CustomImage from "@/shared/UI/CustomImage";
+import useTimeStatus from "@/shared/hooks/useTimeStatus";
 
 interface IProps {
   match: IFetchFullMatch;
@@ -16,7 +17,12 @@ interface IProps {
 
 export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
   const { activeSidebar } = useTypeSelector((state) => state.closeSidebar);
-  const time = getTimeStatusMatch(match.real_date);
+
+  const { time, status, hours } = useTimeStatus({
+    matchTime: match.real_time_carbon,
+  });
+  // const time = getTimeStatusMatch(match.real_date);
+
   const [isShow, setIsShow] = useState<boolean>(false);
   const [pos, setPos] = useState<{ width: string; left: string }>({
     width: "auto",
@@ -89,13 +95,13 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
             <button className={styles.live}>
               <p style={{ color: "#E98080" }}>Завершен</p>
             </button>
-          ) : time.trim().length === 0 ? (
-            <div className={styles.live}>
-              <p>{match.real_date}</p>
-              <p>{match.real_time.slice(0, -3)}</p>
-            </div>
+          ) : status === "today" ? (
+            <button className={styles.live}>{hours}</button>
           ) : (
-            <button className={styles.live}>{time}</button>
+            <div className={styles.live}>
+              <p>{time}</p>
+              <p>{hours}</p>
+            </div>
           )}
         </div>
         <div className={styles.team}>
@@ -112,22 +118,22 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
       </div>
       <div className={styles.right}>
         <div className={styles.status}>
-          {time === "live" ? (
+          {status === "live" ? (
             <button className={styles.live}>
               <IconLive className={styles.iconLive} />
               <span>Live</span>
             </button>
-          ) : time === "finish" ? (
+          ) : status === "finish" ? (
             <button className={styles.live}>
               <p style={{ color: "#E98080" }}>Завершен</p>
             </button>
-          ) : time.trim().length === 0 ? (
-            <div className={styles.live}>
-              <p>{match.real_date}</p>
-              <p>{match.real_time.slice(0, -3)}</p>
-            </div>
+          ) : status === "today" ? (
+            <p className={styles.live}>{hours}</p>
           ) : (
-            <p className={styles.live}>{time}</p>
+            <div className={styles.live}>
+              <p>{time}</p>
+              <p>{hours}</p>
+            </div>
           )}
         </div>
         <div className={styles.favorite}>

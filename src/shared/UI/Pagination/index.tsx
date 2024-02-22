@@ -5,8 +5,6 @@ import styles from "./pagination.module.scss";
 import RCPagination from "rc-pagination";
 import "./pagination.scss";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import { setPage } from "@/features/filters/slice/filterSlice";
 
 export type TypeLink = {
   active: boolean;
@@ -31,7 +29,6 @@ const Pagination: FC<IProps> = ({ total, pageSize, setPage }) => {
   useEffect(() => {
     setCurrentPage(1);
   }, [filters]);
-  console.log(total);
   if (total <= pageSize) return <></>;
   return (
     <RCPagination

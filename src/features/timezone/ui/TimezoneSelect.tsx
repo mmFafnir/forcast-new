@@ -5,14 +5,27 @@ import styles from "../styles/timezone.module.scss";
 import { getTimezone } from "../api/getTimezone";
 import { TypeTimezone } from "../types/TypeTimezone";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
+// import dayjs from "dayjs";
+import dayJs from "@/shared/core/dayjs";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { setTimezone } from "../slice/timezoneSlice";
 
 export const TimezoneSelect = () => {
+  const { timezone } = useTypeSelector((state) => state.timezone);
+  const dispatch = useTypeDispatch();
+
   const [open, setOpen] = useState<boolean>(false);
 
   const [data, setData] = useState<TypeTimezone[]>([]);
   const [currentData, setCurrentData] = useState<TypeTimezone | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+
+  const onChange = (zone: TypeTimezone) => {
+    setCurrentData(zone);
+    dispatch(setTimezone(zone.zone));
+  };
 
   useEffect(() => {
     const closeList = (e: MouseEvent) => {
@@ -23,6 +36,7 @@ export const TimezoneSelect = () => {
     setLoading(true);
     getTimezone()
       .then((res) => {
+        console.log(res);
         setCurrentData(res[0]);
         setData(res);
       })
@@ -35,6 +49,12 @@ export const TimezoneSelect = () => {
 
     document.addEventListener("click", closeList);
 
+    // @ts-ignore
+    console.log("my: ", dayJs.tz.guess());
+    console.log("first: ", dayJs().format());
+    // @ts-ignore
+    console.log("america", dayJs.utc().tz().format());
+    // console.log(dayjs("2024-02-12 19:00:00").utc());
     return () => document.removeEventListener("click", closeList);
   }, []);
   return (
@@ -60,7 +80,7 @@ export const TimezoneSelect = () => {
               title={`${item.utc} ${item.zone}`}
               className={item.id == currentData?.id ? styles.active : ""}
               key={item.id}
-              onClick={() => setCurrentData(item)}
+              onClick={() => onChange(item)}
             >{`${item.utc}`}</button>
           ))}
         </MyScrollbar>

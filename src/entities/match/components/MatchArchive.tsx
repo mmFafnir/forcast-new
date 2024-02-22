@@ -1,12 +1,12 @@
 "use client";
 import { FC, memo } from "react";
-import { Live } from "../ui/Live";
 import { Commands } from "../ui/Commands";
 import { Views } from "../ui/Views";
 import styles from "../styles/match.module.scss";
-import { getTimeStatusMatch } from "../scripts/getTimeStatusMatch";
 import { TypeBet, TypeMatch } from "@/shared/types/match";
 import IconCup from "@/shared/icons/IconCup";
+import useTimeStatus from "@/shared/hooks/useTimeStatus";
+import dayjs from "dayjs";
 
 interface IMatch extends TypeMatch {
   card: TypeBet[];
@@ -17,24 +17,18 @@ interface IProps {
 }
 
 export const MatchArchiveMemo: FC<IProps> = ({ match }) => {
-  const time = getTimeStatusMatch(match.real_date);
+  const { time, hours, dateDefault } = useTimeStatus({
+    matchTime: match.real_time_carbon,
+  });
   return (
     <div className={`${styles.body} ${styles.archive}`}>
       <div className={styles.left}>
         <div className={`flex item-center js-between ${styles.first}`}>
           <div className={styles.time}>
-            {time === "finish" ? (
-              <>
-                <p style={{ color: "#E98080" }}>{match.real_date}</p>
-                <p style={{ color: "#E98080" }}>
-                  {match.real_time.slice(0, -3)}
-                </p>
-              </>
-            ) : time === "live" ? (
-              <Live />
-            ) : (
-              <p>{match.real_time.slice(0, -3)}</p>
-            )}
+            <p style={{ color: "#E98080" }}>
+              {dayjs(dateDefault).format("DD/MM/YYYY")}
+            </p>
+            <p style={{ color: "#E98080" }}>{hours}</p>
           </div>
         </div>
         <Commands away={match.away_team} home={match.home_team} />

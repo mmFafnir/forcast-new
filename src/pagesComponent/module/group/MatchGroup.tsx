@@ -41,6 +41,9 @@ const MatchesGroupMemo: FC<IProps> = ({
       .finally(() => setLoading(false));
   }, [date, timeStatus]);
 
+  useEffect(() => {
+    console.log(data);
+  }, []);
   return (
     <div className="flex-1">
       {loading && (

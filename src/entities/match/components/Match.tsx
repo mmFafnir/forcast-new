@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { FavoriteAdd } from "@/features/favorites";
 import { Live } from "../ui/Live";
 import { Commands } from "../ui/Commands";
@@ -10,13 +10,21 @@ import styles from "../styles/match.module.scss";
 import { getTimeStatusMatch } from "../scripts/getTimeStatusMatch";
 import { TypeMatch } from "@/shared/types/match";
 import { getSportName } from "@/shared/helper/getSportName";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import dayJs from "@/shared/core/dayjs";
+import { matchTimeZone } from "@/shared/core/timezone";
+import useTimeStatus from "@/shared/hooks/useTimeStatus";
 
 interface IProps {
   match: TypeMatch;
 }
 
 export const Match: FC<IProps> = ({ match }) => {
-  const time = getTimeStatusMatch(match.real_date);
+  const { time, status, hours } = useTimeStatus({
+    matchTime: match.real_time_carbon,
+    onlyTime: true,
+  });
+
   return (
     <div className={`${styles.body}`}>
       <Link
@@ -31,12 +39,10 @@ export const Match: FC<IProps> = ({ match }) => {
             className={`${styles.favorites} favorite-icon`}
           />
           <div className={styles.time}>
-            {time === "finish" ? (
+            {status === "finish" ? (
               <p style={{ color: "#E98080" }}>Завершен</p>
-            ) : time === "live" ? (
-              <Live />
             ) : (
-              <p>{match.real_time.slice(0, -3)}</p>
+              <p>{hours}</p>
             )}
           </div>
         </div>

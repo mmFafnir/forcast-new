@@ -11,7 +11,10 @@ const useQuery = () => {
     current.set(name, value);
     const search = current.toString();
     const query = search ? `?${search}` : "";
-    router.push(`${pathname}${query}`);
+    router.replace(query);
+
+    // router.replace(`#${name}=${value}`);
+    window.history.pushState(null, "", `${pathname}${query}`);
     console.log("end change");
   };
 
@@ -21,7 +24,7 @@ const useQuery = () => {
     current.delete(name);
     const search = current.toString();
     const query = search ? `?${search}` : "";
-    router.push(`${pathname}${query}`);
+    router.replace(`${pathname}${query}`);
   };
 
   return { setQuery, deleteQuery };

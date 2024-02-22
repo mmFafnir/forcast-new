@@ -34,9 +34,9 @@ export default function RootLayout({
         <NextTopLoader showSpinner={false} />
 
         <StoreProvider>
-          <AuthProvider>
-            <MainLayout>{children}</MainLayout>
-          </AuthProvider>
+          {/* <AuthProvider> */}
+          <MainLayout>{children}</MainLayout>
+          {/* </AuthProvider> */}
         </StoreProvider>
       </body>
     </html>

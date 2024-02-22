@@ -47,7 +47,6 @@ const FilterCalendarMemo: FC<IProps> = ({
   };
 
   const onChange = (value: any) => setDay(value);
-
   useEffect(() => {
     if (!startDate) return;
     console.log(currentDate);

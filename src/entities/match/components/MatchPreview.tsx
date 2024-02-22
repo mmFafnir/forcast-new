@@ -4,13 +4,12 @@ import { FC } from "react";
 import Link from "next/link";
 import SportsIcon from "@/shared/icons/sports";
 import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
-import { getTimeStatusMatch } from "../scripts/getTimeStatusMatch";
 import { IconLive } from "../icons/IconLive";
 import styles from "../styles/preview.module.scss";
 import CustomImage from "@/shared/UI/CustomImage";
 import dayjs from "dayjs";
 import backgroundMatchImage from "../images/previewImage.jpg";
-import "dayjs/locale/ru";
+import useTimeStatus from "@/shared/hooks/useTimeStatus";
 
 interface ITeamProps {
   src: string;
@@ -60,7 +59,11 @@ interface IProps {
 }
 
 export const MatchPreview: FC<IProps> = ({ match }) => {
-  const time = getTimeStatusMatch(match.real_date);
+  const { time, hours, status } = useTimeStatus({
+    matchTime: match.real_time_carbon,
+    allDate: true,
+  });
+
   return (
     <div
       className={`${styles.body} review-match`}
@@ -107,23 +110,25 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
           ]}
         />
         <div className={styles.times}>
-          <p>{dayjs(match.real_date).locale("ru").format("DD MMMM YYYY")}</p>
-          <p>{match.real_time.slice(0, -3)}</p>
+          <p>{time}</p>
+          <p>{hours}</p>
         </div>
         <div className={styles.footer}>
-          {time === "live" ? (
-            <button className={styles.live}>
-              <IconLive className={styles.iconLive} />
-              <span>Live</span>
-            </button>
-          ) : time === "finish" ? (
+          {time === "today" ? (
+            dayjs(match.real_date) === dayjs() && (
+              <></>
+              // <button className={styles.live}>До начала осталось {time}</button>
+            )
+          ) : status === "finish" ? (
             <button className={styles.live}>
               <p style={{ color: "#E98080" }}>Завершен</p>
             </button>
           ) : (
-            dayjs(match.real_date) === dayjs() && (
-              <button className={styles.live}>До начала осталось {time}</button>
-            )
+            <></>
+            // <button className={styles.live}>
+            //   <IconLive className={styles.iconLive} />
+            //   <span>Live</span>
+            // </button>
           )}
         </div>
       </div>

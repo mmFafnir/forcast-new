@@ -1,15 +1,25 @@
-import ArchivePage from "@/pagesComponent/components/archive/ArchivePage";
+import { getArchiveServer } from "@/pagesComponent/api/archive/getArchiveMatch";
+import { ArchivePage } from "@/pagesComponent/components/archive";
 import { NextPage } from "next";
-import React from "react";
+import { cookies } from "next/headers";
+import React, { Suspense } from "react";
 
 interface IProps {
   params: {};
   searchParams: { [key: string]: string };
 }
 
-const Archive: NextPage<IProps> = ({ searchParams }) => {
+const Archive: NextPage<IProps> = async ({ searchParams }) => {
   const date = searchParams["date"] || null;
-  return <ArchivePage date={date} />;
+  const cookieStore = cookies();
+  const token = cookieStore.get("_token");
+  const data = await getArchiveServer({
+    date: date || "",
+    token: token?.value || "",
+  });
+  return (
+      <ArchivePage data={data} />
+  );
 };
 
 export default Archive;

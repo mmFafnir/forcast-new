@@ -56,7 +56,7 @@ const Button: FC<IPops> = ({ setIsOpen, day, setDay, className = "" }) => {
             fill="white"
           />
         </svg>
-        <span>{day}</span>
+        <span>{dayjs(day).format("DD/MM/YYYY")}</span>
       </button>
       <button
         disabled={day === maxDate}

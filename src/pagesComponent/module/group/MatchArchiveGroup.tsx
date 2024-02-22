@@ -6,7 +6,7 @@ import Loader from "@/shared/UI/Loader";
 import Pagination, { TypeLink } from "@/shared/UI/Pagination";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { TypeBet, TypeMatch } from "@/shared/types/match";
-import { FC, useEffect, useState } from "react";
+import { FC, use, useEffect, useState } from "react";
 
 interface IMatch extends TypeMatch {
   card: TypeBet[];
@@ -21,20 +21,18 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
   const [currentLinks, setCurrentLinks] = useState<TypeLink[]>(links);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [page, setPage] = useState<number>(1);
   const { countryId, leagueId, sportId, date } = useTypeSelector(
     (state) => state.filters
   );
 
-  useEffect(() => {
-    console.log("date", date);
+  const fetchDate = (page?: number) => {
     setLoading(true);
     getArchive({
       date,
       sportId,
       countryId,
       leagueId,
-      page: 1,
+      page: page || 1,
     })
       .then((res) => {
         console.log(res);
@@ -44,23 +42,16 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
       .finally(() => {
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    console.log(countryId, leagueId, sportId);
+    fetchDate();
   }, [countryId, leagueId, sportId, date]);
 
   useEffect(() => {
-    setLoading(true);
-    getArchive({
-      date,
-      sportId,
-      countryId,
-      leagueId,
-      page,
-    })
-      .then((res) => {
-        console.log(res);
-        setData(res.data);
-      })
-      .finally(() => setLoading(false));
-  }, [page]);
+    setData(matches);
+  }, [matches]);
 
   return (
     <div>
@@ -76,7 +67,7 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
       <Pagination
         total={data.length * (currentLinks.length - 2)}
         pageSize={10}
-        setPage={setPage}
+        setPage={fetchDate}
       />
     </div>
   );

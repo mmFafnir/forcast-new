@@ -9,6 +9,7 @@ import authSlice from "@/widgets/Auth/slice/authSlice";
 import pinLeagueSlice from "@/features/favorites/slice/pinLeagueSlice";
 import favoritesSlice from "@/features/favorites/slice/favoritesSlice";
 import linkSlice from "@/features/breadсrumbs/slice/linkSlice";
+import timezoneSlice from "@/features/timezone/slice/timezoneSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     pinLeague: pinLeagueSlice,
     favorites: favoritesSlice,
     links: linkSlice,
+    timezone: timezoneSlice,
   },
 });
 

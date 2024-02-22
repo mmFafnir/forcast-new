@@ -7,6 +7,7 @@ interface IProps {
 }
 
 const Soccer: NextPage<IProps> = ({ searchParams }) => {
+  console.log(searchParams);
   const date = searchParams["date"] || null;
   return <SoccerPage date={date} />;
 };

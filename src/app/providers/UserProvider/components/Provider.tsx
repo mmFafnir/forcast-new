@@ -13,8 +13,6 @@ interface IProps {
 }
 
 export const UserProvider: FC<IProps> = ({ user, children }) => {
-  const { data } = useSession();
-
   const userParams = useTypeSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -24,13 +22,13 @@ export const UserProvider: FC<IProps> = ({ user, children }) => {
     dispatch(setUser(user));
   }, []);
 
-  useEffect(() => {
-    if (userParams.user || !data) return;
-    const user = data.user as TypeUser;
-    // @ts-ignore
-    const token = data.token;
-    dispatch(setUser({ ...user, favorite_count: [] }));
-    dispatch(setToken(token));
-  }, [data]);
+  // useEffect(() => {
+  //   if (userParams.user || !data) return;
+  //   const user = data.user as TypeUser;
+  //   // @ts-ignore
+  //   const token = data.token;
+  //   dispatch(setUser({ ...user, favorite_count: [] }));
+  //   dispatch(setToken(token));
+  // }, [data]);
   return <>{children}</>;
 };

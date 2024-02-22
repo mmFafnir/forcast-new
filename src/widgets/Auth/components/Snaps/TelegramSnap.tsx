@@ -1,12 +1,14 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "../../styles/snaps/telegram.module.scss";
 import Image from "next/image";
 import Button from "@/shared/UI/Button";
 import axios from "@/shared/core/axios";
 import { setCookie } from "nookies";
 import { loginTelegram } from "../../api/auth";
+import { QRCodeSVG } from "qrcode.react";
+import Loader from "@/shared/UI/Loader";
 import { isMobile } from "@/features/shared/scripts/isMobile";
 
 interface IFetchData {
@@ -27,32 +29,30 @@ interface IProps {
 
 export const TelegramSnap: FC<IProps> = ({ mode = "bind" }) => {
   const [loading, setLoading] = useState<boolean>(false);
+  const [url, setUrl] = useState<string | null>(null);
+
+  const openTelegram = () => {
+    if (!url) return;
+    let a = document.createElement("a") as HTMLAnchorElement;
+    document.body.appendChild(a);
+    a.style.display = "none";
+    a.target = "_blank";
+    a.href = url;
+
+    setTimeout(() => {
+      a.click();
+      document.body.removeChild(a);
+      return;
+    }, 100);
+  };
 
   const onSpanTelegram = () => {
     setLoading(true);
     const asyncAction = mode == "bind" ? postBindingTelegram : loginTelegram;
     asyncAction()
       .then((res) => {
-        let a = document.createElement("a") as HTMLAnchorElement;
-        document.body.appendChild(a);
-        a.style.display = "none";
-        a.target = "_blank";
-        a.href = res.url;
+        setUrl(res.url);
         setCookie(null, "pusher_code", `${res.code}`);
-        setTimeout(() => {
-          // if (isMobile.iOS()) {
-          a.click();
-          document.body.removeChild(a);
-          return;
-          // }
-          // const newWindow = window.open(
-          //   res.url,
-          //   "_blank",
-          //   "noopener,noreferrer"
-          // );
-          // if (newWindow) newWindow.opener = null;
-          // console.log(res);
-        }, 100);
       })
       .catch((err) => {
         console.log(err);
@@ -62,16 +62,21 @@ export const TelegramSnap: FC<IProps> = ({ mode = "bind" }) => {
       });
   };
 
+  useEffect(() => {
+    onSpanTelegram();
+  }, []);
+
   return (
     <div className={styles.body}>
       <div className={styles.flex}>
         <div className={styles.qr}>
-          <Image
+          {url ? <QRCodeSVG value={url} /> : <Loader />}
+          {/* <Image
             src={"/telegramQR.png"}
             width={500}
             height={500}
             alt="telegram QR code"
-          />
+          /> */}
         </div>
         <div className={styles.text}>
           <p>Инструкция:</p>
@@ -88,7 +93,7 @@ export const TelegramSnap: FC<IProps> = ({ mode = "bind" }) => {
         loading={loading}
         className={styles.btn}
         type="gradient"
-        onClick={onSpanTelegram}
+        onClick={openTelegram}
       >
         Перейти
       </Button>

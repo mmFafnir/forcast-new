@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "../../styles/ui/success.module.scss";
 import Button from "@/shared/UI/Button";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
@@ -8,6 +8,7 @@ import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTimer } from "react-timer-hook";
 
 let timerId: NodeJS.Timeout | null = null;
+
 export const SuccessNotify = () => {
   const dispatch = useTypeDispatch();
   const { modal } = useTypeSelector((state) => state.modal);

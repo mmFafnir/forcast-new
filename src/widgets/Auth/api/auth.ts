@@ -17,5 +17,5 @@ export const loginTelegram = async (ref?: string) => {
 
 export const addNewEmail = async (params: IRegisterParams) => {
   const { data } = await axios.post("/add_new_profile_email", params);
-  console.log(data);
+  console.log("addNewEmail", data);
 };
