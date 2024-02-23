@@ -50,6 +50,13 @@ const filterSlice = createSlice({
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
+
+    setDefaultFilter: (state) => {
+      state.leagueId = "";
+      state.sportId = "";
+      state.timeStatus = "";
+      state.date = date;
+    },
   },
 });
 
@@ -59,6 +66,7 @@ export const {
   setCountryFilter,
   setLeagueFilter,
   setSportFilter,
+  setDefaultFilter,
   setPage,
 } = filterSlice.actions;
 export default filterSlice.reducer;

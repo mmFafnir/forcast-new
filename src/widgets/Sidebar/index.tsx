@@ -1,4 +1,5 @@
 "use client";
+
 import Button from "@/shared/UI/Button";
 import SportsIcon from "@/shared/icons/sports";
 import TotalMatches from "@/shared/UI/TotalMatches";
@@ -10,8 +11,8 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { toggleSidebar } from "@/features/closeSidebar/slice/closeSidebarSlice";
 import { TelegramButton } from "@/features/shared";
 import Logo from "@/shared/UI/Logo";
-import styles from "./styles.module.scss";
 import { memo } from "react";
+import styles from "./styles.module.scss";
 
 const Sidebar = () => {
   const dispatch = useTypeDispatch();
@@ -42,6 +43,16 @@ const Sidebar = () => {
             </div>
             <FavoritesButton className={styles.favorite} />
             <div className={styles.list}>
+              <Button
+                className={styles.link}
+                href="/"
+                type="text"
+                active={pathname === "/"}
+              >
+                <SportsIcon icon="top" />
+                <span>Топ матчи</span>
+                <TotalMatches>20</TotalMatches>
+              </Button>
               {new Array(1).fill(null).map((link, index) => (
                 <Button
                   key={index}

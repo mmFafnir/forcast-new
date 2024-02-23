@@ -1,38 +1,49 @@
 import { loginWithOtherSocials } from "@/widgets/Auth";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { cookies } from "next/headers";
+import { setCookie } from "nookies";
 
 const handler = NextAuth({
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
       // prompt: 'select_account' // uncomment this line if you want to always show the account selection screen
     }),
   ],
   secret: process.env.SECRET,
 
   callbacks: {
-    async session({ session, token, user }) {
-      if (!session.user) return session;
+    async signIn({ account, profile }) {
+      console.log(account, profile);
+      if (!account || !profile) return;
 
       try {
-        // const data = await loginWithOtherSocials({
-        //   // @ts-nocheck
-        //   id: token.sub || "",
-        //   email: session.user.email || "",
-        //   name: session.user.name || "",
-        //   type: "google",
-        // });
-
-        // session.user = data.user;
-        // // @ts-ignore
-        // session.token = data.token;
-        return session;
+        const data = await loginWithOtherSocials({
+          // @ts-nocheck
+          id: profile.sub || "",
+          email: profile.email || "",
+          name: profile.name || "",
+          type: "google",
+        });
+        cookies().set("_token", data.token);
       } catch (error) {
         console.log("error", error);
-        return session;
       }
+
+      if (account.provider !== "google") {
+        // @ts-ignore
+        return profile.email_verified && profile.email.endsWith("@example.com");
+      }
+      return true;
     },
   },
 });

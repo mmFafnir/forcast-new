@@ -14,6 +14,8 @@ import { logout } from "../../slice/authSlice";
 import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import styles from "../../styles/modal.user.module.scss";
+import { googleLogout } from "@react-oauth/google";
+import { signOut } from "next-auth/react";
 
 const UserRole = () => {
   return (
@@ -34,6 +36,7 @@ const UserModal: FC<IProps> = ({ open }) => {
 
   const onLogout = () => {
     dispatch(logout());
+    signOut({ callbackUrl: "false" });
   };
   const onOpenModalPrem = () => {
     dispatch(setClick("prem"));

@@ -5,14 +5,15 @@ import { SportGroup } from "@/features/group";
 import Loader from "@/shared/UI/Loader";
 import IconEmpty from "@/shared/icons/IconEmpty";
 import { TypeSportGroup } from "@/shared/types/sport";
-import { FC, memo } from "react";
+import { FC, ReactNode, memo } from "react";
 
 interface IProps {
   data: TypeSportGroup[];
   loading: boolean | null;
+  empty?: ReactNode;
 }
 
-const GroupHomeMemo: FC<IProps> = ({ data, loading }) => {
+const GroupHomeMemo: FC<IProps> = ({ data, loading, empty }) => {
   return (
     <div className="flex-1">
       {loading && (
@@ -20,12 +21,16 @@ const GroupHomeMemo: FC<IProps> = ({ data, loading }) => {
           <Loader />
         </div>
       )}
-      {!loading && data.length === 0 && (
-        <div className="empty-data">
-          <p>Матчи не найдены</p>
-          <IconEmpty />
-        </div>
-      )}
+      {!loading &&
+        data.length === 0 &&
+        (empty ? (
+          empty
+        ) : (
+          <div className="empty-data">
+            <p>Матчи не найдены</p>
+            <IconEmpty />
+          </div>
+        ))}
       {!loading &&
         data.map((group) => (
           <SportGroup

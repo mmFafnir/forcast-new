@@ -2,11 +2,16 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import soccer from "./images/soccer.png";
+import top from "./images/top.svg";
 
 const getImage = (key: string) => {
   switch (key) {
     case "soccer":
       return soccer;
+
+    case "top":
+      return top;
+
     default:
       return soccer;
   }

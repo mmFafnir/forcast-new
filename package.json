@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.0.1",
     "@types/react-scroll": "^1.8.10",
     "axios": "^1.6.5",
@@ -26,6 +27,7 @@
     "react-calendar": "^4.8.0",
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
+    "react-new-window": "^1.0.1",
     "react-redux": "^9.0.4",
     "react-timer-hook": "^3.0.7",
     "simplebar-react": "^3.2.4"

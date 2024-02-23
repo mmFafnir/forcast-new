@@ -5,6 +5,7 @@ import { getMatchHome } from "../../api/main/getMatchHome";
 import { ILeagues } from "@/shared/types/leagues";
 import { TypeSportGroup } from "@/shared/types/sport";
 import { GroupHome } from "@/entities/group";
+import { EmptyMain } from "@/pagesComponent/components/main/EmptyMain";
 
 interface IProps {
   matches: TypeSportGroup[];
@@ -32,7 +33,7 @@ const MatchesGroupHomeMemo: FC<IProps> = ({ matches }) => {
     setData(matches);
   }, [matches]);
 
-  return <GroupHome data={data} loading={loading} />;
+  return <GroupHome data={data} loading={loading} empty={<EmptyMain />} />;
 };
 
 export const MatchesGroupHome = memo(MatchesGroupHomeMemo);
