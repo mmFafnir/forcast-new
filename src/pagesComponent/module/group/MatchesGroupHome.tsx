@@ -16,18 +16,19 @@ const MatchesGroupHomeMemo: FC<IProps> = ({ matches }) => {
   const [data, setData] = useState<TypeSportGroup[]>(matches);
   const [loading, setLoading] = useState<boolean | null>(null);
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
+  const { utcId } = useTypeSelector((state) => state.timezone);
   useEffect(() => {
     if (loading === null) {
       setLoading(false);
       return;
     }
     setLoading(true);
-    getMatchHome({ date, timeStatus })
+    getMatchHome({ date, timeStatus, utcId })
       .then((res) => {
         setData(res);
       })
       .finally(() => setLoading(false));
-  }, [date, timeStatus]);
+  }, [date, timeStatus, utcId]);
 
   useEffect(() => {
     setData(matches);

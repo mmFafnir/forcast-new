@@ -7,6 +7,7 @@ import { getRecommend } from "@/pagesComponent/api/soccer/getRecommend";
 import Loader from "@/shared/UI/Loader";
 import Empty from "@/shared/UI/Empty";
 import { Filter } from "./Filter";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 interface IProps {
   data: TypeMatch[];
@@ -18,6 +19,7 @@ export const Recommend: FC<IProps> = ({ data, id }) => {
   const [filter, setFilter] = useState<string>("");
 
   const [loading, setLoading] = useState<boolean>(false);
+  const { utcId } = useTypeSelector((state) => state.timezone);
 
   useEffect(() => {
     setLoading(true);
@@ -25,6 +27,7 @@ export const Recommend: FC<IProps> = ({ data, id }) => {
       id: id,
       country: filter === "" || filter === "country",
       league: filter === "" || filter === "league",
+      utcId,
     })
       .then((res) => {
         setMatches(res);
@@ -32,7 +35,7 @@ export const Recommend: FC<IProps> = ({ data, id }) => {
       .finally(() => {
         setLoading(false);
       });
-  }, [filter]);
+  }, [filter, utcId]);
 
   return (
     <div className={styles.body}>

@@ -1,6 +1,7 @@
 import { parseQueryParams } from "@/shared/helper/parseQueryParams";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import dayjs from "dayjs";
+import dayJs from "@/shared/core/dayjs";
+import { matchTimeZone } from "@/shared/core/timezone";
 
 export type TypeTimeStatus = "" | 0 | 1 | 3;
 
@@ -16,7 +17,8 @@ interface IState {
 const date =
   (typeof window !== "undefined" &&
     parseQueryParams(window.location.search).date) ||
-  dayjs().format("YYYY-MM-DD");
+  // @ts-ignore
+  dayJs().utc().tz(matchTimeZone).format("YYYY-MM-DD");
 
 const initialState: IState = {
   date: date,

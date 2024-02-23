@@ -23,6 +23,8 @@ const MatchesGroupMemo: FC<IProps> = ({
   const [data, setData] = useState<ILeagues[]>(matches);
   const [loading, setLoading] = useState<boolean | null>(null);
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
+  const { utcId } = useTypeSelector((state) => state.timezone);
+
   useEffect(() => {
     if (loading === null) {
       setLoading(false);
@@ -34,12 +36,13 @@ const MatchesGroupMemo: FC<IProps> = ({
       timeStatus,
       country,
       league,
+      utcId,
     })
       .then((res) => {
         setData(res.data);
       })
       .finally(() => setLoading(false));
-  }, [date, timeStatus]);
+  }, [date, timeStatus, utcId]);
 
   useEffect(() => {
     console.log(data);

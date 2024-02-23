@@ -47,7 +47,6 @@ const useTimeStatus = ({ matchTime }: IProps) => {
   };
 
   useEffect(() => {
-    console.log(timezone);
     if (timezone.length > 0) {
       const timezoneTime = dayJs
         // @ts-ignore

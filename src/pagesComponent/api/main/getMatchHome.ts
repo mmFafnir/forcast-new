@@ -6,14 +6,19 @@ import { TypeSportGroup } from "@/shared/types/sport";
 interface IParams {
   date: string;
   timeStatus: TypeTimeStatus;
+  utcId: number | "";
 }
 export const getMatchHome = async (
   params?: IParams
 ): Promise<TypeSportGroup[]> => {
   try {
-    const { date, timeStatus } = params || { date: "", timeStatus: "" };
+    const { date, timeStatus, utcId } = params || {
+      date: "",
+      timeStatus: "",
+      utcId: "",
+    };
     const { data } = await axios.get(
-      `/get_home_page_matches?date=${date}&time_status=${timeStatus}`
+      `/get_home_page_matches?date=${date}&time_status=${timeStatus}&utc_id=${utcId}`
     );
     return mapGetMatchHome(data.data);
   } catch (error) {
@@ -22,7 +27,7 @@ export const getMatchHome = async (
   }
 };
 
-interface IIParamsServer extends IParams {
+interface IIParamsServer extends Omit<IParams, "utcId"> {
   token: string;
 }
 

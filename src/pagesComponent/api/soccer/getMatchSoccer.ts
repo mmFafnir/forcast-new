@@ -21,6 +21,7 @@ interface IParams {
   timeStatus: TypeTimeStatus;
   country?: string;
   league?: string;
+  utcId: number | "";
 }
 
 export const getMatchSoccer = async (
@@ -32,9 +33,16 @@ export const getMatchSoccer = async (
       timeStatus,
       country = "",
       league = "",
-    } = params || { date: "", timeStatus: "", country: "", league: "" };
+      utcId = "",
+    } = params || {
+      date: "",
+      timeStatus: "",
+      country: "",
+      league: "",
+      utcId: "",
+    };
     const { data } = await axiosClient.get(
-      `/get_matches?start_date=${date}&time_status=${timeStatus}&country_cc=${country}&league_url=${league}&sport_id=1`
+      `/get_matches?start_date=${date}&time_status=${timeStatus}&country_cc=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`
     );
     return { data: data.data };
   } catch (error) {
@@ -42,7 +50,7 @@ export const getMatchSoccer = async (
   }
 };
 
-interface IIParamsServer extends IParams {
+interface IIParamsServer extends Omit<IParams, "utcId"> {
   token: string;
 }
 

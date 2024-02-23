@@ -10,6 +10,7 @@ import dayJs from "@/shared/core/dayjs";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setTimezone } from "../slice/timezoneSlice";
+import { matchTimeZone } from "@/shared/core/timezone";
 
 export const TimezoneSelect = () => {
   const { timezone } = useTypeSelector((state) => state.timezone);
@@ -24,7 +25,7 @@ export const TimezoneSelect = () => {
 
   const onChange = (zone: TypeTimezone) => {
     setCurrentData(zone);
-    dispatch(setTimezone(zone.zone));
+    dispatch(setTimezone({ timezone: zone.zone, id: zone.id }));
   };
 
   useEffect(() => {
@@ -37,7 +38,9 @@ export const TimezoneSelect = () => {
     getTimezone()
       .then((res) => {
         console.log(res);
-        setCurrentData(res[0]);
+        setCurrentData(
+          res.find((time) => time.zone === matchTimeZone) || res[0]
+        );
         setData(res);
       })
       .catch(() => {
@@ -48,13 +51,6 @@ export const TimezoneSelect = () => {
       });
 
     document.addEventListener("click", closeList);
-
-    // @ts-ignore
-    console.log("my: ", dayJs.tz.guess());
-    console.log("first: ", dayJs().format());
-    // @ts-ignore
-    console.log("america", dayJs.utc().tz().format());
-    // console.log(dayjs("2024-02-12 19:00:00").utc());
     return () => document.removeEventListener("click", closeList);
   }, []);
   return (

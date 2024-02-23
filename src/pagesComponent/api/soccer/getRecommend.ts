@@ -6,12 +6,13 @@ interface IParams {
   id: string | number;
   league?: boolean;
   country?: boolean;
+  utcId: number | "";
 }
 export const getRecommend = async (params: IParams) => {
-  const { id, league = false, country = false } = params;
+  const { id, league = false, country = false, utcId = "" } = params;
   try {
     const { data } = await clientAxios.get(
-      `more_match_for_game?game_id=${id}&league=${league}&country=${country}`
+      `more_match_for_game?game_id=${id}&league=${league}&country=${country}&utc_id=${utcId}`
     );
     return data.data.data;
   } catch (error) {
@@ -19,7 +20,7 @@ export const getRecommend = async (params: IParams) => {
   }
 };
 
-interface IParamsServer extends IParams {
+interface IParamsServer extends Omit<IParams, "utcId"> {
   token?: string;
 }
 export const getRecommendServer = async (

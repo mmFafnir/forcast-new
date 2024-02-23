@@ -1,12 +1,16 @@
 "use client";
 
-import { SessionProvider, useSession } from "next-auth/react";
-import React, { FC, ReactNode, useEffect } from "react";
+import { SessionProvider } from "next-auth/react";
+import React, { FC, ReactNode } from "react";
 
 interface IProps {
   children: ReactNode;
 }
 
 export const AuthProvider: FC<IProps> = ({ children }) => {
-  return <>{children};</>;
+  return (
+    <>
+      <SessionProvider>{children}</SessionProvider>;
+    </>
+  );
 };

@@ -47,7 +47,22 @@
   }
 
   &.react-calendar__tile--now {
+    background-color: #292c36 !important;
+
+    @media (min-width: 901px) {
+      &:hover {
+        background: #414450 !important;
+      }
+    }
+  }
+
+  &.react-calendar__utc--now {
     background-color: #22252f !important;
+    @media (min-width: 901px) {
+      &:hover {
+        background: #22252f !important;
+      }
+    }
   }
 }
 

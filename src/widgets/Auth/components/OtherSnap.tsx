@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, MouseEvent, useEffect, useMemo } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import styles from "../styles/other.module.scss";
 import tg from "@/shared/images/socials/tg.svg";
 import mail from "@/shared/images/socials/mail.svg";
@@ -8,7 +8,8 @@ import google from "@/shared/images/socials/google.svg";
 import Image from "next/image";
 import { IconCheck } from "../icons/IconCheck";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import NewWindow from "react-new-window";
 
 interface IProps {
   setComponent: (value: string) => void;
@@ -16,7 +17,8 @@ interface IProps {
 }
 export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
   const { user } = useTypeSelector((state) => state.auth);
-
+  const [openWindow, setOpenWindow] = useState<boolean>(false);
+  const { data } = useSession();
   const buttons = useMemo(
     () => [
       {
@@ -33,13 +35,16 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
         name: "google",
         svg: google,
         onClick: () => {
-          console.log("click");
-          signIn("google");
+          setOpenWindow(true);
         },
       },
     ],
     [user]
   );
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   useEffect(() => {
     setComponent(buttons.find((btn) => !btn.checked)?.name || "mail");
@@ -66,6 +71,7 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
             </button>
           );
         })}
+        {openWindow && <NewWindow url="/sing-in" />}
       </div>
     </>
   );

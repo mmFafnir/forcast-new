@@ -2,7 +2,6 @@ import { loginWithOtherSocials } from "@/widgets/Auth";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { cookies } from "next/headers";
-import { setCookie } from "nookies";
 
 const handler = NextAuth({
   providers: [

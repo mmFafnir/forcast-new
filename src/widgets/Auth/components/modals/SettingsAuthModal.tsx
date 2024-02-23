@@ -15,6 +15,8 @@ import { useState } from "react";
 import { TelegramSnap } from "../Snaps/TelegramSnap";
 import { addNewEmail } from "../../api/auth";
 import { confirmNewEmail } from "../../api/confirm";
+import { signOut } from "next-auth/react";
+import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 
 export const SettingsAuthModal = () => {
   const { user } = useTypeSelector((state) => state.auth);
@@ -22,7 +24,11 @@ export const SettingsAuthModal = () => {
 
   const [component, setComponent] = useState<string>("mail");
 
-  const onLogout = () => dispatch(logout());
+  const onLogout = () => {
+    dispatch(closeAllModal());
+    dispatch(logout());
+    signOut();
+  };
 
   if (!user) return;
   return (

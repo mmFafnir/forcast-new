@@ -36,7 +36,7 @@ const UserModal: FC<IProps> = ({ open }) => {
 
   const onLogout = () => {
     dispatch(logout());
-    signOut({ callbackUrl: "false" });
+    signOut({ callbackUrl: "/" });
   };
   const onOpenModalPrem = () => {
     dispatch(setClick("prem"));

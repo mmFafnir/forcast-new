@@ -16,7 +16,29 @@
   }
 }
 
+.scroll {
+  flex: 1 1 auto;
+}
+
 .list {
   display: flex;
   flex-wrap: wrap;
+}
+
+@media (max-width: 500px) {
+  .body {
+    margin-top: 40px;
+  }
+  .text {
+    font-size: 12px;
+    margin-bottom: 40px;
+  }
+  .list {
+    flex-wrap: nowrap;
+    > a,
+    > div {
+      flex: 0 0 220px;
+      margin-right: 20px !important;
+    }
+  }
 }

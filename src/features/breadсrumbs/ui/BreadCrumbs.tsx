@@ -15,9 +15,9 @@ export const BreadCrumbs: FC<IProps> = ({ links = [] }) => {
     <div className={styles.body}>
       <MyScrollbar autoHide={true} style={{ height: "auto", width: "99%" }}>
         <div className={"flex item-center h-full"}>
-          <button className={styles.btn} style={{ marginRight: 5 }}>
+          <Link href={"/"} className={styles.btn} style={{ marginRight: 5 }}>
             <span>Прогнозы на спорт</span>
-          </button>
+          </Link>
           {links.map((link, index) => (
             <Link className={styles.link} key={index} href={link.href}>
               <span>{link.title}</span>
