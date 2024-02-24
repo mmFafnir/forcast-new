@@ -8,9 +8,5 @@ interface IProps {
 }
 
 export const AuthProvider: FC<IProps> = ({ children }) => {
-  return (
-    <>
-      <SessionProvider>{children}</SessionProvider>;
-    </>
-  );
+  return <SessionProvider>{children}</SessionProvider>;
 };
