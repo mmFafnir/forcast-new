@@ -5,6 +5,12 @@ import React from "react";
 export const DescriptionSEO = () => {
   const { webApp } = useTypeSelector((state) => state.auth);
   console.log(webApp);
+  alert(
+    typeof window !== "undefined" &&
+      (window as any).Telegram?.WebApp.initDataUnsafe.user
+      ? true
+      : false
+  );
   if (webApp) return <></>;
   return (
     <div className="page-text-block">
