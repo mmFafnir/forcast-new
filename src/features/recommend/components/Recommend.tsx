@@ -37,6 +37,8 @@ export const Recommend: FC<IProps> = ({ data, id }) => {
       });
   }, [filter, utcId]);
 
+  console.log(matches)
+
   return (
     <div className={styles.body}>
       <h2 className={styles.title}>Другие матчи</h2>

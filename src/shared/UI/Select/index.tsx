@@ -65,6 +65,7 @@ const Select: FC<IProps> = ({
 
   useEffect(() => {
     setCurrentValue(data.find((item) => item.value == value) || data[0]);
+    onClose();
   }, [value]);
 
   useEffect(() => {

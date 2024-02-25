@@ -7,7 +7,7 @@ import { loginInWebView } from "../api/loginInWebView";
 import { TypeUser } from "@/widgets/Auth";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setCookie } from "nookies";
-import { setUser } from "@/widgets/Auth/slice/authSlice";
+import { setUser, setWebApp } from "@/widgets/Auth/slice/authSlice";
 
 export interface ITelegramContext {
   webApp?: IWebApp;
@@ -37,6 +37,8 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
         : {};
 
       if (!value.user) return;
+      dispatch(setWebApp(true));
+      alert(window.navigator.userAgent);
       loginInWebView(value.user).then((res) => {
         dispatch(setUser({ ...res.data, favorite_count: res.favorite_array }));
         setCookie(null, "_token", res.token, {

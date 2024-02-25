@@ -47,6 +47,7 @@ const SelectMemo: FC<IProps> = ({ data, setValue }) => {
 
   useEffect(() => {
     setValue(currentValue.value);
+    onClose();
   }, [currentValue]);
 
   return (

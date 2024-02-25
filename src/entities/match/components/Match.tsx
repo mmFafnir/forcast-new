@@ -1,18 +1,13 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { FavoriteAdd } from "@/features/favorites";
-import { Live } from "../ui/Live";
 import { Commands } from "../ui/Commands";
 import { Total } from "../ui/Total";
 import { Views } from "../ui/Views";
 import Link from "next/link";
 import styles from "../styles/match.module.scss";
-import { getTimeStatusMatch } from "../scripts/getTimeStatusMatch";
 import { TypeMatch } from "@/shared/types/match";
 import { getSportName } from "@/shared/helper/getSportName";
-import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import dayJs from "@/shared/core/dayjs";
-import { matchTimeZone } from "@/shared/core/timezone";
 import useTimeStatus from "@/shared/hooks/useTimeStatus";
 
 interface IProps {
@@ -27,7 +22,7 @@ export const Match: FC<IProps> = ({ match }) => {
   return (
     <div className={`${styles.body}`}>
       <Link
-        href={match.url ? `${getSportName(match.sport_id)}/${match.url}` : "/"}
+        href={match.url ? `/${getSportName(match.sport_id)}/${match.url}` : "/"}
         className={styles.href}
       ></Link>
       <div className={styles.left}>

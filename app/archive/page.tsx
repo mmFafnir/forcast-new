@@ -17,9 +17,7 @@ const Archive: NextPage<IProps> = async ({ searchParams }) => {
     date: date || "",
     token: token?.value || "",
   });
-  return (
-      <ArchivePage data={data} />
-  );
+  return <ArchivePage data={data} />;
 };
 
 export default Archive;

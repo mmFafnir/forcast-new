@@ -7,22 +7,35 @@ import { MatchPreview, MatchPreviewSticky, Views } from "@/entities/match";
 import TextMore from "@/shared/UI/TextMore";
 import { getOneMatch } from "@/pagesComponent/api/soccer/getOneMatch";
 import Link from "next/link";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { Recommend } from "@/features/recommend";
 import { getRecommendServer } from "@/pagesComponent/api/soccer/getRecommend";
 import { Header } from "@/widgets/Header";
 import { LinksProvider } from "@/app/providers/LinksProvider";
 import { EventsBlock } from "./components/EventsBlock";
+import { getTimezone } from "@/shared/helper/getTimezone";
+import { baseUrl } from "@/shared/core/axios";
 
 interface IProps {
   url: string;
 }
 
 export const MatchPage: NextPage<IProps> = async ({ url }) => {
+  const headersList = headers();
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
-  const data = await getOneMatch(url, token?.value);
-  const recommendData = data ? await getRecommendServer({ id: data.id }) : [];
+  const utcId = cookieStore.get("utc_id");
+
+  const isBot = headersList.get("x-bot") || false;
+
+  const data = await getOneMatch(url, token?.value, Boolean(isBot));
+
+  const recommendData = data
+    ? await getRecommendServer({
+        id: data.id,
+        utcId: getTimezone(utcId?.value)?.id || "",
+      })
+    : [];
 
   if (!data)
     return (

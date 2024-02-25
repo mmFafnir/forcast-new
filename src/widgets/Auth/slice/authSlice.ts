@@ -15,6 +15,7 @@ import { signOut } from "next-auth/react";
 
 interface IState {
   auth: boolean;
+  webApp: boolean;
   status: EnumStatus;
   user: TypeUser | null;
   token: string | null;
@@ -24,6 +25,7 @@ interface IState {
 
 const initialState: IState = {
   auth: false,
+  webApp: false,
   status: EnumStatus.LOADING,
   user: null,
   token: null,
@@ -58,6 +60,10 @@ const authSlice = createSlice({
     setUserEmail: (state, action: PayloadAction<string>) => {
       if (!state.user) return;
       state.user = { ...state.user, email: action.payload };
+    },
+
+    setWebApp: (state, action: PayloadAction<boolean>) => {
+      state.webApp = action.payload;
     },
 
     logout: (state) => {
@@ -148,6 +154,7 @@ export const {
   setToken,
   setTelegramId,
   setUserEmail,
+  setWebApp,
 } = authSlice.actions;
 
 export default authSlice.reducer;

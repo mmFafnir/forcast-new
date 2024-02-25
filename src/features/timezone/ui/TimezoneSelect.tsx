@@ -10,22 +10,23 @@ import dayJs from "@/shared/core/dayjs";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setTimezone } from "../slice/timezoneSlice";
-import { matchTimeZone } from "@/shared/core/timezone";
+import { timezoneData } from "@/shared/core/timezone";
 
 export const TimezoneSelect = () => {
-  const { timezone } = useTypeSelector((state) => state.timezone);
+  const { utcId } = useTypeSelector((state) => state.timezone);
   const dispatch = useTypeDispatch();
-
+  console.log(utcId);
   const [open, setOpen] = useState<boolean>(false);
 
-  const [data, setData] = useState<TypeTimezone[]>([]);
-  const [currentData, setCurrentData] = useState<TypeTimezone | null>(null);
+  const [currentData, setCurrentData] = useState<TypeTimezone | null>(
+    timezoneData.find((time) => time.id === utcId) || null
+  );
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
 
   const onChange = (zone: TypeTimezone) => {
     setCurrentData(zone);
     dispatch(setTimezone({ timezone: zone.zone, id: zone.id }));
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -35,24 +36,10 @@ export const TimezoneSelect = () => {
     };
 
     setLoading(true);
-    getTimezone()
-      .then((res) => {
-        console.log(res);
-        setCurrentData(
-          res.find((time) => time.zone === matchTimeZone) || res[0]
-        );
-        setData(res);
-      })
-      .catch(() => {
-        setError(true);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-
     document.addEventListener("click", closeList);
     return () => document.removeEventListener("click", closeList);
   }, []);
+
   return (
     <div className={styles.timezone}>
       {currentData && (
@@ -71,7 +58,7 @@ export const TimezoneSelect = () => {
       )}
       <div className={`${styles.list} ${open ? styles.show : ""}`}>
         <MyScrollbar>
-          {data.map((item) => (
+          {timezoneData.map((item) => (
             <button
               title={`${item.utc} ${item.zone}`}
               className={item.id == currentData?.id ? styles.active : ""}

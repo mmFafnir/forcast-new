@@ -8,8 +8,9 @@ import google from "@/shared/images/socials/google.svg";
 import Image from "next/image";
 import { IconCheck } from "../icons/IconCheck";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import NewWindow from "react-new-window";
+import { isMobile } from "@/features/shared/scripts/isMobile";
 
 interface IProps {
   setComponent: (value: string) => void;
@@ -18,7 +19,6 @@ interface IProps {
 export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
   const { user } = useTypeSelector((state) => state.auth);
   const [openWindow, setOpenWindow] = useState<boolean>(false);
-  const { data } = useSession();
   const buttons = useMemo(
     () => [
       {
@@ -35,16 +35,16 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
         name: "google",
         svg: google,
         onClick: () => {
-          setOpenWindow(true);
+          if (isMobile.any()) {
+            signIn("google");
+          } else {
+            setOpenWindow(true);
+          }
         },
       },
     ],
     [user]
   );
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   useEffect(() => {
     setComponent(buttons.find((btn) => !btn.checked)?.name || "mail");

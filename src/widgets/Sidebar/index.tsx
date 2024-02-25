@@ -15,11 +15,13 @@ import { memo } from "react";
 import styles from "./styles.module.scss";
 
 const Sidebar = () => {
-  const dispatch = useTypeDispatch();
+  const { webApp } = useTypeSelector((state) => state.auth);
   const { activeSidebar } = useTypeSelector((state) => state.closeSidebar);
+  const dispatch = useTypeDispatch();
   const pathname = usePathname();
 
   const onCloseSidebar = () => dispatch(toggleSidebar());
+  console.log((window as any).Telegram);
   return (
     <>
       <button
@@ -67,7 +69,7 @@ const Sidebar = () => {
                 </Button>
               ))}
             </div>
-            <TelegramButton className={styles.telegram} />
+            {!webApp && <TelegramButton className={styles.telegram} />}
           </div>
         </div>
       </div>

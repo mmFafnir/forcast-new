@@ -11,7 +11,7 @@ import {
   deleteFavorite,
   setFavorite,
 } from "../slice/favoritesSlice";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 
@@ -20,6 +20,8 @@ interface IProps {
 }
 
 export const FavoritesButton: FC<IProps> = ({ className }) => {
+  const pathname = usePathname();
+
   const { user } = useTypeSelector((state) => state.auth);
   const { favorites } = useTypeSelector((state) => state.favorites);
   const dispatch = useTypeDispatch();
@@ -40,6 +42,7 @@ export const FavoritesButton: FC<IProps> = ({ className }) => {
       className={`${styles.button} ${className}`}
       onClick={!user ? onOpenModalLogin : () => {}}
       href={user ? "/favorites" : undefined}
+      active={pathname === "/favorites"}
     >
       <IconFavorite />
       <span>Избранное</span>

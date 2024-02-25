@@ -21,6 +21,8 @@ import { PusherProvider } from "../providers/PusherProvider/components/Provider"
 import { SidebarSettings } from "@/widgets/Settings";
 import { ModalPremiumWhy } from "@/widgets/Premium/components/modal/ModalPremiumWhy";
 
+import dayJs from "@/shared/core/dayjs";
+import { timezoneData } from "@/shared/core/timezone";
 interface IProps {
   children: ReactNode;
 }
@@ -39,8 +41,11 @@ const tabs = [
 ];
 
 const MainLayout: FC<IProps> = async ({ children }) => {
-  const _token = cookies().get("_token")?.value;
+  const cookiesStore = cookies();
+
+  const _token = cookiesStore.get("_token")?.value;
   const user = await getUserInfo(_token);
+
   return (
     <UserProvider user={user}>
       <TelegramProvider user={user}>

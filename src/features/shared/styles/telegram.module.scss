@@ -1,15 +1,15 @@
 .telegram {
-  background: #6064c2 !important;
+  background: #378db8 !important;
   > span {
     white-space: nowrap;
     margin-left: 10px;
   }
 
-  @media (min-width: 901px) {
-    &:hover {
-      background: #424580 !important;
-    }
-  }
+  // @media (min-width: 901px) {
+  //   &:hover {
+  //     background: #424580 !important;
+  //   }
+  // }
 }
 
 .mob {

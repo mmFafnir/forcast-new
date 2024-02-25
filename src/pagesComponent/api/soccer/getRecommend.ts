@@ -20,20 +20,20 @@ export const getRecommend = async (params: IParams) => {
   }
 };
 
-interface IParamsServer extends Omit<IParams, "utcId"> {
+interface IParamsServer extends IParams {
   token?: string;
 }
 export const getRecommendServer = async (
   params: IParamsServer
 ): Promise<TypeMatch[]> => {
-  const { id, league = true, country = true, token = "" } = params;
+  const { id, league = true, country = true, token = "", utcId = "" } = params;
 
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
   try {
     const { data } = await axios.get(
-      `https://admin.aibetguru.com/api/app/more_match_for_game?game_id=${id}&league=${league}&country=${country}`,
+      `https://admin.aibetguru.com/api/app/more_match_for_game?game_id=${id}&league=${league}&country=${country}&utc_id=${utcId}`,
       config
     );
 

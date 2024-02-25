@@ -45,7 +45,6 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
   };
 
   useEffect(() => {
-    console.log(countryId, leagueId, sportId);
     fetchDate();
   }, [countryId, leagueId, sportId, date]);
 

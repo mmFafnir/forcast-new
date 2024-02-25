@@ -8,6 +8,7 @@ import { cookies } from "next/headers";
 import { Header } from "@/widgets/Header";
 import { FilterProvider } from "@/app/providers/FilterProvider";
 import { LinksProvider } from "@/app/providers/LinksProvider";
+import { getTimezone } from "@/shared/helper/getTimezone";
 
 interface IProps {
   date: string | null;
@@ -15,11 +16,13 @@ interface IProps {
 export const MainPage: NextPage<IProps> = async ({ date }) => {
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
+  const utcId = cookieStore.get("utc_id");
 
   const matches = await getMatchMainServer({
     date: date || "",
     timeStatus: "",
     token: token?.value || "",
+    utcId: getTimezone(utcId?.value)?.id || "",
   });
 
   return (

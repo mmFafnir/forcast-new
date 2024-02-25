@@ -8,6 +8,10 @@ import IconArrow from "@/shared/icons/IconArrow";
 import useAccordion, {
   IAccordionStylesIcon,
 } from "@/shared/hooks/useAccardion";
+import { setTimezone } from "../slice/timezoneSlice";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { timezoneData } from "@/shared/core/timezone";
 
 const iconStyles: IAccordionStylesIcon = {
   open: {},
@@ -16,10 +20,12 @@ const iconStyles: IAccordionStylesIcon = {
   },
 };
 export const TimezoneAccordion: FC = () => {
-  const [data, setData] = useState<TypeTimezone[]>([]);
-  const [currentData, setCurrentData] = useState<TypeTimezone | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const { utcId } = useTypeSelector((state) => state.timezone);
+  const dispatch = useTypeDispatch();
+
+  const [currentData, setCurrentData] = useState<TypeTimezone | null>(
+    timezoneData.find((time) => time.id === utcId) || null
+  );
 
   const listRef = useRef<HTMLDivElement | null>(null);
 
@@ -28,20 +34,10 @@ export const TimezoneAccordion: FC = () => {
     ref: listRef,
   });
 
-  useEffect(() => {
-    setLoading(true);
-    getTimezone()
-      .then((res) => {
-        setCurrentData(res[0]);
-        setData(res);
-      })
-      .catch(() => {
-        setError(true);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+  const onChange = (zone: TypeTimezone) => {
+    setCurrentData(zone);
+    dispatch(setTimezone({ timezone: zone.zone, id: zone.id }));
+  };
 
   return (
     <div className={styles.body}>
@@ -66,12 +62,12 @@ export const TimezoneAccordion: FC = () => {
         <div className={styles.content} ref={listRef}>
           <MyScrollbar>
             <div className={styles.list}>
-              {data.map((item) => (
+              {timezoneData.map((item) => (
                 <button
                   title={`${item.utc} ${item.zone}`}
                   className={item.id == currentData?.id ? styles.active : ""}
                   key={item.id}
-                  onClick={() => setCurrentData(item)}
+                  onClick={() => onChange(item)}
                 >{`${item.utc}`}</button>
               ))}
             </div>

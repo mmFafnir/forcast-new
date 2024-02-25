@@ -50,7 +50,7 @@ export const getMatchSoccer = async (
   }
 };
 
-interface IIParamsServer extends Omit<IParams, "utcId"> {
+interface IIParamsServer extends IParams {
   token: string;
 }
 
@@ -64,12 +64,14 @@ export const getMatchSoccerServer = async (
       token,
       country = "",
       league = "",
+      utcId = "",
     } = params || {
       date: "",
       timeStatus: "",
       token: "",
       country: "",
       league: "",
+      utcId: "",
     };
 
     const config = {
@@ -77,7 +79,7 @@ export const getMatchSoccerServer = async (
     };
 
     const { data } = await axios.get(
-      `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1`,
+      `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`,
       config
     );
     const res: IFetchMatch = {

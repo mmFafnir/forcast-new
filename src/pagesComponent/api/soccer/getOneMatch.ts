@@ -3,7 +3,8 @@ import axios from "axios";
 
 export const getOneMatch = async (
   url: string,
-  token?: string
+  token?: string,
+  base64?: boolean
 ): Promise<IFetchFullMatch | null> => {
   try {
     const config = {
@@ -14,6 +15,7 @@ export const getOneMatch = async (
       `/single_page_match`,
       {
         url: url,
+        base_64: base64 || false,
       },
       config
     );

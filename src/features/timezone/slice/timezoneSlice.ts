@@ -1,16 +1,17 @@
-import dayJs from "@/shared/core/dayjs";
 import { matchTimeZone } from "@/shared/core/timezone";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { parseCookies, setCookie } from "nookies";
+import { getTimezone } from "@/shared/helper/getTimezone";
 
 interface IState {
   timezone: string;
   utcId: number | "";
 }
 
+const { timezone, utc_id } = parseCookies();
 const initialState: IState = {
-  // @ts-ignore
-  timezone: matchTimeZone,
-  utcId: "",
+  timezone: timezone || getTimezone()?.zone || matchTimeZone,
+  utcId: Number(utc_id) || getTimezone()?.id || "",
 };
 
 const timezoneSlice = createSlice({
@@ -23,6 +24,8 @@ const timezoneSlice = createSlice({
     ) => {
       state.timezone = action.payload.timezone;
       state.utcId = action.payload.id;
+      setCookie(null, "utc_id", `${action.payload.id}`);
+      setCookie(null, "timezone", action.payload.timezone);
     },
   },
 });

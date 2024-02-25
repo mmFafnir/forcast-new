@@ -9,6 +9,7 @@ import { cookies } from "next/headers";
 import { FilterProvider } from "@/app/providers/FilterProvider";
 import { LinksProvider } from "@/app/providers/LinksProvider";
 import { Header } from "@/widgets/Header";
+import { getTimezone } from "@/shared/helper/getTimezone";
 
 interface IProps {
   date: string | null;
@@ -23,6 +24,7 @@ export const SoccerPage: FC<IProps> = async ({
 }) => {
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
+  const utcId = cookieStore.get("utc_id");
 
   const data = await getMatchSoccerServer({
     date: date || "",
@@ -30,6 +32,7 @@ export const SoccerPage: FC<IProps> = async ({
     token: token?.value || "",
     country: country,
     league: league,
+    utcId: getTimezone(utcId?.value)?.id || "",
   });
 
   const title = data.league

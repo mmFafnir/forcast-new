@@ -17,7 +17,7 @@ export const EmptyMain = () => {
           <div className={styles.list}>
             <SportBanner title="Футбол" img={soccerImg.src} href="/soccer" />
 
-            <SportBanner title="Скоро появится..." />
+            {/* <SportBanner title="Скоро появится..." /> */}
           </div>
         </MyScrollbar>
       </div>
