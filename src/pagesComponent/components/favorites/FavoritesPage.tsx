@@ -9,6 +9,7 @@ import { cookies } from "next/headers";
 import { MatchesFavoritesGroup } from "@/pagesComponent/module/group/MatchesFavoritesGroup";
 import { Header } from "@/widgets/Header";
 import { LinksProvider } from "@/app/providers/LinksProvider";
+import { DescriptionSEO } from "@/entities/seo-texts";
 
 export const FavoritesPage: NextPage = async () => {
   const cookieStore = cookies();
@@ -38,21 +39,7 @@ export const FavoritesPage: NextPage = async () => {
       </div>
       <RiskWidgets isMob />
       <TelegramButton isMob />
-      <div className="page-text-block">
-        <h3>Прогнозы ставок на футбольные матчи от ИИ</h3>
-        <p>
-          Мы предлагаем бесплатные прогнозы на футбол, основанные на тщательном
-          анализе искусственным интеллектом прошлых игр, формы игроков и других
-          важных факторов. Наш сайт предлагает онлайн прогнозы на футбол для
-          всех популярных лиг и турниров. Лучшие прогнозы на футбол от
-          искусственного интеллекта, который является профессионалом помогут вам
-          сделать правильный выбор и выиграть. Не упустите шанс сделать успешную
-          ставку на футбол с нашими бесплатными и точными прогнозами на футбол
-          сегодня! Сайт точных бесплатных прогнозов на футбол. Ai SportsOracle
-          не организует игры на деньги. Контент носит исключительно
-          информационный характер.
-        </p>
-      </div>
+      <DescriptionSEO />
     </LinksProvider>
   );
 };

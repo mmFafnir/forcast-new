@@ -10,6 +10,7 @@ import { FilterProvider } from "@/app/providers/FilterProvider";
 import { LinksProvider } from "@/app/providers/LinksProvider";
 import { Header } from "@/widgets/Header";
 import { getTimezone } from "@/shared/helper/getTimezone";
+import { DescriptionSEO } from "@/entities/seo-texts";
 
 interface IProps {
   date: string | null;
@@ -89,21 +90,7 @@ export const SoccerPage: FC<IProps> = async ({
         </div>
         <RiskWidgets isMob />
         <TelegramButton isMob />
-        <div className="page-text-block">
-          <h3>Прогнозы ставок на футбольные матчи от ИИ</h3>
-          <p>
-            Мы предлагаем бесплатные прогнозы на футбол, основанные на
-            тщательном анализе искусственным интеллектом прошлых игр, формы
-            игроков и других важных факторов. Наш сайт предлагает онлайн
-            прогнозы на футбол для всех популярных лиг и турниров. Лучшие
-            прогнозы на футбол от искусственного интеллекта, который является
-            профессионалом помогут вам сделать правильный выбор и выиграть. Не
-            упустите шанс сделать успешную ставку на футбол с нашими бесплатными
-            и точными прогнозами на футбол сегодня! Сайт точных бесплатных
-            прогнозов на футбол. Ai SportsOracle не организует игры на деньги.
-            Контент носит исключительно информационный характер.
-          </p>
-        </div>
+        <DescriptionSEO />
       </LinksProvider>
     </FilterProvider>
   );

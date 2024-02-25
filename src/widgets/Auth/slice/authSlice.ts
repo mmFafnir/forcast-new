@@ -25,7 +25,11 @@ interface IState {
 
 const initialState: IState = {
   auth: false,
-  webApp: false,
+  webApp:
+    typeof window !== "undefined" &&
+    (window as any).Telegram?.WebApp.initDataUnsafe.user
+      ? true
+      : false,
   status: EnumStatus.LOADING,
   user: null,
   token: null,

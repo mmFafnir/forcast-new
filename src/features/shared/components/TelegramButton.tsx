@@ -4,6 +4,7 @@ import styles from "../styles/telegram.module.scss";
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
 import { ModalShared } from "./ModalShared";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 interface IProps {
   className?: string;
@@ -14,10 +15,9 @@ export const TelegramButton: FC<IProps> = ({
   className = "",
   isMob = false,
 }) => {
-  useEffect(() => {
-    alert(JSON.stringify((window as any).Telegram?.WebApp.initDataUnsafe.user));
-  }, []);
+  const { webApp } = useTypeSelector((state) => state.auth);
 
+  if (webApp) return <></>;
   return (
     <>
       <Button
