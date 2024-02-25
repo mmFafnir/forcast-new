@@ -19,7 +19,7 @@ import { signOut } from "next-auth/react";
 import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 
 export const SettingsAuthModal = () => {
-  const { user } = useTypeSelector((state) => state.auth);
+  const { user, webApp } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
 
   const [component, setComponent] = useState<string>("mail");
@@ -46,9 +46,11 @@ export const SettingsAuthModal = () => {
         <Auth callbackConfirm={confirmNewEmail} callback={addNewEmail} />
       )}
       {component === "telegram" && <TelegramSnap />}
-      <Button onClick={onLogout} className={styles.logout} type="text">
-        Выйти
-      </Button>
+      {!webApp && (
+        <Button onClick={onLogout} className={styles.logout} type="text">
+          Выйти
+        </Button>
+      )}
     </Modal>
   );
 };

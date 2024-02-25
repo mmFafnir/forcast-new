@@ -15,7 +15,6 @@ import { timezoneData } from "@/shared/core/timezone";
 export const TimezoneSelect = () => {
   const { utcId } = useTypeSelector((state) => state.timezone);
   const dispatch = useTypeDispatch();
-  console.log(utcId);
   const [open, setOpen] = useState<boolean>(false);
 
   const [currentData, setCurrentData] = useState<TypeTimezone | null>(

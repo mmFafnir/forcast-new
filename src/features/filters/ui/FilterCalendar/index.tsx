@@ -48,7 +48,8 @@ const FilterCalendarMemo: FC<IProps> = ({
     dispatch(setDate(date));
     setCurrentDate(date);
     // @ts-ignore
-    if (date === dayJs().utc().tz(timezone).format("YYYY-MM-DD")) {
+    const today = dayJs().utc().tz(timezone).format("YYYY-MM-DD");
+    if (date === today || startDate === today) {
       deleteQuery("date");
       return;
     }
@@ -57,13 +58,12 @@ const FilterCalendarMemo: FC<IProps> = ({
   const onChange = (value: any) => setDay(value);
   useEffect(() => {
     if (!startDate) return;
-    console.log(currentDate);
     dispatch(setDate(startDate));
   }, []);
 
   useEffect(() => {
     const date = parseQueryParams(window.location.search).date;
-    dispatch(setDate(date ? date : dayjs().format("YYYY-MM-DD")));
+    // dispatch(setDate(startDate || date ? date : dayjs().format("YYYY-MM-DD")));
   }, [pathname]);
 
   useEffect(() => {
@@ -72,7 +72,6 @@ const FilterCalendarMemo: FC<IProps> = ({
       dayJs().utc().tz(timezone).format("YYYY-MM-DD")
     );
   }, [timezone]);
-
   if (timeStatus === 1) return <></>;
   return (
     <div className={`${styles.body} ${bodyClass}`}>
@@ -88,7 +87,7 @@ const FilterCalendarMemo: FC<IProps> = ({
         minDate={new Date(minDate)}
         maxDate={new Date(maxDate)}
         onChange={onChange}
-        tileClassName={({ date, view, activeStartDate }) => {
+        tileClassName={({ date }) => {
           if (dayjs(date).format("YYYY-MM-DD") === defaultDate) {
             return "react-calendar__utc--now";
           }

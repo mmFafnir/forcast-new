@@ -6,7 +6,7 @@ import Loader from "@/shared/UI/Loader";
 import Pagination, { TypeLink } from "@/shared/UI/Pagination";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { TypeBet, TypeMatch } from "@/shared/types/match";
-import { FC, use, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 interface IMatch extends TypeMatch {
   card: TypeBet[];
@@ -35,7 +35,6 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
       page: page || 1,
     })
       .then((res) => {
-        console.log(res);
         setData(res.data);
         setCurrentLinks(res.links);
       })
@@ -45,12 +44,13 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
   };
 
   useEffect(() => {
+    console.log("contxh");
     fetchDate();
   }, [countryId, leagueId, sportId, date]);
 
   useEffect(() => {
-    setData(matches);
-  }, [matches]);
+    console.log("mount");
+  }, []);
 
   return (
     <div>

@@ -18,4 +18,5 @@ export interface IFetchArchive {
   prev_page_url: null | string;
   to: number;
   total: number;
+  startDate: string;
 }

@@ -31,7 +31,7 @@ interface IProps {
 }
 
 const UserModal: FC<IProps> = ({ open }) => {
-  const { user, webApp } = useTypeSelector((state) => state.auth);
+  const { user } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
 
   const onLogout = () => {
@@ -72,12 +72,10 @@ const UserModal: FC<IProps> = ({ open }) => {
           <IconSettings />
           <span>Настройки аккаунта</span>
         </Button>
-        {!webApp && (
-          <Button type="text" onClick={onLogout}>
-            <IconLogout />
-            <span>Выйти</span>
-          </Button>
-        )}
+        <Button type="text" onClick={onLogout}>
+          <IconLogout />
+          <span>Выйти</span>
+        </Button>
       </div>
       <div className={styles.prem}>
         <PremMatchBanner

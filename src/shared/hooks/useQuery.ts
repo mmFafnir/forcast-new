@@ -6,7 +6,6 @@ const useQuery = () => {
   const searchParams = useSearchParams();
 
   const setQuery = ({ name, value }: { name: string; value: string }) => {
-    console.log("start change");
     const current = new URLSearchParams(Array.from(searchParams.entries())); // -> has to use this form
     current.set(name, value);
     const search = current.toString();
@@ -15,7 +14,6 @@ const useQuery = () => {
 
     // router.replace(`#${name}=${value}`);
     window.history.pushState(null, "", `${pathname}${query}`);
-    console.log("end change");
   };
 
   const deleteQuery = (name?: string) => {

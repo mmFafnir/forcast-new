@@ -22,7 +22,6 @@ const handler = NextAuth({
 
   callbacks: {
     async signIn({ account, profile }) {
-      console.log(account, profile);
       if (!account || !profile) return;
 
       try {

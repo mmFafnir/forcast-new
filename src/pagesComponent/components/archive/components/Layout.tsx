@@ -4,13 +4,13 @@ import HeaderPage from "@/widgets/HeaderPage";
 import { FilterArchive } from "./Filter";
 import { FilterCalendar } from "@/features/filters";
 import { Header } from "@/widgets/Header";
-import dayjs from "dayjs";
 import { DescriptionSEO } from "@/entities/seo-texts";
 
 interface IProps {
   children: ReactNode;
+  startDate?: string;
 }
-export const ArchiveLayout: FC<IProps> = ({ children }) => {
+export const ArchiveLayout: FC<IProps> = ({ children, startDate }) => {
   return (
     <div className={styles.page}>
       <Header
@@ -26,7 +26,7 @@ export const ArchiveLayout: FC<IProps> = ({ children }) => {
           <>
             <FilterArchive />
             <FilterCalendar
-              startDate={dayjs().subtract(3, "month").format("YYYY-MM-DD")}
+              startDate={startDate}
               bodyClass={styles.calendar}
               titleClass={styles.calendar}
             />

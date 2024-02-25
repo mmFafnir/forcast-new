@@ -25,7 +25,6 @@ export const SuccessNotify = () => {
   };
 
   useEffect(() => {
-    console.log(modal);
     if (modal === null && isRunning) {
       pause();
     }

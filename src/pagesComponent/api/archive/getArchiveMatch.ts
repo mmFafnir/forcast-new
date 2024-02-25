@@ -17,6 +17,7 @@ const defaultRes: IFetchArchive = {
   prev_page_url: null,
   to: 0,
   total: 0,
+  startDate: "",
 };
 
 interface IParams {
@@ -54,12 +55,9 @@ export const getArchiveServer = async (
     headers: { Authorization: `Bearer ${token}` },
   };
   try {
-    const { data } = await axios.get(
-      `${baseUrl}/archive_game?date=${date}`,
-      config
-    );
+    const { data } = await axios.get(`/archive_game?date=${date}`, config);
 
-    return data.data;
+    return { ...data.data, startDate: data.date };
   } catch (error) {
     console.log(error);
     return defaultRes;

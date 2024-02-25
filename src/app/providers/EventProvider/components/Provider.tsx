@@ -21,10 +21,6 @@ export const EventProvider: FC<IProps> = ({ children }) => {
 
     document.addEventListener("keydown", pressKey);
 
-    window.addEventListener("popstate", function (event) {
-      console.log(window.history);
-    });
-
     return () => document.removeEventListener("keydown", pressKey);
   }, []);
 

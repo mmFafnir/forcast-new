@@ -14,7 +14,6 @@ const InputMemo: FC<IProps> = ({ onSearch, focus = false }) => {
 
   useEffect(() => {
     if (!focus || !inputRef.current) return;
-    console.log(inputRef.current);
     setTimeout(() => {
       inputRef.current?.focus();
     }, 300);
