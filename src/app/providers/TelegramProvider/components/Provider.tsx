@@ -23,10 +23,8 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
   const dispatch = useTypeDispatch();
 
   useEffect(() => {
-    alert(user);
     if (user) return;
     const app = (window as any).Telegram?.WebApp;
-    alert(app);
     if (app) {
       app.ready();
       app.expand();
@@ -38,10 +36,7 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
           }
         : {};
 
-      alert(JSON.stringify(value));
       if (!value.user) return;
-      dispatch(setWebApp(true));
-      alert(`use agent: ${JSON.stringify(window.navigator.userAgent)}`);
       loginInWebView(value.user).then((res) => {
         dispatch(setUser({ ...res.data, favorite_count: res.favorite_array }));
         setCookie(null, "_token", res.token, {
