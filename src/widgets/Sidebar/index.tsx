@@ -21,7 +21,6 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   const onCloseSidebar = () => dispatch(toggleSidebar());
-  console.log((window as any).Telegram);
   return (
     <>
       <button

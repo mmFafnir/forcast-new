@@ -41,7 +41,7 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
       alert(JSON.stringify(value));
       if (!value.user) return;
       dispatch(setWebApp(true));
-      alert(window.navigator.userAgent);
+      alert(`use agent: ${JSON.stringify(window.navigator.userAgent)}`);
       loginInWebView(value.user).then((res) => {
         dispatch(setUser({ ...res.data, favorite_count: res.favorite_array }));
         setCookie(null, "_token", res.token, {
@@ -53,8 +53,11 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
 
   return (
     <>
-      <Script src="/TgWebView.js" strategy="beforeInteractive" />
-      {children}
+      <Script
+        src="https://telegram.org/js/telegram-web-app.js"
+        strategy="beforeInteractive"
+      />
+      {children}x
     </>
   );
 };
