@@ -23,6 +23,7 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
   const dispatch = useTypeDispatch();
 
   useEffect(() => {
+    alert(user);
     if (user) return;
     const app = (window as any).Telegram?.WebApp;
     if (app) {
@@ -36,6 +37,7 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
           }
         : {};
 
+      alert(JSON.stringify(value));
       if (!value.user) return;
       dispatch(setWebApp(true));
       alert(window.navigator.userAgent);
