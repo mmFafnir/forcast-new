@@ -36,7 +36,12 @@ const initialState: IState = {
   errorsValid: [],
   notification: [],
 };
-
+alert(
+  typeof window !== "undefined" &&
+    (window as any).Telegram?.WebApp.initDataUnsafe.user
+    ? true
+    : false
+);
 const authSlice = createSlice({
   name: "auth",
   initialState,
