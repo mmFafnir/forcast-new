@@ -4,7 +4,6 @@ import React from "react";
 
 export const DescriptionSEO = () => {
   const { webApp } = useTypeSelector((state) => state.auth);
-  console.log(webApp);
 
   if (webApp) return <></>;
   return (

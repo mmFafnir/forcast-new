@@ -11,8 +11,9 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { toggleSidebar } from "@/features/closeSidebar/slice/closeSidebarSlice";
 import { TelegramButton } from "@/features/shared";
 import Logo from "@/shared/UI/Logo";
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
+import { IResponseDate, getGlobalData } from "../api/getGlobalData";
 
 const Sidebar = () => {
   const { webApp } = useTypeSelector((state) => state.auth);
@@ -20,7 +21,17 @@ const Sidebar = () => {
   const dispatch = useTypeDispatch();
   const pathname = usePathname();
 
+  const [loading, setLoading] = useState(true);
+  const [global, setGlobal] = useState<IResponseDate | null>(null);
+
   const onCloseSidebar = () => dispatch(toggleSidebar());
+
+  useEffect(() => {
+    getGlobalData().then((res) => {
+      setGlobal(res);
+    });
+  }, []);
+
   return (
     <>
       <button
@@ -64,7 +75,9 @@ const Sidebar = () => {
                 >
                   <SportsIcon icon="soccer" />
                   <span>Футбол</span>
-                  <TotalMatches className={styles.total}>20</TotalMatches>
+                  <TotalMatches className={styles.total}>
+                    {global?.games_count || 0}
+                  </TotalMatches>
                 </Button>
               ))}
             </div>

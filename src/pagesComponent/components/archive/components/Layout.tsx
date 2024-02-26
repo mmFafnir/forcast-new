@@ -5,12 +5,14 @@ import { FilterArchive } from "./Filter";
 import { FilterCalendar } from "@/features/filters";
 import { Header } from "@/widgets/Header";
 import { DescriptionSEO } from "@/entities/seo-texts";
+import { getGlobalData } from "@/widgets/api/getGlobalData";
 
 interface IProps {
   children: ReactNode;
-  startDate?: string;
 }
-export const ArchiveLayout: FC<IProps> = ({ children, startDate }) => {
+export const ArchiveLayout: FC<IProps> = async ({ children }) => {
+  const params = await getGlobalData();
+
   return (
     <div className={styles.page}>
       <Header
@@ -26,7 +28,7 @@ export const ArchiveLayout: FC<IProps> = ({ children, startDate }) => {
           <>
             <FilterArchive />
             <FilterCalendar
-              startDate={startDate}
+              startDate={params?.get_latest_archive_game}
               bodyClass={styles.calendar}
               titleClass={styles.calendar}
             />

@@ -28,8 +28,6 @@ export const SoccerPage: FC<IProps> = async ({
   const token = cookieStore.get("_token");
   const utcId = cookieStore.get("utc_id");
 
-  console.log(getTimezone(utcId?.value)?.id);
-
   const data = await getMatchSoccerServer({
     date:
       date ||

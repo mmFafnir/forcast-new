@@ -32,7 +32,7 @@ const FilterCalendarMemo: FC<IProps> = ({
 
   const { timezone } = useTypeSelector((state) => state.timezone);
   const { timeStatus, date } = useTypeSelector((state) => state.filters);
-  const { setQuery, deleteQuery } = useQuery();
+  const { setQuery, deleteQuery, query } = useQuery("date");
 
   const [currentDate, setCurrentDate] = useState<string>(startDate || date);
   const [defaultDate, setDefaultDate] = useState<string>(
@@ -49,17 +49,13 @@ const FilterCalendarMemo: FC<IProps> = ({
     setCurrentDate(date);
     // @ts-ignore
     const today = dayJs().utc().tz(timezone).format("YYYY-MM-DD");
-    if (date === today || startDate === today) {
+    if (date === today || startDate === date) {
       deleteQuery("date");
       return;
     }
   };
 
   const onChange = (value: any) => setDay(value);
-  useEffect(() => {
-    if (!startDate) return;
-    dispatch(setDate(startDate));
-  }, []);
 
   useEffect(() => {
     const date = parseQueryParams(window.location.search).date;
@@ -72,6 +68,12 @@ const FilterCalendarMemo: FC<IProps> = ({
       dayJs().utc().tz(timezone).format("YYYY-MM-DD")
     );
   }, [timezone]);
+
+  useEffect(() => {
+    if (!startDate || query) return;
+    dispatch(setDate(startDate));
+  }, []);
+
   if (timeStatus === 1) return <></>;
   return (
     <div className={`${styles.body} ${bodyClass}`}>

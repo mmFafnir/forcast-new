@@ -6,7 +6,9 @@ import Loader from "@/shared/UI/Loader";
 import Pagination, { TypeLink } from "@/shared/UI/Pagination";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { TypeBet, TypeMatch } from "@/shared/types/match";
+import dayJs from "@/shared/core/dayjs";
 import { FC, useEffect, useState } from "react";
+import { matchTimeZone } from "@/shared/core/timezone";
 
 interface IMatch extends TypeMatch {
   card: TypeBet[];
@@ -21,6 +23,7 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
   const [currentLinks, setCurrentLinks] = useState<TypeLink[]>(links);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const { utcId } = useTypeSelector((state) => state.timezone);
   const { countryId, leagueId, sportId, date } = useTypeSelector(
     (state) => state.filters
   );
@@ -32,9 +35,11 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
       sportId,
       countryId,
       leagueId,
+      utcId,
       page: page || 1,
     })
       .then((res) => {
+        console.log(date, res.data);
         setData(res.data);
         setCurrentLinks(res.links);
       })
@@ -42,15 +47,12 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
         setLoading(false);
       });
   };
-
   useEffect(() => {
-    console.log("contxh");
+    console.log(date);
+    // @ts-ignore
+    if (date === dayJs().utc().tz(matchTimeZone).format("YYYY-MM-DD")) return;
     fetchDate();
-  }, [countryId, leagueId, sportId, date]);
-
-  useEffect(() => {
-    console.log("mount");
-  }, []);
+  }, [date, countryId, leagueId, sportId, utcId]);
 
   return (
     <div>
@@ -66,7 +68,7 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
       <Pagination
         total={data.length * (currentLinks.length - 2)}
         pageSize={10}
-        setPage={fetchDate}
+        setPage={() => {}}
       />
     </div>
   );

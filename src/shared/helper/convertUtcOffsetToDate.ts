@@ -14,7 +14,6 @@ export function convertUtcOffsetToDate(
     : // @ts-ignore
       dayjs.utc();
 
-  console.log("utcTime", offset);
   // Применяем смещение к времени
   const adjustedTime = utcTime.add(offset, "hour");
 

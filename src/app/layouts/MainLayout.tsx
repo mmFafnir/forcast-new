@@ -21,8 +21,6 @@ import { PusherProvider } from "../providers/PusherProvider/components/Provider"
 import { SidebarSettings } from "@/widgets/Settings";
 import { ModalPremiumWhy } from "@/widgets/Premium/components/modal/ModalPremiumWhy";
 
-import dayJs from "@/shared/core/dayjs";
-import { timezoneData } from "@/shared/core/timezone";
 interface IProps {
   children: ReactNode;
 }

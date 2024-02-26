@@ -7,6 +7,7 @@ interface IProps {
 }
 
 const Home: NextPage<IProps> = ({ searchParams }) => {
+  console.log(searchParams);
   const date = searchParams["date"] || null;
   return <MainPage date={date} />;
 };

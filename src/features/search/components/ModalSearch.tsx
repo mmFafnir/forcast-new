@@ -72,8 +72,6 @@ export const ModalSearch: FC = () => {
     fetchMatches(search);
   }, [status]);
 
-  console.log(data);
-
   return (
     <Modal
       title={"Поиск"}

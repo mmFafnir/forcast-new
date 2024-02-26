@@ -1,6 +1,6 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-const useQuery = () => {
+const useQuery = (keyQuery?: string) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -25,7 +25,7 @@ const useQuery = () => {
     router.replace(`${pathname}${query}`);
   };
 
-  return { setQuery, deleteQuery };
+  return { setQuery, deleteQuery, query: searchParams.get(keyQuery || "") };
 };
 
 export default useQuery;
