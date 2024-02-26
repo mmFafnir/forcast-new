@@ -9,7 +9,8 @@ interface IProps {
 const Home: NextPage<IProps> = ({ searchParams }) => {
   console.log(searchParams);
   const date = searchParams["date"] || null;
-  return <MainPage date={date} />;
+  const webApp = searchParams["web_app"];
+  return <MainPage date={date} webApp={webApp === "true" ? true : false} />;
 };
 
 export default Home;

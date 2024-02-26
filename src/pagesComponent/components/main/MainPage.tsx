@@ -13,8 +13,9 @@ import { DescriptionSEO } from "@/entities/seo-texts";
 
 interface IProps {
   date: string | null;
+  webApp: boolean;
 }
-export const MainPage: NextPage<IProps> = async ({ date }) => {
+export const MainPage: NextPage<IProps> = async ({ date, webApp }) => {
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
   const utcId = cookieStore.get("utc_id");
@@ -27,7 +28,7 @@ export const MainPage: NextPage<IProps> = async ({ date }) => {
   });
 
   return (
-    <FilterProvider sport={""} league={""} country={""}>
+    <FilterProvider sport={""} league={""} country={""} webApp={webApp}>
       <LinksProvider
         links={{
           sport: "",
