@@ -146,6 +146,10 @@ h2 {
 .h-vh {
   height: 100vh;
 }
+
+.min-h-block {
+  min-height: 378px;
+}
 .flex-col {
   display: flex;
   flex-direction: column;
@@ -239,6 +243,9 @@ h2 {
 }
 
 @media (max-width: 500px) {
+  .min-h-block {
+    min-height: auto;
+  }
   .desk {
     display: none;
   }

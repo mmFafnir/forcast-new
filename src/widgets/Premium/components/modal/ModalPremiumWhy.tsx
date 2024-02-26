@@ -66,6 +66,7 @@ export const ModalPremiumWhy = () => {
       titleAlight="center"
       iconClose={click == "no-auth" ? <IconX /> : <IconBack />}
       onCloseCallback={onBack}
+      hideRender
       title={
         <h2 className={styles.title}>
           Зачем мне <span>PREMIUM?</span>

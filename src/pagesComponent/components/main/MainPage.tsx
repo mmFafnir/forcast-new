@@ -38,7 +38,7 @@ export const MainPage: NextPage<IProps> = async ({ date }) => {
       >
         <Header breadCrumbs={[]} />
         <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />
-        <div className="flex-1 flex-col">
+        <div className="flex-1 flex-col min-h-block">
           <MatchesGroupHome matches={matches} />
         </div>
         <RiskWidgets isMob />

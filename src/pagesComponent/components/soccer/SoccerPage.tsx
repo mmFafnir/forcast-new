@@ -11,6 +11,7 @@ import { LinksProvider } from "@/app/providers/LinksProvider";
 import { Header } from "@/widgets/Header";
 import { getTimezone } from "@/shared/helper/getTimezone";
 import { DescriptionSEO } from "@/entities/seo-texts";
+import dayJs from "@/shared/core/dayjs";
 
 interface IProps {
   date: string | null;
@@ -27,8 +28,13 @@ export const SoccerPage: FC<IProps> = async ({
   const token = cookieStore.get("_token");
   const utcId = cookieStore.get("utc_id");
 
+  console.log(getTimezone(utcId?.value)?.id);
+
   const data = await getMatchSoccerServer({
-    date: date || "",
+    date:
+      date ||
+      // @ts-ignore
+      dayJs().utc().tz(getTimezone(utcId?.value)?.zone).format("YYYY-MM-DD"),
     timeStatus: "",
     token: token?.value || "",
     country: country,

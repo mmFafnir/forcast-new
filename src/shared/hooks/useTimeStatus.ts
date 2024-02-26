@@ -24,19 +24,9 @@ const useTimeStatus = ({ matchTime }: IProps) => {
   const timeDefaultTimezone = dayJs.tz(matchTime, matchTimeZone);
 
   const getStatusMatch = (newTime: string) => {
-    const today = dayJs();
+    // @ts-ignore
+    const today = dayJs.tz(matchTime, matchTimeZone);
     const diff = dayJs(newTime).diff(today);
-
-    let status = "";
-    if (diff < 0) status = "finish";
-
-    const totalSeconds = Math.floor(diff / 1000);
-    const totalMinutes = Math.floor(totalSeconds / 60);
-    const totalHours = Math.floor(totalMinutes / 60);
-
-    if (totalHours < 24) {
-      status = "today";
-    }
 
     setTime({
       time: dayJs(newTime).locale("ru").format("DD MMMM YYYY"),

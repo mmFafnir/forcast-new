@@ -53,7 +53,7 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
         src="https://telegram.org/js/telegram-web-app.js"
         strategy="beforeInteractive"
       />
-      {children}x
+      {children}
     </>
   );
 };

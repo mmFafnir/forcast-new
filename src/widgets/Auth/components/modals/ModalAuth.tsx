@@ -48,6 +48,7 @@ export const ModalAuth = () => {
       styleBody={{ padding: 0 }}
       title="Вход или регистрация"
       titleAlight="center"
+      hideRender
     >
       <Wrapper>
         <>

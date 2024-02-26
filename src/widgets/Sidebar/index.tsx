@@ -52,7 +52,7 @@ const Sidebar = () => {
               >
                 <SportsIcon icon="top" />
                 <span>Топ матчи</span>
-                <TotalMatches>20</TotalMatches>
+                <TotalMatches className={styles.total}>20</TotalMatches>
               </Button>
               {new Array(1).fill(null).map((link, index) => (
                 <Button
@@ -64,7 +64,7 @@ const Sidebar = () => {
                 >
                   <SportsIcon icon="soccer" />
                   <span>Футбол</span>
-                  <TotalMatches>20</TotalMatches>
+                  <TotalMatches className={styles.total}>20</TotalMatches>
                 </Button>
               ))}
             </div>

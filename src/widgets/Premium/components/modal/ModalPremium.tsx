@@ -39,6 +39,7 @@ export const ModalPremium = () => {
       styleContent={{ flex: "0 1 560px", margin: "0 auto", paddingTop: "40px" }}
       styleBody={{ padding: 0 }}
       titleAlight="center"
+      hideRender
       title={
         <p className={styles.title}>
           Доступ к <span className={styles.gold}>PREMIUM</span> контенту

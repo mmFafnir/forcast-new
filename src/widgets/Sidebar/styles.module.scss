@@ -92,6 +92,10 @@
   display: none;
 }
 
+.total {
+  background-color: transparent !important;
+}
+
 @media (min-width: 1240px) {
   .close {
     flex: 0 0 85px;

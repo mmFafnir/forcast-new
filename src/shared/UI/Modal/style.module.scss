@@ -9,12 +9,14 @@
   display: flex;
   justify-content: center;
   visibility: hidden;
-  transition-duration: 100ms;
+  transition-duration: 200ms;
+  opacity: 0;
   padding-top: 10%;
   align-items: flex-start;
 }
 
-.show {
+.show,
+.visible {
   visibility: visible;
 
   .wrapper,

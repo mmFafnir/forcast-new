@@ -30,6 +30,7 @@ const MatchesGroupMemo: FC<IProps> = ({
       setLoading(false);
       return;
     }
+    console.log(utcId);
     setLoading(true);
     getMatchSoccer({
       date: timeStatus === 1 ? "" : date,
@@ -45,34 +46,33 @@ const MatchesGroupMemo: FC<IProps> = ({
   }, [date, timeStatus, utcId]);
 
   useEffect(() => {
-    console.log(data);
+    console.log(matches);
   }, []);
   return (
-    <div className="flex-1">
-      {loading && (
-        <div className="loader-body">
-          <Loader />
-        </div>
-      )}
-      {!loading && data.length === 0 && (
+    <div className="flex-1 min-h-block relative">
+      {data.length === 0 && (
         <div className="empty-data">
           <p>Матчи не найдены</p>
           <IconEmpty />
         </div>
       )}
-      {!loading &&
-        data.map((lig) => (
-          <SportGroup
-            key={lig.league_id}
-            title={lig.league_name}
-            headerRender={<FavoritesLeagueHeader league={lig} />}
-            total={lig.games.length}
-          >
-            {lig.games.map((game) => (
-              <Match key={game.id} match={game} />
-            ))}
-          </SportGroup>
-        ))}
+      {data.map((lig) => (
+        <SportGroup
+          key={lig.league_id}
+          title={lig.league_name}
+          headerRender={<FavoritesLeagueHeader league={lig} />}
+          total={lig.games.length}
+        >
+          {lig.games.map((game) => (
+            <Match key={game.id} match={game} />
+          ))}
+        </SportGroup>
+      ))}
+      {loading && (
+        <div className="loader-hover--fixed">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };

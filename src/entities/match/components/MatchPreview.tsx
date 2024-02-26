@@ -10,6 +10,7 @@ import CustomImage from "@/shared/UI/CustomImage";
 import dayjs from "dayjs";
 import backgroundMatchImage from "../images/previewImage.jpg";
 import useTimeStatus from "@/shared/hooks/useTimeStatus";
+import useTimeUtc from "@/shared/hooks/useTimeUtc";
 
 interface ITeamProps {
   src: string;
@@ -59,10 +60,7 @@ interface IProps {
 }
 
 export const MatchPreview: FC<IProps> = ({ match }) => {
-  const { time, hours, status } = useTimeStatus({
-    matchTime: match.real_time_carbon,
-  });
-
+  const { date, hours } = useTimeUtc(match.real_time_carbon);
   return (
     <div
       className={`${styles.body} review-match`}
@@ -109,11 +107,11 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
           ]}
         />
         <div className={styles.times}>
-          <p>{time}</p>
+          <p>{date}</p>
           <p>{hours}</p>
         </div>
         <div className={styles.footer}>
-          {time === "today" ? (
+          {date === "today" ? (
             dayjs(match.real_date) === dayjs() && (
               <></>
               // <button className={styles.live}>До начала осталось {time}</button>
