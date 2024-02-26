@@ -25,7 +25,9 @@
     visibility: visible;
   }
 }
-
+.show {
+  opacity: 1;
+}
 .bg {
   position: absolute;
   top: 0;

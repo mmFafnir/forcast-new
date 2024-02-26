@@ -2,14 +2,12 @@
 
 import { FC, useEffect, useState } from "react";
 import styles from "../../styles/snaps/telegram.module.scss";
-import Image from "next/image";
 import Button from "@/shared/UI/Button";
 import axios from "@/shared/core/axios";
 import { setCookie } from "nookies";
 import { loginTelegram } from "../../api/auth";
 import { QRCodeSVG } from "qrcode.react";
 import Loader from "@/shared/UI/Loader";
-import { isMobile } from "@/features/shared/scripts/isMobile";
 
 interface IFetchData {
   status: boolean;

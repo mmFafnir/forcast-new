@@ -17,7 +17,7 @@ interface IProps {
   component: string;
 }
 export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
-  const { user } = useTypeSelector((state) => state.auth);
+  const { user, webApp } = useTypeSelector((state) => state.auth);
   const [openWindow, setOpenWindow] = useState<boolean>(false);
   const buttons = useMemo(
     () => [
@@ -34,6 +34,7 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
       {
         name: "google",
         svg: google,
+        disabled: webApp,
         onClick: () => {
           if (isMobile.any()) {
             signIn("google");
@@ -56,11 +57,11 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
         {buttons.map((btn) => {
           return (
             <button
-              disabled={btn.checked}
+              disabled={btn.checked || btn.disabled}
               className={`${styles.button} ${
                 component === btn.name ? styles.active : ""
               }
-              ${btn.checked ? styles.default : ""}`}
+              ${btn.checked || btn.disabled ? styles.default : ""}`}
               onClick={(e) =>
                 btn.onClick ? btn.onClick() : setComponent(btn.name)
               }
