@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import { parseQueryParams } from "@/shared/helper/parseQueryParams";
 import dayJs from "@/shared/core/dayjs";
 import { matchTimeZone } from "@/shared/core/timezone";
+
 export const minDate = "2001-12-12";
 export const maxDate = "2030-12-12";
 
@@ -58,8 +59,17 @@ const FilterCalendarMemo: FC<IProps> = ({
   const onChange = (value: any) => setDay(value);
 
   useEffect(() => {
-    const date = parseQueryParams(window.location.search).date;
-    // dispatch(setDate(startDate || date ? date : dayjs().format("YYYY-MM-DD")));
+    // if (pathname === "/archive") return;
+    const date = startDate
+      ? startDate
+      : parseQueryParams(window.location.search).date;
+    console.log(date);
+    setCurrentDate(
+      date
+        ? date
+        : // @ts-ignore
+          dayJs().utc().tz(matchTimeZone).format("YYYY-MM-DD")
+    );
   }, [pathname]);
 
   useEffect(() => {
@@ -73,6 +83,8 @@ const FilterCalendarMemo: FC<IProps> = ({
     if (!startDate || query) return;
     dispatch(setDate(startDate));
   }, []);
+
+  console.log(currentDate);
 
   if (timeStatus === 1) return <></>;
   return (

@@ -28,7 +28,7 @@ export const PinButton: FC<IProps> = ({ leagues }) => {
   const [loading, setLoading] = useState(false);
 
   const [isPin, setIsPin] = useState<boolean>(
-    leagues.user_pind_admin_count === 1 || leagues.user_pind_count === 1
+    leagues.user_pind_admin_count == 1 || leagues.user_pind_count == 1
   );
 
   const toggleSetLeague = (status: boolean) => {
@@ -72,6 +72,12 @@ export const PinButton: FC<IProps> = ({ leagues }) => {
       setIsPin(false);
     }
   }, [pinUserLeagues, pinDefaultLeagues]);
+
+  useEffect(() => {
+    setIsPin(
+      leagues.user_pind_admin_count == 1 || leagues.user_pind_count == 1
+    );
+  }, [leagues]);
 
   return (
     <button

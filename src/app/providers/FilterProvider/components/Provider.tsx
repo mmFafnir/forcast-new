@@ -36,6 +36,7 @@ export const FilterProvider: FC<IProps> = ({
   }, []);
 
   useEffect(() => {
+    console.log(pathname);
     dispatch(setDefaultFilter());
   }, [pathname]);
 

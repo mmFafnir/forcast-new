@@ -57,7 +57,7 @@ const filterSlice = createSlice({
       state.leagueId = "";
       state.sportId = "";
       state.timeStatus = "";
-      state.date = date;
+      // state.date = date;
     },
   },
 });
