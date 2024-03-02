@@ -8,7 +8,9 @@ export const EmptyMain = () => {
   return (
     <div className={styles.body}>
       <p className={styles.text}>
-        <a href="https://www.google.ru/?hl=ru">Google </a>
+        <a target="_blank" href="https://www.google.ru/?hl=ru">
+          Google{" "}
+        </a>
         Топ матчи на сегодня еще не выявлены. Переходи на нужный вид спорта
         чтобы увидеть все матчи на сегодня.
       </p>
