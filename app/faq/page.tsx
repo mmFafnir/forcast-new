@@ -1,5 +1,5 @@
 import { getStaticSeo } from "@/pagesComponent/api/seo/getSeoStatic";
-import { getFaqs } from "@/pagesComponent/api/static/getFaqs/getFaqs";
+import { getFaqs } from "@/pagesComponent/api/static/getFaqs";
 import FaqPage from "@/pagesComponent/components/faq/FaqPage";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";

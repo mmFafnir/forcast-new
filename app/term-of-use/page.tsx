@@ -1,11 +1,11 @@
 import { getStaticSeo } from "@/pagesComponent/api/seo/getSeoStatic";
-import { getPrivacyPolicy } from "@/pagesComponent/api/static/getPrivacyPolicy";
+import { getTermOfUse } from "@/pagesComponent/api/static/getTermOfUse";
 import Privacy from "@/pagesComponent/components/privacy/Privacy";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const seo = await getStaticSeo("privacy-policy");
+  const seo = await getStaticSeo("term-of-use");
 
   return {
     title: seo?.ceo_title || "",
@@ -13,13 +13,13 @@ export async function generateMetadata(): Promise<Metadata> {
     keywords: seo?.ceo_keywords || "",
   };
 }
-const PrivacyPolicy = async () => {
-  const seo = await getStaticSeo("privacy-policy");
-  const data = await getPrivacyPolicy();
+const TermOfUse = async () => {
+  const seo = await getStaticSeo("term-of-use");
+  const data = await getTermOfUse();
 
   const breadCrumbs = [
     {
-      title: "Политика конфиденциальности ",
+      title: "Условия Пользования",
       href: "/privacy-policy",
     },
   ];
@@ -27,4 +27,4 @@ const PrivacyPolicy = async () => {
   return <Privacy breadCrumbs={breadCrumbs} text={data} seo={seo} />;
 };
 
-export default PrivacyPolicy;
+export default TermOfUse;
