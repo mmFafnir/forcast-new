@@ -6,11 +6,13 @@ import { FilterCalendar } from "@/features/filters";
 import { Header } from "@/widgets/Header";
 import { DescriptionSEO } from "@/entities/seo-texts";
 import { getGlobalData } from "@/widgets/api/getGlobalData";
+import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 
 interface IProps {
   children: ReactNode;
+  seo: IFetchSeo;
 }
-export const ArchiveLayout: FC<IProps> = async ({ children }) => {
+export const ArchiveLayout: FC<IProps> = async ({ children, seo }) => {
   const params = await getGlobalData();
 
   return (
@@ -34,11 +36,11 @@ export const ArchiveLayout: FC<IProps> = async ({ children }) => {
             />
           </>
         }
-        title={"Архив"}
+        title={seo.ceo_h}
         filterStyle={{ flexWrap: "wrap" }}
       />
       <div className="flex-1 relative">{children}</div>
-      <DescriptionSEO />
+      <DescriptionSEO text={seo.ceo_text} />
     </div>
   );
 };

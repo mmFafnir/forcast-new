@@ -1,25 +1,20 @@
 "use client";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import React from "react";
+import React, { FC } from "react";
+import DOMPurify from "dompurify";
+import { clearHtmlString } from "@/shared/helper/clearHtmlString";
 
-export const DescriptionSEO = () => {
+interface IProps {
+  text?: string;
+}
+export const DescriptionSEO: FC<IProps> = ({ text = "" }) => {
   const { webApp } = useTypeSelector((state) => state.auth);
 
   if (webApp) return <></>;
   return (
-    <div className="page-text-block">
-      <h3>Прогнозы ставок на футбольные матчи от ИИ</h3>
-      <p>
-        Мы предлагаем бесплатные прогнозы на футбол, основанные на тщательном
-        анализе искусственным интеллектом прошлых игр, формы игроков и других
-        важных факторов. Наш сайт предлагает онлайн прогнозы на футбол для всех
-        популярных лиг и турниров. Лучшие прогнозы на футбол от искусственного
-        интеллекта, который является профессионалом помогут вам сделать
-        правильный выбор и выиграть. Не упустите шанс сделать успешную ставку на
-        футбол с нашими бесплатными и точными прогнозами на футбол сегодня! Сайт
-        точных бесплатных прогнозов на футбол. Ai SportsOracle не организует
-        игры на деньги. Контент носит исключительно информационный характер.
-      </p>
-    </div>
+    <div
+      className="page-text-block"
+      dangerouslySetInnerHTML={{ __html: text }}
+    ></div>
   );
 };

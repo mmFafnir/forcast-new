@@ -1,4 +1,3 @@
-import { getArchiveServer } from "@/pagesComponent/api/archive/getArchiveMatch";
 import { MatchArchiveGroup } from "@/pagesComponent/module/group/MatchArchiveGroup";
 import { IFetchArchive } from "@/pagesComponent/types/IFetchArchiv";
 import { NextPage } from "next";

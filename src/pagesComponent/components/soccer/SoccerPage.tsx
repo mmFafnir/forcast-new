@@ -1,70 +1,34 @@
 import HeaderPage from "@/widgets/HeaderPage";
-import { getMatchSoccerServer } from "../../api/soccer/getMatchSoccer";
-import { mapGetMatchSoccer } from "../../api/soccer/mapGetMatchSoccer";
 import { MatchesGroup } from "@/pagesComponent/module/group/MatchGroup";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
 import { FC } from "react";
-import { cookies } from "next/headers";
 import { FilterProvider } from "@/app/providers/FilterProvider";
 import { LinksProvider } from "@/app/providers/LinksProvider";
 import { Header } from "@/widgets/Header";
-import { getTimezone } from "@/shared/helper/getTimezone";
 import { DescriptionSEO } from "@/entities/seo-texts";
-import dayJs from "@/shared/core/dayjs";
+import { ILeagues } from "@/shared/types/leagues";
+import { IBreadCrumb } from "@/features/breadсrumbs";
+import { IFetchMatch } from "@/pagesComponent/types/IFetchMatch";
+import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 
 interface IProps {
-  date: string | null;
+  matches: ILeagues[];
+  breadCumbers: IBreadCrumb[];
+  data: IFetchMatch;
   country?: string;
   league?: string;
+  seo: IFetchSeo;
 }
 
 export const SoccerPage: FC<IProps> = async ({
-  date,
+  matches,
+  breadCumbers,
+  data,
   country = "",
   league = "",
+  seo,
 }) => {
-  const cookieStore = cookies();
-  const token = cookieStore.get("_token");
-  const utcId = cookieStore.get("utc_id");
-
-  const data = await getMatchSoccerServer({
-    date:
-      date ||
-      // @ts-ignore
-      dayJs().utc().tz(getTimezone(utcId?.value)?.zone).format("YYYY-MM-DD"),
-    timeStatus: "",
-    token: token?.value || "",
-    country: country,
-    league: league,
-    utcId: getTimezone(utcId?.value)?.id || "",
-  });
-
-  const title = data.league
-    ? data.country?.title + ": " + data.league.title
-    : data.country
-    ? data.country.title
-    : "";
-  const matches = mapGetMatchSoccer(data.data);
-
-  const breadCumbers = [
-    {
-      title: "Футбол",
-      href: "/soccer",
-    },
-  ];
-
-  if (data.country)
-    breadCumbers.push({
-      title: data.country.title,
-      href: `/soccer/${data.country.url}`,
-    });
-  if (data.league)
-    breadCumbers.push({
-      title: data.league.title,
-      href: `/soccer/${country}${league}`,
-    });
-
   return (
     <FilterProvider
       sport={data.sport?.id || ""}
@@ -80,21 +44,13 @@ export const SoccerPage: FC<IProps> = async ({
         }}
       >
         <Header breadCrumbs={breadCumbers} />
-        <HeaderPage
-          title={
-            league
-              ? title
-              : data.country
-              ? data.country.title
-              : "Прогнозы ставок на футбольные матчи от ИИ"
-          }
-        />
+        <HeaderPage title={seo.ceo_title} />
         <div className="flex-1 flex-col">
           <MatchesGroup matches={matches} league={league} country={country} />
         </div>
         <RiskWidgets isMob />
         <TelegramButton isMob />
-        <DescriptionSEO />
+        <DescriptionSEO text={seo.ceo_text} />
       </LinksProvider>
     </FilterProvider>
   );

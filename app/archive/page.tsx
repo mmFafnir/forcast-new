@@ -2,7 +2,7 @@ import { getArchiveServer } from "@/pagesComponent/api/archive/getArchiveMatch";
 import { ArchivePage } from "@/pagesComponent/components/archive";
 import { NextPage } from "next";
 import { cookies } from "next/headers";
-import React, { Suspense } from "react";
+import React from "react";
 
 interface IProps {
   params: {};
@@ -17,6 +17,7 @@ const Archive: NextPage<IProps> = async ({ searchParams }) => {
     date: date || "",
     token: token?.value || "",
   });
+
   return <ArchivePage data={data} />;
 };
 

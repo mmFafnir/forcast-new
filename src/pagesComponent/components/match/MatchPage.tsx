@@ -1,4 +1,5 @@
-import { NextPage } from "next";
+"use server";
+import { Metadata, NextPage } from "next";
 import { FavoriteAdd } from "@/features/favorites";
 import { SharedButton } from "@/features/shared";
 import styles from "./styles.module.scss";
@@ -14,21 +15,17 @@ import { Header } from "@/widgets/Header";
 import { LinksProvider } from "@/app/providers/LinksProvider";
 import { EventsBlock } from "./components/EventsBlock";
 import { getTimezone } from "@/shared/helper/getTimezone";
-import { baseUrl } from "@/shared/core/axios";
+import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
+import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 
 interface IProps {
-  url: string;
+  data: IFetchFullMatch;
+  seo: IFetchSeo;
 }
 
-export const MatchPage: NextPage<IProps> = async ({ url }) => {
-  const headersList = headers();
+export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
   const cookieStore = cookies();
-  const token = cookieStore.get("_token");
   const utcId = cookieStore.get("utc_id");
-
-  const isBot = headersList.get("x-bot") || false;
-
-  const data = await getOneMatch(url, token?.value, Boolean(isBot));
 
   const recommendData = data
     ? await getRecommendServer({
@@ -36,13 +33,6 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
         utcId: getTimezone(utcId?.value)?.id || "",
       })
     : [];
-
-  if (!data)
-    return (
-      <div>
-        <p>500 ошибка</p>
-      </div>
-    );
 
   const countryTitle =
     data.league.country.translation || data.league.country.name;
@@ -89,10 +79,7 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
       <div className={styles.page}>
         <MatchPreviewSticky match={data} />
         <div className="flex item-center jc-between">
-          <h1>
-            Прогноз на матч: {data.home_team.team_name} -{" "}
-            {data.away_team.team_name}
-          </h1>
+          <h1>{seo.ceo_title}</h1>
           <div className={`flex item-center ${styles.buttons}`}>
             <FavoriteAdd
               active={data.favorite_auth_user_count === 1}
@@ -145,18 +132,6 @@ export const MatchPage: NextPage<IProps> = async ({ url }) => {
             <Recommend id={data.id} data={recommendData} />
           </div>
         )}
-        <p className={styles.text}>
-          Мы предлагаем бесплатные прогнозы на футбол, основанные на тщательном
-          анализе искусственным интеллектом прошлых игр, формы игроков и других
-          важных факторов. Наш сайт предлагает онлайн прогнозы на футбол для
-          всех популярных лиг и турниров. Лучшие прогнозы на футбол от
-          искусственного интеллекта, который является профессионалом помогут вам
-          сделать правильный выбор и выиграть. Не упустите шанс сделать успешную
-          ставку на футбол с нашими бесплатными и точными прогнозами на футбол
-          сегодня! Сайт точных бесплатных прогнозов на футбол. Ai SportsOracle
-          не организует игры на деньги. Контент носит исключительно
-          информационный характер.
-        </p>
       </div>
     </LinksProvider>
   );

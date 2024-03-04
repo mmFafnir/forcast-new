@@ -3,6 +3,7 @@ import axiosClient from "@/shared/core/axios";
 import axios from "axios";
 import { IFetchMatch } from "../../types/IFetchMatch";
 import { TypeTimeStatus } from "@/features/filters";
+import { cache } from "react";
 
 const defaultRes = {
   current_page: 0,
@@ -54,65 +55,65 @@ interface IIParamsServer extends IParams {
   token: string;
 }
 
-export const getMatchSoccerServer = async (
-  params?: IIParamsServer
-): Promise<IFetchMatch> => {
-  try {
-    const {
-      date,
-      timeStatus,
-      token,
-      country = "",
-      league = "",
-      utcId = "",
-    } = params || {
-      date: "",
-      timeStatus: "",
-      token: "",
-      country: "",
-      league: "",
-      utcId: "",
-    };
-
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    console.log(
-      `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`
-    );
-    const { data } = await axios.get(
-      `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`,
-      config
-    );
-
-    const res: IFetchMatch = {
-      data: data.data,
-    };
-
-    if (data.request_sport) {
-      res.sport = {
-        title: data.request_sport.name,
-        id: data.request_sport.id,
-        url: data.request_sport.url,
+export const getMatchSoccerServer = cache(
+  async (params?: IIParamsServer): Promise<IFetchMatch> => {
+    try {
+      const {
+        date,
+        timeStatus,
+        token,
+        country = "",
+        league = "",
+        utcId = "",
+      } = params || {
+        date: "",
+        timeStatus: "",
+        token: "",
+        country: "",
+        league: "",
+        utcId: "",
       };
-    }
-    if (data.request_country) {
-      res.country = {
-        title: data.request_country.translation || data.request_country.name,
-        url: data.request_country.url,
-        id: data.request_country.id,
+
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
       };
-    }
-    if (data.request_league) {
-      res.league = {
-        title: data.request_league?.league_name,
-        url: data.request_league.url,
-        id: data.request_league.id,
+      console.log(
+        `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`
+      );
+      const { data } = await axios.get(
+        `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`,
+        config
+      );
+
+      const res: IFetchMatch = {
+        data: data.data,
       };
+
+      if (data.request_sport) {
+        res.sport = {
+          title: data.request_sport.name,
+          id: data.request_sport.id,
+          url: data.request_sport.url,
+        };
+      }
+      if (data.request_country) {
+        res.country = {
+          title: data.request_country.translation || data.request_country.name,
+          url: data.request_country.url,
+          id: data.request_country.id,
+        };
+      }
+      if (data.request_league) {
+        res.league = {
+          title: data.request_league?.league_name,
+          url: data.request_league.url,
+          id: data.request_league.id,
+        };
+      }
+      return res;
+    } catch (error) {
+      console.log(error);
+      return defaultRes;
     }
-    return res;
-  } catch (error) {
-    console.log(error);
-    return defaultRes;
   }
-};
+);

@@ -1,5 +1,5 @@
 import HeaderPage from "@/widgets/HeaderPage";
-import { NextPage } from "next";
+import { Metadata, NextPage, ResolvingMetadata } from "next";
 import { getMatchMainServer } from "../../api/main/getMatchHome";
 import { MatchesGroupHome } from "../../module/group/MatchesGroupHome";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
@@ -10,42 +10,39 @@ import { FilterProvider } from "@/app/providers/FilterProvider";
 import { LinksProvider } from "@/app/providers/LinksProvider";
 import { getTimezone } from "@/shared/helper/getTimezone";
 import { DescriptionSEO } from "@/entities/seo-texts";
+import { getStaticSeo } from "@/pagesComponent/api/seo/getSeoStatic";
+import { TypeSportGroup } from "@/shared/types/sport";
+import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 
 interface IProps {
   date: string | null;
   webApp: boolean;
+  matches: TypeSportGroup[];
+  seo: IFetchSeo;
 }
-export const MainPage: NextPage<IProps> = async ({ date, webApp }) => {
-  const cookieStore = cookies();
-  const token = cookieStore.get("_token");
-  const utcId = cookieStore.get("utc_id");
 
-  const matches = await getMatchMainServer({
-    date: date || "",
-    timeStatus: "",
-    token: token?.value || "",
-    utcId: getTimezone(utcId?.value)?.id || "",
-  });
-
+export const MainPage: NextPage<IProps> = ({ date, webApp, matches, seo }) => {
   return (
-    <FilterProvider sport={""} league={""} country={""} webApp={webApp}>
-      <LinksProvider
-        links={{
-          sport: "",
-          league: "",
-          country: "",
-          match: "",
-        }}
-      >
-        <Header breadCrumbs={[]} />
-        <HeaderPage title="Прогнозы ставок на футбольные матчи от ИИ" />
-        <div className="flex-1 flex-col min-h-block">
-          <MatchesGroupHome matches={matches} />
-        </div>
-        <RiskWidgets isMob />
-        <TelegramButton isMob />
-        <DescriptionSEO />
-      </LinksProvider>
-    </FilterProvider>
+    <>
+      <FilterProvider sport={""} league={""} country={""} webApp={webApp}>
+        <LinksProvider
+          links={{
+            sport: "",
+            league: "",
+            country: "",
+            match: "",
+          }}
+        >
+          <Header breadCrumbs={[]} />
+          <HeaderPage title={seo.ceo_h} />
+          <div className="flex-1 flex-col min-h-block">
+            <MatchesGroupHome matches={matches} />
+          </div>
+          <RiskWidgets isMob />
+          <TelegramButton isMob />
+          <DescriptionSEO text={seo.ceo_text} />
+        </LinksProvider>
+      </FilterProvider>
+    </>
   );
 };

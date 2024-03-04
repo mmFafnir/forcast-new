@@ -1,8 +1,12 @@
 import { NextPage } from "next";
 import styles from "./style.module.scss";
 import { Header } from "@/widgets/Header";
+import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 
-const Privacy: NextPage = () => {
+interface IProps {
+  seo: IFetchSeo;
+}
+const Privacy: NextPage<IProps> = ({ seo }) => {
   return (
     <>
       <Header
@@ -14,7 +18,7 @@ const Privacy: NextPage = () => {
         ]}
       />
       <div className={styles.page}>
-        <h1>Политика конфиденциальности</h1>
+        <h1>{seo.ceo_h}</h1>
         <div>
           <h2>1. PRIVACY POLICY. </h2>
           <p>

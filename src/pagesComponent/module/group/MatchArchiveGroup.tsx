@@ -9,6 +9,7 @@ import { TypeBet, TypeMatch } from "@/shared/types/match";
 import dayJs from "@/shared/core/dayjs";
 import { FC, useEffect, useState } from "react";
 import { matchTimeZone } from "@/shared/core/timezone";
+import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 
 interface IMatch extends TypeMatch {
   card: TypeBet[];

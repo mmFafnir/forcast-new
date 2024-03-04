@@ -4,12 +4,10 @@ import { FC } from "react";
 import Link from "next/link";
 import SportsIcon from "@/shared/icons/sports";
 import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
-import { IconLive } from "../icons/IconLive";
 import styles from "../styles/preview.module.scss";
 import CustomImage from "@/shared/UI/CustomImage";
 import dayjs from "dayjs";
 import backgroundMatchImage from "../images/previewImage.jpg";
-import useTimeStatus from "@/shared/hooks/useTimeStatus";
 import useTimeUtc from "@/shared/hooks/useTimeUtc";
 
 interface ITeamProps {
@@ -17,6 +15,7 @@ interface ITeamProps {
   name: string;
   translate: string;
 }
+
 const Team: FC<ITeamProps> = ({ src, name, translate }) => {
   return (
     <div className={styles.team}>
@@ -43,6 +42,7 @@ interface IPropsBread {
     href: string;
   }[];
 }
+
 const BreadCrumbs: FC<IPropsBread> = ({ links }) => {
   return (
     <div className={styles.breadcrumbs}>
@@ -107,7 +107,7 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
           ]}
         />
         <div className={styles.times}>
-          <p>{date}</p>
+          <p>{dayjs(date).locale("ru").format("DD MMMM YYYY")}</p>
           <p>{hours}</p>
         </div>
         <div className={styles.footer}>
