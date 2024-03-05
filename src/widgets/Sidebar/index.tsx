@@ -32,6 +32,7 @@ const Sidebar = () => {
     });
   }, []);
 
+  console.log(global);
   return (
     <>
       <button
@@ -63,7 +64,9 @@ const Sidebar = () => {
               >
                 <SportsIcon icon="top" />
                 <span>Топ матчи</span>
-                <TotalMatches className={styles.total}>20</TotalMatches>
+                <TotalMatches className={styles.total}>
+                  {global?.get_game_count_home_page || 0}
+                </TotalMatches>
               </Button>
               {new Array(1).fill(null).map((link, index) => (
                 <Button

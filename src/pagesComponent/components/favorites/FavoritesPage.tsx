@@ -1,7 +1,5 @@
 import HeaderPage from "@/widgets/HeaderPage";
 import { NextPage } from "next";
-import { getMatchHome } from "../../api/main/getMatchHome";
-import { MatchesGroupHome } from "../../module/group/MatchesGroupHome";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
 import { getFavoritesServer } from "@/pagesComponent/api/favorites/getFavorites";
@@ -10,8 +8,13 @@ import { MatchesFavoritesGroup } from "@/pagesComponent/module/group/MatchesFavo
 import { Header } from "@/widgets/Header";
 import { LinksProvider } from "@/app/providers/LinksProvider";
 import { DescriptionSEO } from "@/entities/seo-texts";
+import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 
-export const FavoritesPage: NextPage = async () => {
+interface IProps {
+  seo: IFetchSeo | null;
+}
+
+export const FavoritesPage: NextPage<IProps> = async ({ seo }) => {
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
 
@@ -33,13 +36,13 @@ export const FavoritesPage: NextPage = async () => {
         ]}
       />
 
-      <HeaderPage title="Избарнное" calendar={false} />
+      <HeaderPage title={seo?.ceo_h || "Избарнное"} calendar={false} />
       <div className="flex-1 flex-col">
         <MatchesFavoritesGroup matches={matches} />
       </div>
       <RiskWidgets isMob />
       <TelegramButton isMob />
-      <DescriptionSEO />
+      <DescriptionSEO text={seo?.ceo_text || ""} />
     </LinksProvider>
   );
 };

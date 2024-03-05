@@ -59,7 +59,7 @@ export async function generateMetadata({
       match_id: data?.id || undefined,
     });
   }
-  console.log("seo", seo);
+
   return {
     title: seo?.ceo_title || "Футбол...",
     description: seo?.ceo_description || "",
