@@ -1,0 +1,26 @@
+export type TypePrem = {
+  id: number;
+  rate_id: number;
+  free_or_not: "0" | "1";
+  name: string;
+  price_rub: string;
+  price_usd: string;
+  price_euro: string;
+  work_day: string | null;
+  work_month: string | null;
+  work_year: string | null;
+  order_by: string | null;
+  created_at: string;
+  updated_at: string;
+  day_price_rub: string;
+  day_price_usd: string;
+  day_price_euro: string;
+  saved_price_rub: string;
+  saved_price_usd: string;
+  saved_price_euro: string;
+  price_rub_with_bonus: string;
+  price_usd_with_bonus: string;
+  price_euro_with_bonus: string;
+  bonus_day: string;
+  bonus_percent: string;
+};

@@ -1,0 +1,47 @@
+.text {
+  h2,
+  h3,
+  h4 {
+    margin-bottom: 15px;
+  }
+  p,
+  ul,
+  ol {
+    margin-bottom: 30px;
+  }
+
+  ul,
+  ol {
+    li {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      font-size: 14px;
+      display: flex;
+
+      &::before {
+        content: "";
+        display: inline-block;
+        margin-right: 10px;
+        margin-top: 7px;
+        flex: 0 0 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: #fff;
+      }
+    }
+  }
+
+  ol {
+    list-style-type: none;
+    counter-reset: num;
+    li:before {
+      content: counter(num) ".";
+      background-color: transparent;
+      height: auto;
+      flex: 0 0 auto;
+      border-radius: 0;
+      counter-increment: num;
+      margin-top: 0;
+    }
+  }
+}

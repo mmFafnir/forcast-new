@@ -1,27 +1,43 @@
-import { FC } from "react";
+"use client";
+import { FC, useEffect, useState } from "react";
 import styles from "../styles/sale.module.scss";
 import { Range } from "./ui/Range";
+import { TypePrem } from "../types/TypePrem";
 
 interface IProps {
-  day: number;
-  setDay: (day: number) => void;
+  data: TypePrem[];
+  onChange: (value: TypePrem) => void;
+  lang: string;
 }
-export const Sale: FC<IProps> = ({ day, setDay }) => {
+export const Sale: FC<IProps> = ({ data, lang, onChange }) => {
+  const [rate, setRate] = useState<TypePrem>(data[0]);
+
+  useEffect(() => {
+    onChange(rate);
+  }, [rate]);
   return (
     <div className={styles.body}>
       <div className={styles.header}>
-        <p>{day} дней</p>
-        <p>70.59 руб. / день</p>
+        <p>{rate.name}</p>
+        <p>
+          {rate[`day_price_${lang}` as "day_price_rub"]} {lang} / день
+        </p>
       </div>
       <div className={styles.content}>
-        <Range setDay={setDay} />
+        <Range setValue={setRate} data={data} />
       </div>
       <div className={styles.footer}>
         <p className={styles.discount}>
           Сэкономлено:
-          <span style={{ color: "#84EB88" }}> 571 руб</span>
+          <span style={{ color: "#84EB88" }}>
+            {" "}
+            {rate[`saved_price_${lang}` as "saved_price_rub"]} {lang}
+          </span>
         </p>
-        <p className={styles.sum}>2399 руб.</p>
+        <p className={styles.sum}>
+          {" "}
+          {rate[`price_${lang}` as "price_rub"]} {lang}
+        </p>
       </div>
     </div>
   );

@@ -7,9 +7,12 @@ import { Sale } from "../Sale";
 import { PromoCode } from "../PromoCode";
 import Button from "@/shared/UI/Button";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setModal } from "@/shared/UI/Modal/modalSlice";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import { TypePrem } from "../../types/TypePrem";
+import { getPremium } from "../../api/getPremium";
 
 const values = [
   {
@@ -18,20 +21,37 @@ const values = [
   },
   {
     label: "USD",
-    value: "USD",
+    value: "usd",
   },
   {
     label: "EU",
-    value: "EU",
+    value: "euro",
   },
 ];
 
 export const ModalPremium = () => {
+  const { auth } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
-  const [day, setDay] = useState<number>(30);
+
+  const [data, setData] = useState<TypePrem[] | null>(null);
+  const [currentData, setCurrentData] = useState<TypePrem | null>(null);
+  const [promoCode, setPromoCode] = useState<boolean>(false);
+  const [lang, setLang] = useState<string>("rub");
 
   const onOpenPremiumWhy = () => dispatch(setModal(EnumModals.PREMIUM_WHY));
 
+  useEffect(() => {
+    if (!auth) return;
+    getPremium().then((res) => {
+      const data = res.sort((a, b) => {
+        return a.id - b.id;
+      });
+      setData(data);
+      setCurrentData(data[0]);
+    });
+  }, [auth]);
+
+  if (!auth || !data) return;
   return (
     <Modal
       name={EnumModals.PREMIUM}
@@ -54,20 +74,33 @@ export const ModalPremium = () => {
           <div className={styles.right}>
             <p>Выбери валюту:</p>
             <Select
-              value={values[0].value}
-              setValue={() => {}}
+              value={lang}
+              setValue={(value) => setLang(String(value.value))}
               data={values}
               styleBody={{ minWidth: "100px" }}
             />
           </div>
         </div>
-        <Sale day={day} setDay={setDay} />
-        <PromoCode />
+        <Sale lang={lang} data={data || []} onChange={setCurrentData} />
+        <PromoCode
+          setPremStatus={setPromoCode}
+          bonus={currentData?.bonus_percent || "0"}
+          bonusDay={currentData?.bonus_day || "0"}
+        />
         <div className={styles.footer}>
           <div className={styles.total}>
             <p>ИТОГО: </p>
             <p>
-              <span>{day}</span> дня за <span>1919</span> руб.
+              <span>{currentData?.name}</span> дня за{" "}
+              <span>
+                {currentData &&
+                  currentData[
+                    promoCode
+                      ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
+                      : (`price_${lang}` as "price_rub")
+                  ]}
+              </span>{" "}
+              руб.
             </p>
           </div>
           <Button className={styles.submit} type="gradient">

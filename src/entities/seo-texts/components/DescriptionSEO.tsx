@@ -1,8 +1,7 @@
 "use client";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import React, { FC } from "react";
-import DOMPurify from "dompurify";
-import { clearHtmlString } from "@/shared/helper/clearHtmlString";
+import styles from "../styles/seo.description.module.scss";
 
 interface IProps {
   text?: string;
@@ -13,7 +12,7 @@ export const DescriptionSEO: FC<IProps> = ({ text = "" }) => {
   if (webApp) return <></>;
   return (
     <div
-      className="page-text-block"
+      className={`page-text-block ${styles.text}`}
       dangerouslySetInnerHTML={{ __html: text }}
     ></div>
   );
