@@ -31,16 +31,8 @@ export const TelegramSnap: FC<IProps> = ({ mode = "bind" }) => {
 
   const openTelegram = () => {
     if (!url) return;
-    let a = document.createElement("a") as HTMLAnchorElement;
-    document.body.appendChild(a);
-    a.style.display = "none";
-    a.href = url;
-
-    setTimeout(() => {
-      a.click();
-      document.body.removeChild(a);
-      return;
-    }, 100);
+    console.log(url);
+    window.location.href = url;
   };
 
   const onSpanTelegram = () => {
@@ -68,12 +60,6 @@ export const TelegramSnap: FC<IProps> = ({ mode = "bind" }) => {
       <div className={styles.flex}>
         <div className={styles.qr}>
           {url ? <QRCodeSVG value={url} /> : <Loader />}
-          {/* <Image
-            src={"/telegramQR.png"}
-            width={500}
-            height={500}
-            alt="telegram QR code"
-          /> */}
         </div>
         <div className={styles.text}>
           <p>Инструкция:</p>

@@ -17,7 +17,7 @@ export const TelegramButton: FC<IProps> = ({
   const { webApp } = useTypeSelector((state) => state.auth);
 
   const onClick = () =>
-    (window.location.href = "tg://resolve?domain=aibetguru_ru_bot&start=auth");
+    (window.location.href = "tg://resolve?domain=aibetguru_ru_bot");
 
   if (webApp) return <></>;
   return (

@@ -13,6 +13,7 @@ import { setModal } from "@/shared/UI/Modal/modalSlice";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { TypePrem } from "../../types/TypePrem";
 import { getPremium } from "../../api/getPremium";
+import { divideSumByComma } from "@/shared/helper/divideSumByComma";
 
 const values = [
   {
@@ -100,11 +101,13 @@ export const ModalPremium = () => {
               <span>{currentData?.name}</span> за{" "}
               <span>
                 {currentData &&
-                  currentData[
-                    promoCode
-                      ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
-                      : (`price_${lang}` as "price_rub")
-                  ]}
+                  divideSumByComma(
+                    currentData[
+                      promoCode
+                        ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
+                        : (`price_${lang}` as "price_rub")
+                    ]
+                  )}
                 {getValueSign(lang)}
               </span>
             </p>

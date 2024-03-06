@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import styles from "../styles/auth.module.scss";
 import { validEmail } from "@/shared/core/form-rules";

@@ -4,6 +4,7 @@ import styles from "../styles/sale.module.scss";
 import { Range } from "./ui/Range";
 import { TypePrem } from "../types/TypePrem";
 import { getValueSign } from "./modal/ModalPremium";
+import { divideSumByComma } from "@/shared/helper/divideSumByComma";
 
 interface IProps {
   data: TypePrem[];
@@ -21,7 +22,7 @@ export const Sale: FC<IProps> = ({ data, lang, onChange }) => {
       <div className={styles.header}>
         <p>{rate.name}</p>
         <p>
-          {rate[`day_price_${lang}` as "day_price_rub"]}
+          {divideSumByComma(rate[`day_price_${lang}` as "day_price_rub"])}
           {getValueSign(lang)} / день
         </p>
       </div>
@@ -40,13 +41,13 @@ export const Sale: FC<IProps> = ({ data, lang, onChange }) => {
             }}
           >
             {" "}
-            {rate[`saved_price_${lang}` as "saved_price_rub"]}
+            {divideSumByComma(rate[`saved_price_${lang}` as "saved_price_rub"])}
             {getValueSign(lang)}
           </span>
         </p>
         <p className={styles.sum}>
           {" "}
-          {rate[`price_${lang}` as "price_rub"]}
+          {divideSumByComma(rate[`price_${lang}` as "price_rub"])}
           {getValueSign(lang)}
         </p>
       </div>

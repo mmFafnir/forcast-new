@@ -1,9 +1,14 @@
 export function divideSumByComma(sumStr: string): string {
-  if (/^\d+$/.test(sumStr)) {
-    const lastThreeChars = sumStr.slice(-3);
-    const result = sumStr.slice(0, -3) + "," + lastThreeChars;
-    return result;
+  const [rublesStr, kopeksStr] = sumStr.split(".");
+
+  console.log("коп", kopeksStr);
+
+  if (rublesStr.trim().length <= 3) return sumStr;
+  if (/^\d+$/.test(rublesStr)) {
+    const lastThreeChars = rublesStr.slice(-3);
+    const result = rublesStr.slice(0, -3) + "," + lastThreeChars;
+    return result + (kopeksStr ? `.${kopeksStr}` : "");
   } else {
-    return "Некорректная строка суммы. Пожалуйста, введите только цифры.";
+    return sumStr;
   }
 }

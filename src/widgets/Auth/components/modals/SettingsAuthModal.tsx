@@ -3,7 +3,6 @@
 import Modal from "@/shared/UI/Modal";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import styles from "../../styles/modal.settings.module.scss";
-import { OtherRegister } from "../OtherRegister";
 import Auth from "../Auth";
 import Button from "@/shared/UI/Button";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
