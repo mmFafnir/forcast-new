@@ -34,7 +34,6 @@ export const TelegramSnap: FC<IProps> = ({ mode = "bind" }) => {
     let a = document.createElement("a") as HTMLAnchorElement;
     document.body.appendChild(a);
     a.style.display = "none";
-    a.target = "_blank";
     a.href = url;
 
     setTimeout(() => {
