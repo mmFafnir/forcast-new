@@ -29,6 +29,12 @@ const values = [
   },
 ];
 
+export const getValueSign = (value: string) => {
+  if (value === "rub") return "₽";
+  if (value === "usd") return "$";
+  return "€";
+};
+
 export const ModalPremium = () => {
   const { auth } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
@@ -91,7 +97,7 @@ export const ModalPremium = () => {
           <div className={styles.total}>
             <p>ИТОГО: </p>
             <p>
-              <span>{currentData?.name}</span> дня за{" "}
+              <span>{currentData?.name}</span> за{" "}
               <span>
                 {currentData &&
                   currentData[
@@ -99,8 +105,8 @@ export const ModalPremium = () => {
                       ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
                       : (`price_${lang}` as "price_rub")
                   ]}
-              </span>{" "}
-              руб.
+                {getValueSign(lang)}
+              </span>
             </p>
           </div>
           <Button className={styles.submit} type="gradient">

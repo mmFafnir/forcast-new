@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from "react";
 import styles from "../styles/sale.module.scss";
 import { Range } from "./ui/Range";
 import { TypePrem } from "../types/TypePrem";
+import { getValueSign } from "./modal/ModalPremium";
 
 interface IProps {
   data: TypePrem[];
@@ -20,7 +21,8 @@ export const Sale: FC<IProps> = ({ data, lang, onChange }) => {
       <div className={styles.header}>
         <p>{rate.name}</p>
         <p>
-          {rate[`day_price_${lang}` as "day_price_rub"]} {lang} / день
+          {rate[`day_price_${lang}` as "day_price_rub"]}
+          {getValueSign(lang)} / день
         </p>
       </div>
       <div className={styles.content}>
@@ -29,14 +31,23 @@ export const Sale: FC<IProps> = ({ data, lang, onChange }) => {
       <div className={styles.footer}>
         <p className={styles.discount}>
           Сэкономлено:
-          <span style={{ color: "#84EB88" }}>
+          <span
+            style={{
+              color:
+                rate[`saved_price_${lang}` as "saved_price_rub"] != "0"
+                  ? "#84EB88"
+                  : "",
+            }}
+          >
             {" "}
-            {rate[`saved_price_${lang}` as "saved_price_rub"]} {lang}
+            {rate[`saved_price_${lang}` as "saved_price_rub"]}
+            {getValueSign(lang)}
           </span>
         </p>
         <p className={styles.sum}>
           {" "}
-          {rate[`price_${lang}` as "price_rub"]} {lang}
+          {rate[`price_${lang}` as "price_rub"]}
+          {getValueSign(lang)}
         </p>
       </div>
     </div>

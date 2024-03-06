@@ -7,7 +7,9 @@ import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
 import styles from "../styles/preview.module.scss";
 import CustomImage from "@/shared/UI/CustomImage";
 import dayjs from "dayjs";
-import backgroundMatchImage from "../images/previewImage.jpg";
+import backgroundMatchImage from "../images/previewImage.png";
+import backgroundMatchImageMobile from "../images/previewImageMobile.png";
+
 import useTimeUtc from "@/shared/hooks/useTimeUtc";
 
 interface ITeamProps {
@@ -66,6 +68,9 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
       className={`${styles.body} review-match`}
       style={{ backgroundImage: `url(${backgroundMatchImage.src})` }}
     >
+      <div className={styles.mobilePreview}>
+        <img src={backgroundMatchImageMobile.src} alt="bg mobile preview" />
+      </div>
       <div className={styles.ball}>
         <SportsIcon icon="soccer" width={400} height={400} />
       </div>

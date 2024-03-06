@@ -2,8 +2,7 @@
 import Button from "@/shared/UI/Button";
 import styles from "../styles/telegram.module.scss";
 import Image from "next/image";
-import { FC, useEffect, useState } from "react";
-import { ModalShared } from "./ModalShared";
+import { FC } from "react";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 interface IProps {
@@ -17,13 +16,15 @@ export const TelegramButton: FC<IProps> = ({
 }) => {
   const { webApp } = useTypeSelector((state) => state.auth);
 
+  const onClick = () =>
+    (window.location.href = "tg://resolve?domain=aibetguru_ru_bot&start=auth");
+
   if (webApp) return <></>;
   return (
     <>
       <Button
-        target="_blank"
         className={`${styles.telegram} ${className} ${isMob ? styles.mob : ""}`}
-        href="https://telegram.org/me/@groupname"
+        onClick={onClick}
       >
         <Image
           src={"/telegram.svg"}
