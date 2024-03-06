@@ -121,7 +121,7 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
               <></>
               // <button className={styles.live}>До начала осталось {time}</button>
             )
-          ) : status === "finish" ? (
+          ) : match.time_status == 1 ? (
             <button className={styles.live}>
               <p style={{ color: "#E98080" }}>Завершен</p>
             </button>

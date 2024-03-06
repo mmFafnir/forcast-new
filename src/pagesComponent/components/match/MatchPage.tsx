@@ -1,14 +1,13 @@
 "use server";
-import { Metadata, NextPage } from "next";
+import { NextPage } from "next";
 import { FavoriteAdd } from "@/features/favorites";
 import { SharedButton } from "@/features/shared";
 import styles from "./styles.module.scss";
 import IconPerson from "@/shared/icons/IconPerson";
 import { MatchPreview, MatchPreviewSticky, Views } from "@/entities/match";
 import TextMore from "@/shared/UI/TextMore";
-import { getOneMatch } from "@/pagesComponent/api/soccer/getOneMatch";
 import Link from "next/link";
-import { cookies, headers } from "next/headers";
+import { cookies } from "next/headers";
 import { Recommend } from "@/features/recommend";
 import { getRecommendServer } from "@/pagesComponent/api/soccer/getRecommend";
 import { Header } from "@/widgets/Header";
@@ -79,7 +78,7 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
       <div className={styles.page}>
         <MatchPreviewSticky match={data} />
         <div className="flex item-center jc-between">
-          <h1>{seo.ceo_title}</h1>
+          <h1>{seo.ceo_h}</h1>
           <div className={`flex item-center ${styles.buttons}`}>
             <FavoriteAdd
               active={data.favorite_auth_user_count === 1}

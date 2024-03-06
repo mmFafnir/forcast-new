@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 import dayJs from "@/shared/core/dayjs";
 import { getSeoDynamic } from "@/pagesComponent/api/seo/getSeoDenimic";
 import { redirect } from "next/navigation";
+import { mapSeoMacros } from "@/pagesComponent/api/seo/mapSeoMacros";
 
 interface IProps {
   params: {};
@@ -14,9 +15,12 @@ interface IProps {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const seo = await getSeoDynamic({
-    sport_id: 1,
-  });
+  const seo = mapSeoMacros(
+    await getSeoDynamic({
+      sport_id: 1,
+    }),
+    { sport_name: "Футбол" }
+  );
 
   return {
     title: seo?.ceo_title || "Спорт",
@@ -43,9 +47,12 @@ const Soccer: NextPage<IProps> = async ({ searchParams }) => {
     utcId: getTimezone(utcId?.value)?.id || "",
   });
 
-  const seo = await getSeoDynamic({
-    sport_id: 1,
-  });
+  const seo = mapSeoMacros(
+    await getSeoDynamic({
+      sport_id: 1,
+    }),
+    { sport_name: "Футбол" }
+  );
 
   const matches = mapGetMatchSoccer(data.data);
 
