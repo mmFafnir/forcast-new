@@ -98,18 +98,33 @@ export const ModalPremium = () => {
           <div className={styles.total}>
             <p>ИТОГО: </p>
             <p>
-              <span>{currentData?.name}</span> за{" "}
-              <span>
-                {currentData &&
-                  divideSumByComma(
-                    currentData[
-                      promoCode
-                        ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
-                        : (`price_${lang}` as "price_rub")
-                    ]
-                  )}
-                {getValueSign(lang)}
-              </span>
+              <span>{currentData?.name.replace(/\D/g, "")}</span>{" "}
+              {currentData?.name.replace(/\d+/g, "")}
+              {currentData &&
+              currentData[
+                promoCode
+                  ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
+                  : (`price_${lang}` as "price_rub")
+              ] > "0" ? (
+                <>
+                  {" "}
+                  за{" "}
+                  <span>
+                    <>
+                      {divideSumByComma(
+                        currentData[
+                          promoCode
+                            ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
+                            : (`price_${lang}` as "price_rub")
+                        ]
+                      )}
+                      <small>{getValueSign(lang)}</small>
+                    </>
+                  </span>
+                </>
+              ) : (
+                <span> бесплатно</span>
+              )}
             </p>
           </div>
           <Button className={styles.submit} type="gradient">
@@ -117,7 +132,6 @@ export const ModalPremium = () => {
           </Button>
 
           <div className={styles.pol}>
-            {/* <IconCheck /> */}
             <p>
               Нажимая на кнопку “Оплатить” вы соглашаетесь с{" "}
               <Link href={"/privacy-policy"}>политикой конфиденциальности</Link>

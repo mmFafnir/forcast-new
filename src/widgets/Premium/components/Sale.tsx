@@ -47,8 +47,11 @@ export const Sale: FC<IProps> = ({ data, lang, onChange }) => {
         </p>
         <p className={styles.sum}>
           {" "}
-          {divideSumByComma(rate[`price_${lang}` as "price_rub"])}
-          {getValueSign(lang)}
+          {rate[`price_${lang}` as "price_rub"] != "0"
+            ? divideSumByComma(rate[`price_${lang}` as "price_rub"]) +
+              getValueSign(lang)
+            : "Бесплатно"}
+          {}
         </p>
       </div>
     </div>
