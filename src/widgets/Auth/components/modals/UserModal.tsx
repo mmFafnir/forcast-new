@@ -19,11 +19,13 @@ import dayJs from "@/shared/core/dayjs";
 import { convertUtcOffsetToDate } from "@/shared/helper/convertUtcOffsetToDate";
 import { getTimezone } from "@/shared/helper/getTimezone";
 
-const UserRole = () => {
+const UserRole = ({ prem }: { prem: boolean }) => {
   return (
     <p className={styles.role}>
-      <span style={{ color: "#D3AD4D" }}>Фанат</span>
-      <IconCron />
+      <span style={{ color: prem ? "#D3AD4D" : "inherit" }}>
+        {prem ? "Фанат" : "Болельщик"}
+      </span>
+      {prem && <IconCron />}
     </p>
   );
 };
@@ -72,7 +74,7 @@ const UserModal: FC<IProps> = ({ open }) => {
       </div>
       <div className={styles.status}>
         <p>Статус:</p>
-        <UserRole />
+        <UserRole prem={user?.premium === "1"} />
       </div>
       <div className={styles.content}>
         <Button type="text" onClick={onOpenModalPrem}>
@@ -89,15 +91,17 @@ const UserModal: FC<IProps> = ({ open }) => {
           <span>Выйти</span>
         </Button>
       </div>
-      <div className={styles.prem}>
-        <PremMatchBanner
-          text={
-            <>
-              со СКИДКОЙ <span>25%</span>
-            </>
-          }
-        />
-      </div>
+      {user?.premium !== "1" && (
+        <div className={styles.prem}>
+          <PremMatchBanner
+            text={
+              <>
+                со СКИДКОЙ <span>25%</span>
+              </>
+            }
+          />
+        </div>
+      )}
     </div>
   );
 };
