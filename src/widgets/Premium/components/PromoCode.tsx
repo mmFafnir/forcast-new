@@ -1,21 +1,31 @@
 import { FC, useState } from "react";
-import styles from "../styles/promocode.module.scss";
 import { IconWrapCode } from "../icons/IconWrapCode";
-import Button from "@/shared/UI/Button";
 import { IconOk } from "../icons/IconOk";
 import { EnumStatus } from "@/shared/types/Enums";
 import { checkPremium } from "../api/checkPremium";
+import Button from "@/shared/UI/Button";
+import styles from "../styles/promocode.module.scss";
+import { TypePromoCode } from "../types/IFetchPromoCode";
 
 interface IProps {
+  free?: "1" | "0";
   bonus: string;
   bonusDay: string;
-  setPremStatus: (value: boolean) => void;
+  setPremStatus: (value: TypePromoCode | null) => void;
 }
-export const PromoCode: FC<IProps> = ({ bonus, bonusDay, setPremStatus }) => {
+export const PromoCode: FC<IProps> = ({
+  bonus,
+  bonusDay,
+  setPremStatus,
+  free,
+}) => {
   const [code, setCode] = useState<string>("");
   const [codeSuccess, setCodeSuccess] = useState<string>("");
   const [status, setStatus] = useState<EnumStatus>(EnumStatus.DEFAULT);
   const [loading, setLoading] = useState(false);
+
+  const [conditions, setСonditions] = useState<TypePromoCode | null>(null);
+
   const onSendCode = () => {
     setLoading(true);
     checkPremium(code)
@@ -23,18 +33,22 @@ export const PromoCode: FC<IProps> = ({ bonus, bonusDay, setPremStatus }) => {
         if (res.code_id) {
           setStatus(EnumStatus.SUCCESS);
           setCodeSuccess(code);
-          setPremStatus(true);
+          setPremStatus(res.ref_code_details);
+          setСonditions(res.ref_code_details);
           return;
         }
+        console.log(res);
         setStatus(EnumStatus.ERROR);
-        setPremStatus(false);
+        setPremStatus(null);
       })
       .catch(() => {
         setStatus(EnumStatus.ERROR);
-        setPremStatus(false);
+        setPremStatus(null);
       })
       .finally(() => setLoading(false));
   };
+
+  console.log(free);
 
   return (
     <div className={styles.body}>
@@ -66,14 +80,22 @@ export const PromoCode: FC<IProps> = ({ bonus, bonusDay, setPremStatus }) => {
               Промокод {codeSuccess}: <span>Активирован</span>
             </p>
           </div>
-          <div className={styles.discount}>
-            <p>
-              Держи еще скидку: <span>{bonus}%</span>
-            </p>
-            <p>
-              И бонусных дней для тестов: <span>+{bonusDay}</span>
-            </p>
-          </div>
+          {free === "1" && conditions?.free_tariffe === "1" ? (
+            <></>
+          ) : (
+            <div className={styles.discount}>
+              {conditions?.bonus_percent === "1" && bonus != "0" && (
+                <p>
+                  Держи еще скидку: <span>{bonus}%</span>
+                </p>
+              )}
+              {conditions?.bonus_day === "1" && bonusDay != "0" && (
+                <p>
+                  И бонусных дней для тестов: <span>+{bonusDay}</span>
+                </p>
+              )}
+            </div>
+          )}
         </>
       )}
       {status === EnumStatus.ERROR && (

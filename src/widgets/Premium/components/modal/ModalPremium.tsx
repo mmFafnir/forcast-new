@@ -14,6 +14,7 @@ import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { TypePrem } from "../../types/TypePrem";
 import { getPremium } from "../../api/getPremium";
 import { divideSumByComma } from "@/shared/helper/divideSumByComma";
+import { TypePromoCode } from "../../types/IFetchPromoCode";
 
 const values = [
   {
@@ -42,7 +43,7 @@ export const ModalPremium = () => {
 
   const [data, setData] = useState<TypePrem[] | null>(null);
   const [currentData, setCurrentData] = useState<TypePrem | null>(null);
-  const [promoCode, setPromoCode] = useState<boolean>(false);
+  const [promoCode, setPromoCode] = useState<TypePromoCode | null>(null);
   const [lang, setLang] = useState<string>("rub");
 
   const onOpenPremiumWhy = () => dispatch(setModal(EnumModals.PREMIUM_WHY));
@@ -90,6 +91,7 @@ export const ModalPremium = () => {
         </div>
         <Sale lang={lang} data={data || []} onChange={setCurrentData} />
         <PromoCode
+          free={currentData?.free_or_not}
           setPremStatus={setPromoCode}
           bonus={currentData?.bonus_percent || "0"}
           bonusDay={currentData?.bonus_day || "0"}
@@ -101,30 +103,32 @@ export const ModalPremium = () => {
               <span>{currentData?.name.replace(/\D/g, "")}</span>{" "}
               {currentData?.name.replace(/\d+/g, "")}
               {currentData &&
-              currentData[
-                promoCode
-                  ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
-                  : (`price_${lang}` as "price_rub")
-              ] > "0" ? (
-                <>
-                  {" "}
-                  за{" "}
-                  <span>
-                    <>
-                      {divideSumByComma(
-                        currentData[
-                          promoCode
-                            ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
-                            : (`price_${lang}` as "price_rub")
-                        ]
-                      )}
-                      <small>{getValueSign(lang)}</small>
-                    </>
-                  </span>
-                </>
-              ) : (
-                <span> бесплатно</span>
-              )}
+                (currentData[
+                  promoCode
+                    ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
+                    : (`price_${lang}` as "price_rub")
+                ] == "0" ||
+                (promoCode?.free_tariffe == "1" &&
+                  currentData?.free_or_not == "1") ? (
+                  <span> бесплатно</span>
+                ) : (
+                  <>
+                    {" "}
+                    за{" "}
+                    <span>
+                      <>
+                        {divideSumByComma(
+                          currentData[
+                            promoCode
+                              ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
+                              : (`price_${lang}` as "price_rub")
+                          ]
+                        )}
+                        <small>{getValueSign(lang)}</small>
+                      </>
+                    </span>
+                  </>
+                ))}
             </p>
           </div>
           <Button className={styles.submit} type="gradient">
