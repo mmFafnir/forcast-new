@@ -14,6 +14,7 @@ import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 import { mapSeoMacros } from "@/pagesComponent/api/seo/mapSeoMacros";
 import dayjs from "dayjs";
 import "dayjs/locale/ru";
+import { convertUtcOffsetToDate } from "@/shared/helper/convertUtcOffsetToDate";
 interface IProps {
   params: {
     slug: string;
@@ -63,6 +64,13 @@ export async function generateMetadata({
     const headersList = headers();
     const isBot = headersList.get("x-bot") || false;
     const data = await getOneMatch(params.slug, token?.value, Boolean(isBot));
+
+    const utcTime = convertUtcOffsetToDate(
+      getTimezone(utcId?.value)?.zone || "UTC+3",
+      data?.real_time_carbon
+    );
+    const timezoneDate = dayJs(utcTime).locale("ru").format("D MMMM YYYY");
+
     seo = mapSeoMacros(
       await getSeoDynamic({
         sport_id: 1,
@@ -80,12 +88,7 @@ export async function generateMetadata({
           data?.away_team.translate[0]?.translation ||
           data?.away_team.team_name,
 
-        date: dayJs()
-          // @ts-ignore
-          .utc(data?.real_time_carbon)
-          .tz(getTimezone(utcId?.value)?.zone)
-          .locale("ru")
-          .format("D MMMM YYYY"),
+        date: timezoneDate,
       }
     );
   }
