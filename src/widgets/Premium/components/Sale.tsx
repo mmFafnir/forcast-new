@@ -3,8 +3,8 @@ import { FC, useEffect, useState } from "react";
 import styles from "../styles/sale.module.scss";
 import { Range } from "./ui/Range";
 import { TypePrem } from "../types/TypePrem";
-import { getValueSign } from "./modal/ModalPremium";
 import { divideSumByComma } from "@/shared/helper/divideSumByComma";
+import { getValueSign } from "./Payment";
 
 interface IProps {
   data: TypePrem[];
