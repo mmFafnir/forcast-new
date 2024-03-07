@@ -141,7 +141,7 @@ export const ModalPremium = () => {
               {currentData?.name.replace(/\d+/g, "")}
               {currentData &&
                 (currentData[
-                  promoCode && promoCode.bonus_percent
+                  promoCode && promoCode.bonus_percent == "1"
                     ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
                     : (`price_${lang}` as "price_rub")
                 ] == "0" ||
@@ -156,7 +156,7 @@ export const ModalPremium = () => {
                       <>
                         {divideSumByComma(
                           currentData[
-                            promoCode && promoCode.bonus_percent
+                            promoCode && promoCode.bonus_percent == "1"
                               ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
                               : (`price_${lang}` as "price_rub")
                           ]
