@@ -15,6 +15,8 @@ import { TypePrem } from "../../types/TypePrem";
 import { getPremium } from "../../api/getPremium";
 import { divideSumByComma } from "@/shared/helper/divideSumByComma";
 import { TypePromoCode } from "../../types/IFetchPromoCode";
+import { IParamsStartPay, startPayment } from "../../api/startPayment";
+import { useRouter } from "next/navigation";
 
 const values = [
   {
@@ -37,16 +39,51 @@ export const getValueSign = (value: string) => {
   return "€";
 };
 
+const getStartSing = (value: string) => {
+  if (value === "rub") return "RUB";
+  if (value === "usd") return "USD";
+  return "EUR";
+};
+
 export const ModalPremium = () => {
   const { auth } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
+  const navigation = useRouter();
 
   const [data, setData] = useState<TypePrem[] | null>(null);
   const [currentData, setCurrentData] = useState<TypePrem | null>(null);
   const [promoCode, setPromoCode] = useState<TypePromoCode | null>(null);
   const [lang, setLang] = useState<string>("rub");
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const onOpenPremiumWhy = () => dispatch(setModal(EnumModals.PREMIUM_WHY));
+
+  const onStartPayment = () => {
+    console.log(currentData);
+    if (!currentData) return;
+    setLoading(true);
+    const params: IParamsStartPay = {
+      payment_id: 1,
+      payment_method_id: 1,
+      rate_detail_id: currentData.id,
+      currency: getStartSing(lang),
+    };
+    if (promoCode) params["promo_code_id"] = String(promoCode.id);
+    startPayment(params)
+      .then((res) => {
+        console.log(res);
+        if (res.data) {
+          navigation.push(res.data);
+        }
+        if (!res.data && res.end_date) {
+          window.location.href = "/payment-success";
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
     if (!auth) return;
@@ -104,7 +141,7 @@ export const ModalPremium = () => {
               {currentData?.name.replace(/\d+/g, "")}
               {currentData &&
                 (currentData[
-                  promoCode
+                  promoCode && promoCode.bonus_percent
                     ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
                     : (`price_${lang}` as "price_rub")
                 ] == "0" ||
@@ -119,7 +156,7 @@ export const ModalPremium = () => {
                       <>
                         {divideSumByComma(
                           currentData[
-                            promoCode
+                            promoCode && promoCode.bonus_percent
                               ? (`price_${lang}_with_bonus` as "price_rub_with_bonus")
                               : (`price_${lang}` as "price_rub")
                           ]
@@ -131,7 +168,12 @@ export const ModalPremium = () => {
                 ))}
             </p>
           </div>
-          <Button className={styles.submit} type="gradient">
+          <Button
+            loading={loading}
+            onClick={onStartPayment}
+            className={styles.submit}
+            type="gradient"
+          >
             ОПЛАТИТЬ
           </Button>
 

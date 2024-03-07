@@ -5,12 +5,12 @@ export function convertUtcOffsetToDate(
   customUtcTime?: string
 ) {
   // Извлекаем числовое значение смещения
-  const offset = parseInt(utcOffsetString.replace(/[^\d-+]/g, ""), 10);
+  const offset = utcOffsetString.replace(/[^0-9.+\\-]/g, "");
 
   // Создаем объект Day.js с указанным временем в UTC
   const utcTime = customUtcTime
     ? // @ts-ignore
-      dayjs.utc(customUtcTime, "YYYY-MM-DDTHH:mm:ssZ").utcOffset(3)
+      dayjs.utc(customUtcTime, "YYYY-MM-DDTHH:mm:ssZ").utcOffset(-3)
     : // @ts-ignore
       dayjs.utc();
 

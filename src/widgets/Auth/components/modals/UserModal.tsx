@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { IconCron } from "../../icons/IconCron";
 import Button from "@/shared/UI/Button";
@@ -14,8 +14,10 @@ import { logout } from "../../slice/authSlice";
 import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import styles from "../../styles/modal.user.module.scss";
-import { googleLogout } from "@react-oauth/google";
 import { signOut } from "next-auth/react";
+import dayJs from "@/shared/core/dayjs";
+import { convertUtcOffsetToDate } from "@/shared/helper/convertUtcOffsetToDate";
+import { getTimezone } from "@/shared/helper/getTimezone";
 
 const UserRole = () => {
   return (
@@ -32,7 +34,10 @@ interface IProps {
 
 const UserModal: FC<IProps> = ({ open }) => {
   const { user } = useTypeSelector((state) => state.auth);
+  const { utcId } = useTypeSelector((state) => state.timezone);
   const dispatch = useTypeDispatch();
+
+  const [time, setTime] = useState<string | null>(null);
 
   const onLogout = () => {
     dispatch(logout());
@@ -43,6 +48,13 @@ const UserModal: FC<IProps> = ({ open }) => {
     dispatch(setModal(EnumModals.PREMIUM));
   };
   const onOpenModalSetting = () => dispatch(setModal(EnumModals.SETTINGS));
+
+  useEffect(() => {
+    if (!user?.tariff_end_date) return;
+    const utc = getTimezone(String(utcId))?.utc || "UTC+3";
+    const utcTime = convertUtcOffsetToDate(utc, user.tariff_end_date);
+    setTime(dayJs(utcTime).format("DD.MM.YYYY"));
+  }, [utcId, user]);
 
   return (
     <div className={`${styles.body} user-modal ${open ? styles.open : ""}`}>
@@ -66,7 +78,7 @@ const UserModal: FC<IProps> = ({ open }) => {
         <Button type="text" onClick={onOpenModalPrem}>
           <IconDiamond />
           <span>Premium доступ</span>
-          <span className={styles.premiumTime}>До 21.12.2024</span>
+          {time && <span className={styles.premiumTime}>{time}</span>}
         </Button>
         <Button type="text" onClick={onOpenModalSetting}>
           <IconSettings />

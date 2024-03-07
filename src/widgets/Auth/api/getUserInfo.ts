@@ -8,7 +8,12 @@ export async function getUserInfo(token?: string) {
         Authorization: `Bearer ${token}`,
       },
     });
-    return { ...data.data, favorite_count: data.favorite_array };
+    console.log(data);
+    return {
+      ...data.data,
+      favorite_count: data.favorite_array,
+      tariff_end_date: data.tariff_end_date,
+    };
   } catch (error) {
     return null;
   }

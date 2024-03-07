@@ -16,12 +16,13 @@ interface IProps {
 export const UserProvider: FC<IProps> = ({ user, children }) => {
   const { auth } = useTypeSelector((state) => state.auth);
   const dispatch = useDispatch();
-
   const { data } = useSession();
 
   useEffect(() => {
     dispatch(setStatus(EnumStatus.DEFAULT));
     if (!user) return;
+    console.log("user", user);
+
     dispatch(setUser(user));
   }, []);
 
