@@ -41,6 +41,12 @@ const getStartSing = (value: string) => {
   return "EUR";
 };
 
+const getConvertDay = (day: number) => {
+  if (day == 1) return "день";
+  if (day <= 4 && day < 5) return "дня";
+  return "дней";
+};
+
 interface IProps {
   data: TypePrem[] | null;
 }
@@ -124,7 +130,12 @@ export const Payment: FC<IProps> = ({ data }) => {
                   ? Number(currentData?.bonus_day) || 0
                   : 0)}
             </span>{" "}
-            {currentData?.name.replace(/\d+/g, "")}
+            {getConvertDay(
+              (Number(currentData?.name.replace(/\D/g, "")) || 0) +
+                (promoCode?.bonus_day == "1"
+                  ? Number(currentData?.bonus_day) || 0
+                  : 0)
+            )}
             {currentData &&
               (currentData[
                 promoCode &&
