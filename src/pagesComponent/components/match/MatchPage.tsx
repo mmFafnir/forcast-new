@@ -16,6 +16,7 @@ import { EventsBlock } from "./components/EventsBlock";
 import { getTimezone } from "@/shared/helper/getTimezone";
 import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
 import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
+import { TextDate } from "./components/Title";
 
 interface IProps {
   data: IFetchFullMatch;
@@ -78,7 +79,9 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
       <div className={styles.page}>
         <MatchPreviewSticky match={data} />
         <div className="flex item-center jc-between">
-          <h1>{seo.ceo_h}</h1>
+          <h1>
+            <TextDate text={seo.ceo_h} time={data.real_time_carbon} />
+          </h1>
           <div className={`flex item-center ${styles.buttons}`}>
             <FavoriteAdd
               active={data.favorite_auth_user_count === 1}

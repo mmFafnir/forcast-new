@@ -14,6 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const NotFound = async () => {
   const seo = await getStaticSeo("404");
+
   return <PageError seo={seo} />;
 };
 

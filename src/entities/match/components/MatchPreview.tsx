@@ -63,6 +63,7 @@ interface IProps {
 
 export const MatchPreview: FC<IProps> = ({ match }) => {
   const { date, hours } = useTimeUtc(match.real_time_carbon);
+
   return (
     <div
       className={`${styles.body} review-match`}

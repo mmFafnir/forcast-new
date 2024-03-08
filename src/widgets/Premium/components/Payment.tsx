@@ -42,8 +42,11 @@ const getStartSing = (value: string) => {
 };
 
 const getConvertDay = (day: number) => {
-  if (day == 1) return "день";
-  if (day <= 4 && day < 5) return "дня";
+  const num = day <= 10 ? day : Number(String(day)[String(day).length - 1]);
+  console.log("num", num);
+  if (num == 0) return "дней";
+  if (num == 1) return "день";
+  if (num <= 4 && num < 5) return "дня";
   return "дней";
 };
 

@@ -28,7 +28,6 @@ const useTimeUtc = (matchTime: string) => {
   });
 
   useEffect(() => {
-    console.log(timezone);
     const timezoneTime = dayJs
       // @ts-ignore
       .utc(timeDefaultTimezone)

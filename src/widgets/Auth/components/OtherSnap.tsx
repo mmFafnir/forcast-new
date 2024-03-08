@@ -72,7 +72,9 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
             </button>
           );
         })}
-        {openWindow && <NewWindow url="/sing-in" />}
+        {openWindow && (
+          <NewWindow url="/sing-in" onOpen={() => setOpenWindow(false)} />
+        )}
       </div>
     </>
   );
