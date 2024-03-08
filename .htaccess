@@ -12,6 +12,3 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ http://127.0.0.1:3000/$1 [P,L]
 
 
-RewriteRule ^(.*)\.xml$ /sitemap.xml [L]
-RewriteEngine On
-RewriteRule ^(.*)\.xml$ /sitemap.xml [L]

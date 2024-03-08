@@ -10,7 +10,7 @@ export async function generateSitemaps() {
 
   console.log(data);
   return data.sports.map((item: any) => {
-    return { id: item.url + "-" + "ru" };
+    return { id: item.url + "-ru" };
   });
 }
 
