@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-const { Builder } = require("xml2js");
 
-const { parseString } = require("xml2js");
+const { parseString, Builder } = require("xml2js");
 
-export async function parseSitemap(
-  xmlString: string
-): Promise<{ url: string }[]> {
+async function parseSitemap(xmlString: string): Promise<{ loc: string }[]> {
   return new Promise((resolve, reject) => {
     parseString(xmlString, (err: any, result: any) => {
       if (err) {
