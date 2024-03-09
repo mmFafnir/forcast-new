@@ -6,8 +6,8 @@ export async function middleware(request: NextRequest) {
   requestHeaders.set("x-bot", `${isBot}`);
   requestHeaders.set("x-url", request.nextUrl.pathname);
 
-  console.log(request.nextUrl.pathname);
   if (request.nextUrl.pathname.includes(".xml")) {
+    console.log(request.nextUrl.pathname);
     try {
       const res = await fetch(`http://admin.aibetguru.com/sitemap.xml`, {
         method: "GET",
