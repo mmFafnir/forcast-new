@@ -1,4 +1,3 @@
-import axios from "axios";
 import { NextRequest, NextResponse, userAgent } from "next/server";
 
 export async function middleware(request: NextRequest) {
@@ -9,7 +8,6 @@ export async function middleware(request: NextRequest) {
 
   console.log(request.nextUrl.pathname);
   if (request.nextUrl.pathname.includes(".xml")) {
-    console.log("work midle sitemap");
     try {
       const res = await fetch(`http://admin.aibetguru.com/sitemap.xml`, {
         method: "GET",

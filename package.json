@@ -15,6 +15,7 @@
     "@types/react-helmet": "^6.1.11",
     "@types/react-scroll": "^1.8.10",
     "@types/react-transition-group": "^4.4.10",
+    "@types/rss": "^0.0.32",
     "axios": "^1.6.5",
     "dayjs": "^1.11.10",
     "dompurify": "^3.0.9",
@@ -36,6 +37,7 @@
     "react-redux": "^9.0.4",
     "react-timer-hook": "^3.0.7",
     "react-transition-group": "^4.4.5",
+    "rss": "^1.2.2",
     "simplebar-react": "^3.2.4",
     "xml2js": "^0.6.2"
   },
