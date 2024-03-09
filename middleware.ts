@@ -4,6 +4,8 @@ export function middleware(request: NextRequest) {
   const { isBot } = userAgent(request);
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-bot", `${isBot}`);
+  console.log(request.nextUrl.locale);
+  requestHeaders.set("x-url", request.nextUrl.pathname);
   // You can also set request headers in NextResponse.rewrite
   const response = NextResponse.next({
     request: {

@@ -12,7 +12,6 @@ export async function parseSitemap(
         reject(err);
       } else {
         const urlElements = result.urlset.url;
-        console.log(urlElements);
         const urls = urlElements.map((urlElement: any) => ({
           url: urlElement.loc[0],
           changeFrequency: urlElement.changefreq
