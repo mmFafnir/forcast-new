@@ -1,5 +1,7 @@
 import axios from "axios";
 import { MetadataRoute } from "next";
+import { redirect } from "next/dist/server/api-utils";
+import { headers } from "next/headers";
 const { parseString } = require("xml2js");
 
 // Пример преобразования строки с данными XML в массив объектов URL
@@ -26,8 +28,10 @@ export async function parseSitemap(
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const { data } = await axios.get("https://admin.aibetguru.com/sitemap.xml");
+  const header = headers();
+  const data = header.get("x-xml");
   console.log(data);
+  if (!data) throw Error();
   const sitemapUrls = await parseSitemap(data);
   return sitemapUrls;
 }
