@@ -24,6 +24,6 @@ export async function GET() {
       },
     });
   }
-  return new Response();
-  // return NextResponse.error();
+  console.log("error");
+  NextResponse.redirect(new URL("/404"));
 }
