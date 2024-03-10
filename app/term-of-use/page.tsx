@@ -6,7 +6,6 @@ import { notFound } from "next/navigation";
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getStaticSeo("term-of-use");
-
   return {
     title: seo?.ceo_title || "",
     description: seo?.ceo_description || "",

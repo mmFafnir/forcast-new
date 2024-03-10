@@ -9,6 +9,7 @@ export const getStaticSeo = cache(
 
       return data.data;
     } catch (error) {
+      console.log(error);
       return null;
     }
   }

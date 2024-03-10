@@ -18,14 +18,21 @@
 
 .simplebar-horizontal {
   height: 4px !important;
+  cursor: pointer !important;
   background-color: transparent;
   bottom: -6px !important;
+  pointer-events: inherit !important;
   .simplebar-scrollbar::before {
     height: 2px;
     border-radius: 5px;
     background: rgba(217, 217, 217, 0.7);
     transform: translateY(-50%);
     top: 50%;
+  }
+}
+.scroll-bottom-no-padding {
+  .simplebar-horizontal {
+    bottom: 4px !important;
   }
 }
 

@@ -61,7 +61,7 @@ export const ModalAuth = () => {
             </div>
           )}
           {component !== "success" && (
-            <OtherSnap component={component} setComponent={setComponent} />
+            <OtherSnap auth component={component} setComponent={setComponent} />
           )}
           {component === "mail" && <Auth />}
           {component === "telegram" && <TelegramSnap mode="login" />}

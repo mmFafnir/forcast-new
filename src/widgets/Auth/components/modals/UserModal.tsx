@@ -19,7 +19,7 @@ import dayJs from "@/shared/core/dayjs";
 import { convertUtcOffsetToDate } from "@/shared/helper/convertUtcOffsetToDate";
 import { getTimezone } from "@/shared/helper/getTimezone";
 
-const UserRole = ({ prem }: { prem: boolean }) => {
+export const UserRole = ({ prem }: { prem: boolean }) => {
   return (
     <p className={styles.role}>
       <span style={{ color: prem ? "#D3AD4D" : "inherit" }}>

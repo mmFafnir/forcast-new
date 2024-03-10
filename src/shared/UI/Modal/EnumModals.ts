@@ -6,4 +6,5 @@ export enum EnumModals {
   PREMIUM = "premium",
   PREMIUM_WHY = "premiumWhy",
   USER = "user",
+  USER_MOBILE = "userMobile",
 }

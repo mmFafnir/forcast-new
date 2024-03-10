@@ -17,7 +17,7 @@ import { confirmNewEmail } from "../../api/confirm";
 import { signOut } from "next-auth/react";
 import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 
-export const SettingsAuthModal = () => {
+export const ModalUserMobile = () => {
   const { user, webApp } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
 
@@ -32,7 +32,7 @@ export const SettingsAuthModal = () => {
   if (!user) return;
   return (
     <Modal
-      name={EnumModals.SETTINGS}
+      name={EnumModals.USER_MOBILE}
       title="Личный кабинет"
       titleAlight="center"
       stylesWrapper={{ flex: "0 1 100%", height: "100%" }}

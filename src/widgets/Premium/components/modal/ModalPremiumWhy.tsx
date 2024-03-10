@@ -18,13 +18,18 @@ interface IProps {
   text: string[];
   title: string;
   image: StaticImageData;
+  imageMob: StaticImageData;
 }
-const Item: FC<IProps> = ({ index, text, title, image }) => {
+const Item: FC<IProps> = ({ index, text, title, image, imageMob }) => {
   return (
     <div className={styles.item}>
       <span className={styles.index}>{index}</span>
       <div className={styles.img}>
-        <Image src={image} width={400} height={400} alt={title} />
+        <picture>
+          <source srcSet={imageMob.src} media="(max-width: 900px)" />
+          <img src={image.src} alt={title} />
+          {/* <Image src={image} width={400} height={400} alt={title} /> */}
+        </picture>
       </div>
       <div className={styles.right}>
         <h3>{title}</h3>

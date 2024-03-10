@@ -33,10 +33,11 @@ export const ModalPremium = () => {
     <Modal
       name={EnumModals.PREMIUM}
       stylesWrapper={{ flex: "0 1 100%", height: "100%" }}
-      styleContent={{ flex: "0 1 560px", margin: "0 auto", paddingTop: "40px" }}
+      // styleContent={{ }}
       styleBody={{ padding: 0 }}
       titleAlight="center"
       hideRender
+      classContent={styles.modal}
       title={
         <p className={styles.title}>
           Доступ к <span className={styles.gold}>PREMIUM</span> контенту

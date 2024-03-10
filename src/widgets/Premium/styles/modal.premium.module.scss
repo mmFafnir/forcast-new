@@ -1,3 +1,8 @@
+.modal {
+  flex: 0 1 560px !important;
+  margin: 0 auto !important;
+  padding-top: 40px !important;
+}
 .header {
   display: flex;
   align-items: center;
@@ -69,6 +74,15 @@
   text-align: center;
   color: #fff;
   font-size: 12px;
+  a {
+    text-decoration: underline;
+    transition-duration: 100ms;
+    @media (min-width: 901px) {
+      &:hover {
+        color: #65a3ff;
+      }
+    }
+  }
 
   svg {
     flex: 0 0 19px;
@@ -81,6 +95,9 @@
 }
 
 @media (max-width: 500px) {
+  .modal {
+    padding-top: 0 !important;
+  }
   .title {
     font-size: 16px;
   }

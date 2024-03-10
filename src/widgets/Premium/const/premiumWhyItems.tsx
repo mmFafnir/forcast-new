@@ -3,10 +3,15 @@ import image1 from "../images/1.png";
 import image2 from "../images/2.png";
 import image3 from "../images/3.png";
 
+import imageMob1 from "../images/1-mob.png";
+import imageMob2 from "../images/2-mob.png";
+import imageMob3 from "../images/3-mob.png";
+
 export const premiumWhyItems = [
   {
     title: "Лучшая ставка",
     image: image1,
+    imageMob: imageMob1,
     index: <NumberOne />,
     text: [
       "С премиум-доступом у тебя появляется возможность видеть не только стандартный прогноз на матч, но и альтернативный вариант ставки, который S Æ A-XI определяет как 'лучший.",
@@ -18,6 +23,7 @@ export const premiumWhyItems = [
   {
     title: "Экономит время",
     image: image2,
+    imageMob: imageMob2,
     index: <NumberTwo />,
     text: [
       "Далее, мы решили сэкономить твоё время и внедрили функцию быстрого просмотра 'лучшей ставки' прямо на страницах видов спорта, стран и лиг, где представлены краткие карточки матчей.",
@@ -29,6 +35,7 @@ export const premiumWhyItems = [
   {
     title: "Запрос прогноза",
     image: image3,
+    imageMob: imageMob3,
     index: <NumberThree />,
     text: [
       "А ещё у тебя, как у премиум-пользователя, будет доступна уникальная привилегия – возможность запросить индивидуальный прогноз от S Æ A-XI на матчи непопулярных лиг, на которые изначально прогноз не предусматривался.",

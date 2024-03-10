@@ -9,14 +9,30 @@ import Loader from "@/shared/UI/Loader";
 
 import React from "react";
 import { postAvatar } from "../api/avatar";
+import { UserRole } from "./modals/UserModal";
+import IconDiamond from "@/shared/icons/IconDiamond";
+import { getTimezone } from "@/shared/helper/getTimezone";
+import { convertUtcOffsetToDate } from "@/shared/helper/convertUtcOffsetToDate";
+import dayJs from "@/shared/core/dayjs";
+import { PremMatchBanner } from "@/entities/banners";
+import Button from "@/shared/UI/Button";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { setModal } from "@/shared/UI/Modal/modalSlice";
+import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 
 export const User = () => {
   const { user } = useTypeSelector((state) => state.auth);
+  const { utcId } = useTypeSelector((state) => state.timezone);
+  const dispatch = useTypeDispatch();
 
   const refUpload = useRef<HTMLInputElement>(null);
   const [img, setImg] = useState<string>(defaultImg);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+
+  const [time, setTime] = useState<string | null>(null);
+
+  const openModalPrem = () => dispatch(setModal(EnumModals.PREMIUM));
 
   const setImages = (e: FormEvent<HTMLInputElement>) => {
     setLoading(true);
@@ -42,11 +58,15 @@ export const User = () => {
     user.avatar && setImg(`https://admin.aibetguru.com/avatars/${user.avatar}`);
   }, [user]);
 
+  useEffect(() => {
+    if (!user?.tariff_end_date) return;
+    const utc = getTimezone(String(utcId))?.utc || "UTC+3";
+    const utcTime = convertUtcOffsetToDate(utc, user.tariff_end_date);
+    setTime(dayJs(utcTime).format("DD.MM.YYYY"));
+  }, [utcId, user]);
+
   return (
-    <>
-      <p className={styles.title}>
-        {user && (user.name || user.nickname || user.email)}
-      </p>
+    <div className={styles.user}>
       <div className={styles.body}>
         <div className={styles.img}>
           {loading && (
@@ -63,23 +83,56 @@ export const User = () => {
           />
         </div>
         <div className={styles.image}>
-          <p style={{ color: error ? "red" : "inherit" }}>
-            JPG, PNG, 64 х 64 px не более 4.00 MB
+          <p className={styles.title}>
+            {user && (user.name || user.nickname || user.email)}
           </p>
-          <input
-            type="file"
-            id="avatar"
-            name="avatar"
-            accept="image/png, image/jpeg"
-            ref={refUpload}
-            onInput={setImages}
-            disabled={loading}
-          />
-          <label className="link" htmlFor="avatar">
-            Загрузить изображение
-          </label>
+          <div className={styles.role}>
+            <p>Статус:</p>
+            <UserRole prem={user?.premium === "1"} />
+          </div>
+          <div>
+            <input
+              type="file"
+              id="avatar"
+              name="avatar"
+              accept="image/png, image/jpeg"
+              ref={refUpload}
+              onInput={setImages}
+              disabled={loading}
+            />
+            <label className="link" htmlFor="avatar">
+              Загрузить изображение
+            </label>
+            <p className={styles.imageOptions}>
+              JPG, PNG, 64 х 64 px не более 4.00 MB
+            </p>
+          </div>
         </div>
       </div>
-    </>
+
+      <div className={styles.prem}>
+        <IconDiamond color={true} />
+        <span>Premium доступ</span>
+        {time && <span className={styles.premiumTime}>до {time}</span>}
+        <Button
+          type="gray"
+          className={styles.premButton}
+          onClick={openModalPrem}
+        >
+          КУПИТЬ
+        </Button>
+      </div>
+      {user?.premium !== "1" && (
+        <PremMatchBanner
+          bodyClass={styles.premBanner}
+          prem={false}
+          text={
+            <>
+              Купить со СКИДКОЙ <span>25%</span>
+            </>
+          }
+        />
+      )}
+    </div>
   );
 };

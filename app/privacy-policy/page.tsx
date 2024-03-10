@@ -23,6 +23,7 @@ const PrivacyPolicy = async () => {
       href: "/privacy-policy",
     },
   ];
+
   if (!seo) return notFound();
   return <Privacy breadCrumbs={breadCrumbs} text={data} seo={seo} />;
 };

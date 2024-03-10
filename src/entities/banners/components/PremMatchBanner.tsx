@@ -10,8 +10,14 @@ import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 interface IProps {
   text?: string | ReactNode;
+  prem?: boolean;
+  bodyClass?: string;
 }
-export const PremMatchBanner: FC<IProps> = ({ text }) => {
+export const PremMatchBanner: FC<IProps> = ({
+  text,
+  prem = true,
+  bodyClass,
+}) => {
   const { auth } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
 
@@ -22,8 +28,8 @@ export const PremMatchBanner: FC<IProps> = ({ text }) => {
   };
 
   return (
-    <div className={styles.body} onClick={onModalOpen}>
-      <Premium />
+    <div className={`${styles.body} ${bodyClass}`} onClick={onModalOpen}>
+      {prem && <Premium />}
       <p className={styles.text}>
         {text || (
           <>

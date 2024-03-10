@@ -13,6 +13,7 @@ import { closeAllModal, setModal } from "@/shared/UI/Modal/modalSlice";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useRouter } from "next/navigation";
 import styles from "../styles/modal.premium.module.scss";
+import { PaymentMethod } from "./PaymentMethod";
 
 const values = [
   {
@@ -123,6 +124,7 @@ export const Payment: FC<IProps> = ({ data }) => {
         bonus={currentData?.bonus_percent || "0"}
         bonusDay={currentData?.bonus_day || "0"}
       />
+      <PaymentMethod country={currentData?.country} />
       <div className={styles.footer}>
         <div className={styles.total}>
           <p>ИТОГО: </p>
@@ -184,8 +186,8 @@ export const Payment: FC<IProps> = ({ data }) => {
         <div className={styles.pol}>
           <p>
             Нажимая на кнопку “Оплатить” вы соглашаетесь с{" "}
-            <Link href={"/privacy-policy"}>политикой конфиденциальности</Link>и
-            <Link href={"/privacy-policy"}>пользовательским соглашением</Link>
+            <Link href={"/privacy-policy"}>политикой конфиденциальности</Link> и{" "}
+            <Link href={"/term-of-use"}>пользовательским соглашением</Link>
           </p>
         </div>
       </div>

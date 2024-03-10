@@ -15,10 +15,12 @@ import { isMobile } from "@/features/shared/scripts/isMobile";
 interface IProps {
   setComponent: (value: string) => void;
   component: string;
+  auth?: boolean;
 }
-export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
+export const OtherSnap: FC<IProps> = ({ component, setComponent, auth }) => {
   const { user, webApp } = useTypeSelector((state) => state.auth);
   const [openWindow, setOpenWindow] = useState<boolean>(false);
+
   const buttons = useMemo(
     () => [
       {
@@ -48,7 +50,9 @@ export const OtherSnap: FC<IProps> = ({ component, setComponent }) => {
   );
 
   useEffect(() => {
-    setComponent(buttons.find((btn) => !btn.checked)?.name || "mail");
+    setComponent(
+      auth ? buttons.find((btn) => !btn.checked)?.name || "mail" : ""
+    );
   }, [buttons]);
 
   return (

@@ -23,4 +23,35 @@ export type TypePrem = {
   price_euro_with_bonus: string;
   bonus_day: string;
   bonus_percent: string;
+  country: IMethodCountry[];
 };
+
+export interface IMethodCountry {
+  id: number;
+  name: string;
+  category: IMethodCategory[];
+}
+
+export interface IMethodCategory {
+  id: number;
+  name: string;
+  payment_method: IMethodPayment[];
+}
+
+export interface IMethodPayment {
+  id: number;
+  payment_id: number;
+  pay_type_id: number;
+  name_id: number;
+  category_id: number;
+  type_name: {
+    id: number;
+    name_ru: string;
+    name_en: string;
+  };
+  parent_kassa: {
+    id: number;
+    name: string;
+    status: string;
+  };
+}
