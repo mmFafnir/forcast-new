@@ -33,7 +33,7 @@ export interface IMethodCountry {
 }
 
 export interface IMethodCategory {
-  id: number;
+  id: number | string;
   name: string;
   payment_method: IMethodPayment[];
 }

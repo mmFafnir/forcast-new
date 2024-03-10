@@ -44,7 +44,6 @@ const getStartSing = (value: string) => {
 
 const getConvertDay = (day: number) => {
   const num = day <= 10 ? day : Number(String(day)[String(day).length - 1]);
-  console.log("num", num);
   if (num == 0) return "дней";
   if (num == 1) return "день";
   if (num <= 4 && num < 5) return "дня";
@@ -61,17 +60,17 @@ export const Payment: FC<IProps> = ({ data }) => {
   const [currentData, setCurrentData] = useState<TypePrem | null>(null);
   const [promoCode, setPromoCode] = useState<TypePromoCode | null>(null);
   const [lang, setLang] = useState<string>("rub");
+  const [paymentId, setPaymentId] = useState<number | null>(null);
 
   const [loading, setLoading] = useState<boolean>(false);
 
   const onOpenPremiumWhy = () => dispatch(setModal(EnumModals.PREMIUM_WHY));
-
+  console.log(paymentId);
   const onStartPayment = () => {
-    console.log(currentData);
     if (!currentData) return;
     setLoading(true);
     const params: IParamsStartPay = {
-      payment_id: 1,
+      payment_id: paymentId || 1,
       payment_method_id: 1,
       rate_detail_id: currentData.id,
       currency: getStartSing(lang),
@@ -91,7 +90,6 @@ export const Payment: FC<IProps> = ({ data }) => {
         setLoading(false);
       });
   };
-
   useEffect(() => {
     if (!data) {
       dispatch(closeAllModal());
@@ -124,7 +122,7 @@ export const Payment: FC<IProps> = ({ data }) => {
         bonus={currentData?.bonus_percent || "0"}
         bonusDay={currentData?.bonus_day || "0"}
       />
-      <PaymentMethod country={currentData?.country} />
+      <PaymentMethod setValue={setPaymentId} country={currentData?.country} />
       <div className={styles.footer}>
         <div className={styles.total}>
           <p>ИТОГО: </p>

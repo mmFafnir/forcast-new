@@ -8,14 +8,28 @@ import MyScrollbar from "@/shared/UI/MyScrollbar";
 
 interface IProps {
   country?: IMethodCountry[];
+  setValue: (value: number | null) => void;
 }
-export const PaymentMethod: FC<IProps> = ({ country }) => {
+export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
   const [currentCountry, setCurrentCountry] = useState<IMethodCountry | null>(
     country && country.length > 0 ? country[0] : null
   );
   const [categories, setCategories] = useState<IMethodCategory[]>([]);
   const [currentCategory, setCurrentCategory] =
     useState<IMethodCategory | null>(null);
+
+  const [paymentId, setPaymentId] = useState<number | null>(null);
+
+  const createAllCategories = (categories: IMethodCategory[]) => {
+    const arr = categories.map((item) => item.payment_method)[0];
+    const category: IMethodCategory = {
+      id: "all",
+      name: "Все",
+      payment_method: arr,
+    };
+
+    return category;
+  };
 
   useEffect(() => {
     if (!country) return;
@@ -24,10 +38,19 @@ export const PaymentMethod: FC<IProps> = ({ country }) => {
 
   useEffect(() => {
     setCategories(currentCountry ? currentCountry.category : []);
-    setCurrentCategory(currentCountry ? currentCountry.category[0] : null);
+    setCurrentCategory(
+      currentCountry ? createAllCategories(currentCountry.category) : null
+    );
+    setPaymentId(
+      currentCountry
+        ? currentCountry.category[0].payment_method[0].payment_id
+        : null
+    );
   }, [currentCountry]);
 
-  console.log(currentCategory);
+  useEffect(() => {
+    setValue(paymentId);
+  }, [paymentId]);
 
   return (
     <div className={styles.body}>
@@ -48,30 +71,46 @@ export const PaymentMethod: FC<IProps> = ({ country }) => {
           }))}
         />
       )}
-      <MyScrollbar className="scroll-bottom-no-padding">
-        <div className={styles.categories}>
-          {categories &&
-            categories.map((category) => (
-              <Button
-                type="gray"
-                active={currentCategory?.id === category.id}
-                className={styles.btn}
-                key={category.id}
-              >
-                {category.name}
-              </Button>
-            ))}
-        </div>
-      </MyScrollbar>
+      <div className={styles.categories}>
+        <MyScrollbar className="scroll-bottom-no-padding">
+          <div className={styles.categoriesWrapper}>
+            <Button
+              type="text"
+              active={currentCategory?.id === "all"}
+              className={styles.btn}
+              onClick={() =>
+                setCurrentCategory(createAllCategories(categories))
+              }
+            >
+              Все
+            </Button>
+            {categories &&
+              categories.map((category) => (
+                <Button
+                  type="text"
+                  active={currentCategory?.id === category.id}
+                  className={styles.btn}
+                  key={category.id}
+                  onClick={() => setCurrentCategory(category)}
+                >
+                  {category.name}
+                </Button>
+              ))}
+          </div>
+        </MyScrollbar>
+      </div>
       <div className={styles.payments}>
         {currentCategory?.payment_method.map((payment, index) => (
           <div key={payment.id} className={styles.payment}>
             <input
               type="radio"
               name={"payment"}
-              value={payment.payment_id}
+              value={payment.pay_type_id}
               id={String(payment.id)}
               defaultChecked={index === 0}
+              onChange={(e) => {
+                setPaymentId(Number((e.target as HTMLInputElement).value));
+              }}
               hidden
             />
             <label htmlFor={String(payment.id)}>
