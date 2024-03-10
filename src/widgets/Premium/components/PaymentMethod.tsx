@@ -44,7 +44,7 @@ export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
     );
     setPaymentId(
       currentCountry
-        ? currentCountry.category[0].payment_method[0]?.payment_id || null
+        ? currentCountry.category[0].payment_method[0]?.id || null
         : null
     );
   }, [currentCountry]);
