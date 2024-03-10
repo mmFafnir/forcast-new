@@ -42,11 +42,14 @@ export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
     setCurrentCategory(
       currentCountry ? createAllCategories(currentCountry.category) : null
     );
-    setPaymentId(
-      currentCountry
-        ? currentCountry.category[0].payment_method[0]?.id || null
-        : null
-    );
+
+    const paymentMethodsId =
+      currentCountry &&
+      currentCountry.category.length > 0 &&
+      currentCountry.category[0].payment_method.length > 0 &&
+      currentCountry.category[0].payment_method[0].id;
+
+    setPaymentId(currentCountry ? paymentMethodsId || null : null);
   }, [currentCountry]);
 
   useEffect(() => {
@@ -86,20 +89,27 @@ export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
                 Все
               </Button>
               {categories &&
-                categories.map((category) => (
-                  <Button
-                    type="gray"
-                    active={currentCategory?.id === category.id}
-                    className={styles.btn}
-                    key={category.id}
-                    onClick={() => {
-                      console.log(category);
-                      setCurrentCategory(category);
-                    }}
-                  >
-                    {category.name}
-                  </Button>
-                ))}
+                categories.map((category) => {
+                  if (
+                    !category.payment_method ||
+                    category.payment_method.length === 0
+                  )
+                    return <></>;
+                  return (
+                    <Button
+                      type="gray"
+                      active={currentCategory?.id === category.id}
+                      className={styles.btn}
+                      key={category.id}
+                      onClick={() => {
+                        console.log(category);
+                        setCurrentCategory(category);
+                      }}
+                    >
+                      {category.name}
+                    </Button>
+                  );
+                })}
             </div>
           </MyScrollbar>
           {/* </div> */}
