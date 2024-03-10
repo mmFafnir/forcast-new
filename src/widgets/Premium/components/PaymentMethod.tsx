@@ -112,7 +112,7 @@ export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
             <input
               type="radio"
               name={"payment"}
-              value={payment.payment_id}
+              value={payment.id}
               id={String(payment.id)}
               defaultChecked={index === 0}
               onChange={(e) => {

@@ -65,10 +65,11 @@ export const Payment: FC<IProps> = ({ data }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const onOpenPremiumWhy = () => dispatch(setModal(EnumModals.PREMIUM_WHY));
-  console.log(paymentId);
+  console.log("paymentId", paymentId);
   const onStartPayment = () => {
     if (!currentData) return;
     setLoading(true);
+    console;
     const params: IParamsStartPay = {
       payment_id: 1,
       payment_method_id: paymentId || 1,
@@ -76,6 +77,7 @@ export const Payment: FC<IProps> = ({ data }) => {
       currency: getStartSing(lang),
     };
     if (promoCode) params["promo_code_id"] = String(promoCode.id);
+    console.log(params);
     startPayment(params)
       .then((res) => {
         console.log(res);
