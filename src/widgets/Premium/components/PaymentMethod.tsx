@@ -45,11 +45,11 @@ export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
 
     const paymentMethodsId =
       currentCountry &&
-      currentCountry.category.length > 0 &&
-      currentCountry.category[0].payment_method.length > 0 &&
-      currentCountry.category[0].payment_method[0].id;
+      currentCountry?.category.find((item) => item.payment_method.length > 0)
+        ?.id;
 
-    setPaymentId(currentCountry ? paymentMethodsId || null : null);
+    console.log("paymentMethodsId", paymentMethodsId);
+    setPaymentId(Number(paymentMethodsId) || null);
   }, [currentCountry]);
 
   useEffect(() => {
