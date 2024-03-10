@@ -70,8 +70,8 @@ export const Payment: FC<IProps> = ({ data }) => {
     if (!currentData) return;
     setLoading(true);
     const params: IParamsStartPay = {
-      payment_id: paymentId || 1,
-      payment_method_id: 1,
+      payment_id: 1,
+      payment_method_id: paymentId || 1,
       rate_detail_id: currentData.id,
       currency: getStartSing(lang),
     };
