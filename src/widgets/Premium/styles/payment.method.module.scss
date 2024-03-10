@@ -36,9 +36,12 @@
 .btn {
   flex: 1 1 auto;
   min-width: 120px;
-  margin-right: 10;
+  margin-right: 5px;
   height: 40px !important;
   font-weight: 400 !important;
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .payments {

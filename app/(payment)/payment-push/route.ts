@@ -1,6 +1,8 @@
 import { getQueryParameters } from "@/shared/helper/getQueryParameters";
 import axios from "axios";
+import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
+import requestIp from "request-ip";
 
 export async function POST(request: Request) {
   try {
@@ -25,7 +27,7 @@ export async function GET(request: Request) {
       getQueryParameters(request.url)
     );
   } catch (error) {
-    console.log(error);
+    // console.log('error', error);
   }
 
   return NextResponse.json({
