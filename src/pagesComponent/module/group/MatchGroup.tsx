@@ -47,7 +47,7 @@ const MatchesGroupMemo: FC<IProps> = ({
   }, [date, timeStatus, utcId]);
 
   useEffect(() => {
-    console.log(matches);
+    console.log(data);
   }, []);
   return (
     <div className="flex-1 min-h-block relative">
@@ -60,7 +60,11 @@ const MatchesGroupMemo: FC<IProps> = ({
       {data.map((lig) => (
         <SportGroup
           key={lig.league_id}
-          title={lig.league_name}
+          title={
+            lig.translate && lig.translate.length > 0
+              ? lig.translate[0].translation
+              : lig.league_name
+          }
           headerRender={<FavoritesLeagueHeader league={lig} />}
           total={lig.games.length}
         >

@@ -62,7 +62,11 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
           >
             {league.country?.translation || league.country?.name}:{" "}
           </Link>
-          <Link href={`/soccer/${league.url}`}>{league.league_name}</Link>
+          <Link href={`/soccer/${league.url}`}>
+            {league.translate && league.translate.length > 0
+              ? league.translate[0].translation
+              : league.league_name}
+          </Link>
         </p>
       </div>
       <PinButton leagues={league} />

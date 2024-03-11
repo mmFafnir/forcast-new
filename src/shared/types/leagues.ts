@@ -19,6 +19,12 @@ export type TypeLeague = {
   user_pind_admin_count: 0 | 1;
   country: TypeCountry;
   favorit: "0" | "1";
+  translate: {
+    lang_id: string;
+
+    parent_id: string;
+    translation: string;
+  }[];
 };
 export interface ILeagues extends TypeLeague {
   games: TypeMatch[];

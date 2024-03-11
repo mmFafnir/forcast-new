@@ -106,11 +106,16 @@ export const getMatchSoccerServer = cache(
       }
       if (data.request_league) {
         res.league = {
-          title: data.request_league?.league_name,
+          title:
+            data.request_league?.translate &&
+            data.request_league.translate.length > 0
+              ? data.request_league.translate[0].translate
+              : data.request_league?.league_name,
           url: data.request_league.url,
           id: data.request_league.id,
         };
       }
+
       return res;
     } catch (error) {
       console.log(error);

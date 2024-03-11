@@ -26,7 +26,11 @@ const ItemLeagues: FC<IPropsItem> = ({ item }) => {
         alt={item.league_name}
       />
       <p className={styles.title}>
-        <Link href={`/soccer/${item.url}`}>{item.league_name}</Link>
+        <Link href={`/soccer/${item.url}`}>
+          {item.translate && item.translate.length > 0
+            ? item.translate[0].translation
+            : item.league_name}
+        </Link>
       </p>
       <PinButton leagues={{ ...item, user_pind_count: 1 }} />
     </div>

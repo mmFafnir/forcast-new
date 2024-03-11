@@ -185,7 +185,10 @@ const SoccerSlugPage: NextPage<IProps> = async ({ params, searchParams }) => {
         sport_name: "Футбол",
         country_name:
           data?.league.country.translation || data?.league.country.name,
-        liga_name: data?.league.league_name,
+        liga_name:
+          data?.league.translate && data?.league.translate.length > 0
+            ? data?.league.translate[0].translation
+            : data?.league.league_name,
         comand_1:
           data?.home_team.translate[0]?.translation ||
           data?.home_team.team_name,

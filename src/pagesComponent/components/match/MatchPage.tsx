@@ -36,7 +36,12 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
 
   const countryTitle =
     data.league.country.translation || data.league.country.name;
-  const leagueTitle = data.league.league_name;
+
+  const leagueTitle =
+    data?.league.translate && data?.league.translate.length > 0
+      ? data?.league.translate[0].translation
+      : data?.league.league_name;
+
   const matchTitle = `${
     data.home_team.translate[0]
       ? data.home_team.translate[0].translation

@@ -16,7 +16,9 @@ export const League: FC<IProps> = ({ item }) => {
         href={`/soccer/${item.url}`}
         className={styles.name}
       >
-        {item.league_name}
+        {item.translate && item.translate.length > 0
+          ? item.translate[0].translation
+          : item.league_name}
       </Link>
       <PinButton leagues={item} />
     </div>

@@ -4,7 +4,6 @@ import styles from "../styles/modal.cookies.module.scss";
 import Button from "@/shared/UI/Button";
 import { CSSTransition } from "react-transition-group";
 import { parseCookies, setCookie } from "nookies";
-import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 export const ModalAgreeCookies = () => {
   const { cookies } = parseCookies();
 
