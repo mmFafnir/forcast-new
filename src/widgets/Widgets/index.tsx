@@ -7,6 +7,7 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { closeWidgets } from "@/features/closeSidebar/slice/closeSidebarSlice";
 import { TimezoneSelect } from "@/features/timezone";
 import { ButtonLogin } from "../Auth";
+import { ModalAgreeCookies } from "../Cookies";
 
 interface IProps {
   widgets: ReactNode[];
@@ -45,6 +46,7 @@ const Widgets: FC<IProps> = ({ widgets }) => {
               ))}
               {/* </MyScrollbar> */}
             </div>
+            <ModalAgreeCookies />
           </div>
         </div>
       </div>

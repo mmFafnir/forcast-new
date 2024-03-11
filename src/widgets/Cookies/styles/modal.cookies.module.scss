@@ -1,0 +1,37 @@
+.body {
+  position: absolute;
+  bottom: 20px;
+  right: 0%;
+  z-index: 100;
+  border: 3px solid #33888a;
+  padding: 30px;
+  background-color: #22252f;
+  width: 459px;
+  p {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1250px) {
+  .body {
+    width: calc(100% - 40px);
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+  }
+}
+@media (max-width: 500px) {
+  .body {
+    padding: 20px;
+    p {
+      font-size: 14px;
+    }
+  }
+}

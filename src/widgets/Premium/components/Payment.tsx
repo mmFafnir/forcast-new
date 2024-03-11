@@ -118,7 +118,12 @@ export const Payment: FC<IProps> = ({ data }) => {
           />
         </div>
       </div>
-      <Sale lang={lang} data={data || []} onChange={setCurrentData} />
+      <Sale
+        lang={lang}
+        promoCode={promoCode}
+        data={data || []}
+        onChange={setCurrentData}
+      />
       <PromoCode
         free={currentData?.free_or_not}
         setPremStatus={setPromoCode}

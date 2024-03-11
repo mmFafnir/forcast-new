@@ -23,12 +23,6 @@
     border-radius: 5px;
   }
 
-  .pointTop {
-    &::before {
-      display: none;
-    }
-  }
-
   @media (min-width: 901px) {
     &:hover {
       background: rgba(255, 255, 255, 0.159);

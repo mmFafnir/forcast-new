@@ -21,6 +21,7 @@ import { PusherProvider } from "../providers/PusherProvider/components/Provider"
 import { SidebarSettings } from "@/widgets/Settings";
 import { ModalPremiumWhy } from "@/widgets/Premium/components/modal/ModalPremiumWhy";
 import { ModalHistoryShopping } from "@/widgets/Shopping";
+import { ModalAgreeCookies } from "@/widgets/Cookies";
 
 interface IProps {
   children: ReactNode;

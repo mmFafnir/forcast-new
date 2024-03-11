@@ -5,13 +5,15 @@ import { Range } from "./ui/Range";
 import { TypePrem } from "../types/TypePrem";
 import { divideSumByComma } from "@/shared/helper/divideSumByComma";
 import { getValueSign } from "./Payment";
+import { TypePromoCode } from "../types/IFetchPromoCode";
 
 interface IProps {
   data: TypePrem[];
   onChange: (value: TypePrem) => void;
   lang: string;
+  promoCode: TypePromoCode | null;
 }
-const SaleMemo: FC<IProps> = ({ data, lang, onChange }) => {
+const SaleMemo: FC<IProps> = ({ data, lang, onChange, promoCode }) => {
   const [rate, setRate] = useState<TypePrem>(data[0]);
 
   useEffect(() => {
@@ -28,7 +30,7 @@ const SaleMemo: FC<IProps> = ({ data, lang, onChange }) => {
         </p>
       </div>
       <div className={styles.content}>
-        <Range setValue={setRate} data={data} />
+        <Range promoCode={promoCode} setValue={setRate} data={data} />
       </div>
       <div className={styles.footer}>
         <p className={styles.discount}>
