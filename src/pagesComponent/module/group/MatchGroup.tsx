@@ -40,6 +40,7 @@ const MatchesGroupMemo: FC<IProps> = ({
       utcId,
     })
       .then((res) => {
+        console.log(res);
         setData(res.data);
       })
       .finally(() => setLoading(false));

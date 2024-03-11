@@ -1,5 +1,5 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC, memo, useEffect, useState } from "react";
 import styles from "../styles/sale.module.scss";
 import { Range } from "./ui/Range";
 import { TypePrem } from "../types/TypePrem";
@@ -11,12 +11,13 @@ interface IProps {
   onChange: (value: TypePrem) => void;
   lang: string;
 }
-export const Sale: FC<IProps> = ({ data, lang, onChange }) => {
+const SaleMemo: FC<IProps> = ({ data, lang, onChange }) => {
   const [rate, setRate] = useState<TypePrem>(data[0]);
 
   useEffect(() => {
     onChange(rate);
   }, [rate]);
+
   return (
     <div className={styles.body}>
       <div className={styles.header}>
@@ -57,3 +58,5 @@ export const Sale: FC<IProps> = ({ data, lang, onChange }) => {
     </div>
   );
 };
+
+export const Sale = memo(SaleMemo);

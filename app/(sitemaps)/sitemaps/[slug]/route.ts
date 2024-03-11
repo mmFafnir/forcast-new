@@ -9,6 +9,7 @@ export async function GET(request: NextRequest) {
   let xml;
 
   if (url.includes(".xml")) {
+    console.log(`http://admin.aibetguru.com${url}`);
     const res = await fetch(`http://admin.aibetguru.com${url}`, {
       method: "GET",
       credentials: "include",

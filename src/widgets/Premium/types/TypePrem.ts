@@ -2,6 +2,8 @@ export type TypePrem = {
   id: number;
   rate_id: number;
   free_or_not: "0" | "1";
+  has_top: "0" | "1";
+  start_tariffe: "0" | "1";
   name: string;
   price_rub: string;
   price_usd: string;

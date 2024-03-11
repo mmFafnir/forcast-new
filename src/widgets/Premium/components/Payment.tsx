@@ -53,6 +53,7 @@ const getConvertDay = (day: number) => {
 interface IProps {
   data: TypePrem[] | null;
 }
+
 export const Payment: FC<IProps> = ({ data }) => {
   const dispatch = useTypeDispatch();
   const navigation = useRouter();
@@ -65,7 +66,7 @@ export const Payment: FC<IProps> = ({ data }) => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const onOpenPremiumWhy = () => dispatch(setModal(EnumModals.PREMIUM_WHY));
-  console.log("paymentId", paymentId);
+
   const onStartPayment = () => {
     if (!currentData) return;
     setLoading(true);
@@ -77,7 +78,7 @@ export const Payment: FC<IProps> = ({ data }) => {
       currency: getStartSing(lang),
     };
     if (promoCode) params["promo_code_id"] = String(promoCode.id);
-    console.log(params);
+
     startPayment(params)
       .then((res) => {
         console.log(res);

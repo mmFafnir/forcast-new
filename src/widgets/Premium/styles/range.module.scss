@@ -23,12 +23,11 @@
     border-radius: 5px;
   }
 
-  // &:first-child {
-  //   transform: translateX(-5px);
-  // }
-  // &:nth-last-child(-n + 2) {
-  //   transform: translateX(5px);
-  // }
+  .pointTop {
+    &::before {
+      display: none;
+    }
+  }
 
   @media (min-width: 901px) {
     &:hover {

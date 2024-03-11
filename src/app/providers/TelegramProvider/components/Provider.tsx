@@ -28,6 +28,7 @@ export const TelegramProvider: FC<IProps> = ({ children, user }) => {
     if (app) {
       app.ready();
       app.expand();
+      app.enableClosingConfirmation();
       const value = app
         ? {
             app,

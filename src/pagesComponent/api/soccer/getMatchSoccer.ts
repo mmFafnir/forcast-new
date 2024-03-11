@@ -47,6 +47,7 @@ export const getMatchSoccer = async (
     );
     return { data: data.data };
   } catch (error) {
+    console.log(error);
     return defaultRes;
   }
 };
