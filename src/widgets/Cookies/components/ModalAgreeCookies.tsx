@@ -17,6 +17,7 @@ export const ModalAgreeCookies = () => {
 
   useEffect(() => {
     console.log("cookies", cookies);
+    alert(webApp);
     if (webApp) return setOpen(false);
     setOpen(cookies != "true");
   }, []);
