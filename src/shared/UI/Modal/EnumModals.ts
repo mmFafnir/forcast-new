@@ -7,4 +7,5 @@ export enum EnumModals {
   PREMIUM_WHY = "premiumWhy",
   USER = "user",
   USER_MOBILE = "userMobile",
+  SHOPPING_HISTORY = "shoppingHistory",
 }

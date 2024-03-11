@@ -7,6 +7,7 @@
   background-color: #242b36;
   border-radius: 5px;
   right: -11px !important;
+  pointer-events: inherit !important;
   .simplebar-scrollbar::before {
     width: 2px;
     border-radius: 5px;
@@ -74,4 +75,16 @@
 
 .simplebar-placeholder {
   width: 100% !important;
+}
+
+.horizontal-same {
+  .simplebar-horizontal {
+    background-color: #242b36;
+    border-radius: 5px;
+    pointer-events: inherit !important;
+    .simplebar-scrollbar::before {
+      border-radius: 5px;
+      background: rgba(217, 217, 217, 0.7);
+    }
+  }
 }

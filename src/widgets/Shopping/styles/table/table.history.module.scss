@@ -1,0 +1,23 @@
+.body {
+  margin-top: 10px;
+}
+.scroll,
+.table {
+  max-height: 500px;
+}
+.date {
+  span {
+    display: block;
+
+    &:last-child {
+      font-size: 8px;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .scroll,
+  .table {
+    max-height: calc(100vh - 124px - 62px);
+  }
+}

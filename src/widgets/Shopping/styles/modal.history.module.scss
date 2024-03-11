@@ -1,0 +1,27 @@
+.modal {
+  padding-top: 10%;
+  flex: 0 1 640px !important;
+  margin: 0 auto;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  position: relative;
+  span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  button {
+    transform: none;
+    position: static;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal {
+    padding-top: 0 !important;
+  }
+}

@@ -33,6 +33,8 @@ export const User = () => {
   const [time, setTime] = useState<string | null>(null);
 
   const openModalPrem = () => dispatch(setModal(EnumModals.PREMIUM));
+  const openModalHistory = () =>
+    dispatch(setModal(EnumModals.SHOPPING_HISTORY));
 
   const setImages = (e: FormEvent<HTMLInputElement>) => {
     setLoading(true);
@@ -108,6 +110,9 @@ export const User = () => {
             </p>
           </div>
         </div>
+        <button className={styles.history} onClick={openModalHistory}>
+          История покупок
+        </button>
       </div>
 
       <div className={styles.prem}>

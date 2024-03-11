@@ -20,6 +20,7 @@ import { EventProvider } from "../providers/EventProvider";
 import { PusherProvider } from "../providers/PusherProvider/components/Provider";
 import { SidebarSettings } from "@/widgets/Settings";
 import { ModalPremiumWhy } from "@/widgets/Premium/components/modal/ModalPremiumWhy";
+import { ModalHistoryShopping } from "@/widgets/Shopping";
 
 interface IProps {
   children: ReactNode;
@@ -83,6 +84,7 @@ const MainLayout: FC<IProps> = async ({ children }) => {
               <ModalPremiumWhy />
               <SettingsAuthModal />
               <SidebarSettings />
+              <ModalHistoryShopping />
             </div>
           </EventProvider>
         </PusherProvider>
