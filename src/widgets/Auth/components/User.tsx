@@ -127,6 +127,7 @@ export const User = () => {
           КУПИТЬ
         </Button>
       </div>
+
       {user?.premium !== "1" && (
         <PremMatchBanner
           bodyClass={styles.premBanner}
@@ -138,6 +139,13 @@ export const User = () => {
           }
         />
       )}
+      <Button
+        type="gray"
+        className={styles.historyMob}
+        onClick={openModalHistory}
+      >
+        История покупок
+      </Button>
     </div>
   );
 };

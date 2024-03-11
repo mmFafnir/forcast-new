@@ -6,6 +6,8 @@ import { TypeHistoryPrem } from "../../types/TypeHistoryPrem";
 import dayjs from "dayjs";
 import { fetchShoppingHistory } from "../../api/fetchShoppingHistory";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
+import Loader from "@/shared/UI/Loader";
+import Empty from "@/shared/UI/Empty";
 
 const columns: TableColumn<TypeHistoryPrem>[] = [
   {
@@ -46,27 +48,43 @@ const columns: TableColumn<TypeHistoryPrem>[] = [
 
 export const HistoryTable = () => {
   const [data, setData] = useState<TypeHistoryPrem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetchShoppingHistory().then((res) => {
-      setData(res);
-    });
+    setLoading(true);
+    fetchShoppingHistory()
+      .then((res) => {
+        setData(res);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (
     <div className={styles.body}>
-      <MyScrollbar
-        autoHide={false}
-        className={`${styles.scroll} horizontal-same`}
-      >
-        <DataTable
-          className={`history-table ${styles.table}`}
-          clearSelectedRows
-          fixedHeader
-          columns={columns}
-          data={data}
-        />
-      </MyScrollbar>
+      {loading ? (
+        <div
+          className="loader-hover--no-bg"
+          style={{ alignItems: "flex-start" }}
+        >
+          <Loader />
+        </div>
+      ) : (
+        <MyScrollbar
+          autoHide={false}
+          className={`${styles.scroll} horizontal-same`}
+        >
+          {data.length === 0 && <Empty text="История покупок пуста" />}
+          <DataTable
+            className={`history-table ${styles.table}`}
+            clearSelectedRows
+            fixedHeader
+            columns={columns}
+            data={data}
+          />
+        </MyScrollbar>
+      )}
     </div>
   );
 };
