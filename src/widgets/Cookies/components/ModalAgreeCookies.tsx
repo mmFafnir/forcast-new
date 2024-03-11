@@ -7,7 +7,7 @@ import { parseCookies, setCookie } from "nookies";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 export const ModalAgreeCookies = () => {
   const { cookies } = parseCookies();
-  const { webApp } = useTypeSelector((state) => state.auth);
+
   const [open, setOpen] = useState(false);
 
   const onAgree = () => {
@@ -17,6 +17,7 @@ export const ModalAgreeCookies = () => {
 
   useEffect(() => {
     console.log("cookies", cookies);
+    const webApp = (window as any).Telegram?.WebApp.initDataUnsafe.user;
     alert(webApp);
     if (webApp) return setOpen(false);
     setOpen(cookies != "true");

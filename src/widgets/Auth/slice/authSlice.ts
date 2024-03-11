@@ -11,7 +11,6 @@ import {
 import { ErrorValid } from "@/shared/types/ErrorType";
 import { setCookie } from "nookies";
 import { INotification } from "../types/Notify";
-import { signOut } from "next-auth/react";
 
 interface IState {
   auth: boolean;
