@@ -7,7 +7,7 @@ import { Sale } from "./Sale";
 import { PromoCode } from "./PromoCode";
 import Button from "@/shared/UI/Button";
 import Link from "next/link";
-import { TypePrem } from "../types/TypePrem";
+import { IMethodPayment, TypePrem } from "../types/TypePrem";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import { closeAllModal, setModal } from "@/shared/UI/Modal/modalSlice";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
@@ -61,7 +61,9 @@ export const Payment: FC<IProps> = ({ data }) => {
   const [currentData, setCurrentData] = useState<TypePrem | null>(null);
   const [promoCode, setPromoCode] = useState<TypePromoCode | null>(null);
   const [lang, setLang] = useState<string>("rub");
-  const [paymentId, setPaymentId] = useState<number | null>(null);
+  const [paymentMethod, setPaymentMethod] = useState<IMethodPayment | null>(
+    null
+  );
 
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -70,10 +72,9 @@ export const Payment: FC<IProps> = ({ data }) => {
   const onStartPayment = () => {
     if (!currentData) return;
     setLoading(true);
-    console;
     const params: IParamsStartPay = {
-      payment_id: 1,
-      payment_method_id: paymentId || 1,
+      payment_id: paymentMethod?.payment_id || 1,
+      payment_method_id: paymentMethod ? paymentMethod.id : 1,
       rate_detail_id: currentData.id,
       currency: getStartSing(lang),
     };
@@ -130,7 +131,10 @@ export const Payment: FC<IProps> = ({ data }) => {
         bonus={currentData?.bonus_percent || "0"}
         bonusDay={currentData?.bonus_day || "0"}
       />
-      <PaymentMethod setValue={setPaymentId} country={currentData?.country} />
+      <PaymentMethod
+        setValue={setPaymentMethod}
+        country={currentData?.country}
+      />
       <div className={styles.footer}>
         <div className={styles.total}>
           <p>ИТОГО: </p>

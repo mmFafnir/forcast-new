@@ -63,7 +63,6 @@ const Soccer: NextPage<IProps> = async ({ searchParams }) => {
     },
   ];
 
-  console.log("seo", seo);
 
   if (!seo || !data) return redirect("/404");
   return (

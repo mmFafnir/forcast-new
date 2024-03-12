@@ -21,7 +21,6 @@ export const UserProvider: FC<IProps> = ({ user, children }) => {
   useEffect(() => {
     dispatch(setStatus(EnumStatus.DEFAULT));
     if (!user) return;
-    console.log("user", user);
 
     dispatch(setUser(user));
   }, []);

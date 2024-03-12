@@ -2,13 +2,17 @@
 import React, { FC, useEffect, useState } from "react";
 import styles from "../styles/payment.method.module.scss";
 import Select from "@/shared/UI/Select";
-import { IMethodCategory, IMethodCountry } from "../types/TypePrem";
+import {
+  IMethodCategory,
+  IMethodCountry,
+  IMethodPayment,
+} from "../types/TypePrem";
 import Button from "@/shared/UI/Button";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
 
 interface IProps {
   country?: IMethodCountry[];
-  setValue: (value: number | null) => void;
+  setValue: (value: IMethodPayment | null) => void;
 }
 export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
   const [currentCountry, setCurrentCountry] = useState<IMethodCountry | null>(
@@ -18,10 +22,11 @@ export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
   const [currentCategory, setCurrentCategory] =
     useState<IMethodCategory | null>(null);
 
-  const [paymentId, setPaymentId] = useState<number | null>(null);
+  const [paymentMethod, setPaymentMethod] = useState<IMethodPayment | null>(
+    null
+  );
 
   const createAllCategories = (categories: IMethodCategory[]) => {
-    console.log(categories.map((item) => item.payment_method).flat());
     const arr = categories.map((item) => item.payment_method).flat();
     const category: IMethodCategory = {
       id: "all",
@@ -43,18 +48,19 @@ export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
       currentCountry ? createAllCategories(currentCountry.category) : null
     );
 
-    const paymentMethodsId =
+    const category =
       currentCountry &&
-      currentCountry?.category.find((item) => item.payment_method.length > 0)
-        ?.id;
+      currentCountry?.category.find((item) => item.payment_method.length > 0);
 
-    console.log("paymentMethodsId", paymentMethodsId);
-    setPaymentId(Number(paymentMethodsId) || null);
+    const methods = category?.payment_method && category.payment_method;
+    const paymentMethod = methods && methods?.length > 0 ? methods[0] : null;
+
+    setPaymentMethod(paymentMethod);
   }, [currentCountry]);
 
   useEffect(() => {
-    setValue(paymentId);
-  }, [paymentId]);
+    setValue(paymentMethod);
+  }, [paymentMethod]);
 
   return (
     <div className={styles.body}>
@@ -102,7 +108,6 @@ export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
                       className={styles.btn}
                       key={category.id}
                       onClick={() => {
-                        console.log(category);
                         setCurrentCategory(category);
                       }}
                     >
@@ -125,8 +130,8 @@ export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
               value={payment.id}
               id={String(payment.id)}
               defaultChecked={index === 0}
-              onChange={(e) => {
-                setPaymentId(Number((e.target as HTMLInputElement).value));
+              onChange={() => {
+                setPaymentMethod(payment);
               }}
               hidden
             />

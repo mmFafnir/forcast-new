@@ -63,7 +63,6 @@ const FilterCalendarMemo: FC<IProps> = ({
     const date = startDate
       ? startDate
       : parseQueryParams(window.location.search).date;
-    console.log(date);
     setCurrentDate(
       date
         ? date
@@ -83,8 +82,6 @@ const FilterCalendarMemo: FC<IProps> = ({
     if (!startDate || query) return;
     dispatch(setDate(startDate));
   }, []);
-
-  console.log(currentDate);
 
   if (timeStatus === 1) return <></>;
   return (
