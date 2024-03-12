@@ -3,6 +3,7 @@
   margin: 0 auto !important;
   padding-top: 40px !important;
 }
+
 .header {
   display: flex;
   align-items: center;
@@ -92,6 +93,13 @@
 
 .gold {
   color: #ffd361;
+}
+
+.error {
+  color: rgb(247 78 78);
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 @media (max-width: 500px) {

@@ -66,12 +66,14 @@ export const Payment: FC<IProps> = ({ data }) => {
   );
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const onOpenPremiumWhy = () => dispatch(setModal(EnumModals.PREMIUM_WHY));
 
   const onStartPayment = () => {
     if (!currentData) return;
     setLoading(true);
+    setIsError(false);
     const params: IParamsStartPay = {
       payment_id: paymentMethod?.payment_id || 1,
       payment_method_id: paymentMethod ? paymentMethod.id : 1,
@@ -86,14 +88,17 @@ export const Payment: FC<IProps> = ({ data }) => {
         if (res.data) {
           navigation.push(res.data);
         }
+        if (!res.data) {
+          setIsError(true);
+        }
         if (!res.data && res.end_date) {
           window.location.href = "/payment-success";
         }
       })
-      .finally(() => {
-        setLoading(false);
-      });
+      .catch(() => setIsError(true))
+      .finally(() => setLoading(false));
   };
+
   useEffect(() => {
     if (!data) {
       dispatch(closeAllModal());
@@ -131,6 +136,11 @@ export const Payment: FC<IProps> = ({ data }) => {
         bonus={currentData?.bonus_percent || "0"}
         bonusDay={currentData?.bonus_day || "0"}
       />
+      {isError && (
+        <p className={styles.error}>
+          Произошла ошибка, попробуйте другой метод оплаты
+        </p>
+      )}
       <PaymentMethod
         setValue={setPaymentMethod}
         country={currentData?.country}
