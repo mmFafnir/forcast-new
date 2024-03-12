@@ -5,7 +5,7 @@ import Slider from "rc-slider";
 import { TypePrem } from "../../types/TypePrem";
 import { TypePromoCode } from "../../types/IFetchPromoCode";
 
-import imageFire from "../../images/svg/fire.svg";
+import imageFire from "../../images/svg/fire.png";
 import imageZero from "../../images/svg/zero.svg";
 import styles from "../../styles/range.module.scss";
 import "rc-slider/assets/index.css";
@@ -29,6 +29,7 @@ const RangeMemo: FC<IProps> = ({ data, setValue, promoCode }) => {
     const dots = sliderRef.current.querySelectorAll(".rc-slider-dot");
     dots.forEach((dot, index) => {
       const rate = data[index];
+      console.log(rate);
       if (rate.free_or_not == "1") {
         dot.innerHTML = `<span class='prem-dot prem-top-dot prem-free'><img src=${imageZero.src} alt="zero icon"/></span>`;
       }
@@ -49,22 +50,36 @@ const RangeMemo: FC<IProps> = ({ data, setValue, promoCode }) => {
   };
 
   useEffect(() => {
-    console.log(activeIndex);
     setValue(data[activeIndex]);
+
     if (!sliderRef) return;
     const dots = sliderRef.current?.querySelectorAll(".rc-slider-dot");
-
+    const slide = sliderRef.current?.querySelector(".rc-slider-handle");
     dots &&
       dots.forEach((dot, index) => {
+        const rate = data[index];
         if (index == activeIndex) {
-          dot.classList.add("hide");
+          dot.classList.add("active");
         } else {
-          dot.classList.remove("hide");
+          console.log("none");
+          dot.classList.remove("active");
+          slide?.removeAttribute("data-hide");
         }
       });
+
+    if (dots && dots[activeIndex] && data[activeIndex]) {
+      const rate = data[activeIndex];
+      if (
+        rate.has_top == "1" ||
+        (rate.free_or_not == "1" && promoCode?.free_tariffe == "1")
+      ) {
+        slide?.setAttribute("data-hide", "hide");
+      }
+    }
   }, [activeIndex]);
 
   useEffect(() => {
+    console.log(promoCode, promoCode?.free_tariffe);
     if (promoCode && promoCode.free_tariffe == "1") {
       renderFreeDots();
     } else {

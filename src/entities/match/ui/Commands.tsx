@@ -10,6 +10,7 @@ interface IProps {
 }
 
 export const Commands: FC<IProps> = ({ away, home }) => {
+  console.log(away);
   return (
     <div className={styles.body}>
       <div className={styles.team}>
@@ -20,7 +21,11 @@ export const Commands: FC<IProps> = ({ away, home }) => {
           alt={home.team_name}
           className="logo-icon"
         />
-        <p className={styles.name}>{home.team_name}</p>
+        <p className={styles.name}>
+          {home.translate && home.translate.length > 0
+            ? home.translate[0].translation
+            : home.team_name}
+        </p>
       </div>
       <div className={styles.team}>
         <CustomImage
@@ -30,7 +35,11 @@ export const Commands: FC<IProps> = ({ away, home }) => {
           alt={away.team_name}
           className="logo-icon"
         />
-        <p className={styles.name}>{away.team_name}</p>
+        <p className={styles.name}>
+          {away.translate && away.translate.length > 0
+            ? away.translate[0].translation
+            : away.team_name}
+        </p>
       </div>
     </div>
   );

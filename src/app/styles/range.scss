@@ -10,6 +10,10 @@
     opacity: 1;
     margin: 0;
     z-index: 5px;
+
+    &[data-hide] {
+      display: none;
+    }
   }
   .rc-slider-rail,
   .rc-slider-track,
@@ -33,6 +37,14 @@
 
     &.hide {
       opacity: 0 !important;
+    }
+    &.active {
+      // opacity: 1 !important;
+      .prem-dot {
+        img {
+          opacity: 1 !important;
+        }
+      }
     }
   }
 }
@@ -91,7 +103,7 @@
 .prem-free {
   img {
     position: absolute;
-    top: 65%;
+    top: calc(50% + 4px);
     left: 50%;
     transform: translate(-50%, -50%);
   }
