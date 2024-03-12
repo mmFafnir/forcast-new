@@ -76,13 +76,15 @@ export const HistoryTable = () => {
           className={`${styles.scroll} horizontal-same`}
         >
           {data.length === 0 && <Empty text="История покупок пуста" />}
-          <DataTable
-            className={`history-table ${styles.table}`}
-            clearSelectedRows
-            fixedHeader
-            columns={columns}
-            data={data}
-          />
+          {data.length > 0 && (
+            <DataTable
+              className={`history-table ${styles.table}`}
+              clearSelectedRows
+              fixedHeader
+              columns={columns}
+              data={data}
+            />
+          )}
         </MyScrollbar>
       )}
     </div>
