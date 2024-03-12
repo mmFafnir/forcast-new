@@ -19,7 +19,9 @@ interface IProps {
 const RangeMemo: FC<IProps> = ({ data, setValue, promoCode }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState<number>(
-    data.findIndex((item) => item.start_tariffe == "1") || 0
+    data.findIndex((item) => item.start_tariffe == "1") >= 0
+      ? data.findIndex((item) => item.start_tariffe == "1")
+      : 0
   );
 
   const renderFreeDots = () => {
@@ -47,6 +49,7 @@ const RangeMemo: FC<IProps> = ({ data, setValue, promoCode }) => {
   };
 
   useEffect(() => {
+    console.log(activeIndex);
     setValue(data[activeIndex]);
     if (!sliderRef) return;
     const dots = sliderRef.current?.querySelectorAll(".rc-slider-dot");
