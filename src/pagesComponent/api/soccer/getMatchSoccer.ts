@@ -43,7 +43,7 @@ export const getMatchSoccer = async (
       utcId: "",
     };
     const { data } = await axiosClient.get(
-      `/get_matches?start_date=${date}&time_status=${timeStatus}&country_cc=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`
+      `/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`
     );
     return { data: data.data };
   } catch (error) {
@@ -109,7 +109,7 @@ export const getMatchSoccerServer = cache(
           title:
             data.request_league?.translate &&
             data.request_league.translate.length > 0
-              ? data.request_league.translate[0].translate
+              ? data.request_league.translate[0].translation
               : data.request_league?.league_name,
           url: data.request_league.url,
           id: data.request_league.id,

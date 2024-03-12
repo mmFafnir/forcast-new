@@ -30,7 +30,7 @@ const MatchesGroupMemo: FC<IProps> = ({
       setLoading(false);
       return;
     }
-    console.log(utcId);
+    console.log(league);
     setLoading(true);
     getMatchSoccer({
       date: timeStatus === 1 ? "" : date,
@@ -47,7 +47,7 @@ const MatchesGroupMemo: FC<IProps> = ({
   }, [date, timeStatus, utcId]);
 
   useEffect(() => {
-    console.log(data);
+    console.log(matches);
   }, []);
   return (
     <div className="flex-1 min-h-block relative">

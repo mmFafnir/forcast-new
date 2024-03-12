@@ -46,7 +46,11 @@ export const SoccerPage: FC<IProps> = async ({
         <Header breadCrumbs={breadCumbers} />
         <HeaderPage title={seo.ceo_title} />
         <div className="flex-1 flex-col">
-          <MatchesGroup matches={matches} league={league} country={country} />
+          <MatchesGroup
+            matches={matches}
+            league={String(data.league?.id || "")}
+            country={String(data.league?.id || "")}
+          />
         </div>
         <RiskWidgets isMob />
         <TelegramButton isMob />
