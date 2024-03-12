@@ -107,7 +107,11 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
             {
               title: `${
                 match.league.country.translation || match.league.country.name
-              }: ${match.league.league_name}`,
+              }: ${
+                match?.league?.translate && match?.league.translate.length > 0
+                  ? match?.league.translate[0].translation
+                  : match?.league?.league_name
+              }`,
               href: `/soccer/${match.league.url}`,
             },
           ]}

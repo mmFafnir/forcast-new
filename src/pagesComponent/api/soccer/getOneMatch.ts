@@ -21,6 +21,7 @@ export const getOneMatch = cache(
         },
         config
       );
+      console.log(data);
       return {
         ...data.data,
         request_for_card_button: data.request_for_card_button,

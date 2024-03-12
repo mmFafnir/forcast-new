@@ -45,7 +45,6 @@
 
   &.active {
     background: var(--btn-active-color);
-    pointer-events: none;
   }
 }
 
@@ -59,7 +58,6 @@
   }
   &.active {
     background-color: var(--btn-active-color);
-    pointer-events: none;
   }
 }
 
@@ -72,7 +70,6 @@
   }
 
   &.active {
-    pointer-events: none;
     background-color: var(--btn-active-color);
   }
 }
