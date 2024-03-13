@@ -10,6 +10,7 @@ import { TypeSportGroup } from "@/shared/types/sport";
 import { GroupHome } from "@/entities/group";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import Button from "@/shared/UI/Button";
 
 const sportsData = [
   {
@@ -44,6 +45,7 @@ export const ModalSearch: FC = () => {
   const [status, setStatus] = useState<string | number>("");
   const [sport, setSport] = useState<string | number>("");
   const [search, setSearch] = useState<string>("");
+  const [searchRef, setSearchRef] = useState<HTMLInputElement | null>(null);
 
   const fetchMatches = (value: string) => {
     setLoading(true);
@@ -67,6 +69,12 @@ export const ModalSearch: FC = () => {
     fetchMatches(value);
   };
 
+  const onClickBtn = () => {
+    console.log(searchRef);
+    if (!searchRef) return;
+    onSearch(searchRef.value);
+  };
+
   useEffect(() => {
     if (search.trim().length === 0) return;
     fetchMatches(search);
@@ -83,7 +91,14 @@ export const ModalSearch: FC = () => {
     >
       <div className={styles.body}>
         <div className={styles.header}>
-          <Input focus={modal === EnumModals.SEARCH} onSearch={onSearch} />
+          <Input
+            searchRef={setSearchRef}
+            focus={modal === EnumModals.SEARCH}
+            onSearch={onSearch}
+          />
+          <Button onClick={onClickBtn} className={styles.btn} type="gradient">
+            Поиск
+          </Button>
         </div>
         <div className="flex item-center">
           <Select setValue={setSport} data={sportsData} />

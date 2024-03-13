@@ -62,6 +62,8 @@ export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
     setValue(paymentMethod);
   }, [paymentMethod]);
 
+  console.log(currentCategory?.payment_method);
+
   return (
     <div className={styles.body}>
       {country && country.length > 0 && (

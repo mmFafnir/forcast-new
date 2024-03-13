@@ -6,8 +6,9 @@ import styles from "../styles/input.module.scss";
 interface IProps {
   onSearch: (value: string) => void;
   focus?: boolean;
+  searchRef: (ref: HTMLInputElement | null) => void;
 }
-const InputMemo: FC<IProps> = ({ onSearch, focus = false }) => {
+export const Input: FC<IProps> = ({ onSearch, focus = false, searchRef }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState<string>("");
   const search = () => onSearch(value);
@@ -19,6 +20,10 @@ const InputMemo: FC<IProps> = ({ onSearch, focus = false }) => {
     }, 300);
   }, [focus]);
 
+  useEffect(() => {
+    console.log("ref", searchRef);
+    searchRef(inputRef.current);
+  }, []);
   return (
     <div className={styles.body}>
       <button onClick={search}>
@@ -35,4 +40,4 @@ const InputMemo: FC<IProps> = ({ onSearch, focus = false }) => {
   );
 };
 
-export const Input = memo(InputMemo);
+// export const Input = InputMemo;

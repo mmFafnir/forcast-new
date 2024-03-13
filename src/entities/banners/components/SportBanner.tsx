@@ -16,7 +16,6 @@ export const SportBanner: FC<IProps> = ({ title, img, href }) => {
         style={{ backgroundImage: `url(${img})` }}
       >
         <p className={styles.title}>{title}</p>
-        <p className={styles.text}>Топ матчи</p>
       </Link>
     );
   return (

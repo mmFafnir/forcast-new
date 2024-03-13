@@ -16,6 +16,15 @@ const nextConfig = {
       fullUrl: true,
     },
   },
+
+  redirects: async () => [
+    {
+      source: "/:path*",
+      has: [{ type: "host", value: "www.aibetguru.com" }],
+      destination: "https://aibetguru.com/:path*",
+      permanent: true,
+    },
+  ],
 };
 
 module.exports = nextConfig;

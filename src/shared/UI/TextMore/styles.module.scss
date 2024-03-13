@@ -15,6 +15,7 @@
   background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
+
   &::before {
     // content: "";
     transition-duration: 100ms;
@@ -30,15 +31,27 @@
 .show {
   -webkit-text-fill-color: #fff;
 
-  &::before {
+  .text &::before {
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+.hide {
+  .text {
+    > div {
+      opacity: 1;
+    }
   }
 }
 
 .text {
   font-size: 14px;
   line-height: 1.5;
+
+  > div {
+    margin-top: 0 !important;
+  }
 }
 
 .more {
@@ -46,16 +59,23 @@
   margin: 0 auto;
   display: block;
   margin-top: 14px;
-  transition-duration: 100ms;
   display: flex;
   align-items: center;
 
   span {
     margin-right: 10px;
+    transition-duration: 100ms;
+  }
+  svg path {
+    transition-duration: 100ms;
   }
   @media (min-width: 901px) {
     &:hover {
       color: #dac285;
+
+      svg path {
+        fill: #dac285;
+      }
     }
   }
 }
