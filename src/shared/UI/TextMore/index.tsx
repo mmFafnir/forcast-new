@@ -10,7 +10,10 @@ interface IProps {
   children?: ReactNode;
   defaultHeight?: number;
   stylesBody?: CSSProperties;
+  classBody?: string;
+  classClose?: string;
   stylesClose?: CSSProperties;
+  classContent?: string;
 }
 const TextMore: FC<IProps> = ({
   text,
@@ -19,6 +22,9 @@ const TextMore: FC<IProps> = ({
   stylesBody = {},
   defaultHeight = 126,
   stylesClose = {},
+  classBody = "",
+  classClose = "",
+  classContent = "",
 }) => {
   const listRef = useRef<HTMLDivElement>(null);
   const { isOpen, onToggle, currentHeight, iconStyle } = useAccordion({
@@ -36,11 +42,13 @@ const TextMore: FC<IProps> = ({
   useEffect(() => {}, []);
 
   return (
-    <div className={styles.body} style={stylesBody}>
+    <div className={`${styles.body} ${classBody}`} style={stylesBody}>
       {title && <p className={styles.title}>{title}</p>}
 
       <div
-        className={`${styles.content} ${isOpen ? styles.show : styles.hide}`}
+        className={`${styles.content} ${classContent} ${
+          isOpen ? styles.show : styles.hide
+        }`}
         style={{ height: currentHeight + "px" }}
       >
         <div className={styles.text} ref={listRef}>
@@ -49,7 +57,11 @@ const TextMore: FC<IProps> = ({
         </div>
       </div>
       {listRef.current && listRef.current.clientHeight > 128 && (
-        <button onClick={onToggle} className={styles.more} style={stylesClose}>
+        <button
+          onClick={onToggle}
+          className={`${styles.more} ${classClose}`}
+          style={stylesClose}
+        >
           <span>{!isOpen ? "Читать полностью" : "Скрыть"}</span>
           <span style={iconStyle}>
             <IconArrow />

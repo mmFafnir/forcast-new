@@ -45,3 +45,26 @@
     }
   }
 }
+
+.close {
+}
+
+.content {
+  -webkit-text-fill-color: inherit !important;
+}
+@media (max-width: 900px) {
+  .body {
+    opacity: 1 !important;
+  }
+  .content {
+    position: relative;
+    // background: none;
+    opacity: 0.7 !important;
+  }
+  .close {
+    opacity: 1 !important;
+    > span:first-child {
+      display: none;
+    }
+  }
+}

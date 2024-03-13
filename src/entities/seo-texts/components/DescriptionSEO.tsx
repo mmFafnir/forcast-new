@@ -14,12 +14,15 @@ export const DescriptionSEO: FC<IProps> = ({ text = "" }) => {
   return (
     <TextMore
       title=""
-      defaultHeight={282}
+      defaultHeight={243}
       stylesBody={{ marginTop: 40 }}
-      stylesClose={{ opacity: 0.7 }}
+      // stylesClose={{ opacity: 0.7 }}
+      classBody={`page-text-block ${styles.body}`}
+      classClose={styles.close}
+      classContent={styles.content}
     >
       <div
-        className={`page-text-block ${styles.text}`}
+        className={` ${styles.text}`}
         dangerouslySetInnerHTML={{ __html: text }}
       ></div>
     </TextMore>

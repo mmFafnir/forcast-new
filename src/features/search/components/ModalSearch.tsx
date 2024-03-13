@@ -97,7 +97,7 @@ export const ModalSearch: FC = () => {
             onSearch={onSearch}
           />
           <Button onClick={onClickBtn} className={styles.btn} type="gradient">
-            Поиск
+            Найти
           </Button>
         </div>
         <div className="flex item-center">
