@@ -10,6 +10,8 @@ import dayJs from "@/shared/core/dayjs";
 import { FC, useEffect, useState } from "react";
 import { matchTimeZone } from "@/shared/core/timezone";
 import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
+import { setLoadingFilter } from "@/features/filters/slice/filterSlice";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 
 interface IMatch extends TypeMatch {
   card: TypeBet[];
@@ -20,6 +22,8 @@ interface IProps {
   links: TypeLink[];
 }
 export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
+  const dispatch = useTypeDispatch();
+
   const [data, setData] = useState<IMatch[]>(matches);
   const [currentLinks, setCurrentLinks] = useState<TypeLink[]>(links);
   const [loading, setLoading] = useState<boolean>(false);
@@ -54,6 +58,15 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
     if (date === dayJs().utc().tz(matchTimeZone).format("YYYY-MM-DD")) return;
     fetchDate();
   }, [date, countryId, leagueId, sportId, utcId]);
+
+  useEffect(() => {
+    setTimeout(
+      () => {
+        dispatch(setLoadingFilter(loading));
+      },
+      loading ? 0 : 300
+    );
+  }, [loading]);
 
   return (
     <div>

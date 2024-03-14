@@ -32,7 +32,9 @@ const FilterCalendarMemo: FC<IProps> = ({
   const dispatch = useTypeDispatch();
 
   const { timezone } = useTypeSelector((state) => state.timezone);
-  const { timeStatus, date } = useTypeSelector((state) => state.filters);
+  const { timeStatus, date, loading } = useTypeSelector(
+    (state) => state.filters
+  );
   const { setQuery, deleteQuery, query } = useQuery("date");
 
   const [currentDate, setCurrentDate] = useState<string>(startDate || date);
@@ -85,7 +87,11 @@ const FilterCalendarMemo: FC<IProps> = ({
 
   if (timeStatus === 1) return <></>;
   return (
-    <div className={`${styles.body} ${bodyClass}`}>
+    <div
+      className={`${styles.body} ${bodyClass} ${
+        loading ? styles.eventNone : ""
+      }`}
+    >
       <Button
         className={titleClass}
         setDay={setDay}

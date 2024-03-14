@@ -8,6 +8,8 @@ import IconEmpty from "@/shared/icons/IconEmpty";
 import { getMatchSoccer } from "@/pagesComponent/api/soccer/getMatchSoccer";
 import Loader from "@/shared/UI/Loader";
 import { ILeagues } from "@/shared/types/leagues";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { setLoadingFilter } from "@/features/filters/slice/filterSlice";
 
 interface IProps {
   matches: ILeagues[];
@@ -20,6 +22,7 @@ const MatchesGroupMemo: FC<IProps> = ({
   league = "",
   country = "",
 }) => {
+  const dispatch = useTypeDispatch();
   const [data, setData] = useState<ILeagues[]>(matches);
   const [loading, setLoading] = useState<boolean | null>(null);
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
@@ -30,8 +33,8 @@ const MatchesGroupMemo: FC<IProps> = ({
       setLoading(false);
       return;
     }
-    console.log(league);
     setLoading(true);
+
     getMatchSoccer({
       date: timeStatus === 1 ? "" : date,
       timeStatus,
@@ -47,8 +50,14 @@ const MatchesGroupMemo: FC<IProps> = ({
   }, [date, timeStatus, utcId]);
 
   useEffect(() => {
-    console.log(matches);
-  }, []);
+    if (loading === null) return;
+    setTimeout(
+      () => {
+        dispatch(setLoadingFilter(loading));
+      },
+      loading ? 0 : 300
+    );
+  }, [loading]);
   return (
     <div className="flex-1 min-h-block relative">
       {data.length === 0 && (

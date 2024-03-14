@@ -12,6 +12,7 @@ interface IState {
   countryId: number | "";
   sportId: number | "";
   page: number;
+  loading: boolean;
 }
 
 const date =
@@ -27,6 +28,7 @@ const initialState: IState = {
   leagueId: "",
   countryId: "",
   page: 1,
+  loading: false,
 };
 
 const filterSlice = createSlice({
@@ -59,6 +61,10 @@ const filterSlice = createSlice({
       state.timeStatus = "";
       // state.date = date;
     },
+
+    setLoadingFilter: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
+    },
   },
 });
 
@@ -70,5 +76,6 @@ export const {
   setSportFilter,
   setDefaultFilter,
   setPage,
+  setLoadingFilter,
 } = filterSlice.actions;
 export default filterSlice.reducer;

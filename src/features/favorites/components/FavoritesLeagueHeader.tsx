@@ -49,19 +49,23 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
         className={`${styles.button} favorite-icon`}
       />
       <div className={styles.league}>
-        <Image
-          src={`https://admin.aibetguru.com/uploads/${league.league_cc}.svg`}
-          className="logo-country"
-          width={400}
-          height={400}
-          alt={league.league_name}
-        />
+        {league.league_cc.length > 0 && (
+          <Image
+            src={`https://admin.aibetguru.com/uploads/${league.league_cc}.svg`}
+            className="logo-country"
+            width={400}
+            height={400}
+            alt={league.league_name}
+          />
+        )}
         <p className={styles.name}>
-          <Link
-            href={`/${getSportName(league.sport_id)}/${league.country_url}`}
-          >
-            {league.country?.translation || league.country?.name}:{" "}
-          </Link>
+          {league.country && (
+            <Link
+              href={`/${getSportName(league.sport_id)}/${league.country_url}`}
+            >
+              {league.country?.translation || league.country?.name}:{" "}
+            </Link>
+          )}
           <Link href={`/soccer/${league.url}`}>
             {league.translate && league.translate.length > 0
               ? league.translate[0].translation
