@@ -15,6 +15,7 @@ export type TypeLeague = {
   trans_status: "0" | "1";
   updated_at: string | null;
   url: string;
+  photo: string;
   user_pind_count: 0 | 1;
   user_pind_admin_count: 0 | 1;
   country: TypeCountry;

@@ -16,11 +16,12 @@ interface IPropsItem {
   item: TypeLeague;
 }
 const ItemLeagues: FC<IPropsItem> = ({ item }) => {
+  console.log(item);
   return (
     <div key={item.id} className={styles.item} title={item.league_name}>
       <CustomImage
         className="logo-icon"
-        src={`https://admin.aibetguru.com/uploads/${item.league_id}.png`}
+        src={`https://admin.aibetguru.com/photo/league/${item.photo}`}
         width={400}
         height={400}
         alt={item.league_name}
