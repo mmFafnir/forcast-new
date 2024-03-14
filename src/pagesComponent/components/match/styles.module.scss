@@ -81,3 +81,9 @@
     display: none;
   }
 }
+
+@media (max-width: 500px) {
+  .eventsOne {
+    padding: 0px 0px;
+  }
+}
