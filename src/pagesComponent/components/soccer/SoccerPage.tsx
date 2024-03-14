@@ -29,6 +29,7 @@ export const SoccerPage: FC<IProps> = async ({
   league = "",
   seo,
 }) => {
+  console.log("data", data);
   return (
     <FilterProvider
       sport={data.sport?.id || ""}
@@ -48,8 +49,8 @@ export const SoccerPage: FC<IProps> = async ({
         <div className="flex-1 flex-col">
           <MatchesGroup
             matches={matches}
-            league={String(data.league?.id || "")}
-            country={String(data.league?.id || "")}
+            league={String(data.league?.url || "")}
+            country={String(data.country?.url || "")}
           />
         </div>
         <RiskWidgets isMob />

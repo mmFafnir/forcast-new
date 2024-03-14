@@ -43,7 +43,6 @@ const MatchesGroupMemo: FC<IProps> = ({
       utcId,
     })
       .then((res) => {
-        console.log(res);
         setData(res.data);
       })
       .finally(() => setLoading(false));
@@ -58,6 +57,7 @@ const MatchesGroupMemo: FC<IProps> = ({
       loading ? 0 : 300
     );
   }, [loading]);
+
   return (
     <div className="flex-1 min-h-block relative">
       {data.length === 0 && (
