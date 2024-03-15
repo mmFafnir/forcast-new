@@ -15,7 +15,7 @@
     li {
       margin-bottom: 10px;
       line-height: 1.5;
-      font-size: 14px;
+      font-size: 12px;
       display: flex;
 
       &::before {
@@ -65,6 +65,15 @@
     opacity: 1 !important;
     > span:first-child {
       display: none;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .text {
+    h2,
+    h3 {
+      font-size: 16px;
     }
   }
 }

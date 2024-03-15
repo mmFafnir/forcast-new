@@ -122,6 +122,9 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
         )}
 
         <div
+          style={{
+            paddingTop: data.game_analize ? "0px" : "",
+          }}
           className={`${styles.events} ${
             data.cards.length === 0 ? styles.eventsOne : ""
           }`}
