@@ -9,6 +9,7 @@ import styles from "../styles/match.module.scss";
 import { TypeMatch } from "@/shared/types/match";
 import { getSportName } from "@/shared/helper/getSportName";
 import useTimeStatus from "@/shared/hooks/useTimeStatus";
+import { Live } from "../ui/Live";
 
 interface IProps {
   match: TypeMatch;
@@ -35,6 +36,8 @@ export const Match: FC<IProps> = ({ match }) => {
           <div className={styles.time}>
             {match.time_status == 3 ? (
               <p style={{ color: "#E98080" }}>Завершен</p>
+            ) : match.time_status == 1 ? (
+              <Live />
             ) : (
               <p>{hours}</p>
             )}

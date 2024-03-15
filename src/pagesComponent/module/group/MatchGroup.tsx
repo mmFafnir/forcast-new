@@ -36,7 +36,7 @@ const MatchesGroupMemo: FC<IProps> = ({
     setLoading(true);
 
     getMatchSoccer({
-      date: timeStatus === 1 ? "" : date,
+      date: date,
       timeStatus,
       country,
       league,

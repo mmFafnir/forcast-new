@@ -7,10 +7,9 @@ import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
 import styles from "../styles/preview.module.scss";
 import CustomImage from "@/shared/UI/CustomImage";
 import dayjs from "dayjs";
-import backgroundMatchImage from "../images/previewImage.png";
-import backgroundMatchImageMobile from "../images/previewImageMobile.png";
 
 import useTimeUtc from "@/shared/hooks/useTimeUtc";
+import { IconLive } from "../icons/IconLive";
 
 interface ITeamProps {
   src: string;
@@ -65,13 +64,7 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
   const { date, hours } = useTimeUtc(match.real_time_carbon);
 
   return (
-    <div
-      className={`${styles.body} review-match`}
-      // style={{ backgroundImage: `url(${backgroundMatchImage.src})` }}
-    >
-      {/* <div className={styles.mobilePreview}>
-        <img src={backgroundMatchImageMobile.src} alt="bg mobile preview" />
-      </div> */}
+    <div className={`${styles.body} review-match`}>
       <div className={styles.ball}>
         <SportsIcon icon="soccer" width={400} height={400} />
       </div>
@@ -121,21 +114,20 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
           <p>{hours}</p>
         </div>
         <div className={styles.footer}>
-          {date === "today" ? (
+          {match.time_status == 0 ? (
             dayjs(match.real_date) === dayjs() && (
               <></>
               // <button className={styles.live}>До начала осталось {time}</button>
             )
-          ) : match.time_status == 1 ? (
+          ) : match.time_status == 3 ? (
             <button className={styles.live}>
               <p style={{ color: "#E98080" }}>Завершен</p>
             </button>
           ) : (
-            <></>
-            // <button className={styles.live}>
-            //   <IconLive className={styles.iconLive} />
-            //   <span>Live</span>
-            // </button>
+            <button className={styles.live}>
+              <IconLive className={styles.iconLive} />
+              <span>Live</span>
+            </button>
           )}
         </div>
       </div>

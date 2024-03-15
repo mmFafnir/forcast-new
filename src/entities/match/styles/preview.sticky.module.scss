@@ -29,6 +29,13 @@
     height: 100%;
   }
 }
+.live {
+  display: flex;
+  align-items: center;
+  span:first-child {
+    margin-right: 5px;
+  }
+}
 
 .team {
   display: flex;
