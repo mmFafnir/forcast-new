@@ -239,7 +239,8 @@
   .body {
     flex-wrap: wrap;
     overflow: hidden;
-    background-image: none !important;
+    // background-image: none !important;
+
     > div {
       flex: 1 1 100%;
     }
