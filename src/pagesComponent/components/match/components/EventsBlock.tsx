@@ -13,15 +13,18 @@ interface IProps {
   matchId: number;
   request: boolean;
   favoriteLeague: boolean;
+  gameStatus: 0 | 1 | 3;
 }
 export const EventsBlock: FC<IProps> = ({
   events,
   matchId,
   request,
   favoriteLeague,
+  gameStatus,
 }) => {
   const { user } = useTypeSelector((state) => state.auth);
 
+  console.log(user);
   return (
     <>
       {events.length > 0 && (
@@ -33,7 +36,7 @@ export const EventsBlock: FC<IProps> = ({
       {events.map((bet) => {
         if (bet.best_bet === "Yes" && user?.premium !== "1")
           return <EventPremium odds={bet.odds} />;
-        return <Event key={bet.id} bet={bet} />;
+        return <Event gameStatus={gameStatus} key={bet.id} bet={bet} />;
       })}
 
       {events.length == 0 && (

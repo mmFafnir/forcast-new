@@ -87,14 +87,6 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
           <h1>
             <TextDate text={seo.ceo_h} time={data.real_time_carbon} />
           </h1>
-          <div className={`flex item-center ${styles.buttons}`}>
-            <FavoriteAdd
-              active={data.favorite_auth_user_count === 1}
-              ids={[data.id]}
-              type="default"
-            />
-            <SharedButton />
-          </div>
         </div>
         <div className="flex item-center jc-between">
           <Link href={"/"} className={styles.person}>
@@ -132,6 +124,7 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
           <EventsBlock
             events={data.cards}
             matchId={data.id}
+            gameStatus={data.time_status}
             request={data.request_for_card_button}
             favoriteLeague={data.league.favorit === "1"}
           />

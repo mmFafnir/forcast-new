@@ -38,7 +38,7 @@ export const CloseBestBet: FC = () => {
           />
         </svg>
 
-        <p>Premium доступ от 99 руб.</p>
+        <p>Premium доступ от 129₽</p>
       </div>
     </button>
   );

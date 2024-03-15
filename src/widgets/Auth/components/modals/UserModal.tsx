@@ -53,9 +53,9 @@ const UserModal: FC<IProps> = ({ open }) => {
 
   useEffect(() => {
     if (!user?.tariff_end_date) return;
-    const utc = getTimezone(String(utcId))?.utc || "UTC+3";
-    const utcTime = convertUtcOffsetToDate(utc, user.tariff_end_date);
-    setTime(dayJs(utcTime).format("DD.MM.YYYY"));
+    // const utc = getTimezone(String(utcId))?.utc || "UTC+3";
+    // const utcTime = convertUtcOffsetToDate(utc, user.tariff_end_date);
+    setTime(dayJs(user.tariff_end_date).format("DD.MM.YYYY"));
   }, [utcId, user]);
 
   return (
@@ -80,7 +80,7 @@ const UserModal: FC<IProps> = ({ open }) => {
         <Button type="text" onClick={onOpenModalPrem}>
           <IconDiamond />
           <span>Premium доступ</span>
-          {time && <span className={styles.premiumTime}>{time}</span>}
+          {time && <span className={styles.premiumTime}>До {time}</span>}
         </Button>
         <Button type="text" onClick={onOpenModalSetting}>
           <IconSettings />

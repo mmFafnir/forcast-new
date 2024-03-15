@@ -6,6 +6,7 @@ export type TypeRisk = {
   name: string;
   trans_status: string;
   updated_at: string;
+  translate: TypeTranslateTeam[];
 };
 
 export type TypeEvent = {
@@ -16,6 +17,7 @@ export type TypeEvent = {
   status: "0" | "1";
   trans_status: string;
   updated_at: string;
+  translate: TypeTranslateTeam[];
 };
 
 type TypeTranslateTeam = {

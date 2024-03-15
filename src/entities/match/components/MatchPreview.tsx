@@ -67,11 +67,11 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
   return (
     <div
       className={`${styles.body} review-match`}
-      style={{ backgroundImage: `url(${backgroundMatchImage.src})` }}
+      // style={{ backgroundImage: `url(${backgroundMatchImage.src})` }}
     >
-      <div className={styles.mobilePreview}>
+      {/* <div className={styles.mobilePreview}>
         <img src={backgroundMatchImageMobile.src} alt="bg mobile preview" />
-      </div>
+      </div> */}
       <div className={styles.ball}>
         <SportsIcon icon="soccer" width={400} height={400} />
       </div>

@@ -13,6 +13,7 @@ import { TypeBet } from "@/shared/types/match";
 
 interface IProps {
   bet: TypeBet;
+  gameStatus: 0 | 1 | 3;
 }
 
 const getColorText = (id: number): string => {
@@ -31,9 +32,8 @@ const iconStyles: IAccordionStylesIcon = {
 
 const defaultHeight = 160;
 
-export const Event: FC<IProps> = ({ bet }) => {
+export const Event: FC<IProps> = ({ bet, gameStatus }) => {
   const listRef = useRef<HTMLDivElement | null>(null);
-
   const { iconStyle, onToggle, currentHeight } = useAccordion({
     iconStyles,
     ref: listRef,
@@ -43,9 +43,11 @@ export const Event: FC<IProps> = ({ bet }) => {
   return (
     <Wrapper best={bet.best_bet === "Yes"}>
       <div className={styles.header}>
-        <span className={styles.status}>
-          <Status played />
-        </span>
+        {gameStatus == 3 && (
+          <span className={styles.status}>
+            <Status played={bet.status == "1"} />
+          </span>
+        )}
         <h3 className={styles.title}>Коэффициент {bet.odds}</h3>
         {bet.best_bet === "Yes" && <BestBet />}
       </div>
@@ -53,16 +55,22 @@ export const Event: FC<IProps> = ({ bet }) => {
         <div className={styles.left}>
           <div className={styles.item}>
             <p>Событие: </p>
-            <h4>{bet.bet}</h4>
+            <h4>
+              {bet.event.translate && bet.event.translate.length > 0
+                ? bet.event.translate[0].translation
+                : bet.event.show_name || bet.event.original_name}
+            </h4>
           </div>
           <div className={styles.item}>
             <p>Ставка: </p>
-            <h4>{bet.event.show_name || bet.event.original_name}</h4>
+            <h4>{bet.bet}</h4>
           </div>
           <div className={styles.item}>
             <p>Риск: </p>
             <h4 style={{ color: getColorText(bet.risk_id) }}>
-              {bet.risk.name}
+              {bet.risk.translate && bet.risk.translate.length > 0
+                ? bet.risk.translate[0].translation
+                : bet.risk.name}
             </h4>
           </div>
         </div>

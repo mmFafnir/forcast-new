@@ -12,7 +12,7 @@
 }
 
 .buttonsTable {
-  display: none;
+  display: flex;
   align-items: center;
   margin-left: auto;
 
@@ -39,6 +39,9 @@
 
 .view {
   display: flex !important;
+  p {
+    width: auto;
+  }
 }
 
 .analysis {

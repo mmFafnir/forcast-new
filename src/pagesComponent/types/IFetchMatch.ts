@@ -21,7 +21,7 @@ export interface IFetchFullMatch {
   get_event_data_status: "0" | "1";
   game_id: number;
   time: number;
-  time_status: number;
+  time_status: 0 | 1 | 3;
   league_id: number;
   home_id: number;
   away_id: number;
