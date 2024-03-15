@@ -76,4 +76,5 @@ export type TypeMatch = {
   game_view_count: number;
   league: TypeLeague;
   time_status: 0 | 1 | 3;
+  cards: TypeBet[];
 };

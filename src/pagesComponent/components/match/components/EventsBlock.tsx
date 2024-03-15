@@ -32,7 +32,7 @@ export const EventsBlock: FC<IProps> = ({
         </div>
       )}
       {events.map((bet) => {
-        if (bet.best_bet === "Yes" && user?.premium !== "1")
+        if (bet.best_bet === "Yes" && user?.premium !== "1" && gameStatus !== 3)
           return <EventPremium odds={bet.odds} />;
         return <Event gameStatus={gameStatus} key={bet.id} bet={bet} />;
       })}
