@@ -11,10 +11,31 @@
   }
 }
 
-.buttonsTable {
+.person {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  margin-right: auto;
+  svg {
+    margin-right: 10px;
+  }
+}
+
+.eventTotal {
   display: flex;
   align-items: center;
   margin-left: auto;
+
+  p {
+    font-weight: 700;
+    margin-right: 10px;
+  }
+}
+
+.buttonsTable {
+  display: flex;
+  align-items: center;
 
   button {
     margin-right: 10px;
@@ -24,16 +45,6 @@
     &:last-child {
       margin-right: 17px;
     }
-  }
-}
-
-.person {
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-  font-size: 14px;
-  svg {
-    margin-right: 10px;
   }
 }
 
@@ -88,5 +99,11 @@
 @media (max-width: 500px) {
   .eventsOne {
     padding: 0px 0px;
+  }
+}
+
+@media (max-width: 500px) {
+  .eventTotal {
+    display: none;
   }
 }

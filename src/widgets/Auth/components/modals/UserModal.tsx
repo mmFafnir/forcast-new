@@ -18,6 +18,7 @@ import { signOut } from "next-auth/react";
 import dayJs from "@/shared/core/dayjs";
 import { convertUtcOffsetToDate } from "@/shared/helper/convertUtcOffsetToDate";
 import { getTimezone } from "@/shared/helper/getTimezone";
+import { usePathname } from "next/navigation";
 
 export const UserRole = ({ prem }: { prem: boolean }) => {
   return (
@@ -37,13 +38,15 @@ interface IProps {
 const UserModal: FC<IProps> = ({ open }) => {
   const { user } = useTypeSelector((state) => state.auth);
   const { utcId } = useTypeSelector((state) => state.timezone);
+
+  const pathname = usePathname();
   const dispatch = useTypeDispatch();
 
   const [time, setTime] = useState<string | null>(null);
 
   const onLogout = () => {
     dispatch(logout());
-    signOut({ callbackUrl: "/" });
+    signOut({ callbackUrl: pathname });
   };
   const onOpenModalPrem = () => {
     dispatch(setClick("prem"));

@@ -4,7 +4,6 @@ import { Event, EventNotReady, EventSendRequest } from "@/entities/events";
 import EventPremium from "@/entities/events/components/EventPremium";
 import TotalMatches from "@/shared/UI/TotalMatches";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import { EnumStatus } from "@/shared/types/Enums";
 import { TypeBet } from "@/shared/types/match";
 import { FC } from "react";
 
@@ -24,7 +23,6 @@ export const EventsBlock: FC<IProps> = ({
 }) => {
   const { user } = useTypeSelector((state) => state.auth);
 
-  console.log(user);
   return (
     <>
       {events.length > 0 && (

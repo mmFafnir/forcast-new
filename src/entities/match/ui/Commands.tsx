@@ -10,7 +10,6 @@ interface IProps {
 }
 
 export const Commands: FC<IProps> = ({ away, home }) => {
-  console.log(away);
   return (
     <div className={styles.body}>
       <div className={styles.team}>

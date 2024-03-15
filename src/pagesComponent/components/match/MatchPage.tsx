@@ -71,6 +71,7 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
     },
   ];
 
+  console.log(data);
   return (
     <LinksProvider
       links={{
@@ -88,11 +89,24 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
             <TextDate text={seo.ceo_h} time={data.real_time_carbon} />
           </h1>
         </div>
-        <div className="flex item-center jc-between">
+        <div className="flex item-center jc-between flex-wrap">
           <Link href={"/"} className={styles.person}>
             <IconPerson />
             <p>S Æ A-XI</p>
           </Link>
+          {data.cards.length > 0 && data.time_status == 3 && (
+            <div className={styles.eventTotal}>
+              <p>
+                Всего: {data.cards.filter((card) => card.status == "1").length}/
+                {data.cards.length}
+              </p>
+              <p>
+                Лучшая:{" "}
+                {data.best_bet_card.filter((card) => card.status == "1").length}
+                /{data.best_bet_card.length}
+              </p>
+            </div>
+          )}
           <div className={styles.buttonsTable}>
             <FavoriteAdd
               active={
