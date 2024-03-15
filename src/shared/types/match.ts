@@ -75,4 +75,5 @@ export type TypeMatch = {
   favorite_auth_user_count: 0 | 1;
   game_view_count: number;
   league: TypeLeague;
+  time_status: 0 | 1 | 3;
 };

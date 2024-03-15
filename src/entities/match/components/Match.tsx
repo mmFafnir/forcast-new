@@ -33,7 +33,7 @@ export const Match: FC<IProps> = ({ match }) => {
             className={`${styles.favorites} favorite-icon`}
           />
           <div className={styles.time}>
-            {status === "finish" ? (
+            {match.time_status == 3 ? (
               <p style={{ color: "#E98080" }}>Завершен</p>
             ) : (
               <p>{hours}</p>
