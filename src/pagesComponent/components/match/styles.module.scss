@@ -97,6 +97,15 @@
 }
 
 @media (max-width: 500px) {
+  .analysis {
+    padding: 0px 23px;
+    > div > p {
+      margin-bottom: 15px !important;
+    }
+  }
+  .analysisText {
+    font-size: 12px !important;
+  }
   .eventsOne {
     padding: 0px 0px;
   }

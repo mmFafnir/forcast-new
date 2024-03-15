@@ -123,7 +123,10 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
 
         {data.game_analize && (
           <div className={styles.analysis}>
-            <TextMore title={"Анализ"} text={<p>{data.game_analize}</p>} />
+            <TextMore
+              title={<span className={styles.analysisTitle}>Анализ</span>}
+              text={<p className={styles.analysisText}>{data.game_analize}</p>}
+            />
           </div>
         )}
 
