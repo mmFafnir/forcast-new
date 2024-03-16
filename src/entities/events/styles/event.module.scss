@@ -68,7 +68,7 @@
 }
 .text {
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 12px;
   overflow: hidden;
   transition-duration: 100ms;
   p {
@@ -90,6 +90,12 @@
   height: 30px !important;
   span {
     transition-duration: 100ms;
+  }
+}
+
+@media (max-width: 1250px) {
+  .right {
+    flex: 1 1 auto;
   }
 }
 

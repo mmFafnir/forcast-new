@@ -76,10 +76,7 @@ export const Event: FC<IProps> = ({ bet, gameStatus }) => {
         </div>
         <div className={styles.right}>
           <div className={styles.text} style={{ height: currentHeight + "px" }}>
-            <p ref={listRef}>
-              {bet.why_best || bet.why} {bet.why_best || bet.why}{" "}
-              {bet.why_best || bet.why}{" "}
-            </p>
+            <p ref={listRef}>{bet.why_best || bet.why}</p>
           </div>
           {listRef.current && listRef.current.clientHeight >= defaultHeight && (
             <Button type="text" className={styles.accorBtn} onClick={onToggle}>
