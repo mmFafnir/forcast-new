@@ -40,6 +40,7 @@ export const Event: FC<IProps> = ({ bet, gameStatus }) => {
     defaultHeight,
     defaultOpen: false,
   });
+  console.log(bet);
   return (
     <Wrapper best={bet.best_bet === "Yes"}>
       <div className={styles.header}>
@@ -76,7 +77,10 @@ export const Event: FC<IProps> = ({ bet, gameStatus }) => {
         </div>
         <div className={styles.right}>
           <div className={styles.text} style={{ height: currentHeight + "px" }}>
-            <p ref={listRef}>{bet.why_best || bet.why}</p>
+            <p ref={listRef}>
+              <span>{bet.why}</span>
+              <span>{bet.why_best}</span>
+            </p>
           </div>
           {listRef.current && listRef.current.clientHeight >= defaultHeight && (
             <Button type="text" className={styles.accorBtn} onClick={onToggle}>

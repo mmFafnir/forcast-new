@@ -73,6 +73,12 @@
   transition-duration: 100ms;
   p {
     padding-right: 10px;
+    line-height: 1.5;
+
+    span {
+      display: block;
+      margin-bottom: 5px;
+    }
   }
 }
 
