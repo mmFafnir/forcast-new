@@ -29,15 +29,15 @@ export const FilterProvider: FC<IProps> = ({
   const pathname = usePathname();
 
   useEffect(() => {
+    dispatch(setDefaultFilter());
+  }, [pathname]);
+
+  useEffect(() => {
     dispatch(setLeagueFilter(league));
     dispatch(setCountryFilter(country));
     dispatch(setSportFilter(sport));
     if (webApp) dispatch(setWebApp(webApp));
   }, []);
-
-  useEffect(() => {
-    dispatch(setDefaultFilter());
-  }, [pathname]);
 
   return <>{children}</>;
 };

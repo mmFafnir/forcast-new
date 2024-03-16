@@ -80,6 +80,8 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
   const [risk, setRisk] = useState<number>(0);
   const [data, setData] = useState<IFetchStatistics[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  console.log("leagueId", leagueId);
+
   useEffect(() => {
     setLoading(true);
     getStatistics({

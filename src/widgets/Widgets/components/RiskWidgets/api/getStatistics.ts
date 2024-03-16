@@ -12,7 +12,7 @@ export const getStatistics = async (
   const { league_id = "", sport_id = "", country_id = "" } = params;
 
   const { data } = await axios.get(
-    `get_statistics?&league_id=${league_id}&sport_id=${sport_id}&country_id=${country_id}`
+    `get_statistics?league_id=${league_id}&sport_id=${sport_id}&country_id=${country_id}`
   );
   let res: IFetchStatistics[] = [];
 
