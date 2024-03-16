@@ -76,7 +76,7 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
   return (
     <FilterProvider
       sport={data.sport_id || ""}
-      league={data.league?.id || ""}
+      league={data.league?.league_id || ""}
       country={data.league?.country?.id || ""}
     >
       <LinksProvider
