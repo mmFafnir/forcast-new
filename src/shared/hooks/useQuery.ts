@@ -7,6 +7,7 @@ const useQuery = (keyQuery?: string) => {
 
   const setQuery = ({ name, value }: { name: string; value: string }) => {
     const current = new URLSearchParams(Array.from(searchParams.entries())); // -> has to use this form
+    current.set(name, value);
     const search = current.toString();
     const query = search ? `?${search}` : "";
     router.replace(query);

@@ -104,6 +104,7 @@ export const getMatchSoccerServer = cache(
           id: data.request_country.id,
         };
       }
+      console.log(data);
       if (data.request_league) {
         res.league = {
           title:
@@ -112,7 +113,7 @@ export const getMatchSoccerServer = cache(
               ? data.request_league.translate[0].translation
               : data.request_league?.league_name,
           url: data.request_league.url,
-          id: data.request_league.id,
+          id: data.request_league.league_id,
         };
       }
 

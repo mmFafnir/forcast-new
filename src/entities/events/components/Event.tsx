@@ -40,7 +40,7 @@ export const Event: FC<IProps> = ({ bet, gameStatus }) => {
     defaultHeight,
     defaultOpen: false,
   });
-  console.log(bet);
+
   return (
     <Wrapper best={bet.best_bet === "Yes"}>
       <div className={styles.header}>
@@ -49,15 +49,10 @@ export const Event: FC<IProps> = ({ bet, gameStatus }) => {
             <Status played={bet.status == "1"} />
           </span>
         )}
-        {bet.best_bet === "Yes" ? (
-          <h3 className={`${styles.title} ${styles.titleBest}`}>
-            Коэффициент {bet.odds}
-          </h3>
-        ) : (
-          <h3 className={styles.title}>
-            Коэффициент: <span>{bet.odds}</span>{" "}
-          </h3>
-        )}
+
+        <h3 className={styles.title}>
+          Коэффициент: <span>{bet.odds}</span>{" "}
+        </h3>
         {bet.best_bet === "Yes" && <BestBet />}
       </div>
       <div className={styles.content}>
