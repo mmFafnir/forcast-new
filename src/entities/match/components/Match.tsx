@@ -14,9 +14,10 @@ import dayjs from "@/shared/core/dayjs";
 
 interface IProps {
   match: TypeMatch;
+  type?: "main" | "recommend" | "search";
 }
 
-export const Match: FC<IProps> = ({ match }) => {
+export const Match: FC<IProps> = ({ match, type = "main" }) => {
   const { status, hours, dateDefault } = useTimeStatus({
     matchTime: match.real_time_carbon,
   });
@@ -41,7 +42,9 @@ export const Match: FC<IProps> = ({ match }) => {
               <Live />
             ) : (
               <>
-                <p>{dayjs(dateDefault).format("DD.MM.YYYY")}</p>
+                {type != "main" && (
+                  <p>{dayjs(dateDefault).format("DD.MM.YYYY")}</p>
+                )}
                 <p>{hours}</p>
               </>
             )}

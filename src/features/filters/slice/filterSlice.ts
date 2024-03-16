@@ -59,6 +59,7 @@ const filterSlice = createSlice({
       state.leagueId = "";
       state.sportId = "";
       state.timeStatus = "";
+      // console.log("date", date);
       // state.date = date;
     },
 

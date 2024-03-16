@@ -16,7 +16,6 @@ interface IPropsItem {
   item: TypeLeague;
 }
 const ItemLeagues: FC<IPropsItem> = ({ item }) => {
-  console.log(item);
   return (
     <div key={item.id} className={styles.item} title={item.league_name}>
       <CustomImage

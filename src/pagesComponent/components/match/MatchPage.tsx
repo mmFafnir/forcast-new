@@ -17,6 +17,7 @@ import { getTimezone } from "@/shared/helper/getTimezone";
 import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
 import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 import { TextDate } from "./components/Title";
+import { FilterProvider } from "@/app/providers/FilterProvider";
 
 interface IProps {
   data: IFetchFullMatch;
@@ -73,86 +74,99 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
 
   console.log(data);
   return (
-    <LinksProvider
-      links={{
-        country: countryTitle,
-        league: leagueTitle,
-        sport: "Футбол",
-        match: "",
-      }}
+    <FilterProvider
+      sport={data.sport_id || ""}
+      league={data.league?.id || ""}
+      country={data.league?.country?.id || ""}
     >
-      <Header breadCrumbs={breadCrumbs} />
-      <div className={styles.page}>
-        <MatchPreviewSticky match={data} />
-        <div className="flex item-center jc-between">
-          <h1>
-            <TextDate text={seo.ceo_h} time={data.real_time_carbon} />
-          </h1>
-        </div>
-        <div className="flex item-center jc-between flex-wrap">
-          <Link href={"/"} className={styles.person}>
-            <IconPerson />
-            <p>S Æ A-XI</p>
-          </Link>
-          {data.cards.length > 0 && data.time_status == 3 && (
-            <div className={styles.eventTotal}>
-              <p>
-                Всего: {data.cards.filter((card) => card.status == "1").length}/
-                {data.cards.length}
-              </p>
-              <p>
-                Лучшая:{" "}
-                {data.best_bet_card.filter((card) => card.status == "1").length}
-                /{data.best_bet_card.length}
-              </p>
+      <LinksProvider
+        links={{
+          country: countryTitle,
+          league: leagueTitle,
+          sport: "Футбол",
+          match: "",
+        }}
+      >
+        <Header breadCrumbs={breadCrumbs} />
+        <div className={styles.page}>
+          <MatchPreviewSticky match={data} />
+          <div className="flex item-center jc-between">
+            <h1>
+              <TextDate text={seo.ceo_h} time={data.real_time_carbon} />
+            </h1>
+          </div>
+          <div className="flex item-center jc-between flex-wrap">
+            <Link href={"/"} className={styles.person}>
+              <IconPerson />
+              <p>S Æ A-XI</p>
+            </Link>
+            {data.cards.length > 0 && data.time_status == 3 && (
+              <div className={styles.eventTotal}>
+                <p>
+                  Всего:{" "}
+                  {data.cards.filter((card) => card.status == "1").length}/
+                  {data.cards.length}
+                </p>
+                <p>
+                  Лучшая:{" "}
+                  {
+                    data.best_bet_card.filter((card) => card.status == "1")
+                      .length
+                  }
+                  /{data.best_bet_card.length}
+                </p>
+              </div>
+            )}
+            <div className={styles.buttonsTable}>
+              <FavoriteAdd
+                active={
+                  data.favorite_auth_user_count == 1 ||
+                  data.favorite_game == "1"
+                }
+                ids={[data.id]}
+                type="default"
+              />
+              <SharedButton />
+            </div>
+            <Views count={data.game_view_count} className={styles.view} />
+          </div>
+          <MatchPreview match={data} />
+
+          {data.game_analize && (
+            <div className={styles.analysis}>
+              <TextMore
+                title={<span className={styles.analysisTitle}>Анализ</span>}
+                text={
+                  <p className={styles.analysisText}>{data.game_analize}</p>
+                }
+              />
             </div>
           )}
-          <div className={styles.buttonsTable}>
-            <FavoriteAdd
-              active={
-                data.favorite_auth_user_count == 1 || data.favorite_game == "1"
-              }
-              ids={[data.id]}
-              type="default"
-            />
-            <SharedButton />
-          </div>
-          <Views count={data.game_view_count} className={styles.view} />
-        </div>
-        <MatchPreview match={data} />
 
-        {data.game_analize && (
-          <div className={styles.analysis}>
-            <TextMore
-              title={<span className={styles.analysisTitle}>Анализ</span>}
-              text={<p className={styles.analysisText}>{data.game_analize}</p>}
+          <div
+            style={{
+              paddingTop: data.game_analize ? "0px" : "",
+            }}
+            className={`${styles.events} ${
+              data.cards.length === 0 ? styles.eventsOne : ""
+            }`}
+          >
+            <EventsBlock
+              events={data.cards}
+              matchId={data.id}
+              gameStatus={data.time_status}
+              request={data.request_for_card_button}
+              favoriteLeague={data.league.favorit === "1"}
             />
           </div>
-        )}
 
-        <div
-          style={{
-            paddingTop: data.game_analize ? "0px" : "",
-          }}
-          className={`${styles.events} ${
-            data.cards.length === 0 ? styles.eventsOne : ""
-          }`}
-        >
-          <EventsBlock
-            events={data.cards}
-            matchId={data.id}
-            gameStatus={data.time_status}
-            request={data.request_for_card_button}
-            favoriteLeague={data.league.favorit === "1"}
-          />
+          {recommendData.length > 0 && (
+            <div className={styles.recommend}>
+              <Recommend id={data.id} data={recommendData} />
+            </div>
+          )}
         </div>
-
-        {recommendData.length > 0 && (
-          <div className={styles.recommend}>
-            <Recommend id={data.id} data={recommendData} />
-          </div>
-        )}
-      </div>
-    </LinksProvider>
+      </LinksProvider>
+    </FilterProvider>
   );
 };

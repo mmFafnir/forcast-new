@@ -1,16 +1,12 @@
 import HeaderPage from "@/widgets/HeaderPage";
-import { Metadata, NextPage, ResolvingMetadata } from "next";
-import { getMatchMainServer } from "../../api/main/getMatchHome";
+import {  NextPage } from "next";
 import { MatchesGroupHome } from "../../module/group/MatchesGroupHome";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
-import { cookies } from "next/headers";
 import { Header } from "@/widgets/Header";
 import { FilterProvider } from "@/app/providers/FilterProvider";
 import { LinksProvider } from "@/app/providers/LinksProvider";
-import { getTimezone } from "@/shared/helper/getTimezone";
 import { DescriptionSEO } from "@/entities/seo-texts";
-import { getStaticSeo } from "@/pagesComponent/api/seo/getSeoStatic";
 import { TypeSportGroup } from "@/shared/types/sport";
 import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 

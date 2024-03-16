@@ -21,7 +21,6 @@ export const Input: FC<IProps> = ({ onSearch, focus = false, searchRef }) => {
   }, [focus]);
 
   useEffect(() => {
-    console.log("ref", searchRef);
     searchRef(inputRef.current);
   }, []);
   return (

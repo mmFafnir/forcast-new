@@ -107,7 +107,7 @@ export const ModalSearch: FC = () => {
         <div>
           <div className={styles.content}>
             <MyScrollbar>
-              <GroupHome data={data} loading={loading} />
+              <GroupHome type="search" data={data} loading={loading} />
             </MyScrollbar>
           </div>
         </div>

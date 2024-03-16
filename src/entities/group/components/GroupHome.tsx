@@ -11,9 +11,10 @@ interface IProps {
   data: TypeSportGroup[];
   loading: boolean | null;
   empty?: ReactNode;
+  type?: 'search'|'main'
 }
 
-const GroupHomeMemo: FC<IProps> = ({ data, loading, empty }) => {
+const GroupHomeMemo: FC<IProps> = ({ data, loading, empty, type='main' }) => {
   return (
     <div className="flex-1">
       {loading && (
@@ -46,7 +47,7 @@ const GroupHomeMemo: FC<IProps> = ({ data, loading, empty }) => {
                 total={lig.games.length}
               >
                 {lig.games.map((game, indexGame) => (
-                  <Match key={game.id} match={game} />
+                  <Match type={type} key={game.id} match={game} />
                 ))}
                 {index === 0 && <PremMatchBanner />}
               </SportGroup>

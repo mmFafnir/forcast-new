@@ -32,7 +32,6 @@ const Sidebar = () => {
     });
   }, []);
 
-  console.log(global);
   return (
     <>
       <button

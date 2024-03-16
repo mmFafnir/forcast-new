@@ -8,6 +8,8 @@ import { GroupHome } from "@/entities/group";
 import { EmptyMain } from "@/pagesComponent/components/main/EmptyMain";
 import { setLoadingFilter } from "@/features/filters/slice/filterSlice";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { matchTimeZone } from "@/shared/core/timezone";
+import dayjs from "@/shared/core/dayjs";
 
 interface IProps {
   matches: TypeSportGroup[];
@@ -26,7 +28,15 @@ const MatchesGroupHomeMemo: FC<IProps> = ({ matches }) => {
       return;
     }
     setLoading(true);
-    getMatchHome({ date, timeStatus, utcId })
+    getMatchHome({
+      date:
+        timeStatus == 1
+          ? // @ts-ignore
+            dayjs().utc().tz(matchTimeZone).format("YYYY-MM-DD")
+          : date,
+      timeStatus,
+      utcId,
+    })
       .then((res) => {
         setData(res);
       })

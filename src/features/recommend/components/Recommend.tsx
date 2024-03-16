@@ -49,7 +49,7 @@ export const Recommend: FC<IProps> = ({ data, id }) => {
         )}
         {matches.length === 0 && <Empty />}
         {matches.map((match) => (
-          <Match key={match.id} match={match} />
+          <Match type="recommend" key={match.id} match={match} />
         ))}
       </div>
     </div>

@@ -5,15 +5,15 @@ import styles from "../../styles/calendar.module.scss";
 import Calendar from "react-calendar";
 import Button from "./Button";
 import dayjs from "dayjs";
-import "react-calendar/dist/Calendar.css";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { setDate } from "../../slice/filterSlice";
 import useQuery from "@/shared/hooks/useQuery";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { parseQueryParams } from "@/shared/helper/parseQueryParams";
 import dayJs from "@/shared/core/dayjs";
 import { matchTimeZone } from "@/shared/core/timezone";
+import "react-calendar/dist/Calendar.css";
 
 export const minDate = "2001-12-12";
 export const maxDate = "2030-12-12";
@@ -30,6 +30,7 @@ const FilterCalendarMemo: FC<IProps> = ({
 }) => {
   const pathname = usePathname();
   const dispatch = useTypeDispatch();
+  const searchParams = useSearchParams();
 
   const { timezone } = useTypeSelector((state) => state.timezone);
   const { timeStatus, date, loading } = useTypeSelector(
@@ -65,13 +66,14 @@ const FilterCalendarMemo: FC<IProps> = ({
     const date = startDate
       ? startDate
       : parseQueryParams(window.location.search).date;
+
     setCurrentDate(
       date
         ? date
         : // @ts-ignore
           dayJs().utc().tz(matchTimeZone).format("YYYY-MM-DD")
     );
-  }, [pathname]);
+  }, [pathname, query]);
 
   useEffect(() => {
     setDefaultDate(
@@ -79,6 +81,10 @@ const FilterCalendarMemo: FC<IProps> = ({
       dayJs().utc().tz(timezone).format("YYYY-MM-DD")
     );
   }, [timezone]);
+
+  useEffect(() => {
+    console.log(query);
+  }, [query]);
 
   useEffect(() => {
     if (!startDate || query) return;
