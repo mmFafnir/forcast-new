@@ -15,12 +15,12 @@
   }
 }
 .best {
-  background: radial-gradient(
-      81.28% 57.65% at 94.21% -27.9%,
-      rgba(176, 146, 66, 0.2) 0%,
-      rgba(176, 146, 66, 0) 100%
-    ),
-    #22252f;
+  // background: radial-gradient(
+  //     81.28% 57.65% at 94.21% -27.9%,
+  //     rgba(176, 146, 66, 0.2) 0%,
+  //     rgba(176, 146, 66, 0) 100%
+  //   ),
+  //   #22252f;
 }
 .content {
   display: flex;
@@ -28,7 +28,7 @@
 }
 
 .left {
-  margin-top: 15px;
+  margin-top: 1px;
   flex: 0 0 185px;
 }
 

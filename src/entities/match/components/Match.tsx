@@ -10,13 +10,14 @@ import { TypeMatch } from "@/shared/types/match";
 import { getSportName } from "@/shared/helper/getSportName";
 import useTimeStatus from "@/shared/hooks/useTimeStatus";
 import { Live } from "../ui/Live";
+import dayjs from "@/shared/core/dayjs";
 
 interface IProps {
   match: TypeMatch;
 }
 
 export const Match: FC<IProps> = ({ match }) => {
-  const { status, hours } = useTimeStatus({
+  const { status, hours, dateDefault } = useTimeStatus({
     matchTime: match.real_time_carbon,
   });
 
@@ -39,7 +40,10 @@ export const Match: FC<IProps> = ({ match }) => {
             ) : match.time_status == 1 ? (
               <Live />
             ) : (
-              <p>{hours}</p>
+              <>
+                <p>{dayjs(dateDefault).format("DD.MM.YYYY")}</p>
+                <p>{hours}</p>
+              </>
             )}
           </div>
         </div>
