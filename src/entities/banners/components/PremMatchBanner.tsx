@@ -18,7 +18,7 @@ export const PremMatchBanner: FC<IProps> = ({
   prem = true,
   bodyClass,
 }) => {
-  const { auth } = useTypeSelector((state) => state.auth);
+  const { auth, user } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
 
   const onModalOpen = () => {
@@ -27,6 +27,7 @@ export const PremMatchBanner: FC<IProps> = ({
     dispatch(setModal(EnumModals.PREMIUM));
   };
 
+  if (user?.premium == "1") return <></>;
   return (
     <div className={`${styles.body} ${bodyClass}`} onClick={onModalOpen}>
       {prem && <Premium />}
