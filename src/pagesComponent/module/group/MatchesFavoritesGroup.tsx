@@ -84,7 +84,7 @@ export const MatchesFavoritesGroup: FC<IProps> = ({ matches }) => {
                 total={lig.games.length}
               >
                 {lig.games.map((game, indexGame) => (
-                  <Match key={game.id} match={game} />
+                  <Match key={game.id} type="favorite" match={game} />
                 ))}
                 {index === 0 && <PremMatchBanner />}
               </SportGroup>

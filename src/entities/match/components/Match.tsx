@@ -14,7 +14,7 @@ import dayjs from "@/shared/core/dayjs";
 
 interface IProps {
   match: TypeMatch;
-  type?: "main" | "recommend" | "search";
+  type?: "main" | "recommend" | "search" | "favorite";
 }
 
 export const Match: FC<IProps> = ({ match, type = "main" }) => {
