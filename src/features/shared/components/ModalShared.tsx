@@ -17,7 +17,7 @@ interface IProps {
 
 const ModalSharedMemo: FC<IProps> = ({ open, onClose }) => {
   const pathname = usePathname();
-  const [url, setUrl] = useState<string>(window.location.href);
+  const [url, setUrl] = useState<string>("");
   const [success, setSuccess] = useState<boolean>(false);
 
   const copyUrl = () => {

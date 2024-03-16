@@ -29,6 +29,7 @@ export const FilterProvider: FC<IProps> = ({
   const pathname = usePathname();
 
   useEffect(() => {
+    // if (pathname.includes("/soccer")) return;
     dispatch(setDefaultFilter());
   }, [pathname]);
 

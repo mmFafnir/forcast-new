@@ -29,9 +29,9 @@ const Team: FC<ITeamProps> = ({ src, name, translate }) => {
           height={1000}
         />
       </div>
-      <div>
-        <p>{translate}</p>
-        <p>{name}</p>
+      <div className={styles.teamText}>
+        <p title={translate}>{translate}</p>
+        <p title={name}>{name}</p>
       </div>
     </div>
   );

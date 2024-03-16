@@ -11,12 +11,14 @@
 
 .layout {
   display: flex;
+  overflow: hidden;
   flex: 1 1 auto;
 }
 .page {
   flex: 1 1 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   // max-height: calc(100dvh - 82px);
   // max-height: calc(100vh - 82px);
 }

@@ -72,7 +72,6 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
     },
   ];
 
-  console.log(data);
   return (
     <FilterProvider
       sport={data.sport_id || ""}
