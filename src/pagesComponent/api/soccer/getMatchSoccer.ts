@@ -78,9 +78,11 @@ export const getMatchSoccerServer = cache(
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
+
       console.log(
         `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`
       );
+
       const { data } = await axios.get(
         `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`,
         config
@@ -113,7 +115,7 @@ export const getMatchSoccerServer = cache(
               ? data.request_league.translate[0].translation
               : data.request_league?.league_name,
           url: data.request_league.url,
-          id: data.request_league.league_id,
+          id: data.request_league.id,
         };
       }
 

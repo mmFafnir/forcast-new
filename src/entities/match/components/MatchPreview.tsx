@@ -124,7 +124,7 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
               <p style={{ color: "#E98080" }}>Завершен</p>
             </button>
           ) : (
-            <button className={styles.live}>
+            <button className={`${styles.live} ${styles.liveBtn}`}>
               <IconLive className={styles.iconLive} />
               <span>Live</span>
             </button>
