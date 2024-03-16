@@ -65,7 +65,7 @@ const ModalSharedMemo: FC<IProps> = ({ open, onClose }) => {
         <Button
           className={styles.btn}
           target="_blank"
-          href={`https://wa.me/whatsappphonenumber/?text=${url}`}
+          href={`https://api.whatsapp.com/send?text=${url}`}
         >
           <Image src={wh} alt="wh" width={100} height={100} />
         </Button>
