@@ -171,12 +171,8 @@
     font-weight: 700;
     color: #9c9c9c;
   }
-  @media (min-width: 901px) {
-    &:hover {
-      .iconLive {
-        animation: 0.5s linear 0s infinite alternate iconLive;
-      }
-    }
+  .iconLive {
+    animation: 0.5s linear 0s infinite alternate iconLive;
   }
 }
 

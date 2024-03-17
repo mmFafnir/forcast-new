@@ -83,6 +83,9 @@
   p {
     margin-left: 6px;
   }
+  .iconLive {
+    animation: 0.5s linear 0s infinite alternate iconLive;
+  }
 }
 
 .left {
@@ -186,5 +189,14 @@
     &::after {
       margin: 0 10px;
     }
+  }
+}
+
+@keyframes iconLive {
+  0% {
+    box-shadow: 0px 0px 0px rgba(255, 0, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
   }
 }
