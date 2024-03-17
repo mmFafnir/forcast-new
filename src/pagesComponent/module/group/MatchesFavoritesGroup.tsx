@@ -72,6 +72,7 @@ export const MatchesFavoritesGroup: FC<IProps> = ({ matches }) => {
       {!loading &&
         data.map((group) => (
           <SportGroup
+            type={"main"}
             key={group.id}
             title={group.name}
             icon={group.url}

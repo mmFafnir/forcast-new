@@ -7,7 +7,6 @@ import IconArrow from "@/shared/icons/IconArrow";
 import useAccordion, {
   IAccordionStylesIcon,
 } from "@/shared/hooks/useAccardion";
-import { initialSticky } from "../scripts/initialSticky";
 
 interface IProps {
   children: ReactNode;
@@ -15,6 +14,7 @@ interface IProps {
   total?: string | number;
   icon?: TypeSportIcon;
   headerRender?: ReactNode;
+  type?: "search" | "main";
 }
 
 const iconStyles: IAccordionStylesIcon = {
@@ -30,6 +30,7 @@ export const SportGroup: FC<IProps> = ({
   total,
   icon,
   headerRender,
+  type,
 }) => {
   const bodyRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
@@ -55,7 +56,12 @@ export const SportGroup: FC<IProps> = ({
   }, []);
 
   return (
-    <div ref={bodyRef} className={`${styles.body} group-list`}>
+    <div
+      ref={bodyRef}
+      className={`${styles.body} ${
+        type == "main" ? styles.main : ""
+      } group-list`}
+    >
       <div className={`${styles.header} group-header`}>
         {headerRender ? (
           headerRender

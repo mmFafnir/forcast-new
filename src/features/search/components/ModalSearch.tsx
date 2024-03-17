@@ -70,7 +70,6 @@ export const ModalSearch: FC = () => {
   };
 
   const onClickBtn = () => {
-    console.log(searchRef);
     if (!searchRef) return;
     onSearch(searchRef.value);
   };
@@ -106,7 +105,7 @@ export const ModalSearch: FC = () => {
         </div>
         <div>
           <div className={styles.content}>
-            <MyScrollbar>
+            <MyScrollbar autoHide={false}>
               <GroupHome type="search" data={data} loading={loading} />
             </MyScrollbar>
           </div>

@@ -13,6 +13,14 @@
       background: #354f62;
     }
   }
+
+  &.main {
+    .body {
+      .header {
+        top: 116px;
+      }
+    }
+  }
 }
 
 .list {
@@ -60,15 +68,32 @@
   .header {
     top: 55px;
   }
+  .body.main {
+    .body {
+      .header {
+        top: 97px;
+      }
+    }
+  }
 }
 
 @media (max-width: 440px) {
   .body {
     font-size: 10px;
     margin-top: 3px;
+    .header {
+      top: 58px;
+    }
     .body {
       .header {
         top: 32px;
+      }
+    }
+    &.main {
+      .body {
+        .header {
+          top: 90px;
+        }
       }
     }
   }

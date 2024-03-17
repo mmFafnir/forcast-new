@@ -74,6 +74,7 @@ const MatchesGroupMemo: FC<IProps> = ({
       )}
       {data.map((lig) => (
         <SportGroup
+          type="main"
           key={lig.league_id}
           title={
             lig.translate && lig.translate.length > 0
