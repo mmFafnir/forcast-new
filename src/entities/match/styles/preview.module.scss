@@ -89,6 +89,7 @@
 .teamText {
   flex: 1 1 auto;
   overflow: hidden;
+  max-width: 260px;
   p {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -243,6 +244,12 @@
   100% {
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
     opacity: 1;
+  }
+}
+
+@media (max-width: 1250px) {
+  .teamText {
+    max-width: 400px;
   }
 }
 

@@ -18,7 +18,10 @@ const HeaderPage: FC<IProps> = ({
   return (
     <>
       <h1 className={styles.title}>{title}</h1>
-      <div style={filterStyle} className={`flex jc-between  ${styles.filter}`}>
+      <div
+        style={filterStyle}
+        className={`flex jc-between sticky ${styles.filter}`}
+      >
         {filtersRender ? (
           filtersRender
         ) : (

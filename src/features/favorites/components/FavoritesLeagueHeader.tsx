@@ -61,7 +61,9 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
         <p className={styles.name}>
           {league.country && (
             <Link
-              href={`/${getSportName(league.sport_id)}/${league.country_url}`}
+              href={`/${getSportName(league.sport_id)}/${
+                league.country_url || league.country.url
+              }`}
             >
               {league.country?.translation || league.country?.name}:{" "}
             </Link>

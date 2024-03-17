@@ -7,6 +7,7 @@ import IconArrow from "@/shared/icons/IconArrow";
 import useAccordion, {
   IAccordionStylesIcon,
 } from "@/shared/hooks/useAccardion";
+import { initialSticky } from "../scripts/initialSticky";
 
 interface IProps {
   children: ReactNode;
@@ -50,6 +51,7 @@ export const SportGroup: FC<IProps> = ({
     ) {
       header.style.top = "0px";
     }
+    // initialSticky(bodyRef.current);
   }, []);
 
   return (
