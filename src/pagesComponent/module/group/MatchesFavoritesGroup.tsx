@@ -20,7 +20,7 @@ interface IProps {
 }
 
 export const MatchesFavoritesGroup: FC<IProps> = ({ matches }) => {
-  const { favorites } = useTypeSelector((state) => state.favorites);
+  // const { favorites } = useTypeSelector((state) => state.favorites);
   const dispatch = useTypeDispatch();
 
   const [data, setData] = useState<TypeSportGroup[]>(matches);
@@ -51,10 +51,9 @@ export const MatchesFavoritesGroup: FC<IProps> = ({ matches }) => {
       games = [...games, ...lig.games];
     });
 
+    console.log(games);
     dispatch(setFavorite(games.map((game) => game.id)));
   }, []);
-
-  // useEffect(() => {}, [favorites]);
 
   return (
     <div className="flex-1">

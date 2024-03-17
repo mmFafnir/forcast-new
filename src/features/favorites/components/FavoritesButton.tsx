@@ -32,6 +32,7 @@ export const FavoritesButton: FC<IProps> = ({ className }) => {
       dispatch(deleteAllFavorites());
       return;
     }
+    console.log(user);
     dispatch(setFavorite(user.favorite_count));
   }, [user]);
 

@@ -18,12 +18,14 @@ export const getFavoritesServer = async (
 
     const config = {
       headers: { Authorization: `Bearer ${token}` },
+      "Cache-Control": "no-cache",
     };
 
     const { data } = await axios.get(
-      `/get_user_favorite?time_status=${timeStatus}`,
+      `/get_user_favorite?time_status=${timeStatus}&timestamp=${new Date().getTime()}`,
       config
     );
+    console.log("facorites", data);
     return mapGetMatchHome(data.data);
   } catch (error) {
     console.log(error);

@@ -79,12 +79,8 @@ export const getMatchSoccerServer = cache(
         headers: { Authorization: `Bearer ${token}` },
       };
 
-      console.log(
-        `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`
-      );
-
       const { data } = await axios.get(
-        `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`,
+        `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}&timestamp=${new Date().getTime()}`,
         config
       );
 

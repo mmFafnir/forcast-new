@@ -18,6 +18,7 @@ export const login = createAsyncThunk<IFetchData, ILoginParams>(
   async (params, { rejectWithValue }) => {
     try {
       const { data } = await axios.post("/login", params);
+      console.log(data);
       return data;
     } catch (error) {
       console.log(error);
