@@ -24,10 +24,10 @@ interface IProps {
 }
 
 export const Filter: FC<IProps> = ({ setValue, value, isCountry }) => {
+  if (!isCountry) return <></>;
   return (
     <div className={styles.body}>
       {filters.map((fil) => {
-        if (fil.value == "country" && !isCountry) return <></>;
         return (
           <Button
             key={fil.value}

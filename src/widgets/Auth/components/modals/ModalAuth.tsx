@@ -1,12 +1,10 @@
 "use client";
 import Modal from "@/shared/UI/Modal";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
-import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useEffect, useState } from "react";
 import { Wrapper } from "../ui/Wrapper";
-import { OtherRegister } from "../OtherRegister";
 import styles from "../../styles/auth.module.scss";
 import Auth from "../Auth";
 import { OtherSnap } from "../OtherSnap";

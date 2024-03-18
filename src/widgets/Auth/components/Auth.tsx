@@ -51,7 +51,7 @@ const Auth: FC<IProps> = ({ callback, callbackConfirm }) => {
           control={control}
           defaultValue=""
           rules={{
-            required: "Обязательно полу",
+            required: "Обязательно полe",
             pattern: validEmail,
           }}
           render={({ field, fieldState: { error } }) => (

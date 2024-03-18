@@ -1,8 +1,7 @@
 "use client";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import styles from "../styles/timezone.mobile.module.scss";
 import { TypeTimezone } from "../types/TypeTimezone";
-import { getTimezone } from "../api/getTimezone";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
 import IconArrow from "@/shared/icons/IconArrow";
 import useAccordion, {
@@ -12,6 +11,7 @@ import { setTimezone } from "../slice/timezoneSlice";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { timezoneData } from "@/shared/core/timezone";
+import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 
 const iconStyles: IAccordionStylesIcon = {
   open: {},
@@ -37,6 +37,7 @@ export const TimezoneAccordion: FC = () => {
   const onChange = (zone: TypeTimezone) => {
     setCurrentData(zone);
     dispatch(setTimezone({ timezone: zone.zone, id: zone.id }));
+    dispatch(closeAllModal());
   };
 
   return (

@@ -91,10 +91,10 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
             </h1>
           </div>
           <div className="flex item-center jc-between flex-wrap">
-            <Link href={"/"} className={styles.person}>
+            <p className={styles.person}>
               <IconPerson />
               <p>S Æ A-XI</p>
-            </Link>
+            </p>
             {data.cards.length > 0 && data.time_status == 3 && (
               <div className={styles.eventTotal}>
                 <p>

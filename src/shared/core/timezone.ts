@@ -3,6 +3,13 @@ export const matchTimeZone = "Africa/Addis_Ababa";
 export const timezoneData = [
   // -
   {
+    id: 411,
+    zone: "Pacific/Midway",
+    utc: "UTC-11",
+    created_at: "2023-09-16T14:58:59.000000Z",
+    updated_at: "2023-09-16T14:58:59.000000Z",
+  },
+  {
     id: 53,
     zone: "America/Adak",
     utc: "UTC-10",
@@ -51,13 +58,7 @@ export const timezoneData = [
     created_at: "2023-09-16T14:58:58.000000Z",
     updated_at: "2023-09-16T14:58:58.000000Z",
   },
-  {
-    id: 181,
-    zone: "America/St_Johns",
-    utc: "UTC-3.5",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
+
   {
     id: 57,
     zone: "America/Araguaina",
@@ -154,6 +155,14 @@ export const timezoneData = [
     created_at: "2023-09-16T14:58:59.000000Z",
     updated_at: "2023-09-16T14:58:59.000000Z",
   },
+
+  {
+    id: 198,
+    zone: "Antarctica/DumontDUrville",
+    utc: "UTC+10",
+    created_at: "2023-09-16T14:58:59.000000Z",
+    updated_at: "2023-09-16T14:58:59.000000Z",
+  },
   {
     id: 196,
     zone: "Antarctica/Casey",
@@ -161,11 +170,10 @@ export const timezoneData = [
     created_at: "2023-09-16T14:58:59.000000Z",
     updated_at: "2023-09-16T14:58:59.000000Z",
   },
-
   {
-    id: 198,
-    zone: "Antarctica/DumontDUrville",
-    utc: "UTC+10",
+    id: 211,
+    zone: "Asia/Anadyr",
+    utc: "UTC+12",
     created_at: "2023-09-16T14:58:59.000000Z",
     updated_at: "2023-09-16T14:58:59.000000Z",
   },
@@ -179,94 +187,9 @@ export const timezoneData = [
   },
 
   {
-    id: 211,
-    zone: "Asia/Anadyr",
-    utc: "UTC+12",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
-
-  {
-    id: 226,
-    zone: "Asia/Colombo",
-    utc: "UTC+5.5",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
-  {
-    id: 242,
-    zone: "Asia/Kabul",
-    utc: "UTC+4.5",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
-  {
-    id: 245,
-    zone: "Asia/Kathmandu",
-    utc: "UTC+5.75",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
-  {
-    id: 278,
-    zone: "Asia/Tehran",
-    utc: "UTC+3.5",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
-  {
-    id: 288,
-    zone: "Asia/Yangon",
-    utc: "UTC+6.5",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
-  {
-    id: 301,
-    zone: "Australia/Adelaide",
-    utc: "UTC+10.5",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
-  {
-    id: 305,
-    zone: "Australia/Darwin",
-    utc: "UTC+9.5",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
-  {
-    id: 306,
-    zone: "Australia/Eucla",
-    utc: "UTC+8.75",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
-  {
-    id: 393,
-    zone: "Pacific/Chatham",
-    utc: "UTC+13.75",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
-  {
     id: 406,
     zone: "Pacific/Kiritimati",
     utc: "UTC+14",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
-  {
-    id: 410,
-    zone: "Pacific/Marquesas",
-    utc: "UTC-9.5",
-    created_at: "2023-09-16T14:58:59.000000Z",
-    updated_at: "2023-09-16T14:58:59.000000Z",
-  },
-  {
-    id: 411,
-    zone: "Pacific/Midway",
-    utc: "UTC-11",
     created_at: "2023-09-16T14:58:59.000000Z",
     updated_at: "2023-09-16T14:58:59.000000Z",
   },
