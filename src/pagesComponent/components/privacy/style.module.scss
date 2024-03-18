@@ -15,6 +15,7 @@
   }
   h2 {
     margin: 15px 0px;
+    margin-top: 20px;
     text-transform: uppercase;
   }
   a {
@@ -29,8 +30,10 @@
 
   ul,
   ol {
+    padding-left: 10px;
+    margin-bottom: 10px;
     li {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       line-height: 1.5;
       font-size: 14px;
 
@@ -67,8 +70,23 @@
     h2 {
       font-size: 12px;
     }
+    ol,
+    ul {
+      li {
+        font-size: 12px;
+      }
+    }
     ol li {
-      font-size: 12px;
+      margin-right: 7px;
+    }
+    ul li {
+      &::before {
+        width: 5px;
+        height: 5px;
+        flex-basis: 5px;
+        margin-right: 7px;
+        margin-bottom: 2px;
+      }
     }
   }
 }
