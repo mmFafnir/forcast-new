@@ -10,7 +10,7 @@ const Footer: FC = () => {
     <footer className={styles.footer}>
       <div className="flex item-center">
         <Link href={"/privacy-policy"}>Политика конфиданциальности</Link>
-        <Link href={"/term-of-use"}>Пользователаьское соглашение</Link>
+        <Link href={"/term-of-use"}>Пользовательское cоглашение</Link>
 
         <Link href={"/archive"}>Архив матчей</Link>
         <Link href={"/faq"}>FAQ</Link>

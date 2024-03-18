@@ -18,7 +18,7 @@ const TermOfUse = async () => {
 
   const breadCrumbs = [
     {
-      title: "Условия Пользования",
+      title: "Пользовательское Соглашение",
       href: "/privacy-policy",
     },
   ];
