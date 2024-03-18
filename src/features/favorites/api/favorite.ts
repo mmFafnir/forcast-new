@@ -26,7 +26,7 @@ export const deleteFavorite = async (ids: number[]) => {
 export const fetchFavorites = async (timeStatus: TypeTimeStatus) => {
   try {
     const { data } = await axios.get(
-      `/get_user_favorite?time_status=${timeStatus}`
+      `/get_user_favorite?time_status=${timeStatus}&timestamp=${new Date().getTime()}`
     );
     return data.data;
   } catch (error) {

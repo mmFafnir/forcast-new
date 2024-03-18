@@ -73,7 +73,11 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
       <div className={styles.center}>
         <div className={styles.team}>
           <div>
-            <p title={match.home_team.team_name}>{match.home_team.team_name}</p>
+            <p title={match.home_team.team_name}>
+              {match.home_team.translate[0]
+                ? match.home_team.translate[0].translation
+                : match.home_team.team_name}
+            </p>
           </div>
           <CustomImage
             src={`https://admin.aibetguru.com/uploads/${match.home_team.team_id}.png`}
@@ -109,7 +113,11 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
             height={400}
           />
           <div>
-            <p title={match.away_team.team_name}>{match.away_team.team_name}</p>
+            <p title={match.away_team.team_name}>
+              {match.away_team.translate[0]
+                ? match.away_team.translate[0].translation
+                : match.away_team.team_name}
+            </p>
           </div>
         </div>
       </div>

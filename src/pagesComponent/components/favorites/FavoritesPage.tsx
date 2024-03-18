@@ -18,11 +18,6 @@ export const FavoritesPage: NextPage<IProps> = async ({ seo }) => {
   const cookieStore = cookies();
   const token = cookieStore.get("_token");
 
-  const matches = await getFavoritesServer({
-    timeStatus: "",
-    token: token?.value || "",
-  });
-
   return (
     <LinksProvider
       links={{ league: null, country: null, sport: null, match: null }}
@@ -38,7 +33,7 @@ export const FavoritesPage: NextPage<IProps> = async ({ seo }) => {
 
       <HeaderPage title={seo?.ceo_h || "Избарнное"} calendar={false} />
       <div className="flex-1 flex-col">
-        <MatchesFavoritesGroup matches={matches} />
+        <MatchesFavoritesGroup />
       </div>
       <RiskWidgets isMob />
       <TelegramButton isMob />
