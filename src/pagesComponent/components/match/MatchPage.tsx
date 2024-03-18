@@ -28,15 +28,9 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
   const cookieStore = cookies();
   const utcId = cookieStore.get("utc_id");
 
-  const recommendData = data
-    ? await getRecommendServer({
-        id: data.id,
-        utcId: getTimezone(utcId?.value)?.id || "",
-      })
-    : [];
-
-  const countryTitle =
-    data.league.country.translation || data.league.country.name;
+  const countryTitle = data.league.country
+    ? data.league.country.translation || data.league.country.name
+    : "";
 
   const leagueTitle =
     data?.league.translate && data?.league.translate.length > 0
@@ -59,10 +53,6 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
       href: "/soccer",
     },
     {
-      title: countryTitle,
-      href: `/soccer/${data.league.country.url}`,
-    },
-    {
       title: leagueTitle,
       href: `/soccer/${data.league.url}`,
     },
@@ -72,6 +62,12 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
     },
   ];
 
+  if (data.league.country) {
+    breadCrumbs.splice(1, 0, {
+      title: countryTitle,
+      href: `/soccer/${data.league.country.url}`,
+    });
+  }
   return (
     <FilterProvider
       sport={data.sport_id || ""}
@@ -159,11 +155,14 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
             />
           </div>
 
-          {recommendData.length > 0 && (
-            <div className={styles.recommend}>
-              <Recommend id={data.id} data={recommendData} />
-            </div>
-          )}
+          <div className={styles.recommend}>
+            <Recommend
+              isCountry={!!data.league.country}
+              isLeague
+              id={data.id}
+              data={[]}
+            />
+          </div>
         </div>
       </LinksProvider>
     </FilterProvider>

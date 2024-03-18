@@ -78,8 +78,9 @@ export async function generateMetadata({
       }),
       {
         sport_name: "Футбол",
-        country_name:
-          data?.league.country.translation || data?.league.country.name,
+        country_name: data?.league.country
+          ? data?.league.country.translation || data?.league.country.name
+          : "",
         liga_name:
           data?.league?.translate && data?.league.translate.length > 0
             ? data?.league.translate[0].translation
@@ -186,8 +187,9 @@ const SoccerSlugPage: NextPage<IProps> = async ({ params, searchParams }) => {
       }),
       {
         sport_name: "Футбол",
-        country_name:
-          data?.league.country.translation || data?.league.country.name,
+        country_name: data?.league.country
+          ? data?.league.country.translation || data?.league.country.name
+          : "",
         liga_name:
           data?.league?.translate && data?.league.translate.length > 0
             ? data?.league.translate[0].translation

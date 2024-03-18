@@ -12,9 +12,11 @@ import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 interface IProps {
   data: TypeMatch[];
   id: number | string;
+  isCountry: boolean;
+  isLeague: boolean;
 }
 
-export const Recommend: FC<IProps> = ({ data, id }) => {
+export const Recommend: FC<IProps> = ({ data, id, isCountry, isLeague }) => {
   const [matches, setMatches] = useState<TypeMatch[]>(data);
   const [filter, setFilter] = useState<string>("");
 
@@ -25,7 +27,7 @@ export const Recommend: FC<IProps> = ({ data, id }) => {
     setLoading(true);
     getRecommend({
       id: id,
-      country: filter === "" || filter === "country",
+      country: isCountry ? filter === "" || filter === "country" : false,
       league: filter === "" || filter === "league",
       utcId,
     })
@@ -40,7 +42,7 @@ export const Recommend: FC<IProps> = ({ data, id }) => {
   return (
     <div className={styles.body}>
       <h2 className={styles.title}>Другие матчи</h2>
-      <Filter value={filter} setValue={setFilter} />
+      <Filter isCountry={isCountry} value={filter} setValue={setFilter} />
       <div className={styles.content}>
         {loading && (
           <div className="loader-hover">
