@@ -6,6 +6,7 @@
   }
   p {
     line-height: 1.5;
+    margin-bottom: 5px;
   }
   div,
   h2 {
@@ -14,6 +15,7 @@
   }
   h2 {
     margin: 15px 0px;
+    text-transform: uppercase;
   }
   a {
     text-decoration: underline;
@@ -24,11 +26,48 @@
       }
     }
   }
+
+  ul,
+  ol {
+    li {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      font-size: 14px;
+
+      &::before {
+        content: "";
+        display: inline-block;
+        margin-right: 10px;
+        flex: 0 0 7px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: #fff;
+      }
+    }
+  }
+
+  ol {
+    list-style-type: none;
+    counter-reset: num;
+    li:before {
+      content: counter(num) ".";
+      background-color: transparent;
+      height: auto;
+      flex: 0 0 auto;
+      border-radius: 0;
+      counter-increment: num;
+      margin-top: 0;
+    }
+  }
 }
 @media (max-width: 500px) {
   .page {
     div,
     h2 {
+      font-size: 12px;
+    }
+    ol li {
       font-size: 12px;
     }
   }
