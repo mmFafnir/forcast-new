@@ -11,7 +11,10 @@ export const ModalAgreeCookies = () => {
 
   const onAgree = () => {
     setOpen(false);
-    setCookie(null, "cookies", `true`);
+    setCookie(null, "cookies", `true`, {
+      maxAge: 30 * 24 * 60 * 60, // Две недели,
+      path: "/",
+    });
   };
 
   useEffect(() => {

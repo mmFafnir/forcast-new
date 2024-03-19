@@ -26,8 +26,14 @@ const timezoneSlice = createSlice({
     ) => {
       state.timezone = action.payload.timezone;
       state.utcId = action.payload.id;
-      setCookie(null, "utc_id", `${action.payload.id}`);
-      setCookie(null, "timezone", action.payload.timezone);
+      setCookie(null, "utc_id", `${action.payload.id}`, {
+        maxAge: 30 * 24 * 60 * 60, // Две недели,
+        path: "/",
+      });
+      setCookie(null, "timezone", action.payload.timezone, {
+        maxAge: 30 * 24 * 60 * 60, // Две недели,
+        path: "/",
+      });
     },
   },
 });

@@ -77,6 +77,7 @@ export const OtherRegister: FC = () => {
   useEffect(() => {
     if (!token) return;
     setCookie(null, "_token", token, {
+      maxAge: 30 * 24 * 60 * 60, // Две недели,
       path: "/",
     });
     getUserInfo(token).then((res) => {

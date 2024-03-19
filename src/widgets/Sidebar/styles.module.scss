@@ -75,9 +75,13 @@
 .link {
   margin-bottom: 5px;
   > span {
+    white-space: nowrap;
     margin: 0px 10px;
     font-size: 12px;
     transition-delay: 0.3s;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   > p {
     margin-left: auto;

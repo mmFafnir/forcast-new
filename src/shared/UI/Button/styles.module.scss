@@ -72,6 +72,10 @@
   &.active {
     background-color: var(--btn-active-color);
   }
+
+  .loading {
+    background-color: transparent;
+  }
 }
 
 .none {

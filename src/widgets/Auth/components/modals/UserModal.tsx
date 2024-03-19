@@ -19,6 +19,7 @@ import dayJs from "@/shared/core/dayjs";
 import { convertUtcOffsetToDate } from "@/shared/helper/convertUtcOffsetToDate";
 import { getTimezone } from "@/shared/helper/getTimezone";
 import { usePathname } from "next/navigation";
+import { setCookie } from "nookies";
 
 export const UserRole = ({ prem }: { prem: boolean }) => {
   return (
@@ -41,12 +42,19 @@ const UserModal: FC<IProps> = ({ open }) => {
 
   const pathname = usePathname();
   const dispatch = useTypeDispatch();
+  const [logoutLoading, setLogoutLoading] = useState<boolean>(false);
 
   const [time, setTime] = useState<string | null>(null);
 
   const onLogout = () => {
-    dispatch(logout());
-    signOut({ callbackUrl: pathname });
+    setLogoutLoading(true);
+    signOut({ callbackUrl: pathname })
+      .then(() => {
+        setCookie(null, "_token", "", {
+          path: "/",
+        });
+      })
+      .catch(() => setLogoutLoading(false));
   };
   const onOpenModalPrem = () => {
     dispatch(setClick("prem"));
@@ -90,7 +98,7 @@ const UserModal: FC<IProps> = ({ open }) => {
           <span>Настройки аккаунта</span>
         </Button>
 
-        <Button type="text" onClick={onLogout}>
+        <Button type="text" loading={logoutLoading} onClick={onLogout}>
           <IconLogout />
           <span>Выйти</span>
         </Button>

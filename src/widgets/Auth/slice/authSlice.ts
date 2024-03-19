@@ -89,6 +89,7 @@ const authSlice = createSlice({
       state.auth = true;
       state.user = action.payload.user;
       setCookie(null, "_token", action.payload.token, {
+        maxAge: 30 * 24 * 60 * 60, // Две недели,
         path: "/",
       });
     });

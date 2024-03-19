@@ -18,18 +18,28 @@ import { signOut } from "next-auth/react";
 import { closeAllModal, setModal } from "@/shared/UI/Modal/modalSlice";
 import IconTime from "@/shared/icons/IconTime";
 import { getTimezone } from "@/shared/helper/getTimezone";
+import { usePathname } from "next/navigation";
+import { setCookie } from "nookies";
 
 export const SettingsAuthModal = () => {
+  const pathname = usePathname();
+
   const { user, webApp } = useTypeSelector((state) => state.auth);
   const { utcId } = useTypeSelector((state) => state.timezone);
   const dispatch = useTypeDispatch();
 
   const [component, setComponent] = useState<string>("mail");
+  const [logoutLoading, setLogoutLoading] = useState<boolean>(false);
 
   const onLogout = () => {
-    dispatch(closeAllModal());
-    dispatch(logout());
-    signOut();
+    setLogoutLoading(true);
+    signOut({ callbackUrl: pathname })
+      .then(() => {
+        setCookie(null, "_token", "", {
+          path: "/",
+        });
+      })
+      .catch(() => setLogoutLoading(false));
   };
 
   const onOpenSetting = () => dispatch(setModal(EnumModals.SETTINGS_MOBILE));
@@ -58,7 +68,12 @@ export const SettingsAuthModal = () => {
         <span>{utcId && getTimezone(`${utcId}`)?.utc}</span>
       </Button>
       {!webApp && (
-        <Button onClick={onLogout} className={styles.logout} type="text">
+        <Button
+          onClick={onLogout}
+          loading={logoutLoading}
+          className={styles.logout}
+          type="text"
+        >
           Выйти
         </Button>
       )}
