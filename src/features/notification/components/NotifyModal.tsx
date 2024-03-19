@@ -4,21 +4,23 @@ import Button from "@/shared/UI/Button";
 import IconX from "@/shared/icons/IconX";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
 import { FC, ReactNode, useEffect, useState } from "react";
-import { TypeIconNotify, getIconNotify } from "../../helpper/getIconNotify";
-import { IconTrash } from "../../icons/IconTrash";
-import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
+import Link from "next/link";
+import IconLoader from "@/shared/icons/IconLoader";
+import Empty from "@/shared/UI/Empty";
+import Loader from "@/shared/UI/Loader";
+import { TypeIconNotify, getIconNotify } from "../hellper/getIconNotify";
 import {
   changeStatusNotification,
   deleteAllNotification,
   deleteNotification,
   getNotification,
-} from "../../slice/asyncActions";
-import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
-import styles from "../../styles/modal.notify.module.scss";
-import Link from "next/link";
-import IconLoader from "@/shared/icons/IconLoader";
-import Empty from "@/shared/UI/Empty";
-import Loader from "@/shared/UI/Loader";
+} from "@/widgets/Auth/slice/asyncActions";
+import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { IconTrash } from "../icons/IconTrash";
+import styles from "../styles/modal.notify.module.scss";
+import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 
 interface IPropsItem {
   title?: string;
@@ -70,10 +72,8 @@ const Item: FC<IPropsItem> = ({ id, title, url, text, icon, onlyText }) => {
   );
 };
 
-interface IProps {
-  open: boolean;
-}
-export const NotifyModal: FC<IProps> = ({ open }) => {
+export const NotifyModal: FC = () => {
+  const { modal } = useTypeSelector((state) => state.modal);
   const { notification } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
 
@@ -95,7 +95,11 @@ export const NotifyModal: FC<IProps> = ({ open }) => {
   }, []);
 
   return (
-    <div className={`${styles.body} notify-modal ${open ? styles.open : ""}`}>
+    <div
+      className={`${styles.body} notify-modal ${
+        modal == EnumModals.NOTIFICATION ? styles.open : ""
+      }`}
+    >
       <div className={styles.header}>
         <p>Уведомления</p>
 

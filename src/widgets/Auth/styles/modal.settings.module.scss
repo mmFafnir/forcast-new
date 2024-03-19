@@ -90,13 +90,24 @@
   }
 }
 
+.settings {
+  margin-top: 20px;
+  width: 100%;
+  font-weight: 400 !important;
+  display: none !important;
+
+  svg {
+    margin-right: 10px;
+  }
+}
+
 .logout {
   height: 45px !important;
   border: 1px solid #a58d8d;
   border-radius: 5px;
   width: 100%;
   font-weight: 400 !important;
-  margin-top: 20px;
+  margin-top: 10px;
   color: #e97c7c;
 }
 
@@ -126,6 +137,9 @@
 }
 @media (max-width: 1250px) {
   .logout {
+    display: flex !important;
+  }
+  .settings {
     display: flex !important;
   }
 

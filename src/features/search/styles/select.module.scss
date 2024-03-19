@@ -60,3 +60,10 @@
     font-weight: 500;
   }
 }
+
+@media (max-width: 500px) {
+  .body {
+    flex: 1 1 auto;
+    margin-top: 5px;
+  }
+}

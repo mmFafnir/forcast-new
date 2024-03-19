@@ -15,7 +15,9 @@ import { TelegramSnap } from "../Snaps/TelegramSnap";
 import { addNewEmail } from "../../api/auth";
 import { confirmNewEmail } from "../../api/confirm";
 import { signOut } from "next-auth/react";
-import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
+import { closeAllModal, setModal } from "@/shared/UI/Modal/modalSlice";
+import IconSettings from "@/shared/icons/IconSettings";
+import { openWidgets } from "@/features/closeSidebar/slice/closeSidebarSlice";
 
 export const SettingsAuthModal = () => {
   const { user, webApp } = useTypeSelector((state) => state.auth);
@@ -28,6 +30,8 @@ export const SettingsAuthModal = () => {
     dispatch(logout());
     signOut();
   };
+
+  const onOpenSetting = () => dispatch(setModal(EnumModals.SETTINGS_MOBILE));
 
   if (!user) return;
   return (
@@ -47,6 +51,10 @@ export const SettingsAuthModal = () => {
         <Auth callbackConfirm={confirmNewEmail} callback={addNewEmail} />
       )}
       {component === "telegram" && <TelegramSnap />}
+
+      <Button type="gray" className={styles.settings} onClick={onOpenSetting}>
+        <span>Настройки</span>
+      </Button>
       {!webApp && (
         <Button onClick={onLogout} className={styles.logout} type="text">
           Выйти

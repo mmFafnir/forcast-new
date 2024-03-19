@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { NotifyButton } from "./ui/NotifyButton";
 import { UserButton } from "./ui/UserButton";
 import styles from "../styles/header.user.module.scss";
+import { NotifyButton } from "@/features/notification";
 
 export const UserHeader: FC = () => {
   return (

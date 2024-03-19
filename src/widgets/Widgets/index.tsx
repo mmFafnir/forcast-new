@@ -8,6 +8,7 @@ import { closeWidgets } from "@/features/closeSidebar/slice/closeSidebarSlice";
 import { TimezoneSelect } from "@/features/timezone";
 import { ButtonLogin } from "../Auth";
 import { ModalAgreeCookies } from "../Cookies";
+import { NotifyModal } from "@/features/notification";
 
 interface IProps {
   widgets: ReactNode[];
@@ -15,6 +16,7 @@ interface IProps {
 
 const Widgets: FC<IProps> = ({ widgets }) => {
   const dispatch = useTypeDispatch();
+  const { auth } = useTypeSelector((state) => state.auth);
   const { activeWidgets } = useTypeSelector((state) => state.closeSidebar);
 
   const onCloseWidget = () => dispatch(closeWidgets());
@@ -49,6 +51,7 @@ const Widgets: FC<IProps> = ({ widgets }) => {
             <ModalAgreeCookies />
           </div>
         </div>
+        {auth && <NotifyModal />}
       </div>
     </>
   );

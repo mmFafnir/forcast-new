@@ -89,6 +89,7 @@ const UserModal: FC<IProps> = ({ open }) => {
           <IconSettings />
           <span>Настройки аккаунта</span>
         </Button>
+
         <Button type="text" onClick={onLogout}>
           <IconLogout />
           <span>Выйти</span>

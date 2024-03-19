@@ -8,4 +8,5 @@ export enum EnumModals {
   USER = "user",
   USER_MOBILE = "userMobile",
   SHOPPING_HISTORY = "shoppingHistory",
+  NOTIFICATION = "notification",
 }
