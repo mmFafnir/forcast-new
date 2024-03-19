@@ -1,6 +1,6 @@
 .body {
   position: fixed;
-  bottom: 0;
+  bottom: -70px;
   left: 0;
   width: 100%;
   align-items: center;
@@ -11,6 +11,11 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
   background: #2f4e5d;
   height: 65px;
+  transition-duration: 0.3s;
+
+  &.show {
+    bottom: 0;
+  }
   button,
   a {
     padding: 13px;

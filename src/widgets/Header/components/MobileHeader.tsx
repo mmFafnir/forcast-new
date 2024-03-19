@@ -49,6 +49,7 @@ export const MobileHeader = () => {
   );
   const dispatch = useTypeDispatch();
   const [isActive, setIsActive] = useState<string | null>("/");
+  const [isShow, setIsShow] = useState<boolean>(false);
 
   const buttons = useMemo((): IButton[] => {
     const main = {
@@ -109,7 +110,7 @@ export const MobileHeader = () => {
         className: "notify-modal",
         icon: (
           <p className={styles.notify}>
-            {notifyCountActive > -1 && <span></span>}
+            {notifyCountActive > 0 && <span></span>}
             <IconBell />
           </p>
         ),
@@ -173,11 +174,13 @@ export const MobileHeader = () => {
     callbackClose(() => setIsActive(checkPathname()));
   }, [pathname]);
 
-  console.log(isActive);
+  useEffect(() => {
+    setIsShow(true);
+  }, []);
 
   return (
     <>
-      <div className={styles.body}>
+      <div className={`${styles.body} ${isShow ? styles.show : ""}`}>
         {buttons.map((btn) => {
           if (btn.href)
             return (
@@ -206,5 +209,3 @@ export const MobileHeader = () => {
     </>
   );
 };
-
-// const onCloseModal = () => dispatch(closeAllModal());
