@@ -132,7 +132,7 @@ export const MobileHeader = () => {
 
     buttons.splice(Math.floor(buttons.length / 2), 0, main);
     return buttons;
-  }, [auth, activeSidebar, modal, activeWidgets]);
+  }, [auth, activeSidebar, modal, activeWidgets, notifyCountActive]);
 
   const onToggleUserModal = () => {
     setIsActive(

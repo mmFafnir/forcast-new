@@ -6,11 +6,11 @@
 </g>
 </mask>
 <g mask="url(#mask0_2175_6180)">
-<path id="Vector_2" fill-rule="evenodd" clip-rule="evenodd" d="M-3.48145 -0.234375V16.2344H20.1617V-0.234375H-3.48145Z" fill="#2E42A5"/>
+<path id="Vector_2" fillRule="evenodd" clipRule="evenodd" d="M-3.48145 -0.234375V16.2344H20.1617V-0.234375H-3.48145Z" fill="#2E42A5"/>
 <g id="Mask group">
 <mask id="mask1_2175_6180" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-4" y="-1" width="25" height="18">
 <g id="Group_2">
-<path id="Vector_3" fill-rule="evenodd" clip-rule="evenodd" d="M-3.48145 -0.234375V16.2344H20.1617V-0.234375H-3.48145Z" fill="white"/>
+<path id="Vector_3" fillRule="evenodd" clipRule="evenodd" d="M-3.48145 -0.234375V16.2344H20.1617V-0.234375H-3.48145Z" fill="white"/>
 </g>
 </mask>
 <g mask="url(#mask1_2175_6180)">
@@ -27,11 +27,11 @@
 <path id="Vector_6" d="M-5.39844 16.4889L-2.74789 17.6747L22.042 -1.33228H18.3203L-5.39844 16.4889Z" fill="#E98080"/>
 <path id="Vector_7" d="M22.7954 15.0561L17.5926 17.0996L-3.59845 1.98565L-6.34277 -1.05111L-0.779191 -1.73413L7.86412 4.77892L14.8211 9.16721L22.7954 15.0561Z" fill="white"/>
 <path id="Vector_8" d="M22.6182 16.0817L19.9677 17.2675L9.41193 9.12969L6.28232 8.2204L-6.60645 -1.04272H-2.88476L9.9968 8.00055L13.4184 9.09085L22.6182 16.0817Z" fill="#E98080"/>
-<path id="Vector_9" fill-rule="evenodd" clip-rule="evenodd" d="M11.135 -1.60913H5.55268V5.25287H-4.93506V10.7425H5.55268V17.6045H11.135V10.7425H21.6635V5.25287H11.135V-1.60913Z" fill="#E98080"/>
+<path id="Vector_9" fillRule="evenodd" clipRule="evenodd" d="M11.135 -1.60913H5.55268V5.25287H-4.93506V10.7425H5.55268V17.6045H11.135V10.7425H21.6635V5.25287H11.135V-1.60913Z" fill="#E98080"/>
 <g id="Mask group_3">
 <mask id="mask3_2175_6180" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-5" y="-2" width="27" height="20">
 <g id="Group_6">
-<path id="Vector_10" fill-rule="evenodd" clip-rule="evenodd" d="M11.1321 -1.61133H5.54976V5.25068H-4.93799V10.7403H5.54976V17.6023H11.1321V10.7403H21.6606V5.25068H11.1321V-1.61133Z" fill="white"/>
+<path id="Vector_10" fillRule="evenodd" clipRule="evenodd" d="M11.1321 -1.61133H5.54976V5.25068H-4.93799V10.7403H5.54976V17.6023H11.1321V10.7403H21.6606V5.25068H11.1321V-1.61133Z" fill="white"/>
 </g>
 </mask>
 <g mask="url(#mask3_2175_6180)">
