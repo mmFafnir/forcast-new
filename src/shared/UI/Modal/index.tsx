@@ -22,6 +22,7 @@ interface IProps {
   styleBody?: CSSProperties;
   styleChildren?: CSSProperties;
   hideRender?: boolean;
+  classHeader?: string;
 }
 const Modal: FC<IProps> = ({
   children,
@@ -36,6 +37,7 @@ const Modal: FC<IProps> = ({
   titleAlight = "left",
   classContent = "",
   classBody = "",
+  classHeader,
   hideRender = false,
 }) => {
   const { modal } = useTypeSelector((state) => state.modal);
@@ -63,7 +65,7 @@ const Modal: FC<IProps> = ({
           >
             <div style={styleContent} className={classContent}>
               {title && (
-                <div className={styles.header}>
+                <div className={`${styles.header} ${classHeader}`}>
                   <div
                     className={styles.title}
                     style={{ textAlign: titleAlight }}
@@ -113,7 +115,7 @@ const Modal: FC<IProps> = ({
       >
         <div style={styleContent} className={classContent}>
           {title && (
-            <div className={styles.header}>
+            <div className={`${styles.header} ${classHeader}`}>
               <div className={styles.title} style={{ textAlign: titleAlight }}>
                 {title}
               </div>

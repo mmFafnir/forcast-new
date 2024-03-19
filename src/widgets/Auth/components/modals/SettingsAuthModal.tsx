@@ -46,7 +46,7 @@ export const SettingsAuthModal = () => {
       styleBody={{ padding: 0 }}
     >
       <User />
-      <p>Привязать аккаунт</p>
+      <p className={styles.descSnap}>Привязать аккаунт</p>
       <OtherSnap component={component} setComponent={setComponent} />
       {component === "mail" && (
         <Auth callbackConfirm={confirmNewEmail} callback={addNewEmail} />
