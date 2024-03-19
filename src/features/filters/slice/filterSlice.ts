@@ -19,7 +19,7 @@ const date =
   (typeof window !== "undefined" &&
     parseQueryParams(window.location.search).date) ||
   // @ts-ignore
-  dayJs().utc().tz(matchTimeZone).format("YYYY-MM-DD");
+  dayJs().utc().tz().format("YYYY-MM-DD");
 
 const initialState: IState = {
   date: date,
@@ -58,7 +58,7 @@ const filterSlice = createSlice({
     setDefaultFilter: (state) => {
       state.leagueId = "";
       state.sportId = "";
-      state.timeStatus = "";
+      // state.timeStatus = "";
       // console.log("date", date);
       // state.date = date;
     },

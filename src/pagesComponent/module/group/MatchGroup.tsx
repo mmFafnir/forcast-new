@@ -32,11 +32,10 @@ const MatchesGroupMemo: FC<IProps> = ({
 
   useEffect(() => {
     if (loading === null) {
-      setLoading(false);
+      setLoading(timeStatus !== "" ? null : false);
       return;
     }
     setLoading(true);
-
     getMatchSoccer({
       date:
         timeStatus == 1
@@ -89,11 +88,9 @@ const MatchesGroupMemo: FC<IProps> = ({
           ))}
         </SportGroup>
       ))}
-      {loading && (
-        <div className="loader-hover--fixed">
-          <Loader />
-        </div>
-      )}
+      <div className={`loader-hover--fixed ${loading ? "show" : "hidden"}`}>
+        <Loader />
+      </div>
     </div>
   );
 };

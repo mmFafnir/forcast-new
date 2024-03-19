@@ -60,7 +60,6 @@ export const FavoriteAdd: FC<IProps> = ({
 
   useEffect(() => {
     if (ids.length > 1) return;
-    console.log("ids", ids);
     if (favorites.find((id) => id === ids[0])) {
       setCurrentActive(true);
     } else {

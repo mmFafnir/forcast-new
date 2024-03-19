@@ -18,13 +18,15 @@ interface IProps {
 
 const MatchesGroupHomeMemo: FC<IProps> = ({ matches }) => {
   const dispatch = useTypeDispatch();
-  const [data, setData] = useState<TypeSportGroup[]>(matches);
-  const [loading, setLoading] = useState<boolean | null>(null);
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
   const { utcId } = useTypeSelector((state) => state.timezone);
+
+  const [data, setData] = useState<TypeSportGroup[]>(matches);
+  const [loading, setLoading] = useState<boolean | null>(null);
+
   useEffect(() => {
     if (loading === null) {
-      setLoading(false);
+      setLoading(timeStatus !== "" ? null : false);
       return;
     }
     setLoading(true);

@@ -82,7 +82,6 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    console.log("country: ", countryId, leagueId, sportId);
     if (
       pathname != "/soccer" &&
       pathname.includes("/soccer") &&

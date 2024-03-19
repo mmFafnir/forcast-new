@@ -14,6 +14,7 @@ import { parseQueryParams } from "@/shared/helper/parseQueryParams";
 import dayJs from "@/shared/core/dayjs";
 import { matchTimeZone } from "@/shared/core/timezone";
 import "react-calendar/dist/Calendar.css";
+import { parseCookies } from "nookies";
 
 export const minDate = "2001-12-12";
 export const maxDate = "2030-12-12";
@@ -28,6 +29,7 @@ const FilterCalendarMemo: FC<IProps> = ({
   bodyClass = "",
   startDate,
 }) => {
+  const cookies = parseCookies();
   const pathname = usePathname();
   const dispatch = useTypeDispatch();
   const searchParams = useSearchParams();
@@ -39,9 +41,10 @@ const FilterCalendarMemo: FC<IProps> = ({
   const { setQuery, deleteQuery, query } = useQuery("date");
 
   const [currentDate, setCurrentDate] = useState<string>(startDate || date);
+
   const [defaultDate, setDefaultDate] = useState<string>(
     // @ts-ignore
-    new Date(dayJs().utc().tz(matchTimeZone).format())
+    new Date(dayJs().utc().tz(cookies.timezone).format())
   );
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -67,12 +70,14 @@ const FilterCalendarMemo: FC<IProps> = ({
       ? startDate
       : parseQueryParams(window.location.search).date;
 
-    setCurrentDate(
-      date
-        ? date
-        : // @ts-ignore
-          dayJs().utc().tz(matchTimeZone).format("YYYY-MM-DD")
-    );
+    const currentDay = date
+      ? date
+      : // @ts-ignore
+        dayJs().utc().tz(timezone).format("YYYY-MM-DD");
+    setCurrentDate(currentDay);
+
+    console.log(currentDay);
+    dispatch(setDate(currentDay));
   }, [pathname, query]);
 
   useEffect(() => {
@@ -81,10 +86,6 @@ const FilterCalendarMemo: FC<IProps> = ({
       dayJs().utc().tz(timezone).format("YYYY-MM-DD")
     );
   }, [timezone]);
-
-  useEffect(() => {
-    console.log(query);
-  }, [query]);
 
   useEffect(() => {
     if (!startDate || query) return;

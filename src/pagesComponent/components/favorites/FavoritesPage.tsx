@@ -2,7 +2,6 @@ import HeaderPage from "@/widgets/HeaderPage";
 import { NextPage } from "next";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
-import { getFavoritesServer } from "@/pagesComponent/api/favorites/getFavorites";
 import { cookies } from "next/headers";
 import { MatchesFavoritesGroup } from "@/pagesComponent/module/group/MatchesFavoritesGroup";
 import { Header } from "@/widgets/Header";
@@ -16,7 +15,6 @@ interface IProps {
 
 export const FavoritesPage: NextPage<IProps> = async ({ seo }) => {
   const cookieStore = cookies();
-  const token = cookieStore.get("_token");
 
   return (
     <LinksProvider

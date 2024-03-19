@@ -7,15 +7,23 @@ import styles from "../styles/filters.module.scss";
 import { useEffect, useState } from "react";
 import { filters } from "../consts/filtes";
 import { FilterMobile } from "./FilterMobile";
+import { usePathname } from "next/navigation";
 
 export const Filters = () => {
   const dispatch = useTypeDispatch();
-  const { timeStatus } = useTypeSelector((state) => state.filters);
+  const pathname = usePathname();
+  const [value, setValue] = useState<TypeTimeStatus>("");
 
   const [isMob, setIsMob] = useState<boolean>(false);
 
-  const onChangeStatus = (status: TypeTimeStatus) =>
+  const onChangeStatus = (status: TypeTimeStatus) => {
     dispatch(setTimeStatus(status));
+    setValue(status);
+  };
+
+  useEffect(() => {
+    dispatch(setTimeStatus(""));
+  }, [pathname]);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -34,7 +42,7 @@ export const Filters = () => {
             <Button
               key={filter.label}
               type="text"
-              active={filter.value === timeStatus}
+              active={filter.value === value}
               onClick={() => onChangeStatus(filter.value)}
             >
               {filter.label}

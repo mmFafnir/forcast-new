@@ -16,14 +16,8 @@ interface IProps {
 
 const GroupHomeMemo: FC<IProps> = ({ data, loading, empty, type = "main" }) => {
   return (
-    <div className="flex-1">
-      {loading && (
-        <div className="loader-body">
-          <Loader />
-        </div>
-      )}
-      {!loading &&
-        data.length === 0 &&
+    <div className="flex-1 relative">
+      {data.length === 0 &&
         (empty ? (
           empty
         ) : (
@@ -32,30 +26,32 @@ const GroupHomeMemo: FC<IProps> = ({ data, loading, empty, type = "main" }) => {
             <IconEmpty />
           </div>
         ))}
-      {!loading &&
-        data.map((group) => (
-          <SportGroup
-            type={type}
-            key={group.id}
-            title={group.name}
-            icon={group.url}
-            total={group.games_count}
-          >
-            {group.league.map((lig, index) => (
-              <SportGroup
-                type={type}
-                key={index}
-                headerRender={<FavoritesLeagueHeader league={lig} />}
-                total={lig.games.length}
-              >
-                {lig.games.map((game, indexGame) => (
-                  <Match type={type} key={game.id} match={game} />
-                ))}
-                {index === 0 && <PremMatchBanner />}
-              </SportGroup>
-            ))}
-          </SportGroup>
-        ))}
+      {data.map((group) => (
+        <SportGroup
+          type={type}
+          key={group.id}
+          title={group.name}
+          icon={group.url}
+          total={group.games_count}
+        >
+          {group.league.map((lig, index) => (
+            <SportGroup
+              type={type}
+              key={index}
+              headerRender={<FavoritesLeagueHeader league={lig} />}
+              total={lig.games.length}
+            >
+              {lig.games.map((game, indexGame) => (
+                <Match type={type} key={game.id} match={game} />
+              ))}
+              {index === 0 && <PremMatchBanner />}
+            </SportGroup>
+          ))}
+        </SportGroup>
+      ))}
+      <div className={`loader-hover--fixed ${loading ? "show" : "hidden"}`}>
+        <Loader />
+      </div>
     </div>
   );
 };
