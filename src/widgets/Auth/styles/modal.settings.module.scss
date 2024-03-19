@@ -93,10 +93,16 @@
 .settings {
   margin-top: 20px;
   width: 100%;
-  font-weight: 400 !important;
+  font-size: 12px !important;
   display: none !important;
-
+  position: relative;
   svg {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     margin-right: 10px;
   }
 }
@@ -107,7 +113,7 @@
   border-radius: 5px;
   width: 100%;
   font-weight: 400 !important;
-  margin-top: 10px;
+  margin-top: 20px;
   color: #e97c7c;
 }
 
@@ -211,11 +217,16 @@
   .historyMob {
     display: flex !important;
   }
+
   .user {
     .premBanner {
       padding: 8px 10px;
       border-radius: 5px;
       font-size: 14px;
     }
+  }
+
+  .logout {
+    height: 35px !important;
   }
 }

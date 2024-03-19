@@ -16,11 +16,12 @@ import { addNewEmail } from "../../api/auth";
 import { confirmNewEmail } from "../../api/confirm";
 import { signOut } from "next-auth/react";
 import { closeAllModal, setModal } from "@/shared/UI/Modal/modalSlice";
-import IconSettings from "@/shared/icons/IconSettings";
-import { openWidgets } from "@/features/closeSidebar/slice/closeSidebarSlice";
+import IconTime from "@/shared/icons/IconTime";
+import { getTimezone } from "@/shared/helper/getTimezone";
 
 export const SettingsAuthModal = () => {
   const { user, webApp } = useTypeSelector((state) => state.auth);
+  const { utcId } = useTypeSelector((state) => state.timezone);
   const dispatch = useTypeDispatch();
 
   const [component, setComponent] = useState<string>("mail");
@@ -53,7 +54,8 @@ export const SettingsAuthModal = () => {
       {component === "telegram" && <TelegramSnap />}
 
       <Button type="gray" className={styles.settings} onClick={onOpenSetting}>
-        <span>Настройки</span>
+        <IconTime />
+        <span>{utcId && getTimezone(`${utcId}`)?.utc}</span>
       </Button>
       {!webApp && (
         <Button onClick={onLogout} className={styles.logout} type="text">
