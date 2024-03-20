@@ -1,0 +1,11 @@
+.sportBtn {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 5px;
+  flex: 0 1 auto;
+  transition-duration: 100ms;
+  &.open {
+    flex: 1 1 auto;
+  }
+}

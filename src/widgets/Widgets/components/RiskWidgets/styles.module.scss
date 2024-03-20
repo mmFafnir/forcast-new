@@ -1,6 +1,5 @@
 .body {
-  padding: 20px;
-  background: rgba(34, 37, 47, 0.8);
+  background: #293b45;
   border-radius: 5px;
   position: relative;
 }
@@ -9,12 +8,17 @@
   border-radius: 5px;
   text-align: center;
   font-weight: 700;
-  margin-bottom: 20px;
+  background-color: #242c36;
+  padding: 10px;
 }
-
+.wrapper {
+  padding: 20px;
+  position: relative;
+}
 .tabs {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
   > div {
     margin-right: 10px;

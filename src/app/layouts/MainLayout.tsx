@@ -1,14 +1,9 @@
 import { FC, ReactNode } from "react";
 import { MobileHeader } from "@/widgets/Header";
-import Sidebar from "@/widgets/Sidebar";
-
-import styles from "../styles/mainLayout.module.scss";
 import Footer from "@/widgets/Footer";
 import Widgets from "@/widgets/Widgets";
-import Tabs from "@/shared/UI/Tabs";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
-import { LeaguesWidget } from "@/widgets/Widgets/components/LeaguesWidget";
-import CountriesWidget from "@/widgets/Widgets/components/CountriesWidget";
+import Sidebar from "@/widgets/Sidebar";
 import { Toolkit } from "@/features/Toolkit";
 import { ModalAuth, SettingsAuthModal, getUserInfo } from "@/widgets/Auth";
 import { ModalSearch } from "@/features/search";
@@ -21,24 +16,13 @@ import { PusherProvider } from "../providers/PusherProvider/components/Provider"
 import { SidebarSettings } from "@/widgets/Settings";
 import { ModalPremiumWhy } from "@/widgets/Premium/components/modal/ModalPremiumWhy";
 import { ModalHistoryShopping } from "@/widgets/Shopping";
-import { ModalAgreeCookies } from "@/widgets/Cookies";
+import { LeaguesWidget } from "@/widgets/Widgets/components/LeaguesWidget";
+
+import styles from "../styles/mainLayout.module.scss";
 
 interface IProps {
   children: ReactNode;
 }
-
-const tabs = [
-  {
-    title: "Популярные лиги",
-    id: "leagues",
-    content: <LeaguesWidget />,
-  },
-  {
-    title: "Страны",
-    id: "countries",
-    content: <CountriesWidget />,
-  },
-];
 
 const MainLayout: FC<IProps> = async ({ children }) => {
   const cookiesStore = cookies();
@@ -63,15 +47,7 @@ const MainLayout: FC<IProps> = async ({ children }) => {
                     </div>
                     <Widgets
                       widgets={[
-                        <Tabs
-                          style={{ height: "100%" }}
-                          key={1}
-                          minHeight="100%"
-                          maxHeight="350px"
-                          tabs={tabs}
-                          classNameBody="adaptive-mac"
-                          classNameTabs="sidebar-tabs"
-                        />,
+                        <LeaguesWidget key={1} />,
                         <RiskWidgets key={2} />,
                       ]}
                     />

@@ -1,6 +1,6 @@
 .body {
   margin-right: 20px;
-  flex: 0 0 200px;
+  flex: 0 0 230px;
   transition-duration: 0.5s;
 
   button,
@@ -36,7 +36,7 @@
 .logo {
   margin-bottom: 16px;
   padding: 10px 0px;
-  width: 200px;
+  width: 230px;
   transition-duration: 0.5s;
   display: flex;
   justify-content: center;
@@ -63,7 +63,7 @@
 }
 
 .favorite {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   > span {
     transition-delay: 0.3s;
   }
@@ -73,7 +73,8 @@
 }
 
 .link {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  flex: 0 0 40px;
   > span {
     white-space: nowrap;
     margin: 0px 10px;
@@ -98,6 +99,11 @@
 
 .total {
   background-color: transparent !important;
+}
+
+.favorite,
+.telegram {
+  flex: 0 0 35px;
 }
 
 @media (min-width: 1240px) {

@@ -14,6 +14,9 @@ import Logo from "@/shared/UI/Logo";
 import { memo, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { IResponseDate, getGlobalData } from "../api/getGlobalData";
+import IconArrow from "@/shared/icons/IconArrow";
+import Link from "next/link";
+import { ButtonSport } from "./modules/ButtonSport";
 
 const Sidebar = () => {
   const { webApp } = useTypeSelector((state) => state.auth);
@@ -54,37 +57,29 @@ const Sidebar = () => {
               <Search />
             </div>
             <FavoritesButton className={styles.favorite} />
-            <div className={styles.list}>
-              <Button
-                className={styles.link}
-                href="/"
-                type="text"
-                active={pathname === "/"}
-              >
-                <SportsIcon icon="top" />
-                <span>Топ матчи</span>
-                <TotalMatches className={styles.total}>
-                  {global?.get_game_count_home_page || 0}
-                </TotalMatches>
-              </Button>
-              {new Array(1).fill(null).map((link, index) => (
-                <Button
-                  key={index}
-                  className={styles.link}
-                  href="/soccer"
-                  type="text"
-                  active={pathname.includes("/soccer")}
-                >
-                  <SportsIcon icon="soccer" />
-                  <span>Футбол</span>
-                  <TotalMatches className={styles.total}>
-                    {global?.games_count || 0}
-                  </TotalMatches>
-                </Button>
-              ))}
-            </div>
+            {/* <div className={styles.list}> */}
+            <Button
+              className={`${styles.link}`}
+              href="/"
+              type="text"
+              active={pathname === "/"}
+            >
+              <SportsIcon icon="top" />
+              <span>Топ матчи</span>
+              <TotalMatches className={styles.total}>
+                {global?.get_game_count_home_page || 0}
+              </TotalMatches>
+            </Button>
+            {new Array(2).fill(null).map((link, index) => (
+              <ButtonSport
+                key={index}
+                href="/soccer"
+                gameCount={global?.games_count}
+              />
+            ))}
             {!webApp && <TelegramButton className={styles.telegram} />}
           </div>
+          {/* </div> */}
         </div>
       </div>
     </>

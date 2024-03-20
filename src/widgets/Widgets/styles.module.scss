@@ -1,5 +1,5 @@
 .body {
-  flex: 0 0 350px;
+  flex: 0 0 300px;
   margin-left: 20px;
   position: relative;
 }
@@ -41,6 +41,7 @@
   max-width: 860px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .item {
   margin-bottom: 20px;

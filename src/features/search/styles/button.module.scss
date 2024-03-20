@@ -2,9 +2,12 @@
   display: flex;
   align-items: center;
   width: 100%;
+  justify-content: flex-start;
+
   span {
     white-space: nowrap;
     margin-left: 10px;
+    font-size: 12px;
   }
   svg {
     flex: 0 0 20px;

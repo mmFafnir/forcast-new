@@ -11,9 +11,6 @@ export const Header: FC<IProps> = ({ breadCrumbs }) => {
   return (
     <>
       <div className={`header ${breadCrumbs.length == 0 ? "header-mob" : ""}`}>
-        <div className="header__flex">
-          <CloseSidebarButton />
-        </div>
         <div className="header__bread">
           <BreadCrumbs links={breadCrumbs} />
         </div>

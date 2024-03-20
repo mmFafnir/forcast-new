@@ -65,7 +65,8 @@
   background: var(--btn-text-color);
   @media (min-width: 901px) {
     &:hover {
-      background: var(--btn-hover-color);
+      background: #ffffff1a;
+      // background: var(--btn-hover-color);
     }
   }
 
