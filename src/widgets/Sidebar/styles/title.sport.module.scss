@@ -79,27 +79,17 @@
       background-color: #ffffff1a;
     }
   }
-  // &:active {
-  //   box-shadow: inset 0 4px 5.5px 0 rgba(0, 0, 0, 0.35);
-  // }
 }
 
 .open {
   background-color: #ffffff1a;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-
-  button {
-    background-color: #506572;
-  }
 }
 
 .active {
   background-color: #6064c2 !important;
 
-  &::before {
-    z-index: 1;
-  }
   button {
     @media (min-width: 901px) {
       &:hover {
@@ -110,7 +100,7 @@
 
   &.open {
     button {
-      background-color: #22252f33 !important;
+      // background-color: #22252f33 !important;
     }
   }
 }
@@ -122,14 +112,20 @@
     font-weight: 400;
   }
 }
+
 .titleSCountry {
   border-radius: 2px;
+  margin-top: 5px !important;
 
   &.open {
-    background-color: #6064c2;
+    // background-color: #6064c2;
 
     button {
-      background-color: #22252f33;
+      @media (min-width: 901px) {
+        &:hover {
+          // background-color: #22252f33;
+        }
+      }
     }
   }
 }
@@ -137,8 +133,14 @@
 .titleLeague {
   padding-left: 27px;
   padding-right: 15px;
+  margin-top: 5px !important;
   &::before {
     display: none;
+  }
+  a {
+    &:active {
+      box-shadow: none;
+    }
   }
 
   button {

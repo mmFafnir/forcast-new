@@ -23,20 +23,22 @@ const iconStyles: IAccordionStylesIcon = {
 };
 
 const CountryMemo: FC<IProps> = ({ country }) => {
-  const listRef = useRef<HTMLDivElement | null>(null);
+  const { countryId, leagueId } = useTypeSelector((state) => state.filters);
 
+  const listRef = useRef<HTMLDivElement | null>(null);
   const { iconStyle, onToggle, currentHeight, isOpen } = useAccordion({
     iconStyles,
     ref: listRef,
     defaultOpen: false,
     defaultHeight: 0,
   });
+
   return (
     <div>
       <div
         className={`${styles.title} ${styles.titleSCountry} ${
           isOpen ? styles.open : ""
-        }`}
+        } ${!leagueId && countryId == country.id ? styles.active : ""}`}
       >
         <button onClick={onToggle}>
           <i style={iconStyle}>
@@ -44,13 +46,6 @@ const CountryMemo: FC<IProps> = ({ country }) => {
           </i>
         </button>
         <Link href={`/soccer/${country.url}`}>
-          {/* <CustomImage
-            src={`https://admin.aibetguru.com/uploads/${country.code}.svg`}
-            width={16}
-            height={16}
-            className="logo-icon"
-            alt={country.name}
-          /> */}
           <span title={country.translation || country.name}>
             {country.translation || country.name}
           </span>

@@ -27,7 +27,6 @@ export const TitleSport: FC<IProps> = ({
   const [click, setClick] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log(isOpen);
     if (isOpen) {
       const otherBtn = document.querySelectorAll(".sport-title-btn-active");
       otherBtn.forEach((btn) => {
