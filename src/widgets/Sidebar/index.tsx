@@ -17,6 +17,7 @@ import { IResponseDate, getGlobalData } from "../api/getGlobalData";
 import IconArrow from "@/shared/icons/IconArrow";
 import Link from "next/link";
 import { ButtonSport } from "./modules/ButtonSport";
+import IconX from "@/shared/icons/IconX";
 
 const Sidebar = () => {
   const { webApp } = useTypeSelector((state) => state.auth);
@@ -44,6 +45,12 @@ const Sidebar = () => {
         onClick={onCloseSidebar}
       ></button>
       <div className={`${styles.body} ${activeSidebar ? styles.close : ""}`}>
+        <div className={styles.header}>
+          <p>Вид спорта</p>
+          <button onClick={onCloseSidebar}>
+            <IconX />
+          </button>
+        </div>
         <div className={styles.wrapper}>
           <div className={styles.content}>
             <div

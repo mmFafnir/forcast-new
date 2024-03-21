@@ -11,6 +11,8 @@ import MyScrollbar from "@/shared/UI/MyScrollbar";
 import Loader from "@/shared/UI/Loader";
 import styles from "../styles/league.widget.module.scss";
 import SportsIcon from "@/shared/icons/sports";
+import IconX from "@/shared/icons/IconX";
+import { closeWidgets } from "@/features/closeSidebar/slice/closeSidebarSlice";
 
 interface IPropsItem {
   item: TypeLeague;
@@ -35,6 +37,8 @@ export const LeaguesWidget = () => {
   const dispatch = useTypeDispatch();
   const data = usePinLeagues();
 
+  const closeSidebar = () => dispatch(closeWidgets());
+
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
 
@@ -55,7 +59,12 @@ export const LeaguesWidget = () => {
 
   return (
     <div className={styles.body}>
-      <p className={styles.header}>Популярные лиги</p>
+      <div className={styles.header}>
+        <p>Популярные лиги</p>
+        <button onClick={closeSidebar}>
+          <IconX />
+        </button>
+      </div>
       <div className={styles.scroll}>
         <MyScrollbar className={`scrollbar-track-0`}>
           {loading && (
@@ -63,19 +72,21 @@ export const LeaguesWidget = () => {
               <Loader />
             </div>
           )}
-          {data.map((item) => (
-            <div key={item.sportId} className={styles.sport}>
-              <div className={styles.sportHeader}>
-                <SportsIcon icon={`${item.sportId}`} />
-                <p>{item.sport}</p>
+          <div className={styles.list}>
+            {data.map((item) => (
+              <div key={item.sportId} className={styles.sport}>
+                <div className={styles.sportHeader}>
+                  <SportsIcon icon={`${item.sportId}`} />
+                  <p>{item.sport}</p>
+                </div>
+                <div className={styles.list}>
+                  {item.leagues.map((lig) => (
+                    <ItemLeagues item={lig} />
+                  ))}
+                </div>
               </div>
-              <div>
-                {item.leagues.map((lig) => (
-                  <ItemLeagues item={lig} />
-                ))}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </MyScrollbar>
       </div>
     </div>

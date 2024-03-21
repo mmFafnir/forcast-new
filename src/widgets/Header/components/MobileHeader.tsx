@@ -164,11 +164,25 @@ export const MobileHeader = () => {
   };
 
   useEffect(() => {
-    if (modal) return;
-    if (isActive === EnumMenu.PROFILE || isActive === EnumMenu.SETTING) {
+    if (modal || activeSidebar || activeWidgets) return;
+    if (
+      isActive === EnumMenu.PROFILE ||
+      isActive === EnumMenu.SETTING ||
+      isActive === EnumModals.SEARCH ||
+      isActive !== EnumModals.NOTIFICATION
+    ) {
       setIsActive(checkPathname());
     }
   }, [modal]);
+
+  useEffect(() => {
+    console.log(modal, activeSidebar, activeWidgets);
+    if (!activeSidebar && !activeWidgets) {
+      console.log("out");
+      if (modal) return;
+      setIsActive(checkPathname());
+    }
+  }, [activeSidebar, activeWidgets]);
 
   useEffect(() => {
     callbackClose(() => setIsActive(checkPathname()));

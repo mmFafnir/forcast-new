@@ -21,6 +21,7 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { IconTrash } from "../icons/IconTrash";
 import styles from "../styles/modal.notify.module.scss";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
+import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 
 interface IPropsItem {
   title?: string;
@@ -80,6 +81,8 @@ export const NotifyModal: FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingTrash, setLoadingTrash] = useState<boolean>(false);
 
+  const closeModal = () => dispatch(closeAllModal());
+
   const onDeleteAll = () => {
     setLoadingTrash(true);
     dispatch(deleteAllNotification()).finally(() => {
@@ -95,47 +98,56 @@ export const NotifyModal: FC = () => {
   }, []);
 
   return (
-    <div
-      className={`${styles.body} notify-modal ${
-        modal == EnumModals.NOTIFICATION ? styles.open : ""
-      }`}
-    >
-      <div className={styles.header}>
-        <p>Уведомления</p>
+    <>
+      <div
+        className={`${styles.body} notify-modal ${
+          modal == EnumModals.NOTIFICATION ? styles.open : ""
+        }`}
+      >
+        <button className={styles.closeBg} onClick={closeModal}></button>
+        <div className={styles.wrapper}>
+          <div className={styles.header}>
+            <p>Уведомления</p>
 
-        {notification.length > 0 && (
-          <Button type="text" onClick={onDeleteAll}>
-            {loadingTrash ? (
-              <span className="loader-loading">
-                <IconLoader />
-              </span>
+            {notification.length > 0 ? (
+              <Button type="text" onClick={onDeleteAll}>
+                {loadingTrash ? (
+                  <span className="loader-loading">
+                    <IconLoader />
+                  </span>
+                ) : (
+                  <IconTrash />
+                )}
+              </Button>
             ) : (
-              <IconTrash />
+              <Button type="text" className={styles.close} onClick={closeModal}>
+                <IconX />
+              </Button>
             )}
-          </Button>
-        )}
-      </div>
-      <div className={styles.content}>
-        {loading && (
-          <div className="loader-hover">
-            <Loader />
           </div>
-        )}
-        {notification.length === 0 && !loading && (
-          <Empty text="Сообщений нет" />
-        )}
-        <MyScrollbar>
-          {notification.map((item) => (
-            <Item
-              key={item.id}
-              url={item.url}
-              id={item.id}
-              text={item.message}
-              icon="match"
-            />
-          ))}
-        </MyScrollbar>
+          <div className={styles.content}>
+            {loading && (
+              <div className="loader-hover">
+                <Loader />
+              </div>
+            )}
+            {notification.length === 0 && !loading && (
+              <Empty text="Сообщений нет" />
+            )}
+            <MyScrollbar>
+              {notification.map((item) => (
+                <Item
+                  key={item.id}
+                  url={item.url}
+                  id={item.id}
+                  text={item.message}
+                  icon="match"
+                />
+              ))}
+            </MyScrollbar>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };

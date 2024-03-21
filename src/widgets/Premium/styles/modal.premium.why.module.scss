@@ -107,6 +107,10 @@
 }
 
 @media (max-width: 500px) {
+  .content {
+    padding-top: 0;
+  }
+
   .item {
     margin-top: 20px;
     margin-bottom: 0;
@@ -115,7 +119,7 @@
     }
   }
   .title {
-    font-size: 16px;
+    font-size: 20px;
   }
   .right {
     h3 {

@@ -72,3 +72,14 @@
   font-weight: 700;
   margin-top: 10px;
 }
+
+@media (max-width: 1250px) {
+  .list {
+    background-color: transparent;
+  }
+}
+@media (max-width: 500px) {
+  .list {
+    background-color: #293b45;
+  }
+}

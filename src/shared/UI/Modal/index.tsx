@@ -50,8 +50,8 @@ const Modal: FC<IProps> = ({
     return (
       <CSSTransition
         in={name === modal}
-        timeout={300}
-        classNames="opacity"
+        timeout={0}
+        classNames="opacity-modal"
         unmountOnExit
       >
         <div

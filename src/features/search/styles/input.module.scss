@@ -14,6 +14,10 @@
     font-size: 16px;
     font-weight: 400;
     flex: 1 1 auto;
+
+    &::placeholder {
+      color: #656876;
+    }
   }
 }
 
@@ -35,13 +39,17 @@
 
 @media (max-width: 500px) {
   .body {
+    border: 1px solid #59caa1;
+    padding: 0px 10px;
     button {
       flex: 0 0 20px;
       height: 20px;
+      line-height: 0;
     }
     input {
-      padding: 10px 0px;
+      padding: 0px 0px;
       font-size: 12px;
+      height: 35px;
     }
   }
 }

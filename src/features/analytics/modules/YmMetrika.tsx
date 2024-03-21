@@ -14,8 +14,9 @@ export const YmMetrika = () => {
     ym(96810020, "hit", window.location.href);
   }, [pathName, searchParams]);
   return (
-    <Script id="yandex-metrika">
-      {`
+    <>
+      <Script id="yandex-metrika">
+        {`
             (function (m, e, t, r, i, k, a) {
                 m[i] =
                 m[i] ||
@@ -43,6 +44,16 @@ export const YmMetrika = () => {
                 webvisor:true
             });
         `}
-    </Script>
+      </Script>
+      <noscript>
+        <div>
+          <img
+            src="https://mc.yandex.ru/watch/96810020"
+            style={{ position: "absolute", left: "-9999px" }}
+            alt=""
+          />
+        </div>
+      </noscript>
+    </>
   );
 };

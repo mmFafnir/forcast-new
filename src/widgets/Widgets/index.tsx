@@ -50,10 +50,10 @@ const Widgets: FC<IProps> = ({ widgets }) => {
               ))}
               {/* </MyScrollbar> */}
             </div>
+            {auth && <NotifyModal />}
             <ModalAgreeCookies />
           </div>
         </div>
-        {auth && <NotifyModal />}
       </div>
     </>
   );

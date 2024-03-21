@@ -44,7 +44,6 @@
   position: relative;
   z-index: 1;
   overflow: auto;
-
   border-radius: 5px;
   background: radial-gradient(
       260.1% 120.1% at 50% 105.03%,
@@ -123,11 +122,24 @@
 
 @media (max-width: 1250px) {
   .content {
-    padding-bottom: 100px;
+    padding-bottom: 65px;
   }
 }
 
 @media (max-width: 500px) {
+  .body {
+    left: -100%;
+    opacity: 1 !important;
+  }
+  .show {
+    left: 0;
+  }
+
+  .wrapper {
+    background: #293b45;
+    opacity: 1 !important;
+  }
+
   .header {
     padding: 20px;
     margin: 0;
@@ -144,7 +156,9 @@
       }
     }
   }
+
   .title {
-    font-size: 16px;
+    font-size: 20px;
+    text-align: left !important;
   }
 }

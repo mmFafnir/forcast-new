@@ -33,7 +33,7 @@ export const SettingsAuthModal = () => {
 
   const onLogout = () => {
     setLogoutLoading(true);
-    signOut({ callbackUrl: pathname })
+    signOut({ callbackUrl: pathname == "/favorites" ? "/" : pathname })
       .then(() => {
         setCookie(null, "_token", "", {
           path: "/",
