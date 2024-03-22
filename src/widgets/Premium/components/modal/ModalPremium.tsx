@@ -37,6 +37,7 @@ export const ModalPremium = () => {
       styleBody={{ padding: 0 }}
       titleAlight="center"
       hideRender
+      classHeader={styles.titleHeader}
       classContent={styles.modal}
       title={
         <p className={styles.title}>

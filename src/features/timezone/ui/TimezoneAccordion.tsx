@@ -30,7 +30,7 @@ export const TimezoneAccordion: FC = () => {
 
   const listRef = useRef<HTMLDivElement | null>(null);
 
-  const { iconStyle, onToggle, currentHeight } = useAccordion({
+  const { iconStyle, onToggle, currentHeight, isOpen } = useAccordion({
     iconStyles,
     ref: listRef,
   });
@@ -54,7 +54,7 @@ export const TimezoneAccordion: FC = () => {
       )}
       <div
         className={styles.accWrapper}
-        style={{ height: currentHeight + "px" }}
+        style={{ flex: isOpen ? "1 1 100%" : "0 0 0px" }}
       >
         <div className={styles.content} ref={listRef}>
           <MyScrollbar>
