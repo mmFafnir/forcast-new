@@ -5,18 +5,22 @@ import styles from "../../styles/modal.premium.module.scss";
 
 import { useEffect, useState } from "react";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
+import { closeAllModal, setModal } from "@/shared/UI/Modal/modalSlice";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { TypePrem } from "../../types/TypePrem";
 import { getPremium } from "../../api/getPremium";
 
 import { Payment } from "../Payment";
+import IconArrowBack from "@/shared/icons/IconArrowBack";
 
 export const ModalPremium = () => {
-  const { auth } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
+  const { click } = useTypeSelector((state) => state.modal);
+  const { auth } = useTypeSelector((state) => state.auth);
 
   const [data, setData] = useState<TypePrem[] | null>(null);
+
+  const onBackUser = () => dispatch(setModal(EnumModals.SETTINGS));
 
   useEffect(() => {
     if (!auth) return;
@@ -38,6 +42,8 @@ export const ModalPremium = () => {
       titleAlight="center"
       hideRender
       classHeader={styles.titleHeader}
+      onCloseCallback={click == "user-mobile" ? onBackUser : undefined}
+      iconClose={click == "user-mobile" ? <IconArrowBack /> : null}
       classContent={styles.modal}
       title={
         <p className={styles.title}>

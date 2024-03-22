@@ -15,7 +15,12 @@ export const EmptyMain = () => {
         <p>Спорт</p>
         <MyScrollbar className={styles.scroll}>
           <div className={styles.list}>
-            <SportBanner title="Футбол" img={soccerImg.src} href="/soccer" />
+            <SportBanner
+              title="Футбол"
+              img={soccerImg.src}
+              className={styles.fistItem}
+              href="/soccer"
+            />
 
             {/* <SportBanner title="Скоро появится..." /> */}
           </div>

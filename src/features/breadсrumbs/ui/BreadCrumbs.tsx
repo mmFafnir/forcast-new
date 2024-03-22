@@ -14,14 +14,33 @@ export const BreadCrumbs: FC<IProps> = ({ links = [] }) => {
   return (
     <div className={styles.body}>
       <MyScrollbar autoHide={true} style={{ height: "auto", width: "99%" }}>
-        <div className={"flex item-center h-full"}>
-          <Link href={"/"} className={styles.btn} style={{ marginRight: 5 }}>
-            <span>Прогнозы на спорт</span>
-          </Link>
-          {links.map((link, index) => (
-            <Link className={styles.link} key={index} href={link.href}>
-              <span>{link.title}</span>
+        <div
+          className={"flex item-center h-full"}
+          itemType="http://schema.org/BreadcrumbList"
+          itemScope
+        >
+          <span
+            className={styles.btn}
+            itemScope
+            itemType="http://schema.org/ListItem"
+          >
+            <Link href={"/"} style={{ marginRight: 5 }} itemProp="item">
+              <span itemProp="name">Прогнозы на спорт</span>
+              <meta itemProp="position" content="1"></meta>
             </Link>
+          </span>
+          {links.map((link, index) => (
+            <span
+              className={styles.link}
+              key={index}
+              itemScope
+              itemType="http://schema.org/ListItem"
+            >
+              <Link href={link.href} itemProp="item">
+                <span itemProp="name">{link.title}</span>
+                <meta itemProp="position" content={`${index + 2}`}></meta>
+              </Link>
+            </span>
           ))}
         </div>
       </MyScrollbar>

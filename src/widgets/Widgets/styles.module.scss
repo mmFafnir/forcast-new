@@ -65,14 +65,18 @@
     left: -104%;
     top: 0;
     width: 300px;
-    background: #293b45;
     height: 100vh;
     height: 100dvh;
     z-index: 20;
     margin: 0;
     padding: 20px 10px;
     padding-bottom: 75px;
-    box-shadow: 0px 0px 9px #2d4452;
+    background: radial-gradient(
+        260.1% 120.1% at 50% 105.03%,
+        rgba(26, 201, 239, 0.2) 0%,
+        rgba(0, 0, 0, 0) 100%
+      ),
+      #22252f;
 
     transition-duration: 100ms;
   }
@@ -99,6 +103,8 @@
 @media (max-width: 500px) {
   .body {
     width: 100%;
+    background: #293b45;
+    box-shadow: 0px 0px 9px #2d4452;
     padding: 0;
   }
 

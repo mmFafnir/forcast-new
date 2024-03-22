@@ -12,18 +12,20 @@ interface IProps {
   text?: string | ReactNode;
   prem?: boolean;
   bodyClass?: string;
+  click?: string;
 }
 export const PremMatchBanner: FC<IProps> = ({
   text,
   prem = true,
   bodyClass,
+  click,
 }) => {
   const { auth, user } = useTypeSelector((state) => state.auth);
   const dispatch = useTypeDispatch();
 
   const onModalOpen = () => {
     if (!auth) return dispatch(setModal(EnumModals.LOGIN));
-    dispatch(setClick("prem"));
+    dispatch(setClick(click ? click : "prem"));
     dispatch(setModal(EnumModals.PREMIUM));
   };
 

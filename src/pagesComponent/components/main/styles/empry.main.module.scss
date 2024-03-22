@@ -39,6 +39,11 @@
     > div {
       flex: 0 0 220px;
       margin-right: 20px !important;
+      &.fistItem {
+        flex: 1 1 auto !important;
+        margin-right: 0 !important;
+        background-size: cover;
+      }
     }
   }
 }

@@ -29,7 +29,6 @@ const RangeMemo: FC<IProps> = ({ data, setValue, promoCode }) => {
     const dots = sliderRef.current.querySelectorAll(".rc-slider-dot");
     dots.forEach((dot, index) => {
       const rate = data[index];
-      console.log(rate);
       if (rate.free_or_not == "1") {
         dot.innerHTML = `<span class='prem-dot prem-top-dot prem-free'><img src=${imageZero.src} alt="zero icon"/></span>`;
       }
@@ -61,7 +60,6 @@ const RangeMemo: FC<IProps> = ({ data, setValue, promoCode }) => {
         if (index == activeIndex) {
           dot.classList.add("active");
         } else {
-          console.log("none");
           dot.classList.remove("active");
           slide?.removeAttribute("data-hide");
         }
@@ -79,7 +77,6 @@ const RangeMemo: FC<IProps> = ({ data, setValue, promoCode }) => {
   }, [activeIndex]);
 
   useEffect(() => {
-    console.log(promoCode, promoCode?.free_tariffe);
     if (promoCode && promoCode.free_tariffe == "1") {
       renderFreeDots();
     } else {

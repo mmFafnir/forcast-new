@@ -10,7 +10,12 @@
     width: 300px;
     height: 100vh;
     height: 100dvh;
-    background: #293b45;
+    background: radial-gradient(
+        260.1% 120.1% at 50% 105.03%,
+        rgba(26, 201, 239, 0.2) 0%,
+        rgba(0, 0, 0, 0) 100%
+      ),
+      #22252f;
     z-index: 20;
     padding: 0 10px;
     padding-bottom: 65px;
@@ -64,6 +69,8 @@
 
 @media (max-width: 500px) {
   .body {
+    background: #293b45;
+
     padding: 0;
     padding-bottom: 70px;
     width: 100%;

@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, memo, useEffect, useState } from "react";
 import styles from "../styles/payment.method.module.scss";
 import Select from "@/shared/UI/Select";
 import {
@@ -14,7 +14,7 @@ interface IProps {
   country?: IMethodCountry[];
   setValue: (value: IMethodPayment | null) => void;
 }
-export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
+const PaymentMethodMemo: FC<IProps> = ({ country, setValue }) => {
   const [currentCountry, setCurrentCountry] = useState<IMethodCountry | null>(
     country && country.length > 0 ? country[0] : null
   );
@@ -61,8 +61,6 @@ export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
   useEffect(() => {
     setValue(paymentMethod);
   }, [paymentMethod]);
-
-  console.log(currentCategory?.payment_method);
 
   return (
     <div className={styles.body}>
@@ -149,3 +147,5 @@ export const PaymentMethod: FC<IProps> = ({ country, setValue }) => {
     </div>
   );
 };
+
+export const PaymentMethod = memo(PaymentMethodMemo);

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, memo, useEffect, useState } from "react";
 import { divideSumByComma } from "@/shared/helper/divideSumByComma";
 import { TypePromoCode } from "../types/IFetchPromoCode";
 import { IParamsStartPay, startPayment } from "../api/startPayment";
@@ -54,7 +54,7 @@ interface IProps {
   data: TypePrem[] | null;
 }
 
-export const Payment: FC<IProps> = ({ data }) => {
+const PaymentMemo: FC<IProps> = ({ data }) => {
   const dispatch = useTypeDispatch();
   const navigation = useRouter();
 
@@ -214,3 +214,4 @@ export const Payment: FC<IProps> = ({ data }) => {
     </div>
   );
 };
+export const Payment = memo(PaymentMemo);

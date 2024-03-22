@@ -6,7 +6,6 @@ import styles from "../styles/modal.settings.module.scss";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import Loader from "@/shared/UI/Loader";
-
 import React from "react";
 import { postAvatar } from "../api/avatar";
 import { UserRole } from "./modals/UserModal";
@@ -17,7 +16,7 @@ import dayJs from "@/shared/core/dayjs";
 import { PremMatchBanner } from "@/entities/banners";
 import Button from "@/shared/UI/Button";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import { setModal } from "@/shared/UI/Modal/modalSlice";
+import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 
 export const User = () => {
@@ -32,7 +31,11 @@ export const User = () => {
 
   const [time, setTime] = useState<string | null>(null);
 
-  const openModalPrem = () => dispatch(setModal(EnumModals.PREMIUM));
+  const openModalPrem = () => {
+    dispatch(setClick("user-mobile"));
+    dispatch(setModal(EnumModals.PREMIUM));
+  };
+
   const openModalHistory = () =>
     dispatch(setModal(EnumModals.SHOPPING_HISTORY));
 
@@ -132,6 +135,7 @@ export const User = () => {
         <PremMatchBanner
           bodyClass={styles.premBanner}
           prem={false}
+          click="user-mobile"
           text={
             <>
               Купить со СКИДКОЙ <span>25%</span>
