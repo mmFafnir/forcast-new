@@ -32,7 +32,7 @@ const handler = NextAuth({
           name: profile.name || "",
           type: "google",
         });
-        cookies().set("_token", data.token);
+        cookies().set("_token", data.token, { maxAge: 30 * 24 * 60 * 60 });
       } catch (error) {
         console.log("error", error);
       }

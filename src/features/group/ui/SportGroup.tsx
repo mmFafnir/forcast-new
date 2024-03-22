@@ -1,5 +1,5 @@
 "use client";
-import { FC, ReactNode, useEffect, useRef } from "react";
+import { FC, ReactNode, useEffect, useRef, useState } from "react";
 import styles from "../styles/group.module.scss";
 import SportsIcon, { TypeSportIcon } from "@/shared/icons/sports";
 import TotalMatches from "@/shared/UI/TotalMatches";
@@ -7,6 +7,7 @@ import IconArrow from "@/shared/icons/IconArrow";
 import useAccordion, {
   IAccordionStylesIcon,
 } from "@/shared/hooks/useAccardion";
+import { CSSTransition } from "react-transition-group";
 
 interface IProps {
   children: ReactNode;
@@ -35,6 +36,7 @@ export const SportGroup: FC<IProps> = ({
   const bodyRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
 
+  const [isShow, setIsShow] = useState<boolean>(false);
   const { iconStyle, onToggle, currentHeight } = useAccordion({
     iconStyles,
     ref: listRef,
@@ -52,10 +54,18 @@ export const SportGroup: FC<IProps> = ({
     ) {
       header.style.top = "0px";
     }
+    setIsShow(true);
+    console.log("work");
     // initialSticky(bodyRef.current);
   }, []);
 
   return (
+    // <CSSTransition
+    //   in={isShow}
+    //   nodeRef={bodyRef}
+    //   timeout={500}
+    //   classNames="alert"
+    // >
     <div
       ref={bodyRef}
       className={`${styles.body} ${
@@ -85,5 +95,6 @@ export const SportGroup: FC<IProps> = ({
         <div ref={listRef}>{children}</div>
       </div>
     </div>
+    // </CSSTransition>
   );
 };

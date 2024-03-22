@@ -51,7 +51,15 @@ const MatchesGroupMemo: FC<IProps> = ({
         setData(res.data);
       })
       .finally(() => setLoading(false));
-  }, [date, timeStatus, utcId]);
+  }, [timeStatus, utcId]);
+
+  useEffect(() => {
+    setLoading(true);
+  }, [date]);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [matches]);
 
   useEffect(() => {
     if (loading === null) return;

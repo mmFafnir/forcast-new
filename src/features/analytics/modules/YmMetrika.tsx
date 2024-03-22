@@ -15,7 +15,7 @@ export const YmMetrika = () => {
   }, [pathName, searchParams]);
   return (
     <>
-      <Script id="yandex-metrika">
+      <Script strategy="afterInteractive" id="yandex-metrika">
         {`
             (function (m, e, t, r, i, k, a) {
                 m[i] =

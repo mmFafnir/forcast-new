@@ -1,6 +1,5 @@
 import axios from "@/shared/core/axios";
 import { ITelegramUser } from "../types";
-import { use } from "react";
 
 export const loginInWebView = async (user: ITelegramUser) => {
   const { data } = await axios.post("/login_with_telegram_chat_id", {

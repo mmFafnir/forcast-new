@@ -164,6 +164,7 @@ export const Confirmation: FC<IProps> = ({ email, callbackConfirm }) => {
       .then((res) => {
         dispatch(setUser(res.data));
         setCookie(null, "_token", res.token, {
+          maxAge: 30 * 24 * 60 * 60, // Две недели
           path: "/",
         });
       })
