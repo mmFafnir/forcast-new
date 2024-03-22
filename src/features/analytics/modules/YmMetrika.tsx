@@ -36,11 +36,11 @@ export const YmMetrika = () => {
                 a.parentNode.insertBefore(k, a);
             })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
             
-            ym(96810020, "init", {
+            ym(96808982, "init", {
                 defer: true,
-                clickmap: true,
-                trackLinks: true,
-                accurateTrackBounce: true,
+                clickmap:true,
+                trackLinks:true,
+                accurateTrackBounce:true,
                 webvisor:true
             });
         `}
@@ -48,7 +48,7 @@ export const YmMetrika = () => {
       <noscript>
         <div>
           <img
-            src="https://mc.yandex.ru/watch/96810020"
+            src="https://mc.yandex.ru/watch/96808982"
             style={{ position: "absolute", left: "-9999px" }}
             alt=""
           />
