@@ -76,7 +76,6 @@ const FilterCalendarMemo: FC<IProps> = ({
         dayJs().utc().tz(timezone).format("YYYY-MM-DD");
     setCurrentDate(currentDay);
 
-    console.log(currentDay);
     dispatch(setDate(currentDay));
   }, [pathname, query]);
 
@@ -91,6 +90,8 @@ const FilterCalendarMemo: FC<IProps> = ({
     if (!startDate || query) return;
     dispatch(setDate(startDate));
   }, []);
+
+  console.log(loading);
 
   if (timeStatus === 1) return <></>;
   return (
