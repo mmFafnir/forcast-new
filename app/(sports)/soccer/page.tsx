@@ -1,5 +1,8 @@
 import { SoccerPage } from "@/pagesComponent";
-import { getMatchSoccerServer } from "@/pagesComponent/api/soccer/getMatchSoccer";
+import {
+  defaultResServerMatches,
+  getMatchSoccerServer,
+} from "@/pagesComponent/api/soccer/getMatchSoccer";
 import { mapGetMatchSoccer } from "@/pagesComponent/api/soccer/mapGetMatchSoccer";
 import { getTimezone } from "@/shared/helper/getTimezone";
 import { Metadata, NextPage } from "next";
@@ -54,7 +57,9 @@ const Soccer: NextPage<IProps> = async ({ searchParams }) => {
     { sport_name: "Футбол" }
   );
 
-  const matches = mapGetMatchSoccer(data.data);
+  const matches = mapGetMatchSoccer(
+    data ? data.data : defaultResServerMatches.data
+  );
 
   const breadCumbers = [
     {
@@ -62,7 +67,6 @@ const Soccer: NextPage<IProps> = async ({ searchParams }) => {
       href: "/soccer",
     },
   ];
-
 
   if (!seo || !data) return redirect("/404");
   return (

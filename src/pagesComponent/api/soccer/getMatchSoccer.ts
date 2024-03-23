@@ -5,7 +5,7 @@ import { IFetchMatch } from "../../types/IFetchMatch";
 import { TypeTimeStatus } from "@/features/filters";
 import { cache } from "react";
 
-const defaultRes = {
+export const defaultResServerMatches = {
   current_page: 0,
   first_page_url: "",
   from: 0,
@@ -48,7 +48,7 @@ export const getMatchSoccer = async (
     return { data: data.data };
   } catch (error) {
     console.log(error);
-    return defaultRes;
+    return defaultResServerMatches;
   }
 };
 
@@ -57,7 +57,7 @@ interface IIParamsServer extends IParams {
 }
 
 export const getMatchSoccerServer = cache(
-  async (params?: IIParamsServer): Promise<IFetchMatch> => {
+  async (params?: IIParamsServer): Promise<IFetchMatch | null> => {
     try {
       const {
         date,
@@ -122,7 +122,7 @@ export const getMatchSoccerServer = cache(
       return res;
     } catch (error) {
       console.log(error);
-      return defaultRes;
+      return null;
     }
   }
 );

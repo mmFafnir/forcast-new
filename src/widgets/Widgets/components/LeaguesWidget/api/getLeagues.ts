@@ -5,5 +5,5 @@ export const getLeagues = async (): Promise<IFetchLeague[]> => {
   const { data } = await axios.get("/get_league");
 
   console.log(data);
-  return data.data.data;
+  return data.data;
 };

@@ -10,4 +10,5 @@ export type TypeCountry = {
   translation: string;
   updated_at: string;
   url: string;
+  photo: string | null;
 };

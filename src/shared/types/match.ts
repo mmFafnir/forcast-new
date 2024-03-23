@@ -30,6 +30,7 @@ type TypeTranslateTeam = {
 export type TypeTeam = {
   created_at: null | string;
   get_photo: string;
+  photo: string | null;
   has_quad: number;
   id: number;
   sport_id: number;

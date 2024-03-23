@@ -31,10 +31,6 @@ const MatchesGroupMemo: FC<IProps> = ({
   const { utcId } = useTypeSelector((state) => state.timezone);
 
   useEffect(() => {
-    if (loading === null) {
-      setLoading(timeStatus !== "" ? null : false);
-      return;
-    }
     setLoading(true);
     getMatchSoccer({
       date:
@@ -54,11 +50,16 @@ const MatchesGroupMemo: FC<IProps> = ({
   }, [timeStatus, utcId]);
 
   useEffect(() => {
+    if (loading === null) {
+      setLoading(timeStatus !== "" ? null : false);
+      return;
+    }
     setLoading(true);
+    console.log(date);
   }, [date]);
 
   useEffect(() => {
-    setLoading(false);
+    setLoading(null);
   }, [matches]);
 
   useEffect(() => {

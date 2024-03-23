@@ -25,9 +25,6 @@ interface IProps {
 }
 
 export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
-  const cookieStore = cookies();
-  const utcId = cookieStore.get("utc_id");
-
   const countryTitle = data.league.country
     ? data.league.country.translation || data.league.country.name
     : "";
@@ -54,7 +51,7 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
     },
     {
       title: leagueTitle,
-      href: `/soccer/${data.league.url}`,
+      href: `/soccer/${data.league.country.url}/${data.league.url}`,
     },
     {
       title: matchTitle,

@@ -12,8 +12,8 @@ import dayJs from "@/shared/core/dayjs";
 import { getOneMatch } from "@/pagesComponent/api/soccer/getOneMatch";
 import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 import { mapSeoMacros } from "@/pagesComponent/api/seo/mapSeoMacros";
-
 import { convertUtcOffsetToDate } from "@/shared/helper/convertUtcOffsetToDate";
+
 interface IProps {
   params: {
     slug: string;
@@ -31,7 +31,7 @@ export async function generateMetadata({
   const token = cookieStore.get("_token");
   const utcId = cookieStore.get("utc_id");
 
-  if (pageType === "country_url" || pageType === "league_url") {
+  if (pageType === "country_url") {
     const date = searchParams["date"] || null;
     const data = await getMatchSoccerServer({
       date:
@@ -40,11 +40,11 @@ export async function generateMetadata({
         dayJs().utc().tz(getTimezone(utcId?.value)?.zone).format("YYYY-MM-DD"),
       timeStatus: "",
       token: token?.value || "",
-      country: pageType === "country_url" ? params.slug : undefined,
-      league: pageType === "league_url" ? params.slug : undefined,
+      country: params.slug,
       utcId: getTimezone(utcId?.value)?.id || "",
     });
 
+    if (!data) return {};
     seo = mapSeoMacros(
       await getSeoDynamic({
         sport_id: 1,
@@ -111,7 +111,7 @@ const SoccerSlugPage: NextPage<IProps> = async ({ params, searchParams }) => {
   const token = cookieStore.get("_token");
   const utcId = cookieStore.get("utc_id");
 
-  if (pageType === "country_url" || pageType === "league_url") {
+  if (pageType === "country_url") {
     const data = await getMatchSoccerServer({
       date:
         date ||
@@ -120,10 +120,10 @@ const SoccerSlugPage: NextPage<IProps> = async ({ params, searchParams }) => {
       timeStatus: "",
       token: token?.value || "",
       country: pageType === "country_url" ? params.slug : undefined,
-      league: pageType === "league_url" ? params.slug : undefined,
       utcId: getTimezone(utcId?.value)?.id || "",
     });
 
+    if (!data) return notFound();
     const seo = mapSeoMacros(
       await getSeoDynamic({
         sport_id: 1,

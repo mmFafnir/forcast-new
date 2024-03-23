@@ -14,7 +14,7 @@ export const Commands: FC<IProps> = ({ away, home }) => {
     <div className={styles.body}>
       <div className={styles.team}>
         <CustomImage
-          src={`https://admin.aibetguru.com/uploads/${home.team_id}.png`}
+          src={`https://admin.aibetguru.com/${home.photo || "null.svg"}`}
           width={400}
           height={400}
           alt={home.team_name}
@@ -28,7 +28,7 @@ export const Commands: FC<IProps> = ({ away, home }) => {
       </div>
       <div className={styles.team}>
         <CustomImage
-          src={`https://admin.aibetguru.com/uploads/${away.team_id}.png`}
+          src={`https://admin.aibetguru.com/${away.photo || "null.svg"}`}
           width={400}
           height={400}
           alt={away.team_name}

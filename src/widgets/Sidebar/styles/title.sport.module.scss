@@ -133,7 +133,7 @@
 .titleLeague {
   padding-left: 27px;
   padding-right: 15px;
-  margin-top: 5px !important;
+  margin-bottom: 5px !important;
   &::before {
     display: none;
   }
@@ -158,4 +158,7 @@
 .list {
   overflow: hidden;
   transition-duration: 100ms;
+  > div {
+    padding-top: 5px;
+  }
 }

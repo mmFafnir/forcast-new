@@ -54,7 +54,10 @@ const CountryMemo: FC<IProps> = ({ country }) => {
       <div className={styles.list} style={{ height: currentHeight + "px" }}>
         <div ref={listRef}>
           {country.league.map((lig) => (
-            <League key={lig.id} league={lig} />
+            <League
+              key={lig.id}
+              league={{ ...lig, country_url: country.url }}
+            />
           ))}
         </div>
       </div>
@@ -74,7 +77,7 @@ const League = ({ league }: { league: TypeLeague }) => {
     >
       <Link
         title={league.league_name}
-        href={`/soccer/${league.url}`}
+        href={`/soccer/${league.country_url}/${league.url}`}
         className={styles.name}
       >
         <span>

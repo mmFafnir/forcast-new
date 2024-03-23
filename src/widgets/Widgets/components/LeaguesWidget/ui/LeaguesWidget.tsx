@@ -19,9 +19,10 @@ interface IPropsItem {
 }
 
 const ItemLeagues: FC<IPropsItem> = ({ item }) => {
+  // console.log(item);
   return (
     <div key={item.id} className={styles.item} title={item.league_name}>
-      <Link href={`/soccer/${item.url}`}>
+      <Link href={`/soccer/${item.country.url}/${item.url}`}>
         <span>
           {item.translate && item.translate.length > 0
             ? item.translate[0].translation
@@ -46,6 +47,7 @@ export const LeaguesWidget = () => {
     setLoading(true);
     getLeagues()
       .then((res) => {
+        console.log(res);
         const items = res.map((lig) => lig.league);
         dispatch(setDefaultLeague(items));
       })

@@ -70,7 +70,9 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
       </div>
       <div className={styles.teams}>
         <Team
-          src={`https://admin.aibetguru.com/uploads/${match.home_team.team_id}.png`}
+          src={`https://admin.aibetguru.com/${
+            match.home_team.photo || "null.svg"
+          }`}
           name={match.home_team.team_name}
           translate={
             match.home_team.translate[0]
@@ -80,7 +82,9 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
         />
         <SportsIcon icon="soccer" width={400} height={400} />
         <Team
-          src={`https://admin.aibetguru.com/uploads/${match.away_team.team_id}.png`}
+          src={`https://admin.aibetguru.com/${
+            match.away_team.photo || "null.svg"
+          }`}
           name={match.away_team.team_name}
           translate={
             match.away_team.translate[0]
@@ -110,7 +114,7 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
                   ? match?.league.translate[0].translation
                   : match?.league?.league_name
               }`,
-              href: `/soccer/${match.league.url}`,
+              href: `/soccer/${match.league.country.url}/${match.league.url}`,
             },
           ]}
         />
