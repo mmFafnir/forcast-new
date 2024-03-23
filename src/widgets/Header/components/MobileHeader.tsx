@@ -176,7 +176,6 @@ export const MobileHeader = () => {
   }, [modal]);
 
   useEffect(() => {
-    console.log(modal, activeSidebar, activeWidgets);
     if (!activeSidebar && !activeWidgets) {
       console.log("out");
       if (modal) return;

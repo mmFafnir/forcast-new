@@ -84,7 +84,7 @@ export const getMatchSoccerServer = cache(
         `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}&timestamp=${new Date().getTime()}`
       );
       const { data } = await axios.get(
-        `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}&timestamp=${new Date().getTime()}`,
+        `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`,
         config
       );
 

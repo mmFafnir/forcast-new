@@ -2,7 +2,7 @@ import HeaderPage from "@/widgets/HeaderPage";
 import { MatchesGroup } from "@/pagesComponent/module/group/MatchGroup";
 import RiskWidgets from "@/widgets/Widgets/components/RiskWidgets";
 import { TelegramButton } from "@/features/shared";
-import { FC } from "react";
+import { FC, Suspense } from "react";
 import { FilterProvider } from "@/app/providers/FilterProvider";
 import { LinksProvider } from "@/app/providers/LinksProvider";
 import { Header } from "@/widgets/Header";
@@ -47,11 +47,13 @@ export const SoccerPage: FC<IProps> = async ({
         <Header breadCrumbs={breadCumbers} />
         <HeaderPage title={seo.ceo_title} />
         <div className="flex-1 flex-col">
-          <MatchesGroup
-            matches={matches}
-            league={String(data.league?.url || "")}
-            country={String(data.country?.url || "")}
-          />
+          <Suspense fallback={"loading"}>
+            <MatchesGroup
+              matches={matches}
+              league={String(data.league?.url || "")}
+              country={String(data.country?.url || "")}
+            />
+          </Suspense>
         </div>
         <RiskWidgets isMob />
         <TelegramButton isMob />

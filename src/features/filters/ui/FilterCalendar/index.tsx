@@ -91,8 +91,6 @@ const FilterCalendarMemo: FC<IProps> = ({
     dispatch(setDate(startDate));
   }, []);
 
-  console.log(loading);
-
   if (timeStatus === 1) return <></>;
   return (
     <div
