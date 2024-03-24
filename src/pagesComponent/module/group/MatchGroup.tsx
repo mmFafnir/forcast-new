@@ -12,6 +12,7 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setLoadingFilter } from "@/features/filters/slice/filterSlice";
 import { matchTimeZone } from "@/shared/core/timezone";
 import dayjs from "@/shared/core/dayjs";
+import { useSearchParams } from "next/navigation";
 
 interface IProps {
   matches: ILeagues[];
@@ -19,22 +20,23 @@ interface IProps {
   league?: string;
 }
 
+let firstRender = true;
 const MatchesGroupMemo: FC<IProps> = ({
   matches,
   league = "",
   country = "",
 }) => {
+  const query = useSearchParams();
+
   const dispatch = useTypeDispatch();
   const [data, setData] = useState<ILeagues[]>(matches);
-  const [loading, setLoading] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState<boolean | null>(true);
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
   const { utcId } = useTypeSelector((state) => state.timezone);
 
   useEffect(() => {
-    if (loading === null) {
-      setLoading(timeStatus !== "" ? null : false);
-      return;
-    }
+    console.log("loading", loading);
+    if (loading) return;
     setLoading(true);
     getMatchSoccer({
       date:
@@ -54,16 +56,19 @@ const MatchesGroupMemo: FC<IProps> = ({
   }, [timeStatus, utcId]);
 
   useEffect(() => {
-    if (loading === null) {
-      setLoading(timeStatus !== "" ? null : false);
-      return;
-    }
+    console.log("date", loading);
     setLoading(true);
-    console.log(date);
   }, [date]);
 
   useEffect(() => {
-    setLoading(null);
+    console.log(query);
+  }, [query]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log("query");
+      setLoading(null);
+    }, 100);
   }, [matches]);
 
   useEffect(() => {
@@ -73,29 +78,30 @@ const MatchesGroupMemo: FC<IProps> = ({
 
   return (
     <div className="flex-1 min-h-block relative">
-      {data.length === 0 && (
+      {!loading && data.length === 0 && (
         <div className="empty-data">
           <p>Матчи не найдены</p>
           <IconEmpty />
         </div>
       )}
-      {data.map((lig) => (
-        <SportGroup
-          type="main"
-          key={lig.league_id}
-          title={
-            lig.translate && lig.translate.length > 0
-              ? lig.translate[0].translation
-              : lig.league_name
-          }
-          headerRender={<FavoritesLeagueHeader league={lig} />}
-          total={lig.games.length}
-        >
-          {lig.games.map((game) => (
-            <Match key={game.id} match={game} />
-          ))}
-        </SportGroup>
-      ))}
+      {!loading &&
+        data.map((lig) => (
+          <SportGroup
+            type="main"
+            key={lig.league_id}
+            title={
+              lig.translate && lig.translate.length > 0
+                ? lig.translate[0].translation
+                : lig.league_name
+            }
+            headerRender={<FavoritesLeagueHeader league={lig} />}
+            total={lig.games.length}
+          >
+            {lig.games.map((game) => (
+              <Match key={game.id} match={game} />
+            ))}
+          </SportGroup>
+        ))}
       <div className={`loader-hover--fixed ${loading ? "show" : "hidden"}`}>
         <Loader />
       </div>

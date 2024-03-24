@@ -55,7 +55,6 @@ export const SportGroup: FC<IProps> = ({
       header.style.top = "0px";
     }
     setIsShow(true);
-    console.log("work");
     // initialSticky(bodyRef.current);
   }, []);
 

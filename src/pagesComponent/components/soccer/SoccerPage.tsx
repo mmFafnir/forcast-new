@@ -29,7 +29,6 @@ export const SoccerPage: FC<IProps> = async ({
   league = "",
   seo,
 }) => {
-  console.log("data", data);
   return (
     <FilterProvider
       sport={data.sport?.id || ""}
@@ -47,13 +46,13 @@ export const SoccerPage: FC<IProps> = async ({
         <Header breadCrumbs={breadCumbers} />
         <HeaderPage title={seo.ceo_title} />
         <div className="flex-1 flex-col">
-          <Suspense fallback={"loading"}>
-            <MatchesGroup
-              matches={matches}
-              league={String(data.league?.url || "")}
-              country={String(data.country?.url || "")}
-            />
-          </Suspense>
+          {/* <Suspense fallback={"loading"}> */}
+          <MatchesGroup
+            matches={matches}
+            league={String(data.league?.url || "")}
+            country={String(data.country?.url || "")}
+          />
+          {/* </Suspense> */}
         </div>
         <RiskWidgets isMob />
         <TelegramButton isMob />

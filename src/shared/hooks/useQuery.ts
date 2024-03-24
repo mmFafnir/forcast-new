@@ -12,8 +12,9 @@ const useQuery = (keyQuery?: string) => {
     const query = search ? `?${search}` : "";
     router.replace(query);
 
-    // router.replace(`#${name}=${value}`);
+    router.push(`${pathname}${query}`);
     window.history.pushState(null, "", `${pathname}${query}`);
+    // router.replace(`#${name}=${value}`);
   };
 
   const deleteQuery = (name?: string) => {
