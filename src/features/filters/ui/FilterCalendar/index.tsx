@@ -91,7 +91,7 @@ const FilterCalendarMemo: FC<IProps> = ({
       dayJs().utc().tz(timezone).format("YYYY-MM-DD")
     );
     console.log(currentDate);
-    setDay(currentDate);
+    // setDay(currentDate);
   }, [timezone]);
 
   useEffect(() => {
