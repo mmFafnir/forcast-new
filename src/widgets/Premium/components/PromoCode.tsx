@@ -37,7 +37,6 @@ export const PromoCode: FC<IProps> = ({
           setСonditions(res.ref_code_details);
           return;
         }
-        console.log(res);
         setStatus(EnumStatus.ERROR);
         setPremStatus(null);
       })
@@ -47,8 +46,6 @@ export const PromoCode: FC<IProps> = ({
       })
       .finally(() => setLoading(false));
   };
-
-  console.log(free);
 
   return (
     <div className={styles.body}>

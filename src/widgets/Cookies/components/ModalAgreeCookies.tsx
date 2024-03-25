@@ -18,7 +18,6 @@ export const ModalAgreeCookies = () => {
   };
 
   useEffect(() => {
-    console.log("cookies", cookies);
     const webApp = (window as any).Telegram?.WebApp.initDataUnsafe.user;
     if (webApp) return setOpen(false);
     setOpen(cookies != "true");

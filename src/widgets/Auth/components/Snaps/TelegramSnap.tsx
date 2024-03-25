@@ -31,7 +31,6 @@ export const TelegramSnap: FC<IProps> = ({ mode = "bind" }) => {
 
   const openTelegram = () => {
     if (!url) return;
-    console.log(url);
     window.location.href = url;
   };
 

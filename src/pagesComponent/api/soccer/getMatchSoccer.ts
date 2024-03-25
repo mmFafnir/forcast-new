@@ -115,7 +115,6 @@ export const getMatchSoccerServer = cache(
           id: data.request_country.id,
         };
       }
-      console.log(data);
       if (data.request_league) {
         res.league = {
           title:

@@ -1,8 +1,6 @@
 export function divideSumByComma(sumStr: string): string {
   const [rublesStr, kopeksStr] = sumStr.split(".");
 
-  console.log("коп", kopeksStr);
-
   if (rublesStr.trim().length <= 3) return sumStr;
   if (/^\d+$/.test(rublesStr)) {
     const lastThreeChars = rublesStr.slice(-3);

@@ -177,7 +177,6 @@ export const MobileHeader = () => {
 
   useEffect(() => {
     if (!activeSidebar && !activeWidgets) {
-      console.log("out");
       if (modal) return;
       setIsActive(checkPathname());
     }

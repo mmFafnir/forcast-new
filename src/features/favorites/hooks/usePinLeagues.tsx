@@ -10,7 +10,6 @@ export const usePinLeagues = () => {
   const [data, setData] = useState<ITypePinLeagueData[]>([]);
 
   useEffect(() => {
-    console.log(pinDefaultLeagues, pinUserLeagues);
     const newData: ITypePinLeagueData[] = [];
 
     [...pinUserLeagues, ...pinDefaultLeagues].forEach((league) => {

@@ -9,7 +9,6 @@ export async function parseSitemap(
         reject(err);
       } else {
         const urlElements = result.urlset.url;
-        console.log(urlElements);
         const urls = urlElements.map((urlElement: any) => {
           const obj: { [key: string]: number | string } = {
             loc: urlElement.loc[0],

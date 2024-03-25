@@ -25,7 +25,6 @@ export const EventsBlock: FC<IProps> = ({
   haveDate,
 }) => {
   const { user } = useTypeSelector((state) => state.auth);
-  console.log("favoriteLeague", favoriteLeague);
   return (
     <>
       {events.length > 0 && (

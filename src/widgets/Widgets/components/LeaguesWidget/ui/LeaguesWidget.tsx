@@ -55,7 +55,6 @@ export const LeaguesWidget = () => {
     setLoading(true);
     getLeagues()
       .then((res) => {
-        console.log(res);
         const items = res.map((lig) => lig.league);
         dispatch(setDefaultLeague(items));
       })

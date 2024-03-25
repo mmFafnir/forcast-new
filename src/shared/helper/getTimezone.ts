@@ -8,6 +8,7 @@ export const getTimezone = (utcId?: string) => {
     return userTimezone;
   } else {
     const utc = `UTC${utcCount > 0 ? "+" : "-"}${utcCount}`;
+    console.log(utc);
     const userTimezone = timezoneData.find((time) => time.utc === utc);
     return userTimezone;
   }

@@ -14,7 +14,6 @@ const useTimeUtc = (matchTime: string) => {
   //   @ts-ignore
   const timeDefaultTimezone = dayJs.tz(matchTime, matchTimeZone);
   const { timezone, utcId } = useTypeSelector((state) => state.timezone);
-  console.log(matchTime);
   const [time, setTime] = useState<ITimeState>({
     date: convertUtcOffsetToDate(
       getTimezone(String(utcId))?.utc || "UTC+3",

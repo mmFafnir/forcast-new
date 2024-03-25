@@ -39,7 +39,6 @@ export const useCountry = (): IRes => {
   };
 
   const handleChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event);
     setSearch(event.target.value);
   };
 

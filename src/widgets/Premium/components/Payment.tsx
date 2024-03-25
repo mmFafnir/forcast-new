@@ -84,7 +84,6 @@ const PaymentMemo: FC<IProps> = ({ data }) => {
 
     startPayment(params)
       .then((res) => {
-        console.log(res);
         if (res.data) {
           navigation.push(res.data);
         }

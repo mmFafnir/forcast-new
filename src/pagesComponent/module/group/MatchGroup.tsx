@@ -35,7 +35,6 @@ const MatchesGroupMemo: FC<IProps> = ({
   const { utcId } = useTypeSelector((state) => state.timezone);
 
   useEffect(() => {
-    console.log("loading", loading);
     if (loading) return;
     setLoading(true);
     getMatchSoccer({
@@ -56,17 +55,11 @@ const MatchesGroupMemo: FC<IProps> = ({
   }, [timeStatus, utcId]);
 
   useEffect(() => {
-    console.log("date", loading);
     setLoading(true);
   }, [date]);
 
   useEffect(() => {
-    console.log(query);
-  }, [query]);
-
-  useEffect(() => {
     setTimeout(() => {
-      console.log("query");
       setLoading(null);
     }, 100);
   }, [matches]);

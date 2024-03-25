@@ -18,7 +18,6 @@ export const mapSeoMacros = (
 
   for (const key in seo) {
     let text = seo[key as "ceo_title"];
-    console.log("text", text);
     if (text && typeof text == "string") {
       text = text.replace("sport_name", params?.sport_name || "");
       text = text.replace("country_name", params?.country_name || "");

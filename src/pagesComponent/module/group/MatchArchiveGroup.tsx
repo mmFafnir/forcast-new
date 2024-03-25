@@ -44,7 +44,6 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
       page: page || 1,
     })
       .then((res) => {
-        console.log(date, res.data);
         setData(res.data);
         setCurrentLinks(res.links);
       })
@@ -53,7 +52,6 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
       });
   };
   useEffect(() => {
-    console.log(date);
     // @ts-ignore
     if (date === dayJs().utc().tz(matchTimeZone).format("YYYY-MM-DD")) return;
     fetchDate();

@@ -62,7 +62,6 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
     });
   }
 
-  console.log("data.league", data.league);
   return (
     <FilterProvider
       sport={data.sport_id || ""}
