@@ -21,10 +21,10 @@ export const getOneMatch = cache(
         },
         config
       );
-
       return {
         ...data.data,
         request_for_card_button: data.request_for_card_button,
+        have_text_date: data.have_text_date,
       };
     } catch (error) {
       console.log("error", error);

@@ -13,6 +13,7 @@ export type TypeLeague = {
   sport_id: number;
   table_data: null;
   trans_status: "0" | "1";
+  has_toplist_admin: "0" | "1";
   updated_at: string | null;
   url: string;
   photo: string;

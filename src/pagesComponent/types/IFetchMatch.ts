@@ -45,7 +45,7 @@ export interface IFetchFullMatch {
   best_bet_card: TypeBet[];
   cards: TypeBet[];
   league: ICountryLeagues;
-
+  have_text_date: string;
   favorite_auth_user_count: 0 | 1;
   game_view_count: number;
   request_for_card_button: boolean;

@@ -13,6 +13,7 @@ import styles from "../styles/league.widget.module.scss";
 import SportsIcon from "@/shared/icons/sports";
 import IconX from "@/shared/icons/IconX";
 import { closeWidgets } from "@/features/closeSidebar/slice/closeSidebarSlice";
+import CustomImage from "@/shared/UI/CustomImage";
 
 interface IPropsItem {
   item: TypeLeague;
@@ -23,6 +24,13 @@ const ItemLeagues: FC<IPropsItem> = ({ item }) => {
   return (
     <div key={item.id} className={styles.item} title={item.league_name}>
       <Link href={`/soccer/${item.country.url}/${item.url}`}>
+        <CustomImage
+          className={styles.itemImage}
+          src={`https://admin.aibetguru.com/${item.country.photo}`}
+          width={20}
+          height={20}
+          alt={item.league_name}
+        />
         <span>
           {item.translate && item.translate.length > 0
             ? item.translate[0].translation

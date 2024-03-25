@@ -6,14 +6,10 @@ import styles from "./styles.module.scss";
 import IconPerson from "@/shared/icons/IconPerson";
 import { MatchPreview, MatchPreviewSticky, Views } from "@/entities/match";
 import TextMore from "@/shared/UI/TextMore";
-import Link from "next/link";
-import { cookies } from "next/headers";
 import { Recommend } from "@/features/recommend";
-import { getRecommendServer } from "@/pagesComponent/api/soccer/getRecommend";
 import { Header } from "@/widgets/Header";
 import { LinksProvider } from "@/app/providers/LinksProvider";
 import { EventsBlock } from "./components/EventsBlock";
-import { getTimezone } from "@/shared/helper/getTimezone";
 import { IFetchFullMatch } from "@/pagesComponent/types/IFetchMatch";
 import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 import { TextDate } from "./components/Title";
@@ -65,6 +61,8 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
       href: `/soccer/${data.league.country.url}`,
     });
   }
+
+  console.log("data.league", data.league);
   return (
     <FilterProvider
       sport={data.sport_id || ""}
@@ -148,7 +146,8 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
               matchId={data.id}
               gameStatus={data.time_status}
               request={data.request_for_card_button}
-              favoriteLeague={data.league.favorit === "1"}
+              haveDate={data.have_text_date}
+              favoriteLeague={data.league.has_toplist_admin == "1"}
             />
           </div>
 
