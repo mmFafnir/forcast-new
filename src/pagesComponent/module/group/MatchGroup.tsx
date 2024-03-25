@@ -26,8 +26,6 @@ const MatchesGroupMemo: FC<IProps> = ({
   league = "",
   country = "",
 }) => {
-  const query = useSearchParams();
-
   const dispatch = useTypeDispatch();
   const [data, setData] = useState<ILeagues[]>(matches);
   const [loading, setLoading] = useState<boolean | null>(true);
@@ -37,16 +35,18 @@ const MatchesGroupMemo: FC<IProps> = ({
   useEffect(() => {
     if (loading) return;
     setLoading(true);
+    const currentUtcId = timeStatus == 1 ? 3 : utcId;
+    const currentDate =
+      timeStatus == 1
+        ? // @ts-ignore
+          dayjs().utc().tz(matchTimeZone).format("YYYY-MM-DD")
+        : date;
     getMatchSoccer({
-      date:
-        timeStatus == 1
-          ? // @ts-ignore
-            dayjs().utc().tz(matchTimeZone).format("YYYY-MM-DD")
-          : date,
+      date: currentDate,
       timeStatus,
       country,
       league,
-      utcId,
+      utcId: currentUtcId,
     })
       .then((res) => {
         setData(res.data);
@@ -70,10 +70,12 @@ const MatchesGroupMemo: FC<IProps> = ({
 
   return (
     <div className="flex-1 min-h-block relative">
-      {!loading && data.length === 0 && (
-        <div className="empty-data">
-          <p>Матчи не найдены</p>
-          <IconEmpty />
+      {data.length === 0 && (
+        <div>
+          <div className="empty-data">
+            <p>Матчи не найдены</p>
+            <IconEmpty />
+          </div>
         </div>
       )}
       {!loading &&

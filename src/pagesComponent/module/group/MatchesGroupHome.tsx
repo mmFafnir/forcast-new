@@ -22,41 +22,41 @@ const MatchesGroupHomeMemo: FC<IProps> = ({ matches }) => {
   const { utcId } = useTypeSelector((state) => state.timezone);
 
   const [data, setData] = useState<TypeSportGroup[]>(matches);
-  const [loading, setLoading] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState<boolean | null>(true);
 
   useEffect(() => {
-    if (loading === null) {
-      setLoading(timeStatus !== "" ? null : false);
-      return;
-    }
+    if (loading) return;
     setLoading(true);
+    const currentUtcId = timeStatus == 1 ? 3 : utcId;
+    const currentDate =
+      timeStatus == 1
+        ? // @ts-ignore
+          dayjs().utc().tz(matchTimeZone).format("YYYY-MM-DD")
+        : date;
     getMatchHome({
-      date:
-        timeStatus == 1
-          ? // @ts-ignore
-            dayjs().utc().tz(matchTimeZone).format("YYYY-MM-DD")
-          : date,
+      date: currentDate,
       timeStatus,
-      utcId,
+      utcId: currentUtcId,
     })
       .then((res) => {
         setData(res);
       })
       .finally(() => setLoading(false));
-  }, [date, timeStatus, utcId]);
+  }, [timeStatus, utcId]);
 
   useEffect(() => {
-    setData(matches);
+    setLoading(true);
+  }, [date]);
+
+  useEffect(() => {
+    console.log(matches);
+    setTimeout(() => {
+      setLoading(null);
+    }, 100);
   }, [matches]);
 
   useEffect(() => {
-    if (loading === null) return;
-    setTimeout(
-      () => {
-        dispatch(setLoadingFilter(loading));
-      },
-      loading ? 0 : 300
-    );
+    dispatch(setLoadingFilter(loading || false));
   }, [loading]);
 
   return <GroupHome data={data} loading={loading} empty={<EmptyMain />} />;

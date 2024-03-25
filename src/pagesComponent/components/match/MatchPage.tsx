@@ -119,6 +119,7 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
             </div>
             <Views count={data.game_view_count} className={styles.view} />
           </div>
+
           <MatchPreview match={data} />
 
           {data.cards.length > 0 && data.game_analize && (

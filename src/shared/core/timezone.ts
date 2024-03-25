@@ -121,7 +121,7 @@ export const timezoneData = [
   },
   {
     id: 196,
-    zone: "Antarctica/Casey",
+    zone: "Asia/Magadan",
     utc: "UTC+11",
   },
   {

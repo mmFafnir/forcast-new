@@ -24,10 +24,6 @@ const useTimeStatus = ({ matchTime }: IProps) => {
   const timeDefaultTimezone = dayJs.tz(matchTime, matchTimeZone);
 
   const getStatusMatch = (newTime: string) => {
-    // @ts-ignore
-    const today = dayJs.tz(matchTime, matchTimeZone);
-    const diff = dayJs(newTime).diff(today);
-
     setTime({
       time: dayJs(newTime).locale("ru").format("DD MMMM YYYY"),
       hours: dayJs(newTime).format("HH:mm"),
@@ -37,6 +33,7 @@ const useTimeStatus = ({ matchTime }: IProps) => {
   };
 
   useEffect(() => {
+    console.log(timezone);
     if (timezone.length > 0) {
       const timezoneTime = dayJs
         // @ts-ignore
