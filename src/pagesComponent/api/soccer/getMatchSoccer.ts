@@ -43,6 +43,7 @@ export const getMatchSoccer = async (
       league: "",
       utcId: getTimezone()?.id || "",
     };
+    console.log("utcId", utcId, utcId == "");
     const { data } = await axiosClient.get(
       `/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${
         utcId == "" ? getTimezone()?.id : utcId
