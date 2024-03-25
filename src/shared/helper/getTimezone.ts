@@ -6,6 +6,7 @@ export const getTimezone = (utcId?: string) => {
     const userTimezone = timezoneData.find((time) => String(time.id) === utcId);
     return userTimezone;
   } else {
+    console.log(new Date());
     const utcCount = dayJs(new Date()).utcOffset() / 60;
     const utc = `UTC${utcCount >= 0 ? "+" : "-"}${utcCount}`;
     console.log(utc);

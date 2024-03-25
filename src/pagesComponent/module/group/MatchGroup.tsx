@@ -65,7 +65,6 @@ const MatchesGroupMemo: FC<IProps> = ({
   }, [matches]);
 
   useEffect(() => {
-    // if (loading === null) return;
     dispatch(setLoadingFilter(loading || false));
   }, [loading]);
 
