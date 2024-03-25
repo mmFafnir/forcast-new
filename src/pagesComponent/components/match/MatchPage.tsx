@@ -121,7 +121,7 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
           </div>
           <MatchPreview match={data} />
 
-          {data.game_analize && (
+          {data.cards.length > 0 && data.game_analize && (
             <div className={styles.analysis}>
               <TextMore
                 title={<span className={styles.analysisTitle}>Анализ</span>}

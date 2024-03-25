@@ -26,7 +26,9 @@ const ItemLeagues: FC<IPropsItem> = ({ item }) => {
       <Link href={`/soccer/${item.country.url}/${item.url}`}>
         <CustomImage
           className={styles.itemImage}
-          src={`https://admin.aibetguru.com/${item.country.photo}`}
+          src={`https://admin.aibetguru.com/${
+            item.country.photo || item.photo
+          }`}
           width={20}
           height={20}
           alt={item.league_name}

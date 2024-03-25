@@ -16,6 +16,9 @@ interface IProps {
   haveDate: string;
   gameStatus: 0 | 1 | 3;
 }
+
+const textNotDate =
+  "Анализ данного матча еще в процессе подготовки: мы ожидаем прогнозы в самое ближайшее время. Добавьте матч в избранное, чтобы получить уведомление о появлении ставок и анализа, как только они будут готовы.";
 export const EventsBlock: FC<IProps> = ({
   events,
   matchId,
@@ -25,6 +28,7 @@ export const EventsBlock: FC<IProps> = ({
   haveDate,
 }) => {
   const { user } = useTypeSelector((state) => state.auth);
+
   return (
     <>
       {events.length > 0 && (
@@ -43,11 +47,17 @@ export const EventsBlock: FC<IProps> = ({
         <>
           {favoriteLeague ? (
             <EventNotReady
-              text={`Анализ данного матча еще в процессе подготовки: мы ожидаем последние игры команд для включения этих данных в статистику. Ожидается, что полный прогноз будет доступен после ${
-                haveDate
-                  ? dayjs(haveDate).locale("ru").format("DD MMMM")
-                  : "8 октября"
-              }. Добавьте матч в избранное, чтобы получить уведомление о появлении ставок и анализа, как только они будут готовы. `}
+              text={
+                !haveDate
+                  ? textNotDate
+                  : `Анализ данного матча еще в процессе подготовки: мы ожидаем последние игры команд для включения этих данных в статистику. Ожидается, что полный прогноз будет доступен после ${dayjs(
+                      haveDate
+                    )
+                      .locale("ru")
+                      .format(
+                        "DD MMMM"
+                      )}. Добавьте матч в избранное, чтобы получить уведомление о появлении ставок и анализа, как только они будут готовы.`
+              }
             />
           ) : request ? (
             <EventSendRequest premium={user?.premium === "1"} id={matchId} />
