@@ -2,7 +2,6 @@ import { matchTimeZone } from "@/shared/core/timezone";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { parseCookies, setCookie } from "nookies";
 import { getTimezone } from "@/shared/helper/getTimezone";
-import { getCookiesTimezone } from "../api/getCookiesTimezone";
 
 interface IState {
   timezone: string;
