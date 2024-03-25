@@ -43,13 +43,11 @@ export const getMatchSoccer = async (
       league: "",
       utcId: getTimezone()?.id || "",
     };
-    console.log("utcId", utcId, utcId == "");
     const { data } = await axiosClient.get(
       `/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${
         utcId == "" ? getTimezone()?.id : utcId
       }`
     );
-    console.log(data);
     return { data: data.data };
   } catch (error) {
     console.log(error);
@@ -77,19 +75,25 @@ export const getMatchSoccerServer = cache(
         token: "",
         country: "",
         league: "",
-        utcId: "",
+        utcId: getTimezone()?.id || "",
       };
 
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
 
+      const url = "https://admin.aibetguru.com/api/app/get_matches";
+
       console.log(
         "url: ",
-        `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}&timestamp=${new Date().getTime()}`
+        `${url}?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${
+          utcId == "" ? getTimezone()?.id : utcId
+        }`
       );
       const { data } = await axios.get(
-        `https://admin.aibetguru.com/api/app/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`,
+        `${url}?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${
+          utcId == "" ? getTimezone()?.id : utcId
+        }`,
         config
       );
 
