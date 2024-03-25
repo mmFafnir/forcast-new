@@ -18,6 +18,9 @@ export const getMatchHome = async (
       timeStatus: "",
       utcId: "",
     };
+    console.log(
+      `/get_home_page_matches?date=${date}&time_status=${timeStatus}&utc_id=${utcId}`
+    );
     const { data } = await axios.get(
       `/get_home_page_matches?date=${date}&time_status=${timeStatus}&utc_id=${utcId}`
     );
