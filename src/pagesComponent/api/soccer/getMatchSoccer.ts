@@ -4,6 +4,7 @@ import axios from "axios";
 import { IFetchMatch } from "../../types/IFetchMatch";
 import { TypeTimeStatus } from "@/features/filters";
 import { cache } from "react";
+import { getTimezone } from "@/shared/helper/getTimezone";
 
 export const defaultResServerMatches = {
   current_page: 0,
@@ -40,11 +41,14 @@ export const getMatchSoccer = async (
       timeStatus: "",
       country: "",
       league: "",
-      utcId: "",
+      utcId: getTimezone()?.id || "",
     };
     const { data } = await axiosClient.get(
-      `/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${utcId}`
+      `/get_matches?start_date=${date}&time_status=${timeStatus}&country_url=${country}&league_url=${league}&sport_id=1&utc_id=${
+        utcId == "" ? getTimezone()?.id : utcId
+      }`
     );
+    console.log(data);
     return { data: data.data };
   } catch (error) {
     console.log(error);

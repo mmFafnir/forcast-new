@@ -32,7 +32,6 @@ const FilterCalendarMemo: FC<IProps> = ({
   const cookies = parseCookies();
   const pathname = usePathname();
   const dispatch = useTypeDispatch();
-  const searchParams = useSearchParams();
 
   const { timezone } = useTypeSelector((state) => state.timezone);
   const { timeStatus, date, loading } = useTypeSelector(
@@ -44,7 +43,13 @@ const FilterCalendarMemo: FC<IProps> = ({
 
   const [defaultDate, setDefaultDate] = useState<string>(
     // @ts-ignore
-    new Date(dayJs().utc().tz(cookies.timezone).format())
+    new Date(
+      dayJs()
+        // @ts-ignore
+        .utc()
+        .tz(cookies.timezone || undefined)
+        .format()
+    )
   );
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
