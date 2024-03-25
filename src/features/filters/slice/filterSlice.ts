@@ -2,6 +2,7 @@ import { parseQueryParams } from "@/shared/helper/parseQueryParams";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import dayJs from "@/shared/core/dayjs";
 import { matchTimeZone } from "@/shared/core/timezone";
+import { getTimezone } from "@/shared/helper/getTimezone";
 
 export type TypeTimeStatus = "" | 0 | 1 | 3;
 
@@ -19,7 +20,7 @@ const date =
   (typeof window !== "undefined" &&
     parseQueryParams(window.location.search).date) ||
   // @ts-ignore
-  dayJs().utc().tz().format("YYYY-MM-DD");
+  dayJs().utc().tz(getTimezone()?.zone).format("YYYY-MM-DD");
 
 const initialState: IState = {
   date: date,

@@ -51,6 +51,7 @@ const FilterCalendarMemo: FC<IProps> = ({
         .format()
     )
   );
+  console.log(currentDate);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -89,6 +90,8 @@ const FilterCalendarMemo: FC<IProps> = ({
       // @ts-ignore
       dayJs().utc().tz(timezone).format("YYYY-MM-DD")
     );
+    console.log(currentDate);
+    setDay(currentDate);
   }, [timezone]);
 
   useEffect(() => {

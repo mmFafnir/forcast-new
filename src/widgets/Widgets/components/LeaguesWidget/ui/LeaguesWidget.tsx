@@ -92,7 +92,7 @@ export const LeaguesWidget = () => {
                 </div>
                 <div className={styles.list}>
                   {item.leagues.map((lig) => (
-                    <ItemLeagues item={lig} />
+                    <ItemLeagues key={lig.id} item={lig} />
                   ))}
                 </div>
               </div>
