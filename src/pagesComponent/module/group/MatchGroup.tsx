@@ -33,7 +33,6 @@ const MatchesGroupMemo: FC<IProps> = ({
   const { utcId } = useTypeSelector((state) => state.timezone);
 
   const fetchMatches = () => {
-    setLoading(true);
     const currentUtcId = timeStatus == 1 ? 3 : utcId;
     const currentDate =
       timeStatus == 1
@@ -55,6 +54,7 @@ const MatchesGroupMemo: FC<IProps> = ({
 
   useEffect(() => {
     if (loading) return;
+    setLoading(true);
     console.log(search.get("date"), date);
     fetchMatches();
   }, [timeStatus, utcId]);
@@ -62,13 +62,10 @@ const MatchesGroupMemo: FC<IProps> = ({
   useEffect(() => {
     setLoading(true);
     if (loading) return;
-    console.log(search.get("date"), loading);
-    console.log(matches);
     if (!search.get("date") && loading == false) fetchMatches();
   }, [date]);
 
   useEffect(() => {
-    // console.log(matches);
     setTimeout(() => {
       setLoading(null);
     }, 100);

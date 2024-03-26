@@ -54,15 +54,16 @@ const FilterCalendarMemo: FC<IProps> = ({
 
   const setDay = (day: string) => {
     const date = dayjs(day).format("YYYY-MM-DD");
-    setQuery({ name: "date", value: date });
-    setCurrentDate(date);
-    dispatch(setDate(date));
-
     // @ts-ignore
     const today = dayJs().utc().tz(timezone).format("YYYY-MM-DD");
     if (date === today || startDate === date) {
       deleteQuery("date");
+    } else {
+      setQuery({ name: "date", value: date });
     }
+
+    setCurrentDate(date);
+    dispatch(setDate(date));
   };
 
   const onChange = (value: any) => setDay(value);

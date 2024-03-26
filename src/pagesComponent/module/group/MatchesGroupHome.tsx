@@ -10,6 +10,7 @@ import { setLoadingFilter } from "@/features/filters/slice/filterSlice";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { matchTimeZone } from "@/shared/core/timezone";
 import dayjs from "@/shared/core/dayjs";
+import { useSearchParams } from "next/navigation";
 
 interface IProps {
   matches: TypeSportGroup[];
@@ -17,6 +18,7 @@ interface IProps {
 }
 
 const MatchesGroupHomeMemo: FC<IProps> = ({ matches }) => {
+  const search = useSearchParams();
   const dispatch = useTypeDispatch();
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
   const { utcId } = useTypeSelector((state) => state.timezone);
@@ -24,9 +26,7 @@ const MatchesGroupHomeMemo: FC<IProps> = ({ matches }) => {
   const [data, setData] = useState<TypeSportGroup[]>(matches);
   const [loading, setLoading] = useState<boolean | null>(true);
 
-  useEffect(() => {
-    if (loading) return;
-    setLoading(true);
+  const fetchMatches = () => {
     const currentUtcId = timeStatus == 1 ? 3 : utcId;
     const currentDate =
       timeStatus == 1
@@ -42,10 +42,18 @@ const MatchesGroupHomeMemo: FC<IProps> = ({ matches }) => {
         setData(res);
       })
       .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    if (loading) return;
+    setLoading(true);
+    fetchMatches();
   }, [timeStatus, utcId]);
 
   useEffect(() => {
     setLoading(true);
+    if (loading) return;
+    if (!search.get("date") && loading == false) fetchMatches();
   }, [date]);
 
   useEffect(() => {
