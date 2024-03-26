@@ -14,8 +14,6 @@ import Logo from "@/shared/UI/Logo";
 import { memo, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { IResponseDate, getGlobalData } from "../api/getGlobalData";
-import IconArrow from "@/shared/icons/IconArrow";
-import Link from "next/link";
 import { ButtonSport } from "./modules/ButtonSport";
 import IconX from "@/shared/icons/IconX";
 
@@ -77,7 +75,7 @@ const Sidebar = () => {
                 {global?.get_game_count_home_page || 0}
               </TotalMatches>
             </Button>
-            {new Array(2).fill(null).map((link, index) => (
+            {new Array(1).fill(null).map((link, index) => (
               <ButtonSport
                 key={index}
                 href="/soccer"
