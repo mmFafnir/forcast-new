@@ -122,12 +122,15 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
 
           <MatchPreview match={data} />
 
-          {data.cards.length > 0 && data.game_analize && (
+          {data.show_card == 1 && (
             <div className={styles.analysis}>
               <TextMore
                 title={<span className={styles.analysisTitle}>Анализ</span>}
                 text={
-                  <p className={styles.analysisText}>{data.game_analize}</p>
+                  <div
+                    className={styles.analysisText}
+                    dangerouslySetInnerHTML={{ __html: data.game_analize }}
+                  />
                 }
               />
             </div>
@@ -142,6 +145,7 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
             }`}
           >
             <EventsBlock
+              showCard={data.show_card == 1}
               events={data.cards}
               matchId={data.id}
               gameStatus={data.time_status}

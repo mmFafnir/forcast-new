@@ -15,6 +15,7 @@ interface IProps {
   favoriteLeague: boolean;
   haveDate: string;
   gameStatus: 0 | 1 | 3;
+  showCard: boolean;
 }
 
 const textNotDate =
@@ -26,24 +27,30 @@ export const EventsBlock: FC<IProps> = ({
   favoriteLeague,
   gameStatus,
   haveDate,
+  showCard,
 }) => {
   const { user } = useTypeSelector((state) => state.auth);
-
+  console.log(showCard);
   return (
     <>
-      {events.length > 0 && (
+      {showCard && events.length > 0 && (
         <div className="flex item-center">
           <h2>Список событий</h2>
           <TotalMatches>{events.length}</TotalMatches>
         </div>
       )}
-      {events.map((bet) => {
-        if (bet.best_bet === "Yes" && user?.premium !== "1" && gameStatus !== 3)
-          return <EventPremium odds={bet.odds} />;
-        return <Event gameStatus={gameStatus} key={bet.id} bet={bet} />;
-      })}
+      {showCard &&
+        events.map((bet) => {
+          if (
+            bet.best_bet === "Yes" &&
+            user?.premium !== "1" &&
+            gameStatus !== 3
+          )
+            return <EventPremium odds={bet.odds} />;
+          return <Event gameStatus={gameStatus} key={bet.id} bet={bet} />;
+        })}
 
-      {events.length == 0 && (
+      {(events.length == 0 || !showCard) && (
         <>
           {favoriteLeague ? (
             <EventNotReady
