@@ -15,7 +15,7 @@ export const TextDate: FC<IProps> = ({ text, time }) => {
   const [currentText, setCurrentText] = useState<string>(
     text.replace(
       /\d{4}-\d{2}-\d{2} \d{2}:\d{2}/,
-      dayjs(time).locale("ru").format("DD MMMM YYYY")
+      dayjs(time).locale("ru").format("D MMMM YYYY")
     )
   );
 
@@ -25,7 +25,7 @@ export const TextDate: FC<IProps> = ({ text, time }) => {
     setCurrentText(
       text.replace(
         /\d{4}-\d{2}-\d{2} \d{2}:\d{2}/,
-        dayjs(currentDate).locale("ru").format("DD MMMM YYYY")
+        dayjs(currentDate).locale("ru").format("D MMMM YYYY")
       )
     );
   }, [utcId]);

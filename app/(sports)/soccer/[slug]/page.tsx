@@ -13,6 +13,7 @@ import { getOneMatch } from "@/pagesComponent/api/soccer/getOneMatch";
 import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 import { mapSeoMacros } from "@/pagesComponent/api/seo/mapSeoMacros";
 import { convertUtcOffsetToDate } from "@/shared/helper/convertUtcOffsetToDate";
+import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
 
 interface IProps {
   params: {
@@ -97,10 +98,14 @@ export async function generateMetadata({
     );
   }
 
+  console.log(params.slug);
   return {
     title: seo?.ceo_title || "Футбол...",
     description: seo?.ceo_description || "",
     keywords: seo?.ceo_keywords || "",
+    openGraph: {
+      images: `/image/${params.slug}.jpg`,
+    },
   };
 }
 

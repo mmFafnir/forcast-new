@@ -15,7 +15,7 @@ const useTimeStatus = ({ matchTime }: IProps) => {
     status?: string;
     dateDefault?: string;
   }>({
-    time: dayJs(matchTime).locale("ru").format("DD MMMM YYYY"),
+    time: dayJs(matchTime).locale("ru").format("D MMMM YYYY"),
     hours: dayJs(matchTime).format("HH:mm"),
     status: "",
     dateDefault: matchTime,
@@ -25,7 +25,7 @@ const useTimeStatus = ({ matchTime }: IProps) => {
 
   const getStatusMatch = (newTime: string) => {
     setTime({
-      time: dayJs(newTime).locale("ru").format("DD MMMM YYYY"),
+      time: dayJs(newTime).locale("ru").format("D MMMM YYYY"),
       hours: dayJs(newTime).format("HH:mm"),
       status: status,
       dateDefault: newTime,

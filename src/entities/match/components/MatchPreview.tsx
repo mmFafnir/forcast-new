@@ -119,7 +119,7 @@ export const MatchPreview: FC<IProps> = ({ match }) => {
           ]}
         />
         <div className={styles.times}>
-          <p>{dayjs(date).locale("ru").format("DD MMMM YYYY")}</p>
+          <p>{dayjs(date).locale("ru").format("D MMMM YYYY")}</p>
           <p>{hours}</p>
         </div>
         <div className={styles.footer}>
