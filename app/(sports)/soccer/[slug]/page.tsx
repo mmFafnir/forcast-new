@@ -104,7 +104,7 @@ export async function generateMetadata({
     description: seo?.ceo_description || "",
     keywords: seo?.ceo_keywords || "",
     openGraph: {
-      images: `/image/${params.slug}.jpg`,
+      images: `https://forcast-new.vercel.app/image/${params.slug}.jpg`,
     },
   };
 }
