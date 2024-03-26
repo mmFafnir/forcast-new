@@ -10,11 +10,10 @@ const useQuery = (keyQuery?: string) => {
     current.set(name, value);
     const search = current.toString();
     const query = search ? `?${search}` : "";
-    router.replace(query);
+    // router.replace(query);
 
     router.push(`${pathname}${query}`);
     window.history.pushState(null, "", `${pathname}${query}`);
-    // router.replace(`#${name}=${value}`);
   };
 
   const deleteQuery = (name?: string) => {
@@ -24,6 +23,7 @@ const useQuery = (keyQuery?: string) => {
     const search = current.toString();
     const query = search ? `?${search}` : "";
     router.replace(`${pathname}${query}`);
+    window.history.pushState(null, "", `${pathname}${query}`);
   };
 
   return { setQuery, deleteQuery, query: searchParams.get(keyQuery || "") };

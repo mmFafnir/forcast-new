@@ -12,3 +12,17 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ http://127.0.0.1:3000/$1 [P,L]
 
 
+<IfModule mod_expires.c>
+  # Включаем модуль Expires
+  ExpiresActive On
+  
+  # Кеширование изображений на 1 месяц
+  ExpiresByType image/jpg "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/gif "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  
+  # Кеширование CSS и JS на 1 неделю
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>

@@ -12,7 +12,6 @@ import useQuery from "@/shared/hooks/useQuery";
 import { usePathname, useSearchParams } from "next/navigation";
 import { parseQueryParams } from "@/shared/helper/parseQueryParams";
 import dayJs from "@/shared/core/dayjs";
-import { matchTimeZone } from "@/shared/core/timezone";
 import "react-calendar/dist/Calendar.css";
 import { parseCookies } from "nookies";
 
@@ -40,7 +39,6 @@ const FilterCalendarMemo: FC<IProps> = ({
   const { setQuery, deleteQuery, query } = useQuery("date");
 
   const [currentDate, setCurrentDate] = useState<string>(startDate || date);
-
   const [defaultDate, setDefaultDate] = useState<string>(
     // @ts-ignore
     new Date(
@@ -51,20 +49,19 @@ const FilterCalendarMemo: FC<IProps> = ({
         .format()
     )
   );
-  console.log(currentDate);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const setDay = (day: string) => {
     const date = dayjs(day).format("YYYY-MM-DD");
     setQuery({ name: "date", value: date });
-    dispatch(setDate(date));
     setCurrentDate(date);
+    dispatch(setDate(date));
+
     // @ts-ignore
     const today = dayJs().utc().tz(timezone).format("YYYY-MM-DD");
     if (date === today || startDate === date) {
       deleteQuery("date");
-      return;
     }
   };
 
@@ -80,18 +77,16 @@ const FilterCalendarMemo: FC<IProps> = ({
       ? date
       : // @ts-ignore
         dayJs().utc().tz(timezone).format("YYYY-MM-DD");
-    setCurrentDate(currentDay);
 
+    setCurrentDate(currentDay);
     dispatch(setDate(currentDay));
-  }, [pathname, query]);
+  }, [pathname]);
 
   useEffect(() => {
     setDefaultDate(
       // @ts-ignore
       dayJs().utc().tz(timezone).format("YYYY-MM-DD")
     );
-    console.log(currentDate);
-    // setDay(currentDate);
   }, [timezone]);
 
   useEffect(() => {

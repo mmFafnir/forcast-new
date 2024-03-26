@@ -20,20 +20,19 @@ interface IProps {
   league?: string;
 }
 
-let firstRender = true;
 const MatchesGroupMemo: FC<IProps> = ({
   matches,
   league = "",
   country = "",
 }) => {
+  const search = useSearchParams();
   const dispatch = useTypeDispatch();
   const [data, setData] = useState<ILeagues[]>(matches);
   const [loading, setLoading] = useState<boolean | null>(true);
   const { date, timeStatus } = useTypeSelector((state) => state.filters);
   const { utcId } = useTypeSelector((state) => state.timezone);
 
-  useEffect(() => {
-    if (loading) return;
+  const fetchMatches = () => {
     setLoading(true);
     const currentUtcId = timeStatus == 1 ? 3 : utcId;
     const currentDate =
@@ -52,13 +51,24 @@ const MatchesGroupMemo: FC<IProps> = ({
         setData(res.data);
       })
       .finally(() => setLoading(false));
-  }, [timeStatus]);
+  };
+
+  useEffect(() => {
+    if (loading) return;
+    console.log(search.get("date"), date);
+    fetchMatches();
+  }, [timeStatus, utcId]);
 
   useEffect(() => {
     setLoading(true);
-  }, [date, utcId]);
+    if (loading) return;
+    console.log(search.get("date"), loading);
+    console.log(matches);
+    if (!search.get("date") && loading == false) fetchMatches();
+  }, [date]);
 
   useEffect(() => {
+    // console.log(matches);
     setTimeout(() => {
       setLoading(null);
     }, 100);

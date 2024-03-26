@@ -2,18 +2,18 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "../styles/timezone.module.scss";
-import { getTimezone } from "../api/getTimezone";
 import { TypeTimezone } from "../types/TypeTimezone";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
 // import dayjs from "dayjs";
-import dayJs from "@/shared/core/dayjs";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setTimezone } from "../slice/timezoneSlice";
 import { timezoneData } from "@/shared/core/timezone";
+import { useRouter } from "next/navigation";
 
 export const TimezoneSelect = () => {
   const { utcId } = useTypeSelector((state) => state.timezone);
+  const router = useRouter();
   const dispatch = useTypeDispatch();
   const [open, setOpen] = useState<boolean>(false);
 
