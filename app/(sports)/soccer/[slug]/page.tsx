@@ -13,7 +13,7 @@ import { getOneMatch } from "@/pagesComponent/api/soccer/getOneMatch";
 import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 import { mapSeoMacros } from "@/pagesComponent/api/seo/mapSeoMacros";
 import { convertUtcOffsetToDate } from "@/shared/helper/convertUtcOffsetToDate";
-import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
+import "dayjs/locale/ru";
 
 interface IProps {
   params: {

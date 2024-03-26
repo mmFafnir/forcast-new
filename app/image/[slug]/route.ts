@@ -1,9 +1,8 @@
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { getBase64 } from "../../api/image/getBase64";
-import { NextApiResponse } from "next";
 
-export async function GET(request: NextRequest, response: NextApiResponse) {
+export async function GET(request: NextRequest) {
   const header = headers();
   let url = header.get("x-url") || "";
 
@@ -20,7 +19,6 @@ export async function GET(request: NextRequest, response: NextApiResponse) {
     );
 
     const headers = new Headers();
-
     headers.set("Content-Type", "image/*");
 
     return new NextResponse(Buffer.from(base64, "base64"), {
@@ -29,7 +27,6 @@ export async function GET(request: NextRequest, response: NextApiResponse) {
       headers,
     });
   } catch (error) {
-    console.log(error);
     return NextResponse.redirect(new URL("/404", request.url));
   }
 }
