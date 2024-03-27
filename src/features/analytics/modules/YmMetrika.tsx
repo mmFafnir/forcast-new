@@ -50,7 +50,7 @@ export const YmMetrika = () => {
           <img
             src="https://mc.yandex.ru/watch/96808982"
             style={{ position: "absolute", left: "-9999px" }}
-            alt=""
+            alt="metrika"
           />
         </div>
       </noscript>

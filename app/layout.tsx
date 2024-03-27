@@ -41,9 +41,9 @@ export default function RootLayout({
             <MainLayout>{children}</MainLayout>
           </AuthProvider>
         </StoreProvider>
-        <Suspense>
+        {/* <Suspense>
           <YmMetrika />
-        </Suspense>
+        </Suspense> */}
       </body>
     </html>
   );

@@ -37,6 +37,7 @@
   }
 
   &.react-calendar__tile--active {
+    pointer-events: none;
     background: linear-gradient(0deg, #6064c2 0%, #6064c2 100%),
       linear-gradient(
         180deg,

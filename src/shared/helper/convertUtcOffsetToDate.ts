@@ -6,7 +6,6 @@ export function convertUtcOffsetToDate(
 ) {
   // Извлекаем числовое значение смещения
   const offset = utcOffsetString.replace(/[^0-9.+\\-]/g, "");
-
   // Создаем объект Day.js с указанным временем в UTC
   const utcTime = customUtcTime
     ? // @ts-ignore

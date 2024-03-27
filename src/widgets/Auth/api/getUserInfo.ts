@@ -8,7 +8,6 @@ export async function getUserInfo(token?: string) {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(data);
     return {
       ...data.data,
       favorite_count: data.favorite_array,

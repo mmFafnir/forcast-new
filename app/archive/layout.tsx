@@ -19,7 +19,6 @@ export default async function LayoutArchive({
   children: React.ReactNode;
 }) {
   const seo = await getStaticSeo("archive");
-
   if (!seo) return notFound();
   return <ArchiveLayout seo={seo}>{children}</ArchiveLayout>;
 }

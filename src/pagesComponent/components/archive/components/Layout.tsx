@@ -7,14 +7,28 @@ import { Header } from "@/widgets/Header";
 import { DescriptionSEO } from "@/entities/seo-texts";
 import { getGlobalData } from "@/widgets/api/getGlobalData";
 import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
+import { cookies } from "next/headers";
+import { getTimezone } from "@/shared/helper/getTimezone";
+import { convertUtcOffsetToDate } from "@/shared/helper/convertUtcOffsetToDate";
+import dayjs from "dayjs";
 
 interface IProps {
   children: ReactNode;
   seo: IFetchSeo;
 }
 export const ArchiveLayout: FC<IProps> = async ({ children, seo }) => {
+  const cookieStore = cookies();
+  const utcId = cookieStore.get("utc_id");
+  const timezone = getTimezone(utcId?.value);
   const params = await getGlobalData();
 
+  const startDate = params
+    ? dayjs(
+        convertUtcOffsetToDate("UTC+3", params.get_latest_archive_game)
+      ).format("YYYY-MM-DD HH:mm:ss")
+    : null;
+
+  console.log(params?.get_latest_archive_game);
   return (
     <div className={styles.page}>
       <Header
@@ -30,9 +44,10 @@ export const ArchiveLayout: FC<IProps> = async ({ children, seo }) => {
           <>
             <FilterArchive />
             <FilterCalendar
-              startDate={params?.get_latest_archive_game}
+              startDate={startDate}
               bodyClass={styles.calendar}
               titleClass={styles.calendar}
+              max={startDate}
             />
           </>
         }

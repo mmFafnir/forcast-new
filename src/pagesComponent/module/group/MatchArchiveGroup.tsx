@@ -6,27 +6,25 @@ import Loader from "@/shared/UI/Loader";
 import Pagination, { TypeLink } from "@/shared/UI/Pagination";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { TypeBet, TypeMatch } from "@/shared/types/match";
-import dayJs from "@/shared/core/dayjs";
 import { FC, useEffect, useState } from "react";
-import { matchTimeZone } from "@/shared/core/timezone";
-import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 import { setLoadingFilter } from "@/features/filters/slice/filterSlice";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
+import { matchTimeZone } from "@/shared/core/timezone";
+import { transformDateToTimezone } from "@/shared/helper/getTimezone";
+import dayjs from "dayjs";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface IMatch extends TypeMatch {
   card: TypeBet[];
 }
 
-interface IProps {
-  matches: IMatch[];
-  links: TypeLink[];
-}
-export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
+export const MatchArchiveGroup: FC = () => {
   const dispatch = useTypeDispatch();
-
-  const [data, setData] = useState<IMatch[]>(matches);
-  const [currentLinks, setCurrentLinks] = useState<TypeLink[]>(links);
-  const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
+  const [data, setData] = useState<IMatch[]>([]);
+  const [currentLinks, setCurrentLinks] = useState<TypeLink[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const { utcId } = useTypeSelector((state) => state.timezone);
   const { countryId, leagueId, sportId, date } = useTypeSelector(
@@ -51,27 +49,33 @@ export const MatchArchiveGroup: FC<IProps> = ({ matches, links }) => {
         setLoading(false);
       });
   };
+
   useEffect(() => {
-    // @ts-ignore
-    if (date === dayJs().utc().tz(matchTimeZone).format("YYYY-MM-DD")) return;
+    const today = dayjs(transformDateToTimezone()).format("YYYY-MM-DD");
+    if (date === today) return;
     fetchDate();
   }, [date, countryId, leagueId, sportId, utcId]);
 
   useEffect(() => {
-    setTimeout(
-      () => {
-        dispatch(setLoadingFilter(loading));
-      },
-      loading ? 0 : 300
-    );
+    dispatch(setLoadingFilter(loading));
   }, [loading]);
+
+  // useEffect(() => {
+  //   window.addEventListener("popstate", (e) => {
+  //     console.log(date);
+  //     window.location.reload();
+  //   });
+  // }, []);
 
   return (
     <div>
-      {data.map((match) => (
-        <MatchArchive key={match.id} match={match} />
-      ))}
-      {data.length === 0 && <Empty />}
+      {!loading &&
+        (data.length > 0 ? (
+          data.map((match) => <MatchArchive key={match.id} match={match} />)
+        ) : (
+          <Empty />
+        ))}
+
       {loading && (
         <div className="loader-hover--no-bg">
           <Loader />

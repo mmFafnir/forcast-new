@@ -13,6 +13,7 @@ import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { timezoneData } from "@/shared/core/timezone";
 import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 import IconTime from "@/shared/icons/IconTime";
+import useHydration from "@/shared/hooks/useHydration";
 
 const iconStyles: IAccordionStylesIcon = {
   open: {},
@@ -23,6 +24,7 @@ const iconStyles: IAccordionStylesIcon = {
 export const TimezoneAccordion: FC = () => {
   const { utcId } = useTypeSelector((state) => state.timezone);
   const dispatch = useTypeDispatch();
+  const { isMounted } = useHydration();
 
   const [currentData, setCurrentData] = useState<TypeTimezone | null>(
     timezoneData.find((time) => time.id === utcId) || null
@@ -41,6 +43,7 @@ export const TimezoneAccordion: FC = () => {
     dispatch(closeAllModal());
   };
 
+  if (!isMounted) return;
   return (
     <div className={styles.body}>
       {currentData && (

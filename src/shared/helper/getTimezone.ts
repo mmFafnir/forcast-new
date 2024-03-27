@@ -1,15 +1,28 @@
 import dayJs from "@/shared/core/dayjs";
-import { timezoneData } from "../core/timezone";
+import { matchTimeZone, timezoneData } from "../core/timezone";
 
 export const getTimezone = (utcId?: string) => {
   if (utcId && utcId?.length !== 0) {
     const userTimezone = timezoneData.find((time) => String(time.id) === utcId);
     return userTimezone;
   } else {
-    // const utcCount = dayJs(new Date()).utcOffset() / 60;
-    // const utc = `UTC${utcCount >= 0 ? "+" : "-"}${utcCount}`;
-    // console.log(utc);
     const userTimezone = timezoneData.find((time) => time.id == 3);
     return userTimezone;
   }
+};
+
+interface IPramsTransform {
+  date?: string;
+  timezone?: string | null;
+}
+export const transformDateToTimezone = (params?: IPramsTransform) => {
+  const { date, timezone } = params || {};
+
+  return (
+    dayJs(date)
+      // @ts-ignore
+      .utc()
+      .tz(timezone || matchTimeZone)
+      .format("YYYY-MM-DD HH:mm:ss")
+  );
 };

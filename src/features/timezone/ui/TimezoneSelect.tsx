@@ -4,16 +4,17 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/timezone.module.scss";
 import { TypeTimezone } from "../types/TypeTimezone";
 import MyScrollbar from "@/shared/UI/MyScrollbar";
-// import dayjs from "dayjs";
+
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setTimezone } from "../slice/timezoneSlice";
 import { timezoneData } from "@/shared/core/timezone";
-import { useRouter } from "next/navigation";
+import useHydration from "@/shared/hooks/useHydration";
 
 export const TimezoneSelect = () => {
+  const { isMounted } = useHydration();
+
   const { utcId } = useTypeSelector((state) => state.timezone);
-  const router = useRouter();
   const dispatch = useTypeDispatch();
   const [open, setOpen] = useState<boolean>(false);
 
@@ -39,6 +40,7 @@ export const TimezoneSelect = () => {
     return () => document.removeEventListener("click", closeList);
   }, []);
 
+  if (!isMounted) return;
   return (
     <div className={styles.timezone}>
       {currentData && (
