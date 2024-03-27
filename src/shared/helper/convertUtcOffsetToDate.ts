@@ -2,7 +2,8 @@ import dayjs from "@/shared/core/dayjs";
 
 export function convertUtcOffsetToDate(
   utcOffsetString: string,
-  customUtcTime?: string
+  customUtcTime?: string,
+  format?: string
 ) {
   // Извлекаем числовое значение смещения
   const offset = utcOffsetString.replace(/[^0-9.+\\-]/g, "");
@@ -17,5 +18,5 @@ export function convertUtcOffsetToDate(
   const adjustedTime = utcTime.add(offset, "hour");
 
   // Возвращаем дату в нужном формате (YYYY-MM-DD)
-  return adjustedTime;
+  return format ? dayjs(adjustedTime).format(format) : adjustedTime;
 }

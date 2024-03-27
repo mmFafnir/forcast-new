@@ -14,15 +14,16 @@ export const getTimezone = (utcId?: string) => {
 interface IPramsTransform {
   date?: string;
   timezone?: string | null;
+  format?: string;
 }
 export const transformDateToTimezone = (params?: IPramsTransform) => {
-  const { date, timezone } = params || {};
+  const { date, timezone, format } = params || {};
 
   return (
     dayJs(date)
       // @ts-ignore
       .utc()
       .tz(timezone || matchTimeZone)
-      .format("YYYY-MM-DD HH:mm:ss")
+      .format(format || "YYYY-MM-DD HH:mm:ss")
   );
 };

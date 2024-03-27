@@ -1,7 +1,7 @@
 import { parseQueryParams } from "@/shared/helper/parseQueryParams";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { transformDateToTimezone } from "@/shared/helper/getTimezone";
-import dayjs from "dayjs";
+import { matchTimeZone } from "@/shared/core/timezone";
 
 export type TypeTimeStatus = "" | 0 | 1 | 3;
 
@@ -17,7 +17,7 @@ interface IState {
 const date =
   (typeof window !== "undefined" &&
     parseQueryParams(window.location.search).date) ||
-  dayjs(transformDateToTimezone()).format("YYYY-MM-DD");
+  transformDateToTimezone({ timezone: matchTimeZone, format: "YYYY-MM-DD" });
 
 const initialState: IState = {
   date: date,
@@ -56,9 +56,6 @@ const filterSlice = createSlice({
     setDefaultFilter: (state) => {
       state.leagueId = "";
       state.sportId = "";
-      // state.timeStatus = "";
-      // console.log("date", date);
-      // state.date = date;
     },
 
     setLoadingFilter: (state, action: PayloadAction<boolean>) => {

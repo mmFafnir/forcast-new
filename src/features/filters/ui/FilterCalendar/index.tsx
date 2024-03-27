@@ -87,10 +87,21 @@ const FilterCalendarMemo: FC<IProps> = ({
 
   const onChange = (value: any) => setDay(value);
 
+  const setStartDateTimezone = () => {
+    if (!startDate) return;
+    const utc = getTimezone(String(utcId));
+    const date = convertUtcOffsetToDate(
+      utc?.utc || "UTC+3",
+      startDate,
+      "YYYY-MM-DD"
+    );
+    dispatch(setDate(date));
+    setCurrentDate(date);
+  };
+
   useEffect(() => {
     if (pathname == "/archive") return;
     const date = parseQueryParams(window.location.search).date;
-
     const currentDay = date
       ? date
       : // @ts-ignore
@@ -105,23 +116,25 @@ const FilterCalendarMemo: FC<IProps> = ({
 
     if (!max) return;
     const utc = getTimezone(String(utcId));
-    const date = convertUtcOffsetToDate(utc?.utc || "UTC+3", max);
-    setMaxDate(dayJs(date).format("YYYY-MM-DD"));
+    const date = convertUtcOffsetToDate(utc?.utc || "UTC+3", max, "YYYY-MM-DD");
+    setMaxDate(date);
   }, [timezone]);
 
   useEffect(() => {
-    console.log(searchParams);
-    if (pathname == "/archive") {
-      const date = searchParams.get("date");
-      if (!date) return;
-      setCurrentDate(date);
-      dispatch(setDate(date));
+    const date = searchParams.get("date");
+    if (!date) {
+      if (pathname == "/archive") return setStartDateTimezone();
+      setCurrentDate(defaultDate);
+      dispatch(setDate(defaultDate));
+      return;
     }
+    setCurrentDate(date);
+    dispatch(setDate(date));
   }, [searchParams]);
 
   useEffect(() => {
-    if (!startDate || query) return;
-    dispatch(setDate(dayJs(startDate).format("YYYY-MM-DD")));
+    if (query) return;
+    setStartDateTimezone();
   }, []);
 
   if (timeStatus === 1) return <></>;

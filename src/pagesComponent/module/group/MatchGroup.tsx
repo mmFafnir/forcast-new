@@ -55,7 +55,6 @@ const MatchesGroupMemo: FC<IProps> = ({
   useEffect(() => {
     if (loading) return;
     setLoading(true);
-    console.log(search.get("date"), date);
     fetchMatches();
   }, [timeStatus, utcId]);
 

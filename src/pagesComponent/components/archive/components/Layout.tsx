@@ -22,11 +22,7 @@ export const ArchiveLayout: FC<IProps> = async ({ children, seo }) => {
   const timezone = getTimezone(utcId?.value);
   const params = await getGlobalData();
 
-  const startDate = params
-    ? dayjs(
-        convertUtcOffsetToDate("UTC+3", params.get_latest_archive_game)
-      ).format("YYYY-MM-DD HH:mm:ss")
-    : null;
+  const startDate = params ? params.get_latest_archive_game : null;
 
   console.log(params?.get_latest_archive_game);
   return (

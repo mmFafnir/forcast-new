@@ -10,8 +10,8 @@ import { FC, useEffect, useState } from "react";
 import { setLoadingFilter } from "@/features/filters/slice/filterSlice";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { transformDateToTimezone } from "@/shared/helper/getTimezone";
-import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
+import { matchTimeZone } from "@/shared/core/timezone";
 
 interface IMatch extends TypeMatch {
   card: TypeBet[];
@@ -19,12 +19,11 @@ interface IMatch extends TypeMatch {
 
 export const MatchArchiveGroup: FC = () => {
   const dispatch = useTypeDispatch();
-  const router = useRouter();
   const [data, setData] = useState<IMatch[]>([]);
   const [currentLinks, setCurrentLinks] = useState<TypeLink[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const { utcId } = useTypeSelector((state) => state.timezone);
+  const { utcId, timezone } = useTypeSelector((state) => state.timezone);
   const { countryId, leagueId, sportId, date } = useTypeSelector(
     (state) => state.filters
   );
@@ -49,7 +48,12 @@ export const MatchArchiveGroup: FC = () => {
   };
 
   useEffect(() => {
-    const today = dayjs(transformDateToTimezone()).format("YYYY-MM-DD");
+    const today = transformDateToTimezone({
+      timezone: timezone,
+      format: "YYYY-MM-DD",
+    });
+
+    console.log(date, today);
     if (date === today) return;
     fetchDate();
   }, [date, countryId, leagueId, sportId, utcId]);
@@ -57,13 +61,6 @@ export const MatchArchiveGroup: FC = () => {
   useEffect(() => {
     dispatch(setLoadingFilter(loading));
   }, [loading]);
-
-  // useEffect(() => {
-  //   window.addEventListener("popstate", (e) => {
-  //     console.log(date);
-  //     window.location.reload();
-  //   });
-  // }, []);
 
   return (
     <div>
@@ -75,7 +72,7 @@ export const MatchArchiveGroup: FC = () => {
         ))}
 
       {loading && (
-        <div className="loader-hover--no-bg">
+        <div className="loader-hover--no-bg loader--top">
           <Loader />
         </div>
       )}
