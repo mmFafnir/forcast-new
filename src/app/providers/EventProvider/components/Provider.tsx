@@ -2,7 +2,6 @@
 
 import { closeAllModal } from "@/shared/UI/Modal/modalSlice";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import { useRouter } from "next/navigation";
 import { FC, ReactNode, useEffect } from "react";
 
 interface IProps {
@@ -10,7 +9,6 @@ interface IProps {
 }
 export const EventProvider: FC<IProps> = ({ children }) => {
   const dispatch = useTypeDispatch();
-  const router = useRouter();
 
   useEffect(() => {
     const pressKey = (e: KeyboardEvent) => {

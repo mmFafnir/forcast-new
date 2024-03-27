@@ -16,8 +16,7 @@ interface IProps {
   matches: ILeagues[];
   breadCumbers: IBreadCrumb[];
   data: IFetchMatch;
-  country?: string;
-  league?: string;
+
   seo: IFetchSeo;
 }
 
@@ -25,8 +24,6 @@ export const SoccerPage: FC<IProps> = async ({
   matches,
   breadCumbers,
   data,
-  country = "",
-  league = "",
   seo,
 }) => {
   return (

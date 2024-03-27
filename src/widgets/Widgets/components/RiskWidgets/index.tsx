@@ -12,6 +12,11 @@ import Loader from "@/shared/UI/Loader";
 import { usePathname } from "next/navigation";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { setParamsLink } from "@/features/breadсrumbs/slice/linkSlice";
+import {
+  setCountryFilter,
+  setLeagueFilter,
+  setSportFilter,
+} from "@/features/filters/slice/filterSlice";
 
 type TypeRisk = {
   id: number;
@@ -82,13 +87,16 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (
-      pathname != "/soccer" &&
-      pathname.includes("/soccer") &&
-      countryId == "" &&
-      leagueId == ""
-    )
-      return;
+    if (isMob && window.innerWidth > 500) return;
+    // if (
+    //   pathname != "/soccer" &&
+    //   pathname.includes("/soccer") &&
+    //   countryId == "" &&
+    //   leagueId == ""
+    // )
+    //   return;
+
+    console.log("start");
     setLoading(true);
     getStatistics({
       league_id: leagueId,
@@ -108,8 +116,12 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
       pathname === "/privacy-policy" ||
       pathname === "/" ||
       pathname === "/faq" ||
-      pathname === "/archive"
+      pathname === "/archive" ||
+      pathname === "/favorites"
     ) {
+      dispatch(setLeagueFilter(""));
+      dispatch(setCountryFilter(""));
+      dispatch(setSportFilter(""));
       dispatch(
         setParamsLink({
           country: "",
@@ -120,6 +132,8 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
       );
     }
   }, [pathname]);
+
+  if (isMob && window.innerWidth > 500) return <></>;
   return (
     <div className={`${styles.body} ${isMob ? styles.mob : ""}`}>
       <div className={styles.header}>

@@ -10,8 +10,6 @@ import { FC, useEffect, useState } from "react";
 import { setLoadingFilter } from "@/features/filters/slice/filterSlice";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
 import { transformDateToTimezone } from "@/shared/helper/getTimezone";
-import { useRouter } from "next/navigation";
-import { matchTimeZone } from "@/shared/core/timezone";
 
 interface IMatch extends TypeMatch {
   card: TypeBet[];
@@ -53,8 +51,7 @@ export const MatchArchiveGroup: FC = () => {
       format: "YYYY-MM-DD",
     });
 
-    console.log(date, today);
-    if (date === today) return;
+    if (date == "" || date == today) return;
     fetchDate();
   }, [date, countryId, leagueId, sportId, utcId]);
 

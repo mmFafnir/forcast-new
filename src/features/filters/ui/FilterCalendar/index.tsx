@@ -121,23 +121,28 @@ const FilterCalendarMemo: FC<IProps> = ({
   }, [timezone]);
 
   useEffect(() => {
-    const date = searchParams.get("date");
-    if (!date) {
-      if (pathname == "/archive") return setStartDateTimezone();
-      setCurrentDate(defaultDate);
-      dispatch(setDate(defaultDate));
-      return;
-    }
-    setCurrentDate(date);
-    dispatch(setDate(date));
-  }, [searchParams]);
+    const onPopState = () => {
+      const date = parseQueryParams(window.location.search).date;
+      if (!date) {
+        if (pathname == "/archive") {
+          setStartDateTimezone();
+        } else {
+          setCurrentDate(dayJs(defaultDate).format("YYYY-MM-DD"));
+          dispatch(setDate(dayJs(defaultDate).format("YYYY-MM-DD")));
+        }
+      }
+      setCurrentDate(date);
+      dispatch(setDate(date));
+    };
+    window.addEventListener("popstate", onPopState);
 
-  useEffect(() => {
-    if (query) return;
-    setStartDateTimezone();
+    if (!query) {
+      setStartDateTimezone();
+    }
+    return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
-  if (timeStatus === 1) return <></>;
+  if (timeStatus === 1 || currentDate == "") return <></>;
   return (
     <div
       className={`${styles.body} ${bodyClass} ${

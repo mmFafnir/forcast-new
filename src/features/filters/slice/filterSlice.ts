@@ -1,7 +1,6 @@
 import { parseQueryParams } from "@/shared/helper/parseQueryParams";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { transformDateToTimezone } from "@/shared/helper/getTimezone";
-import { matchTimeZone } from "@/shared/core/timezone";
+import { IPayloadSetFilter } from "./interface";
 
 export type TypeTimeStatus = "" | 0 | 1 | 3;
 
@@ -17,11 +16,12 @@ interface IState {
 const date =
   (typeof window !== "undefined" &&
     parseQueryParams(window.location.search).date) ||
-  transformDateToTimezone({ timezone: matchTimeZone, format: "YYYY-MM-DD" });
+  "";
 
 const initialState: IState = {
   date: date,
   timeStatus: "",
+
   sportId: "",
   leagueId: "",
   countryId: "",
@@ -39,6 +39,15 @@ const filterSlice = createSlice({
     setTimeStatus: (state, actions: PayloadAction<TypeTimeStatus>) => {
       state.timeStatus = actions.payload;
     },
+
+    setFilter: (state, action: PayloadAction<IPayloadSetFilter>) => {
+      const { country, league, sport } = action.payload;
+      console.log({ country, league, sport });
+      if (country) state.countryId = country;
+      if (league) state.leagueId = league;
+      if (sport) state.sportId = sport;
+    },
+
     setCountryFilter: (state, action: PayloadAction<number | "">) => {
       state.countryId = action.payload;
     },
@@ -73,5 +82,6 @@ export const {
   setDefaultFilter,
   setPage,
   setLoadingFilter,
+  setFilter,
 } = filterSlice.actions;
 export default filterSlice.reducer;

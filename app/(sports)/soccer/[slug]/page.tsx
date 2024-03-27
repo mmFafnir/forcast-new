@@ -168,7 +168,6 @@ const SoccerSlugPage: NextPage<IProps> = async ({ params, searchParams }) => {
         matches={matches}
         seo={seo}
         breadCumbers={breadCumbers}
-        country={params.slug}
       />
     );
   }
