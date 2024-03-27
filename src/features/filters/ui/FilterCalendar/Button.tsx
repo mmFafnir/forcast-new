@@ -65,11 +65,7 @@ const Button: FC<IPops> = ({
         </svg>
         <span>{dayjs(day).format("DD/MM/YYYY")}</span>
       </button>
-      <button
-        disabled={day === max}
-        className={styles.next}
-        onClick={onNextDay}
-      >
+      <button disabled={day >= max} className={styles.next} onClick={onNextDay}>
         <svg width="9" height="15" viewBox="0 0 9 15" fill="none">
           <path
             fillRule="evenodd"
