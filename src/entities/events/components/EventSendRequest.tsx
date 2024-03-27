@@ -4,9 +4,10 @@ import { Wrapper } from "../ui/Wrapper";
 import Button from "@/shared/UI/Button";
 import styles from "../styles/request.module.scss";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import { setModal } from "@/shared/UI/Modal/modalSlice";
+import { setClick, setModal } from "@/shared/UI/Modal/modalSlice";
 import { EnumModals } from "@/shared/UI/Modal/EnumModals";
 import { sendGetAnalysis } from "../api/sendGetAnalysis";
+import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 
 interface IProps {
   premium?: boolean;
@@ -15,10 +16,16 @@ interface IProps {
 
 export const EventSendRequest: FC<IProps> = ({ premium = false, id }) => {
   const dispatch = useTypeDispatch();
+  const { auth } = useTypeSelector((state) => state.auth);
 
   const [loading, setLoading] = useState<boolean>(false);
 
   const onOpenPrem = () => dispatch(setModal(EnumModals.PREMIUM));
+  const onOpenLogin = () => {
+    dispatch(setClick("prem"));
+    dispatch(setModal(EnumModals.LOGIN));
+  };
+
   const createAnalysis = () => {
     setLoading(true);
     sendGetAnalysis(id).then((res) => {
@@ -61,7 +68,8 @@ export const EventSendRequest: FC<IProps> = ({ premium = false, id }) => {
       ) : (
         <div className={styles.premium}>
           <p>
-            Доступно только <button onClick={onOpenPrem}>PREMIUM</button>{" "}
+            Доступно только{" "}
+            <button onClick={auth ? onOpenPrem : onOpenLogin}>PREMIUM</button>{" "}
             пользователям
           </p>
         </div>

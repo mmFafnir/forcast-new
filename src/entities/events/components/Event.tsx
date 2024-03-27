@@ -44,9 +44,9 @@ export const Event: FC<IProps> = ({ bet, gameStatus }) => {
   return (
     <Wrapper best={bet.best_bet === "Yes"}>
       <div className={styles.header}>
-        {gameStatus == 3 && (
+        {gameStatus == 3 && bet.status && (
           <span className={styles.status}>
-            <Status played={bet.status == "1"} />
+            <Status played={bet.status} />
           </span>
         )}
 
