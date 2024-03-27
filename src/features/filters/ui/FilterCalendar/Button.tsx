@@ -3,16 +3,23 @@
 import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import styles from "../../styles/calendar.module.scss";
 import dayjs from "dayjs";
-import { maxDate, minDate } from ".";
+import { maxCurrentDate, minDate } from ".";
 
 interface IPops {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   day: string;
   setDay: (date: string) => void;
   className?: string;
+  max?: string;
 }
 
-const Button: FC<IPops> = ({ setIsOpen, day, setDay, className = "" }) => {
+const Button: FC<IPops> = ({
+  setIsOpen,
+  day,
+  setDay,
+  className = "",
+  max = maxCurrentDate,
+}) => {
   const openList = () => setIsOpen((prev) => !prev);
 
   const onNextDay = () => setDay(dayjs(day).add(1, "day").format("YYYY-MM-DD"));
@@ -59,7 +66,7 @@ const Button: FC<IPops> = ({ setIsOpen, day, setDay, className = "" }) => {
         <span>{dayjs(day).format("DD/MM/YYYY")}</span>
       </button>
       <button
-        disabled={day === maxDate}
+        disabled={day === max}
         className={styles.next}
         onClick={onNextDay}
       >

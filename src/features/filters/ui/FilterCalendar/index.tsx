@@ -136,6 +136,7 @@ const FilterCalendarMemo: FC<IProps> = ({
         setDay={setDay}
         day={currentDate}
         setIsOpen={setIsOpen}
+        max={maxDate}
       />
       <Calendar
         locale="ru"

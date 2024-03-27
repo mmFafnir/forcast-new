@@ -9,10 +9,8 @@ import { TypeBet, TypeMatch } from "@/shared/types/match";
 import { FC, useEffect, useState } from "react";
 import { setLoadingFilter } from "@/features/filters/slice/filterSlice";
 import { useTypeDispatch } from "@/shared/hooks/useTypeDispatch";
-import { matchTimeZone } from "@/shared/core/timezone";
 import { transformDateToTimezone } from "@/shared/helper/getTimezone";
 import dayjs from "dayjs";
-import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 interface IMatch extends TypeMatch {
