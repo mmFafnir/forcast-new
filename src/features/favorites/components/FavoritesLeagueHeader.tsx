@@ -9,6 +9,10 @@ import { setFavorite } from "../slice/favoritesSlice";
 import { ILeagues } from "@/shared/types/leagues";
 import Link from "next/link";
 import { getSportName } from "@/shared/helper/getSportName";
+import {
+  getTranslationCountry,
+  getTranslationLeague,
+} from "@/shared/helper/translation";
 
 interface IProps {
   league: ILeagues;
@@ -51,12 +55,16 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
       <div className={styles.league}>
         <Image
           src={`https://admin.aibetguru.com/${
-            league.country ? league.country.photo : league.photo
+            league.country.photo || league.photo
           }`}
           className="logo-country"
           width={400}
           height={400}
-          alt={league.league_name}
+          alt={
+            league.country.photo
+              ? getTranslationCountry(league.country)
+              : getTranslationLeague(league)
+          }
         />
         <p className={styles.name}>
           {league.country && (
@@ -65,13 +73,11 @@ export const FavoritesLeagueHeader: FC<IProps> = ({ league }) => {
                 league.country_url || league.country.url
               }`}
             >
-              {league.country?.translation || league.country?.name}:{" "}
+              {getTranslationCountry(league.country)}:{" "}
             </Link>
           )}
           <Link href={`/soccer/${league.country.url}/${league.url}`}>
-            {league.translate && league.translate.length > 0
-              ? league.translate[0].translation
-              : league.league_name}
+            {getTranslationLeague(league)}
           </Link>
         </p>
       </div>

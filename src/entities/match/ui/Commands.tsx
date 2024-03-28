@@ -3,6 +3,7 @@ import styles from "../styles/commands.module.scss";
 import Image from "next/image";
 import { TypeTeam } from "@/shared/types/match";
 import CustomImage from "@/shared/UI/CustomImage";
+import { getTranslationTeam } from "@/shared/helper/translation";
 
 interface IProps {
   away: TypeTeam;
@@ -17,28 +18,20 @@ export const Commands: FC<IProps> = ({ away, home }) => {
           src={`https://admin.aibetguru.com/${home.photo || "null.svg"}`}
           width={400}
           height={400}
-          alt={home.team_name}
+          alt={getTranslationTeam(home)}
           className="logo-icon"
         />
-        <p className={styles.name}>
-          {home.translate && home.translate.length > 0
-            ? home.translate[0].translation
-            : home.team_name}
-        </p>
+        <p className={styles.name}>{getTranslationTeam(home)}</p>
       </div>
       <div className={styles.team}>
         <CustomImage
           src={`https://admin.aibetguru.com/${away.photo || "null.svg"}`}
           width={400}
           height={400}
-          alt={away.team_name}
+          alt={getTranslationTeam(away)}
           className="logo-icon"
         />
-        <p className={styles.name}>
-          {away.translate && away.translate.length > 0
-            ? away.translate[0].translation
-            : away.team_name}
-        </p>
+        <p className={styles.name}>{getTranslationTeam(away)}</p>
       </div>
     </div>
   );

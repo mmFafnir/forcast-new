@@ -8,6 +8,7 @@ import styles from "../styles/preview.sticky.module.scss";
 import { useTypeSelector } from "@/shared/hooks/useTypeSelector";
 import CustomImage from "@/shared/UI/CustomImage";
 import useTimeStatus from "@/shared/hooks/useTimeStatus";
+import { getTranslationTeam } from "@/shared/helper/translation";
 
 interface IProps {
   match: IFetchFullMatch;
@@ -73,17 +74,15 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
       <div className={styles.center}>
         <div className={styles.team}>
           <div>
-            <p title={match.home_team.team_name}>
-              {match.home_team.translate[0]
-                ? match.home_team.translate[0].translation
-                : match.home_team.team_name}
+            <p title={getTranslationTeam(match.home_team)}>
+              {getTranslationTeam(match.home_team)}
             </p>
           </div>
           <CustomImage
             src={`https://admin.aibetguru.com/${
               match.home_team.photo || "null.svg"
             }`}
-            alt={match.home_team.team_name}
+            alt={getTranslationTeam(match.home_team)}
             width={400}
             height={400}
           />
@@ -112,15 +111,13 @@ export const MatchPreviewSticky: FC<IProps> = ({ match }) => {
             src={`https://admin.aibetguru.com/${
               match.away_team.photo || "null.svg"
             }`}
-            alt={match.away_team.team_name}
+            alt={getTranslationTeam(match.away_team)}
             width={400}
             height={400}
           />
           <div>
-            <p title={match.away_team.team_name}>
-              {match.away_team.translate[0]
-                ? match.away_team.translate[0].translation
-                : match.away_team.team_name}
+            <p title={getTranslationTeam(match.away_team)}>
+              {getTranslationTeam(match.away_team)}
             </p>
           </div>
         </div>

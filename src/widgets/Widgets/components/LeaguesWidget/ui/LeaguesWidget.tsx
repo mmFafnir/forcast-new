@@ -14,6 +14,10 @@ import SportsIcon from "@/shared/icons/sports";
 import IconX from "@/shared/icons/IconX";
 import { closeWidgets } from "@/features/closeSidebar/slice/closeSidebarSlice";
 import CustomImage from "@/shared/UI/CustomImage";
+import {
+  getTranslationCountry,
+  getTranslationLeague,
+} from "@/shared/helper/translation";
 
 interface IPropsItem {
   item: TypeLeague;
@@ -22,7 +26,11 @@ interface IPropsItem {
 const ItemLeagues: FC<IPropsItem> = ({ item }) => {
   // console.log(item);
   return (
-    <div key={item.id} className={styles.item} title={item.league_name}>
+    <div
+      key={item.id}
+      className={styles.item}
+      title={getTranslationLeague(item)}
+    >
       <Link href={`/soccer/${item.country.url}/${item.url}`}>
         <CustomImage
           className={styles.itemImage}
@@ -31,13 +39,13 @@ const ItemLeagues: FC<IPropsItem> = ({ item }) => {
           }`}
           width={20}
           height={20}
-          alt={item.league_name}
+          alt={
+            item.country.photo
+              ? getTranslationCountry(item.country)
+              : getTranslationLeague(item)
+          }
         />
-        <span>
-          {item.translate && item.translate.length > 0
-            ? item.translate[0].translation
-            : item.league_name}
-        </span>
+        <span>{getTranslationLeague(item)}</span>
       </Link>
       <PinButton leagues={{ ...item, user_pind_count: 1 }} />
     </div>

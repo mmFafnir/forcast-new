@@ -24,7 +24,7 @@ const Team: FC<ITeamProps> = ({ src, name, translate }) => {
         <CustomImage
           className="logo-icon"
           src={src}
-          alt={name}
+          alt={translate.length > 0 ? translate : name}
           width={1000}
           height={1000}
         />

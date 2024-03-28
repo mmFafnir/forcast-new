@@ -14,6 +14,11 @@ import { IFetchSeo } from "@/pagesComponent/types/IFetchSeo";
 import { mapSeoMacros } from "@/pagesComponent/api/seo/mapSeoMacros";
 import { convertUtcOffsetToDate } from "@/shared/helper/convertUtcOffsetToDate";
 import "dayjs/locale/ru";
+import {
+  getTranslationCountry,
+  getTranslationLeague,
+  getTranslationTeam,
+} from "@/shared/helper/translation";
 
 interface IProps {
   params: {
@@ -191,20 +196,12 @@ const SoccerSlugPage: NextPage<IProps> = async ({ params, searchParams }) => {
       }),
       {
         sport_name: "Футбол",
-        country_name: data?.league.country
-          ? data?.league.country.translation || data?.league.country.name
-          : "",
-        liga_name:
-          data?.league?.translate && data?.league.translate.length > 0
-            ? data?.league.translate[0].translation
-            : data?.league?.league_name,
-        comand_1:
-          data?.home_team.translate[0]?.translation ||
-          data?.home_team.team_name,
-        comand_2:
-          data?.away_team.translate[0]?.translation ||
-          data?.away_team.team_name,
-
+        country_name: data
+          ? getTranslationCountry(data.league.country)
+          : undefined,
+        liga_name: data ? getTranslationLeague(data.league) : undefined,
+        comand_1: data ? getTranslationTeam(data.home_team) : undefined,
+        comand_2: data ? getTranslationTeam(data.away_team) : undefined,
         date: timezoneDate,
       }
     );

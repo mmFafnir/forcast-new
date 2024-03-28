@@ -42,7 +42,6 @@ const filterSlice = createSlice({
 
     setFilter: (state, action: PayloadAction<IPayloadSetFilter>) => {
       const { country, league, sport } = action.payload;
-      console.log({ country, league, sport });
       if (country) state.countryId = country;
       if (league) state.leagueId = league;
       if (sport) state.sportId = sport;

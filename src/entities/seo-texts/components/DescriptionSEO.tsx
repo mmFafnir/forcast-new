@@ -9,7 +9,7 @@ interface IProps {
 }
 export const DescriptionSEO: FC<IProps> = ({ text = "" }) => {
   const { webApp } = useTypeSelector((state) => state.auth);
-
+  console.log(text);
   if (webApp || !text || text?.length === 0) return <></>;
   return (
     <TextMore

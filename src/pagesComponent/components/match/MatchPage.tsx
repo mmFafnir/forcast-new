@@ -62,6 +62,7 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
     });
   }
 
+  console.log(data);
   return (
     <FilterProvider
       sport={data.sport_id || ""}
@@ -122,14 +123,16 @@ export const MatchPage: NextPage<IProps> = async ({ data, seo }) => {
 
           <MatchPreview match={data} />
 
-          {data.show_card == 1 && (
+          {data.show_card == 1 && data.game_analize && (
             <div className={styles.analysis}>
               <TextMore
                 title={<span className={styles.analysisTitle}>Анализ</span>}
                 text={
                   <div
                     className={styles.analysisText}
-                    dangerouslySetInnerHTML={{ __html: data.game_analize }}
+                    dangerouslySetInnerHTML={{
+                      __html: data.game_analize || "",
+                    }}
                   />
                 }
               />

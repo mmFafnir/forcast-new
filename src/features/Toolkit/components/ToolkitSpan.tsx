@@ -35,9 +35,5 @@ export const ToolkitSpan: FC<IProps> = ({
     });
   }, []);
 
-  return (
-    <div className={className} ref={ref}>
-      {children}
-    </div>
-  );
+  return <div className={className}>{children}</div>;
 };
