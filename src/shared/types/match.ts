@@ -78,4 +78,5 @@ export type TypeMatch = {
   league: TypeLeague;
   time_status: 0 | 1 | 3;
   cards: TypeBet[];
+  show_card: "0" | "1";
 };

@@ -53,7 +53,7 @@ export const Match: FC<IProps> = ({ match, type = "main" }) => {
         <Commands away={match.away_team} home={match.home_team} />
       </div>
       <div className={styles.right}>
-        {match.best_bet_card.length > 0 && (
+        {match.show_card == "1" && match.best_bet_card.length > 0 && (
           <Total
             matchStatus={match.time_status}
             bets={match.cards}

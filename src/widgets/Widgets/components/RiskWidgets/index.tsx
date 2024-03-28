@@ -86,6 +86,8 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
   const [data, setData] = useState<IFetchStatistics[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const [windowWidth, setWindowWidth] = useState<number>(1000);
+
   useEffect(() => {
     if (isMob && window.innerWidth > 500) return;
     // if (
@@ -133,7 +135,11 @@ const RiskWidgets: FC<IProps> = ({ isMob }) => {
     }
   }, [pathname]);
 
-  if (isMob && window.innerWidth > 500) return <></>;
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+  }, []);
+
+  if (isMob && windowWidth > 500) return <></>;
   return (
     <div className={`${styles.body} ${isMob ? styles.mob : ""}`}>
       <div className={styles.header}>

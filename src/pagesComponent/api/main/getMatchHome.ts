@@ -19,6 +19,7 @@ export const getMatchHome = async (
       utcId: "",
     };
     console.log(
+      "url: ",
       `/get_home_page_matches?date=${date}&time_status=${timeStatus}&utc_id=${utcId}`
     );
     const { data } = await axios.get(
@@ -47,6 +48,10 @@ export const getMatchMainServer = cache(
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
+      console.log(
+        "url: ",
+        `/get_home_page_matches?date=${date}&time_status=${timeStatus}&utc_id=${utcId}`
+      );
       const { data } = await axios.get(
         `https://admin.aibetguru.com/api/app/get_home_page_matches?date=${date}&time_status=${timeStatus}&utc_id=${utcId}`,
         config
